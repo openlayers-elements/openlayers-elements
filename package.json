@@ -1,0 +1,24 @@
+{
+  "name": "@zazuko/ol-swiss-cantons",
+  "version": "0.0.0",
+  "description": "Clickable OpenLayers map used to select Swiss cantons",
+  "main": "index.js",
+  "repository": "git@github.com:zazuko/sparql-wkt-map.git",
+  "author": "tpluscode <tpluscode@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prepare": "tsc"
+  },
+  "files": [
+    "**/*.d.ts",
+    "**/*.js"
+  ],
+  "devDependencies": {
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "lit-element": "^2.0.0-rc.2"
+  }
+}
