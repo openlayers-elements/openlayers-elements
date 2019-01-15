@@ -1,4 +1,4 @@
 .idea/
-*.js
+elements/*.js
 *.d.ts
 node_modules/
