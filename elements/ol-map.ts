@@ -9,7 +9,7 @@ import Base from 'ol/layer/base'
 import Select from 'ol/interaction/Select'
 
 @customElement('ol-map')
-export default class OlSwissCantons extends LitElement {
+export default class OlMap extends LitElement {
     @property({ type: Number })
     zoom: number
 

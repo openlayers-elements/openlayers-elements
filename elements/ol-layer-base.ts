@@ -1,12 +1,12 @@
 import {LitElement, property} from 'lit-element'
 import Layer from 'ol/layer/base'
 
-export default abstract class OlLayerBase extends LitElement {
+export default abstract class OlLayerBase<L extends Layer> extends LitElement {
     @property({ type: Number, attribute: 'z-index'})
     zIndex = 0
 
     @property({ type: Object, attribute: false, noAccessor: true })
-    layer: Layer
+    layer: L
 
     connectedCallback() {
         super.connectedCallback()
@@ -17,5 +17,5 @@ export default abstract class OlLayerBase extends LitElement {
         this.layer = layer
     }
 
-    abstract createLayer(): Layer
+    abstract createLayer(): L
 }

@@ -1,9 +1,10 @@
-import {customElement, html, LitElement, property} from 'lit-element'
+import {customElement, html, LitElement, property, query} from 'lit-element'
 import {until} from 'lit-html/directives/until'
-import {repeat} from 'lit-html/directives/repeat'
 import Sparql from 'sparql-http-client'
 
+import OlMap from './ol-map'
 import './ol-map'
+import OlWktLayer from './ol-wkt-layer'
 import './ol-wkt-layer'
 import './ol-layer-openstreetmap'
 
@@ -12,7 +13,7 @@ Sparql.fetch = (a,b) => {
 }
 const endpoint = new Sparql({endpointUrl: 'https://ld.geo.admin.ch/query'})
 
-const query = `
+const sparql = `
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX schema: <http://schema.org/>
 PREFIX dct: <http://purl.org/dc/terms/>
@@ -36,7 +37,13 @@ export default class OlSwissCantons extends LitElement {
     @property({ type: String, attribute: false })
     selected: string
 
-    cantonLayers = endpoint.selectQuery(query)
+    @query('ol-map')
+    mapElement: OlMap
+
+    @query('ol-wkt-layer')
+    layerElement: OlWktLayer
+
+    cantonLayers = endpoint.selectQuery(sparql)
         .then(r => r.json())
         .then(json => json.results.bindings)
         .then(bindings => bindings.map(b => ({
@@ -55,6 +62,23 @@ export default class OlSwissCantons extends LitElement {
                 value: this.selected
             }
         }))
+    }
+
+    firstUpdated() {
+        this.cantonLayers
+            .then(() => this.updateComplete)
+            .then(() => {
+                setTimeout(() =>{
+                    const map = this.mapElement.map
+                    const extent = this.layerElement.layer.getSource().getExtent()
+
+                    map.getView().fit(extent, {
+                        size: map.getSize(),
+                        constrainResolution: false,
+                        nearest: false
+                    })
+                }, 0)
+            })
     }
 
     render() {
