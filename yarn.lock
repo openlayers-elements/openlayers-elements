@@ -6367,6 +6367,11 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+sparql-http-client@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/sparql-http-client/-/sparql-http-client-1.0.3.tgz#69ad0ba6bc919fb1425df84f00bda0f4825d0ed7"
+  integrity sha512-ZfRKealnjZZRcMxB4jhcnoWWNeGPJQuUOuqzU5u/5OMb7llDNgd/6waq4zRIRZKzW9i/8J9RUq10b0Zcdl6Vlg==
+
 spawn-promise@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/spawn-promise/-/spawn-promise-0.1.8.tgz#a5bea98814c48f52cbe02720e7fe2d6fc3b5119a"

@@ -1,10 +1,11 @@
 import {customElement, html, LitElement, property, query} from 'lit-element'
-import Map from 'ol/Map'
+import OpenLayersMap from 'ol/Map'
 import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile';
 import {fromLonLat} from 'ol/proj.js';
 import OSM from 'ol/source/OSM';
 import OlLayerBase from './ol-layer-base'
+import Base from 'ol/layer/base'
 
 @customElement('ol-map')
 export default class OlSwissCantons extends LitElement {
@@ -21,31 +22,63 @@ export default class OlSwissCantons extends LitElement {
     mapElement: HTMLDivElement
 
     @query('slot')
-    childSlot: HTMLSlotElement
+    layerSlot: HTMLSlotElement
 
-    map: Map
+    map: OpenLayersMap
+
+    layers: Map<OlLayerBase, Base>
 
     connectedCallback() {
         super.connectedCallback()
 
         this.updateComplete.then(() => {
-            const layers = this.childSlot.assignedNodes()
-                .filter((el:any) => el.createLayer && typeof el.createLayer === 'function')
-                .map((el: OlLayerBase) => el.createLayer())
+            this.layerSlot.addEventListener('slotchange', this.updateLayers.bind(this));
+        })
+    }
 
-            layers.splice(0,0, new TileLayer({
-                source: new OSM()
-            }))
+    updateLayers() {
+        const newLayers = this._getLayerMap()
 
-            this.map = new Map({
-                layers,
-                target: this.mapElement,
-                view: new View({
-                    center: fromLonLat([this.lon, this.lat]),
-                    zoom: this.zoom
-                })
+        for (let el of this.layers.keys()) {
+            if (this.layerSlot.assignedNodes().includes(el) === false) {
+                this.map.removeLayer(this.layers.get(el))
+            }
+        }
+
+        for (let el of newLayers.keys()) {
+            if(this.layers.has(el) === false) {
+                this.map.addLayer(newLayers.get(el))
+            }
+        }
+
+        this.layers = newLayers
+    }
+
+    firstUpdated() {
+        this.layers = this._getLayerMap()
+        const layers = [...this.layers.values()]
+
+        layers.splice(0,0, new TileLayer({
+            source: new OSM()
+        }))
+
+        this.map = new OpenLayersMap({
+            layers,
+            target: this.mapElement,
+            view: new View({
+                center: fromLonLat([this.lon, this.lat]),
+                zoom: this.zoom
             })
         })
+    }
+
+    _getLayerMap() {
+        return this.layerSlot.assignedNodes()
+            .filter((el:any) => el.createLayer && typeof el.createLayer === 'function')
+            .reduce((map, el: OlLayerBase) => {
+                map.set(el, el.createLayer())
+                return map
+            }, new Map<OlLayerBase, Base>())
     }
 
     render() {
