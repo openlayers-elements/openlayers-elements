@@ -1,9 +1,9 @@
 import {customElement, html, LitElement, property, query} from 'lit-element'
+import {render} from 'lit-html'
 import OpenLayersMap from 'ol/Map'
 import View from 'ol/View'
-import TileLayer from 'ol/layer/Tile';
+import Control from 'ol/control/Control'
 import {fromLonLat} from 'ol/proj.js';
-import OSM from 'ol/source/OSM';
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
 
@@ -21,19 +21,42 @@ export default class OlSwissCantons extends LitElement {
     @query('div')
     mapElement: HTMLDivElement
 
-    @query('slot')
+    @query('slot#layers')
     layerSlot: HTMLSlotElement
+
+    @query('slot[name=control]')
+    controlsSlot: HTMLSlotElement
 
     map: OpenLayersMap
 
     layers: Map<OlLayerBase, Base>
 
-    connectedCallback() {
-        super.connectedCallback()
+    updateControls() {
+        const position = this.map.getView().getCenter();
 
-        this.updateComplete.then(() => {
-            this.layerSlot.addEventListener('slotchange', this.updateLayers.bind(this));
-        })
+        this.controlsSlot.assignedNodes()
+            .filter((node: HTMLElement) => node.id)
+            .forEach((node: HTMLElement) => {
+                const tempDiv = document.createElement('div')
+                render(html`
+<div id="${node.id}" class="ol-control">
+    <style>
+    #${node.id} {
+        top: var(--${node.id}-control-top);
+        bottom: var(--${node.id}-control-bottom);
+        left: var(--${node.id}-control-left);
+        right: var(--${node.id}-control-right);
+    }
+    </style>
+    <slot name="${node.id}"></slot>
+</div>`, tempDiv)
+
+                node.setAttribute('slot', node.id)
+
+                this.map.addControl(new Control({
+                    element: tempDiv.firstElementChild,
+                }))
+            })
     }
 
     updateLayers() {
@@ -55,12 +78,11 @@ export default class OlSwissCantons extends LitElement {
     }
 
     firstUpdated() {
+        this.layerSlot.addEventListener('slotchange', this.updateLayers.bind(this));
+        this.controlsSlot.addEventListener('slotchange', this.updateControls.bind(this))
+
         this.layers = this._getLayerMap()
         const layers = [...this.layers.values()]
-
-        layers.splice(0,0, new TileLayer({
-            source: new OSM()
-        }))
 
         this.map = new OpenLayersMap({
             layers,
@@ -86,8 +108,13 @@ export default class OlSwissCantons extends LitElement {
 <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
 <style>
   :host { display: block; }
+  .top::slotted(*) {
+    display: none;
+  }
 </style>
-<slot></slot>
+<slot id="layers" class="top"></slot>
+<slot name="overlay" class="top"></slot>
+<slot name="control" class="top"></slot>
 <div></div>`
     }
 }

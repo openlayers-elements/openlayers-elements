@@ -1,9 +1,10 @@
-import {customElement, html, LitElement} from 'lit-element';
+import {customElement, html, LitElement, property} from 'lit-element'
 import {until} from 'lit-html/directives/until'
 import Sparql from 'sparql-http-client'
 
 import './ol-map'
 import './ol-wkt-layer'
+import './ol-layer-openstreetmap'
 
 Sparql.fetch = (a,b) => {
     return window.fetch(a, b)
@@ -28,6 +29,9 @@ SELECT ?canton ?cantonShape ?cantonShapeLabel WHERE {
 
 @customElement('ol-swiss-cantons')
 export default class OlSwissCantons extends LitElement {
+    @property({ type: Boolean, attribute: 'no-map', reflect: true })
+    noMap: boolean = false
+
     render() {
         const cantonLayers = endpoint.selectQuery(query)
             .then(r => r.json())
@@ -36,8 +40,17 @@ export default class OlSwissCantons extends LitElement {
             })
 
         return html`
+<style>
+    :host {
+        --canton-loading-control-bottom: 20px;
+        --canton-loading-control-left: 10px;
+    }
+
+    #canton-loading { color: red }
+</style>
 <ol-map zoom="7" lat="46.7985" lon="8.2318">
-    ${until(cantonLayers, '')}
+    ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
+    ${until(cantonLayers, html`<div id="canton-loading" slot="control">Loading cantons...</div>`)}
 </ol-map>`
     }
 }
