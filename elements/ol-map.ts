@@ -107,6 +107,8 @@ export default class OlSwissCantons extends LitElement {
                 }
             }))
         })
+
+        this.updateControls()
     }
 
     _getLayerMap() {
