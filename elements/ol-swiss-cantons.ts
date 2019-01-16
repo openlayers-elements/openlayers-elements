@@ -1,5 +1,6 @@
 import {customElement, html, LitElement, property} from 'lit-element'
 import {until} from 'lit-html/directives/until'
+import {repeat} from 'lit-html/directives/repeat'
 import Sparql from 'sparql-http-client'
 
 import './ol-map'
@@ -35,7 +36,12 @@ export default class OlSwissCantons extends LitElement {
     @property({ type: String, attribute: false })
     selected: string
 
-    cantonData = endpoint.selectQuery(query).then(r => r.json())
+    cantonLayers = endpoint.selectQuery(query)
+        .then(r => r.json())
+        .then(json => json.results.bindings)
+        .then(bindings => {
+            return html`${repeat(bindings, (b:any) => html`<ol-wkt-layer .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)}`
+        })
 
     updateSelection(e: CustomEvent) {
         this.selected = e.detail.value.getId()
@@ -47,11 +53,6 @@ export default class OlSwissCantons extends LitElement {
     }
 
     render() {
-        const cantonLayers = this.cantonData
-            .then(json => {
-                return json.results.bindings.map(b => html`<ol-wkt-layer .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)
-            })
-
         return html`
 <style>
     :host {
@@ -63,7 +64,7 @@ export default class OlSwissCantons extends LitElement {
 </style>
 <ol-map zoom="7" lat="46.7985" lon="8.2318" @feature-selected="${this.updateSelection}">
     ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
-    ${until(cantonLayers, html`<div id="canton-loading" slot="control">Loading cantons...</div>`)}
+    ${until(this.cantonLayers, html`<div id="canton-loading" slot="control">Loading cantons...</div>`)}
 </ol-map>`
     }
 }

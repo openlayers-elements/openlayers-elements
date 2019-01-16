@@ -61,21 +61,23 @@ export default class OlSwissCantons extends LitElement {
     }
 
     updateLayers() {
-        for (let el of this.layers.keys()) {
-            if (this.layerSlot.assignedNodes().includes(el) === false) {
-                this.map.removeLayer(this.layers.get(el))
-                this.layers.delete(el)
+        setTimeout( () => {
+            for (let el of this.layers.keys()) {
+                if (this.layerSlot.assignedNodes().includes(el) === false) {
+                    this.map.removeLayer(this.layers.get(el))
+                    this.layers.delete(el)
+                }
             }
-        }
 
-        this.layerSlot.assignedNodes()
-            .filter((el:OlLayerBase) => el.createLayer && typeof el.createLayer === 'function')
-            .filter((el:OlLayerBase) => !this.layers.has(el))
-            .forEach((el:OlLayerBase) => {
-                const layer = el.createLayer()
-                this.layers.set(el, layer)
-                this.map.addLayer(layer)
-            })
+            this.layerSlot.assignedNodes()
+                .filter((el:OlLayerBase) => el.createLayer && typeof el.createLayer === 'function')
+                .filter((el:OlLayerBase) => !this.layers.has(el))
+                .forEach((el:OlLayerBase) => {
+                    const layer = el.createLayer()
+                    this.layers.set(el, layer)
+                    this.map.addLayer(layer)
+                })
+        } , 0 );
     }
 
     firstUpdated() {
