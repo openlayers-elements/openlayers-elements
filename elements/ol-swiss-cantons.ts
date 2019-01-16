@@ -40,7 +40,7 @@ export default class OlSwissCantons extends LitElement {
         .then(r => r.json())
         .then(json => json.results.bindings)
         .then(bindings => {
-            return html`${repeat(bindings, (b:any) => html`<ol-wkt-layer .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)}`
+            return html`${repeat(bindings, (b:any) => html`<ol-wkt-layer z-index="1" .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)}`
         })
 
     updateSelection(e: CustomEvent) {

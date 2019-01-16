@@ -111,7 +111,7 @@ export default class OlSwissCantons extends LitElement {
 
     _getLayerMap() {
         return this.layerSlot.assignedNodes()
-            .filter((el:any) => el.createLayer && typeof el.createLayer === 'function')
+            .filter((el:any) => el.hasOwnProperty('layer'))
             .reduce((map, el: OlLayerBase) => {
                 map.set(el, el.createLayer())
                 return map
