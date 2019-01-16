@@ -32,11 +32,24 @@ export default class OlSwissCantons extends LitElement {
     @property({ type: Boolean, attribute: 'no-map', reflect: true })
     noMap: boolean = false
 
+    @property({ type: String, attribute: false })
+    selected: string
+
+    cantonData = endpoint.selectQuery(query).then(r => r.json())
+
+    updateSelection(e: CustomEvent) {
+        this.selected = e.detail.value.getId()
+        this.dispatchEvent(new CustomEvent('selected-changed', {
+            detail: {
+                value: this.selected
+            }
+        }))
+    }
+
     render() {
-        const cantonLayers = endpoint.selectQuery(query)
-            .then(r => r.json())
+        const cantonLayers = this.cantonData
             .then(json => {
-                return json.results.bindings.map(b => html`<ol-wkt-layer .wkt=${b.cantonShape.value}></ol-wkt-layer>`)
+                return json.results.bindings.map(b => html`<ol-wkt-layer .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)
             })
 
         return html`
@@ -48,7 +61,7 @@ export default class OlSwissCantons extends LitElement {
 
     #canton-loading { color: red }
 </style>
-<ol-map zoom="7" lat="46.7985" lon="8.2318">
+<ol-map zoom="7" lat="46.7985" lon="8.2318" @feature-selected="${this.updateSelection}">
     ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
     ${until(cantonLayers, html`<div id="canton-loading" slot="control">Loading cantons...</div>`)}
 </ol-map>`

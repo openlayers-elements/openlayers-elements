@@ -5,5 +5,9 @@ import '../elements/ol-swiss-cantons'
 
 storiesOf('ol-swiss-cantons', module)
     .add('standard map', () => {
-        return html`<ol-swiss-cantons style="max-width: 700px"></ol-swiss-cantons>`
+        const handleSelection = (e) => {
+            console.log(e.detail.value)
+        };
+
+        return html`<ol-swiss-cantons style="max-width: 700px" @selected-changed="${handleSelection}"></ol-swiss-cantons>`
     });

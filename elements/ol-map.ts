@@ -6,6 +6,7 @@ import Control from 'ol/control/Control'
 import {fromLonLat} from 'ol/proj.js';
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
+import Select from 'ol/interaction/Select'
 
 @customElement('ol-map')
 export default class OlSwissCantons extends LitElement {
@@ -91,6 +92,18 @@ export default class OlSwissCantons extends LitElement {
                 center: fromLonLat([this.lon, this.lat]),
                 zoom: this.zoom
             })
+        })
+
+        const select = new Select();
+        this.map.addInteraction(select);
+        const selectedFeatures = select.getFeatures();
+
+        select.on(['select'], (e) => {
+            this.dispatchEvent(new CustomEvent('feature-selected', {
+                detail: {
+                    value: e.target.getFeatures().item(0)
+                }
+            }))
         })
     }
 
