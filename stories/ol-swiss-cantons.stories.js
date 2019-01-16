@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/polymer';
 import { html } from 'lit-html'
+import { boolean } from '@storybook/addon-knobs';
 
 import '../elements/ol-swiss-cantons'
 
@@ -9,5 +10,7 @@ storiesOf('ol-swiss-cantons', module)
             console.log(e.detail.value)
         };
 
-        return html`<ol-swiss-cantons style="max-width: 700px" @selected-changed="${handleSelection}"></ol-swiss-cantons>`
+        return html`<ol-swiss-cantons
+                        @selected-changed="${handleSelection}"
+                        ?no-map="${boolean('disable background map', false)}"></ol-swiss-cantons>`
     });
