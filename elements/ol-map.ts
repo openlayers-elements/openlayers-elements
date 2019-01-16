@@ -70,10 +70,10 @@ export default class OlSwissCantons extends LitElement {
             }
 
             this.layerSlot.assignedNodes()
-                .filter((el:OlLayerBase) => el.createLayer && typeof el.createLayer === 'function')
+                .filter((el) => 'layer' in el)
                 .filter((el:OlLayerBase) => !this.layers.has(el))
                 .forEach((el:OlLayerBase) => {
-                    const layer = el.createLayer()
+                    const layer = el.layer
                     this.layers.set(el, layer)
                     this.map.addLayer(layer)
                 })
@@ -111,9 +111,9 @@ export default class OlSwissCantons extends LitElement {
 
     _getLayerMap() {
         return this.layerSlot.assignedNodes()
-            .filter((el:any) => el.hasOwnProperty('layer'))
+            .filter((el:any) => 'layer' in el)
             .reduce((map, el: OlLayerBase) => {
-                map.set(el, el.createLayer())
+                map.set(el, el.layer)
                 return map
             }, new Map<OlLayerBase, Base>())
     }
