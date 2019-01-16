@@ -2,12 +2,12 @@ import { storiesOf } from '@storybook/polymer';
 import { html } from 'lit-html'
 import { boolean } from '@storybook/addon-knobs';
 
-import '../elements/ol-swiss-cantons'
+import('../elements/ol-swiss-cantons');
 
 storiesOf('ol-swiss-cantons', module)
     .add('standard map', () => {
         const handleSelection = (e) => {
-            console.log(e.detail.value)
+            console.log('Selected', e.detail.value)
         };
 
         return html`<ol-swiss-cantons

@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "prepare": "tsc",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -c .storybook",
     "build-storybook": "build-storybook"
   },
   "files": [
@@ -18,6 +18,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
