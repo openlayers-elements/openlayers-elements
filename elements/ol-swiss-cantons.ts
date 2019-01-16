@@ -39,8 +39,13 @@ export default class OlSwissCantons extends LitElement {
     cantonLayers = endpoint.selectQuery(query)
         .then(r => r.json())
         .then(json => json.results.bindings)
-        .then(bindings => {
-            return html`${repeat(bindings, (b:any) => html`<ol-wkt-layer z-index="1" .wkt=${b.cantonShape.value} feature-name="${b.cantonShapeLabel.value}" id="${b.canton.value}"></ol-wkt-layer>`)}`
+        .then(bindings => bindings.map(b => ({
+            wkt: b.cantonShape.value,
+            id: b.canton.value,
+            props: { name: b.cantonShapeLabel.value },
+        })))
+        .then(features => {
+            return html`<ol-wkt-layer z-index="1" .featureData="${features}"></ol-wkt-layer>`
         })
 
     updateSelection(e: CustomEvent) {

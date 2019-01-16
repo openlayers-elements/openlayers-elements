@@ -5,10 +5,16 @@ export default abstract class OlLayerBase extends LitElement {
     @property({ type: Number, attribute: 'z-index'})
     zIndex = 0
 
-    get layer() {
+    @property({ type: Object, attribute: false, noAccessor: true })
+    layer: Layer
+
+    connectedCallback() {
+        super.connectedCallback()
+
         const layer = this.createLayer()
         layer.setZIndex(this.zIndex)
-        return layer
+
+        this.layer = layer
     }
 
     abstract createLayer(): Layer

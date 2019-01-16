@@ -7,23 +7,35 @@ import {customElement, property} from 'lit-element'
 
 const format = new WKT();
 
+interface IFeature {
+    wkt: string
+    id: string
+    props: { [key: string]: string }
+}
+
 @customElement('ol-wkt-layer')
 export default class OlWktLayer extends OlLayerBase {
     @property({ type: String })
-    wkt: string
+    featureData: Array<IFeature> = []
 
     createLayer() : Layer {
-        const feature = format.readFeature(this.wkt, {
-            dataProjection: 'EPSG:4326',
-            featureProjection: 'EPSG:3857',
-        })
+        const features = this.featureData.map(data => {
+            const feature = format.readFeature(data.wkt, {
+                dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857',
+            })
 
-        feature.setId(this.id)
-        feature.set('name', this.getAttribute('feature-name'))
+            feature.setId(data.id)
+            for (let propsKey in data.props) {
+                feature.set(propsKey, data.props[propsKey])
+            }
+
+            return feature
+        })
 
         return new VectorLayer({
             source: new VectorSource({
-                features: [feature]
+                features
             })
         });
     }
