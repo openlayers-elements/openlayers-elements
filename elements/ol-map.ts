@@ -30,7 +30,7 @@ export default class OlMap extends LitElement {
 
     map: OpenLayersMap
 
-    layers: Map<OlLayerBase, Base>
+    layers: Map<OlLayerBase<Base>, Base>
 
     updateControls() {
         const position = this.map.getView().getCenter();
@@ -71,8 +71,8 @@ export default class OlMap extends LitElement {
 
             this.layerSlot.assignedNodes()
                 .filter((el) => 'layer' in el)
-                .filter((el:OlLayerBase) => !this.layers.has(el))
-                .forEach((el:OlLayerBase) => {
+                .filter((el:OlLayerBase<Base>) => !this.layers.has(el))
+                .forEach((el:OlLayerBase<Base>) => {
                     const layer = el.layer
                     this.layers.set(el, layer)
                     this.map.addLayer(layer)
@@ -114,10 +114,10 @@ export default class OlMap extends LitElement {
     _getLayerMap() {
         return this.layerSlot.assignedNodes()
             .filter((el:any) => 'layer' in el)
-            .reduce((map, el: OlLayerBase) => {
+            .reduce((map, el: OlLayerBase<Base>) => {
                 map.set(el, el.layer)
                 return map
-            }, new Map<OlLayerBase, Base>())
+            }, new Map<OlLayerBase<Base>, Base>())
     }
 
     render() {
