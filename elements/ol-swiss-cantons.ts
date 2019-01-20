@@ -52,11 +52,16 @@ export default class OlSwissCantons extends LitElement {
             props: { name: b.cantonShapeLabel.value },
         })))
         .then(features => {
-            return html`<ol-wkt-layer z-index="1" .featureData="${features}"></ol-wkt-layer>`
+            return html`<ol-wkt-layer class="layer" z-index="1" .featureData="${features}"></ol-wkt-layer>`
         })
 
     updateSelection(e: CustomEvent) {
-        this.selected = e.detail.value.getId()
+        if (!e.detail.value) {
+            this.selected = null
+        } else {
+            this.selected = e.detail.value.getId()
+        }
+
         this.dispatchEvent(new CustomEvent('selected-changed', {
             detail: {
                 value: this.selected
@@ -92,8 +97,8 @@ export default class OlSwissCantons extends LitElement {
     #canton-loading { color: red }
 </style>
 <ol-map zoom="7" lat="46.7985" lon="8.2318" @feature-selected="${this.updateSelection}">
-    ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
-    ${until(this.cantonLayers, html`<div id="canton-loading" slot="control">Loading cantons...</div>`)}
+    ${this.noMap ? '' : html`<ol-layer-openstreetmap class="layer"></ol-layer-openstreetmap>`}
+    ${until(this.cantonLayers, html`<div id="canton-loading" class="control">Loading cantons...</div>`)}
 </ol-map>`
     }
 }
