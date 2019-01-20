@@ -7,6 +7,7 @@ import './ol-map'
 import OlWktLayer from './ol-wkt-layer'
 import './ol-wkt-layer'
 import './ol-layer-openstreetmap'
+import './ol-control'
 
 Sparql.fetch = (a,b) => {
     return window.fetch(a, b)
@@ -75,7 +76,8 @@ export default class OlSwissCantons extends LitElement {
             .then(() => {
                 setTimeout(() =>{
                     const map = this.mapElement.map
-                    const extent = this.layerElement.layer.getSource().getExtent()
+                    const layer = this.mapElement.parts.get(this.layerElement)
+                    const extent = layer.getSource().getExtent()
 
                     map.getView().fit(extent, {
                         size: map.getSize(),
@@ -97,8 +99,8 @@ export default class OlSwissCantons extends LitElement {
     #canton-loading { color: red }
 </style>
 <ol-map zoom="7" lat="46.7985" lon="8.2318" @feature-selected="${this.updateSelection}">
-    ${this.noMap ? '' : html`<ol-layer-openstreetmap class="layer"></ol-layer-openstreetmap>`}
-    ${until(this.cantonLayers, html`<div id="canton-loading" class="control">Loading cantons...</div>`)}
+    ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
+    ${until(this.cantonLayers, html`<ol-control id="canton-loading">Loading cantons...</ol-control>`)}
 </ol-map>`
     }
 }
