@@ -96,11 +96,7 @@ export default class OlMap extends LitElement {
 <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
 <style>
   :host { display: block; }
-  :host > ::slotted(*) {
-    display: none;
-  }
 </style>
-<slot></slot>
 <div></div>`
     }
 }
