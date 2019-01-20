@@ -8,6 +8,7 @@ import OlWktLayer from './ol-wkt-layer'
 import './ol-wkt-layer'
 import './ol-layer-openstreetmap'
 import './ol-control'
+import './ol-select'
 
 Sparql.fetch = (a,b) => {
     return window.fetch(a, b)
@@ -37,6 +38,9 @@ export default class OlSwissCantons extends LitElement {
 
     @property({ type: String, attribute: false })
     selected: string
+
+    @property({ type: Number, attribute: 'fit-animation-ms' })
+    fitAnimationMs: number = 500
 
     @query('ol-map')
     mapElement: OlMap
@@ -82,7 +86,8 @@ export default class OlSwissCantons extends LitElement {
                     map.getView().fit(extent, {
                         size: map.getSize(),
                         constrainResolution: false,
-                        nearest: false
+                        nearest: false,
+                        duration: this.fitAnimationMs
                     })
                 }, 0)
             })
@@ -98,7 +103,8 @@ export default class OlSwissCantons extends LitElement {
 
     #canton-loading { color: red }
 </style>
-<ol-map zoom="7" lat="46.7985" lon="8.2318" @feature-selected="${this.updateSelection}">
+<ol-map zoom="7" lat="46.7985" lon="8.2318">
+    <ol-select @feature-selected="${this.updateSelection}"></ol-select>
     ${this.noMap ? '' : html`<ol-layer-openstreetmap></ol-layer-openstreetmap>`}
     ${until(this.cantonLayers, html`<ol-control id="canton-loading">Loading cantons...</ol-control>`)}
 </ol-map>`

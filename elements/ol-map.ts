@@ -4,7 +4,6 @@ import View from 'ol/View'
 import {fromLonLat} from 'ol/proj.js';
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
-import Select from 'ol/interaction/Select'
 
 function addPart(this: OlMap, node) {
     const part = node.createPart()
@@ -70,18 +69,6 @@ export default class OlMap extends LitElement {
                 center: fromLonLat([this.lon, this.lat]),
                 zoom: this.zoom
             })
-        })
-
-        const select = new Select();
-        this.map.addInteraction(select);
-        const selectedFeatures = select.getFeatures();
-
-        select.on(['select'], (e) => {
-            this.dispatchEvent(new CustomEvent('feature-selected', {
-                detail: {
-                    value: e.target.getFeatures().item(0)
-                }
-            }))
         })
 
         const query = [...this.querySelectorAll('*')]
