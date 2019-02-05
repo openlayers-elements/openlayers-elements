@@ -23,7 +23,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 
 SELECT ?canton ?cantonShape ?cantonShapeLabel WHERE {
-    ?canton a <http://www.geonames.org/ontology#A.ADM1> ;
+    ?canton a <http://www.opengis.net/ont/geosparql#Feature> ;
+        <http://www.geonames.org/ontology#featureCode> <http://www.geonames.org/ontology#A.ADM1> ;
   	    dct:hasVersion ?version .
  
     ?version schema:validUntil "2018-12-31"^^xsd:date ;
