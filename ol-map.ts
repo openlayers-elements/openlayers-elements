@@ -84,6 +84,6 @@ export default class OlMap extends LitElement {
 <style>
   :host { display: block; }
 </style>
-<div></div>`
+<div id="map"></div>`
     }
 }
