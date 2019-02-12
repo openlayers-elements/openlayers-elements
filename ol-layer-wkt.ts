@@ -12,8 +12,18 @@ interface IFeature {
     props?: { [key: string]: string }
 }
 
+/**
+ *
+ *
+ * @customElement
+ */
 @customElement('ol-layer-wkt')
 export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
+    /**
+     * The features to be placed on the layer
+     *
+     * @type {Array}
+     */
     @property({ type: String })
     featureData: Array<IFeature> = []
 

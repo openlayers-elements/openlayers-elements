@@ -7,7 +7,8 @@ module.exports = {
         './node_modules/@polymer/iron-component-page/iron-component-page.js',
         './node_modules/@polymer/iron-demo-helpers/demo-snippet.js',
         './node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js',
-        ...glob.sync('./demo/*.js')
+        './demo/demo.js',
+        ...glob.sync('./ol-*.js')
     ],
     output: {
         path: path.resolve('./dist'),
