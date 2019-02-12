@@ -1,15 +1,18 @@
 {
   "name": "open-layers-elements",
   "version": "0.0.0",
-  "description": "Custome element to declaratively build OpenLayers map",
+  "description": "Custom element to declaratively build OpenLayers map",
   "main": "index.js",
   "repository": "git@github.com:zazuko/sparql-wkt-map.git",
   "author": "tpluscode <tpluscode@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "webpack -w & polymer serve",
-    "prepare": "tsc"
+    "build": "tsc",
+    "dev": "webpack-dev-server",
+    "prepare": "npm run build",
+    "analyze": "polymer analyze --sources ol-*.js > analysis.json",
+    "docs": "npm run build; webpack; npm run analyze; polymer build"
   },
   "files": [
     "**/*.d.ts",
@@ -17,6 +20,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.0.2",
@@ -24,11 +28,11 @@
     "@polymer/polymer": "^3.1.0",
     "@types/ol": "^4.6.3",
     "babel-loader": "^8.0.5",
-    "polymer-cli": "^1.9.6",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2",
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
     "lit-element": "^2.0.0-rc.2",

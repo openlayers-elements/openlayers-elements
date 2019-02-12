@@ -1,7 +1,9 @@
 .idea/
-*.js
+ol-*.js
 *.js.map
 *.d.ts
 node_modules/
 storybook-static/
 yarn-error.log
+analysis.json
+dist/

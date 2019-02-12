@@ -28,21 +28,50 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
         })
 }
 
+/**
+ * The main map element. On its own it does not do anything. Has to be combined with layers
+ * which are added as [Light DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#lightdom) children
+ *
+ * ```html
+ * <ol-map>
+ *     <ol-layer-openstreetmap></ol-layer-openstreetmap>
+ * </ol-map>
+ * ```
+ *
+ * @demo demo/index.html
+ * @customElement
+ */
 @customElement('ol-map')
 export default class OlMap extends LitElement {
+    /**
+     * Zoom level
+     * @type {Number}
+     */
     @property({ type: Number })
-    zoom: number
+    zoom: number = 1
 
+    /**
+     * Longitude
+     * @type {Number}
+     */
     @property({ type: Number })
     lon: number = 0
 
+    /**
+     * Latitude
+     * @type {Number}
+     */
     @property({ type: Number })
     lat: number = 0
 
     @query('div')
     mapElement: HTMLDivElement
 
-    map: OpenLayersMap
+    /**
+     * The underlying OpenLayers map instance
+     * @type {Object}
+     */
+    map: OpenLayersMap = null
 
     parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
     partObserver: MutationObserver

@@ -1,3 +1,4 @@
 {
-  "plugins": ["@babel/plugin-syntax-dynamic-import"]
+  "plugins": ["@babel/plugin-transform-template-literals"],
+  "presets": ["env"]
 }
