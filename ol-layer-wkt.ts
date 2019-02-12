@@ -9,11 +9,11 @@ const format = new WKT();
 interface IFeature {
     wkt: string
     id: string
-    props: { [key: string]: string }
+    props?: { [key: string]: string }
 }
 
-@customElement('ol-wkt-layer')
-export default class OlWktLayer extends OlLayerBase<VectorLayer> {
+@customElement('ol-layer-wkt')
+export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
     @property({ type: String })
     featureData: Array<IFeature> = []
 

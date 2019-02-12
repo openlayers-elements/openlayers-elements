@@ -12,7 +12,7 @@
     "dev": "webpack-dev-server",
     "prepare": "npm run build",
     "analyze": "polymer analyze --sources ol-*.js > analysis.json",
-    "docs": "npm run build; webpack; npm run analyze; polymer build"
+    "docs": "npm run build; webpack; npm run analyze"
   },
   "files": [
     "**/*.d.ts",
