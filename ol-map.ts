@@ -4,6 +4,7 @@ import View from 'ol/View'
 import {fromLonLat} from 'ol/proj.js';
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
+import ResizeObserver from 'resize-observer-polyfill'
 
 function addPart(this: OlMap, node) {
     const part = node.createPart()
@@ -75,20 +76,28 @@ export default class OlMap extends LitElement {
 
     parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
     partObserver: MutationObserver
+    sizeObserver: ResizeObserver
 
     constructor() {
         super()
         this.partObserver = new MutationObserver(updateParts.bind(this))
+        this.sizeObserver = new ResizeObserver(() => {
+            if (this.map) {
+                this.map.updateSize()
+            }
+        })
     }
 
     connectedCallback() {
         super.connectedCallback()
         this.partObserver.observe(this, { childList: true })
+        this.sizeObserver.observe(this)
     }
 
     disconnectedCallback() {
         super.disconnectedCallback()
         this.partObserver.disconnect()
+        this.sizeObserver.disconnect()
     }
 
     firstUpdated() {
