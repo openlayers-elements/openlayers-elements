@@ -1,5 +1,5 @@
 import {customElement, html} from 'lit-element'
-import Control from 'ol/control/Control'
+import Control from 'ol/control/control'
 import {render} from 'lit-html'
 import Map from 'ol/map'
 import {OlMapPart} from './ol-map-part'

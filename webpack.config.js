@@ -8,6 +8,7 @@ module.exports = {
         './node_modules/@polymer/iron-demo-helpers/demo-snippet.js',
         './node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js',
         './demo/demo.js',
+        './swiss-topo-layer.js',
         ...glob.sync('./ol-*.js')
     ],
     output: {

@@ -1,10 +1,11 @@
 import {customElement, html, LitElement, property, query} from 'lit-element'
 import OpenLayersMap from 'ol/Map'
-import View from 'ol/View'
-import {fromLonLat} from 'ol/proj.js';
+import View from 'ol/view'
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
 import ResizeObserver from 'resize-observer-polyfill'
+import proj from 'ol/proj'
+import fromLonLat = proj.fromLonLat
 
 function addPart(this: OlMap, node) {
     const part = node.createPart()

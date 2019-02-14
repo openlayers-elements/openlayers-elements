@@ -10,4 +10,4 @@ const template = html`
         }
       </style>
     </custom-style>`;
-window.setTimeout(() => document.body.appendChild(template.content), 100)
+window.setTimeout(() => document.body.appendChild(template.content), 1000)

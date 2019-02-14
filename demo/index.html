@@ -19,6 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
     <script src="../dist/bundle.js"></script>
+
+    <script src="http://api3.geo.admin.ch/loader.js?lang=en&version=4.4.2" type="text/javascript"></script>
 </head>
 <body unresolved>
 <div class="vertical-section-container centered">
@@ -27,6 +29,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template>
             <ol-map zoom="7" lat="46.7985" lon="8.2318">
                 <ol-layer-openstreetmap></ol-layer-openstreetmap>
+            </ol-map>
+        </template>
+    </demo-snippet>
+
+    <h3>Swiss topo</h3>
+    <demo-snippet class="centered-demo">
+        <template>
+            <ol-map zoom="7" lat="46.7985" lon="8.2318">
+                <swiss-topo-layer source-name="ch.swisstopo.pixelkarte-farbe"></swiss-topo-layer>
             </ol-map>
         </template>
     </demo-snippet>

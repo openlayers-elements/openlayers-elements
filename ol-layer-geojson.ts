@@ -1,6 +1,6 @@
-import VectorLayer from 'ol/layer/Vector'
-import GeoJSON from 'ol/format/GeoJSON'
-import VectorSource from 'ol/source/Vector'
+import VectorLayer from 'ol/layer/vector'
+import GeoJSON from 'ol/format/geojson'
+import VectorSource from 'ol/source/vector'
 import OlLayerBase from './ol-layer-base'
 import {customElement, property} from 'lit-element'
 
