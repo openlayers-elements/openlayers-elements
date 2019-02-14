@@ -1,7 +1,7 @@
 import OlLayerBase from './ol-layer-base'
-import VectorLayer from 'ol/layer/vector'
-import VectorSource from 'ol/source/vector'
-import WKT from 'ol/format/wkt'
+import VectorLayer from 'ol/layer/Vector'
+import VectorSource from 'ol/source/Vector'
+import WKT from 'ol/format/WKT'
 import {customElement, property} from 'lit-element'
 
 const format = new WKT();

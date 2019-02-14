@@ -1,6 +1,6 @@
 import OlLayerBase from './ol-layer-base'
-import TileLayer from 'ol/layer/tile'
-import OSM from 'ol/source/osm'
+import TileLayer from 'ol/layer/Tile'
+import OSM from 'ol/source/OSM'
 import {customElement} from 'lit-element'
 
 /**

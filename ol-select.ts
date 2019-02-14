@@ -1,6 +1,6 @@
 import {customElement} from 'lit-element'
-import Interaction from 'ol/interaction/interaction'
-import Select from 'ol/interaction/select'
+import Interaction from 'ol/interaction/Interaction'
+import Select from 'ol/interaction/Select'
 import OlInteraction from './ol-interaction'
 
 /**
