@@ -10,6 +10,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "webpack-dev-server",
+    "pretest": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "analyze": "polymer analyze --sources ol-*.js > analysis.json",
     "docs": "npm run build; npm run analyze; webpack"

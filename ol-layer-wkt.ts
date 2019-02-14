@@ -1,8 +1,8 @@
-import OlLayerBase from './ol-layer-base'
+import {customElement, property} from 'lit-element'
+import WKT from 'ol/format/WKT'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import WKT from 'ol/format/WKT'
-import {customElement, property} from 'lit-element'
+import OlLayerBase from './ol-layer-base'
 
 const format = new WKT();
 
@@ -25,18 +25,20 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
      * @type {Array}
      */
     @property({ type: String })
-    featureData: Array<IFeature> = []
+    public featureData: IFeature[] = []
 
-    createLayer() : VectorLayer {
-        const features = this.featureData.map(data => {
+    public createLayer(): VectorLayer {
+        const features = this.featureData.map((data) => {
             const feature = format.readFeature(data.wkt, {
                 dataProjection: 'EPSG:4326',
                 featureProjection: 'EPSG:3857',
             })
 
             feature.setId(data.id)
-            for (let propsKey in data.props) {
-                feature.set(propsKey, data.props[propsKey])
+            for (const propsKey in data.props) {
+                if (data.props.hasOwnProperty(propsKey)) {
+                    feature.set(propsKey, data.props[propsKey])
+                }
             }
 
             return feature
@@ -44,8 +46,8 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
 
         return new VectorLayer({
             source: new VectorSource({
-                features
-            })
-        });
+                features,
+            }),
+        })
     }
 }

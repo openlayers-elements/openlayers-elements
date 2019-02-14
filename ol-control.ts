@@ -1,6 +1,6 @@
 import {customElement, html} from 'lit-element'
-import Control from 'ol/control/Control'
 import {render} from 'lit-html'
+import Control from 'ol/control/Control'
 import Map from 'ol/map'
 import {OlMapPart} from './ol-map-part'
 
@@ -33,7 +33,15 @@ import {OlMapPart} from './ol-map-part'
  */
 @customElement('ol-control')
 export default class OlControl extends OlMapPart<Control> {
-    createPart() {
+    public static addToMap(c: Control, map: Map) {
+        map.addControl(c)
+    }
+
+    public static removeFromMap(c: Control, map: Map) {
+        map.removeControl(c)
+    }
+
+    public createPart() {
         const tempDiv = document.createElement('div')
         const slot = this.id
         this.slot = slot
@@ -58,15 +66,7 @@ export default class OlControl extends OlMapPart<Control> {
         return control
     }
 
-    static addToMap(c: Control, map: Map) {
-        map.addControl(c)
-    }
-
-    static removeFromMap(c: Control, map: Map) {
-        map.removeControl(c)
-    }
-
-    render() {
+    protected render() {
         return html`<slot></slot>`
     }
 }
