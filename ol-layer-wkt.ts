@@ -4,7 +4,7 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
 
-const format = new WKT();
+const format = new WKT()
 
 interface IFeature {
     wkt: string
