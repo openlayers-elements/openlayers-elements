@@ -32,17 +32,18 @@ export class OlSelect extends OlInteraction {
      */
 
     public async createPart() {
+        const selectEl = this
         const select = new Select()
 
         select.on(['select'], (e: any) => {
             const feature = e.selected[0]
 
             if (feature) {
-                this.dispatchEvent(new CustomEvent('feature-selected', {
+                selectEl.dispatchEvent(new CustomEvent('feature-selected', {
                     detail: {feature},
                 }))
             } else {
-                this.dispatchEvent(new CustomEvent('feature-unselected'))
+                selectEl.dispatchEvent(new CustomEvent('feature-unselected'))
             }
         })
 
