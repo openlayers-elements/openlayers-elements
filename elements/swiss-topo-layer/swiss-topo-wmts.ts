@@ -1,11 +1,10 @@
 import {customElement, property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
-import {register} from 'ol/proj/proj4.js'
 // @ts-ignore
 import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
-import OlLayerBase from 'open-layers-elements/ol-layer-base'
 import './projections'
+import SwissTopoElement from './swiss-topo-element'
 
 const parser = new WMTSCapabilities()
 
@@ -22,18 +21,7 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  * @customElement
  */
 @customElement('swiss-topo-wmts')
-export class SwissTopoWMTS extends OlLayerBase<TileLayer> {
-    /**
-     * One of the official layer names provided by geo.admin.ch.
-     *
-     * Complete list of layers is available
-     * [here](http://api3.geo.admin.ch/api/faq/index.html#which-layers-are-available)
-     *
-     * @type {string}
-     */
-    @property({ type: String, attribute: 'layer-name' })
-    public layerName: string
-
+export class SwissTopoWMTS extends SwissTopoElement {
     /**
      * One of projection supported by swisstopo maps:
      *
