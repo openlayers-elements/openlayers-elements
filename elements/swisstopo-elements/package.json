@@ -1,0 +1,21 @@
+{
+  "name": "@zazuko/swisstopo-elements",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "**/*.d.ts",
+    "**/*.js"
+  ],
+  "devDependencies": {
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "open-layers-elements": "0.0.0",
+    "proj4": "^2.5.0",
+    "lit-element": "^2.0.0"
+  }
+}

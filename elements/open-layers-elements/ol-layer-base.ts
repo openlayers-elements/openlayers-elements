@@ -22,8 +22,8 @@ export default abstract class OlLayerBase<L extends Layer> extends OlMapPart<L> 
     @property({ type: Number, attribute: 'z-index'})
     public zIndex = 0
 
-    public createPart() {
-        const layer = this.createLayer()
+    public async createPart() {
+        const layer = await this.createLayer()
         layer.setZIndex(this.zIndex)
 
         return layer
@@ -33,5 +33,5 @@ export default abstract class OlLayerBase<L extends Layer> extends OlMapPart<L> 
      * Called from [`createPart`](#method-createPart)
      * Implement to create the OpenLayers layer object
      */
-    protected abstract createLayer(): L
+    protected abstract createLayer(): Promise<L>
 }

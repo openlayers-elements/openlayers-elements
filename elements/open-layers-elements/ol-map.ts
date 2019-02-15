@@ -1,15 +1,17 @@
 import {customElement, html, LitElement, property, query} from 'lit-element'
 import Base from 'ol/layer/base'
 import OpenLayersMap from 'ol/Map'
-import {fromLonLat} from 'ol/proj.js'
+// @ts-ignore
+import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
 import OlLayerBase from './ol-layer-base'
 
 function addPart(this: OlMap, node) {
-    const part = node.createPart()
-    node.constructor.addToMap(part, this.map)
-    this.parts.set(node, part)
+    node.createPart().then((part) => {
+        node.constructor.addToMap(part, this.map)
+        this.parts.set(node, part)
+    })
 }
 
 function updateParts(this: OlMap, mutationList: MutationRecord[]) {
@@ -69,6 +71,18 @@ export default class OlMap extends LitElement {
     @query('div')
     public mapElement: HTMLDivElement
 
+    @property({ type: String })
+    public projection: string
+
+    @property({ type: Number })
+    public resolution: number
+
+    @property({ type: Number })
+    public x: number
+
+    @property({ type: Number })
+    public y: number
+
     /**
      * The underlying OpenLayers map instance
      * @type {Object}
@@ -102,12 +116,30 @@ export default class OlMap extends LitElement {
     }
 
     public firstUpdated() {
+        const viewInit = {
+            center: [0, 0],
+            resolution: this.resolution,
+            zoom: this.zoom,
+        } as any
+
+        if (this.lon && this.lat) {
+            if (this.projection) {
+                viewInit.center = fromLonLat([this.lon, this.lat], this.projection)
+            } else {
+                viewInit.center = fromLonLat([this.lon, this.lat])
+            }
+        }
+
+        if (this.x && this.y) {
+            viewInit.center = [this.x, this.y]
+        }
+
+        if (this.projection) {
+            viewInit.projection = getProjection(this.projection)
+        }
         this.map = new OpenLayersMap({
             target: this.mapElement,
-            view: new View({
-                center: fromLonLat([this.lon, this.lat]),
-                zoom: this.zoom,
-            }),
+            view: new View(viewInit),
         })
 
         const children = [...this.querySelectorAll('*')]

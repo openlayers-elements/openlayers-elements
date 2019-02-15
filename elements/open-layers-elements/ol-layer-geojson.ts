@@ -1,5 +1,5 @@
 import {customElement, property} from 'lit-element'
-import GeoJSON from 'ol/format/GeoJSON'
+import GeoJSON from 'ol/format/geojson'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
@@ -20,7 +20,7 @@ export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
     @property({ type: String })
     public url: string
 
-    protected createLayer(): VectorLayer {
+    protected async createLayer() {
         return new VectorLayer({
             source: new VectorSource({
                 format: new GeoJSON(),

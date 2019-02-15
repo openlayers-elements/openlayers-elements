@@ -1,5 +1,4 @@
 import {customElement} from 'lit-element'
-import Interaction from 'ol/interaction/Interaction'
 import Select from 'ol/interaction/Select'
 import OlInteraction from './ol-interaction'
 
@@ -32,7 +31,7 @@ export class OlSelect extends OlInteraction {
      * @event feature-unselected
      */
 
-    public createPart(): Interaction {
+    public async createPart() {
         const select = new Select()
 
         select.on(['select'], (e: any) => {
