@@ -1,23 +1,23 @@
 import {customElement, html, LitElement, property, query} from 'lit-element'
-import OpenLayersMap from 'ol/Map'
-import View from 'ol/View'
-import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
-import ResizeObserver from 'resize-observer-polyfill'
+import OpenLayersMap from 'ol/Map'
+// @ts-ignore
 import {fromLonLat, get as getProjection} from 'ol/proj'
+import View from 'ol/View'
+import ResizeObserver from 'resize-observer-polyfill'
+import OlLayerBase from './ol-layer-base'
 
 function addPart(this: OlMap, node) {
-    node.createPart().then(part => {
+    node.createPart().then((part) => {
         node.constructor.addToMap(part, this.map)
         this.parts.set(node, part)
     })
 }
 
-
 function updateParts(this: OlMap, mutationList: MutationRecord[]) {
     mutationList
-        .filter(m => m.type === 'childList')
-        .forEach(mutation => {
+        .filter((m) => m.type === 'childList')
+        .forEach((mutation) => {
             mutation.removedNodes.forEach((node: any) => {
                 if (this.parts.has(node)) {
                     node.constructor.removeFromMap(this.parts.get(node), this.map)
@@ -26,14 +26,15 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
             })
             const addedNodes = [...mutation.addedNodes]
             addedNodes
-                .filter(n => 'createPart' in n)
+                .filter((n) => 'createPart' in n)
                 .forEach(addPart.bind(this))
         })
 }
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
- * which are added as [Light DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#lightdom) children
+ * which are added as [Light DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#lightdom)
+ * children
  *
  * ```html
  * <ol-map>
@@ -51,46 +52,46 @@ export default class OlMap extends LitElement {
      * @type {Number}
      */
     @property({ type: Number })
-    zoom: number = 1
+    public zoom: number = 1
 
     /**
      * Longitude
      * @type {Number}
      */
     @property({ type: Number })
-    lon: number = 0
+    public lon: number = 0
 
     /**
      * Latitude
      * @type {Number}
      */
     @property({ type: Number })
-    lat: number = 0
+    public lat: number = 0
 
     @query('div')
-    mapElement: HTMLDivElement
+    public mapElement: HTMLDivElement
 
     @property({ type: String })
-    projection: string
+    public projection: string
 
     @property({ type: Number })
-    resolution: number
+    public resolution: number
 
     @property({ type: Number })
-    x: number
+    public x: number
 
     @property({ type: Number })
-    y: number
+    public y: number
 
     /**
      * The underlying OpenLayers map instance
      * @type {Object}
      */
-    map: OpenLayersMap = null
+    public map: OpenLayersMap = null
 
-    parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
-    partObserver: MutationObserver
-    sizeObserver: ResizeObserver
+    public parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
+    public partObserver: MutationObserver
+    public sizeObserver: ResizeObserver
 
     constructor() {
         super()
@@ -102,24 +103,24 @@ export default class OlMap extends LitElement {
         })
     }
 
-    connectedCallback() {
+    public connectedCallback() {
         super.connectedCallback()
         this.partObserver.observe(this, { childList: true })
         this.sizeObserver.observe(this)
     }
 
-    disconnectedCallback() {
+    public disconnectedCallback() {
         super.disconnectedCallback()
         this.partObserver.disconnect()
         this.sizeObserver.disconnect()
     }
 
-    firstUpdated() {
-        const viewInit = <any>{
+    public firstUpdated() {
+        const viewInit = {
             center: [0, 0],
+            resolution: this.resolution,
             zoom: this.zoom,
-            resolution: this.resolution
-        }
+        } as any
 
         if (this.lon && this.lat) {
             if (this.projection) {
@@ -136,20 +137,19 @@ export default class OlMap extends LitElement {
         if (this.projection) {
             viewInit.projection = getProjection(this.projection)
         }
-
         this.map = new OpenLayersMap({
             target: this.mapElement,
-            view: new View(viewInit)
+            view: new View(viewInit),
         })
 
-        const query = [...this.querySelectorAll('*')]
+        const children = [...this.querySelectorAll('*')]
 
-        query
-            .filter(n => 'createPart' in n)
+        children
+            .filter((n) => 'createPart' in n)
             .forEach(addPart.bind(this))
     }
 
-    render() {
+    public render() {
         return html`
 <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
 <style>

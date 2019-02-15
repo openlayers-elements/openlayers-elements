@@ -1,8 +1,8 @@
-import VectorLayer from 'ol/layer/Vector'
+import {customElement, property} from 'lit-element'
 import GeoJSON from 'ol/format/geojson'
+import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
-import {customElement, property} from 'lit-element'
 
 /**
  * A layer which loads features from a GeoJSON input
@@ -18,14 +18,14 @@ export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
      * @type {String}
      */
     @property({ type: String })
-    url: string
+    public url: string
 
-    createLayer(): VectorLayer {
+    protected async createLayer() {
         return new VectorLayer({
             source: new VectorSource({
+                format: new GeoJSON(),
                 url: this.url,
-                format: new GeoJSON()
-            })
+            }),
         })
     }
 
