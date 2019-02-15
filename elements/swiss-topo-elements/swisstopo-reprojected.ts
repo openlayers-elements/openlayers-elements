@@ -1,10 +1,10 @@
 import {customElement} from 'lit-element'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ.js'
-import SwissTopoElement from './swiss-topo-element'
+import SwisstopoElement from './swisstopo-element'
 
 /**
- * ### <swiss-topo-reprojected>
+ * ### <swisstopo-reprojected>
  *
  * A simpler form SwissTopo layers projects as Mercator.
  *
@@ -13,13 +13,13 @@ import SwissTopoElement from './swiss-topo-element'
  * #### Gotcha
  *
  * Apparently this style of layer source does not work with every one of Swiss layers. If you get 404s (blank map),
- * use the [`swiss-topo-wmts` layer](#/elements/SwissTopoWMTS)
+ * use the [`swisstopo-wmts` layer](#/elements/SwissTopoWMTS)
  *
  * @demo demo/swiss-reprojected.html
  * @customElement
  */
-@customElement('swiss-topo-reprojected')
-export default class SwissTopoReprojected extends SwissTopoElement {
+@customElement('swisstopo-reprojected')
+export default class SwisstopoReprojected extends SwisstopoElement {
     public async createLayer() {
         return new TileLayer({
             source: new XYZ({

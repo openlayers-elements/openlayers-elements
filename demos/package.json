@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@open-wc/building-webpack": "^0.1.7",
-    "@zazuko/swiss-topo-elements": "0.0.0",
+    "@zazuko/swisstopo-elements": "0.0.0",
     "open-layers-elements": "0.0.0",
     "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/iron-component-page": "^4.0.1",

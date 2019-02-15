@@ -5,7 +5,7 @@ import OlLayerBase from 'open-layers-elements/ol-layer-base'
 /**
  * Base class for swisstopo elements
  */
-export default abstract class SwissTopoElement extends OlLayerBase<TileLayer> {
+export default abstract class SwisstopoElement extends OlLayerBase<TileLayer> {
     /**
      * One of the official layer names provided by geo.admin.ch.
      *

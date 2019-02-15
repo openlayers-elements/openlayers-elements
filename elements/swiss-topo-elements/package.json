@@ -1,5 +1,5 @@
 {
-  "name": "@zazuko/swiss-topo-elements",
+  "name": "@zazuko/swisstopo-elements",
   "version": "0.0.0",
   "scripts": {
     "build": "tsc",
