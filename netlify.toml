@@ -1,0 +1,3 @@
+[build]
+  command = "npm i yarn; yarn; yarn docs"
+  publish = "demos/dist"
