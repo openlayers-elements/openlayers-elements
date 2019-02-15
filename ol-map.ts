@@ -7,9 +7,10 @@ import ResizeObserver from 'resize-observer-polyfill'
 import {fromLonLat, get as getProjection} from 'ol/proj'
 
 function addPart(this: OlMap, node) {
-    const part = node.createPart()
-    node.constructor.addToMap(part, this.map)
-    this.parts.set(node, part)
+    node.createPart().then(part => {
+        node.constructor.addToMap(part, this.map)
+        this.parts.set(node, part)
+    })
 }
 
 
@@ -121,7 +122,11 @@ export default class OlMap extends LitElement {
         }
 
         if (this.lon && this.lat) {
-            viewInit.center = fromLonLat([this.lon, this.lat])
+            if (this.projection) {
+                viewInit.center = fromLonLat([this.lon, this.lat], this.projection)
+            } else {
+                viewInit.center = fromLonLat([this.lon, this.lat])
+            }
         }
 
         if (this.x && this.y) {
