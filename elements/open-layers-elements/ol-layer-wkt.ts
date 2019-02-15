@@ -27,7 +27,7 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
     @property({ type: String })
     public featureData: IFeature[] = []
 
-    public createLayer(): VectorLayer {
+    public async createLayer() {
         const features = this.featureData.map((data) => {
             const feature = format.readFeature(data.wkt, {
                 dataProjection: 'EPSG:4326',

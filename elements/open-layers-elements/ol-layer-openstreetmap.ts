@@ -10,7 +10,7 @@ import OlLayerBase from './ol-layer-base'
  */
 @customElement('ol-layer-openstreetmap')
 export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
-    protected createLayer(): TileLayer {
+    protected async createLayer() {
         return new TileLayer({
             source: new OSM(),
         })

@@ -41,7 +41,7 @@ export default class OlControl extends OlMapPart<Control> {
         map.removeControl(c)
     }
 
-    public createPart() {
+    public async createPart() {
         const tempDiv = document.createElement('div')
         const slot = this.id
         this.slot = slot

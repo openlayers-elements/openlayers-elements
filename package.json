@@ -12,7 +12,7 @@
     "pretest": "tslint -p tsconfig.json",
     "test": "echo 0",
     "analyze": "polymer analyze --sources elements/**/*.js > demos/analysis.json",
-    "docs": "lerna run --scope demos build"
+    "docs": "yarn build; yarn analyze; lerna run --scope demos build"
   },
   "devDependencies": {
     "lerna": "^3.13.0",
