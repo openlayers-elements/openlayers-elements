@@ -19,22 +19,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <body unresolved>
 <div class="vertical-section-container centered">
-    <h3>Swiss topo WMTS</h3>
+    <h3>Swiss topo with changed projection</h3>
+    <p>
+        Note that the projection has to be set on teh map as well as layer elements.
+    </p>
     <demo-snippet class="centered-demo">
         <template>
             <ol-map zoom="9" lat="46.7985" lon="8.2318" projection="EPSG:2056">
-                <swiss-topo-wmts source-name="ch.swisstopo.landeskarte-grau-10" z-index="0"></swiss-topo-wmts>
-                <swiss-topo-wmts source-name="ch.bafu.neophyten-gestreiftes_suessgras" z-index="1"></swiss-topo-wmts>
+                <swiss-topo-wmts
+                        layer-name="ch.swisstopo.pixelkarte-grau"
+                        projection="EPSG:2056"></swiss-topo-wmts>
+                <swiss-topo-wmts
+                        layer-name="ch.bafu.neophyten-gestreiftes_suessgras"
+                        projection="EPSG:2056"
+                        z-index="1"></swiss-topo-wmts>
             </ol-map>
         </template>
     </demo-snippet>
 
-    <h3>Swiss topo WMTS</h3>
+    <h3>Swiss topo mixed with OSM</h3>
+    <p>
+        By using keeping the default projection the grass map nicely fits OpenStreetMap
+    </p>
     <demo-snippet class="centered-demo">
         <template>
             <ol-map zoom="9" lat="46.7985" lon="8.2318">
                 <ol-layer-openstreetmap></ol-layer-openstreetmap>
-                <swiss-topo-wmts source-name="ch.bafu.neophyten-gestreiftes_suessgras" z-index="1"></swiss-topo-wmts>
+                <swiss-topo-wmts layer-name="ch.bafu.neophyten-gestreiftes_suessgras" z-index="1"></swiss-topo-wmts>
             </ol-map>
         </template>
     </demo-snippet>
