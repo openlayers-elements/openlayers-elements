@@ -4,13 +4,14 @@ import View from 'ol/View'
 import OlLayerBase from './ol-layer-base'
 import Base from 'ol/layer/base'
 import ResizeObserver from 'resize-observer-polyfill'
-import {fromLonLat} from 'ol/proj'
+import {fromLonLat, get as getProjection} from 'ol/proj'
 
 function addPart(this: OlMap, node) {
     const part = node.createPart()
     node.constructor.addToMap(part, this.map)
     this.parts.set(node, part)
 }
+
 
 function updateParts(this: OlMap, mutationList: MutationRecord[]) {
     mutationList
@@ -68,6 +69,18 @@ export default class OlMap extends LitElement {
     @query('div')
     mapElement: HTMLDivElement
 
+    @property({ type: String })
+    projection: string
+
+    @property({ type: Number })
+    resolution: number
+
+    @property({ type: Number })
+    x: number
+
+    @property({ type: Number })
+    y: number
+
     /**
      * The underlying OpenLayers map instance
      * @type {Object}
@@ -101,12 +114,27 @@ export default class OlMap extends LitElement {
     }
 
     firstUpdated() {
+        const viewInit = <any>{
+            center: [0, 0],
+            zoom: this.zoom,
+            resolution: this.resolution
+        }
+
+        if (this.lon && this.lat) {
+            viewInit.center = fromLonLat([this.lon, this.lat])
+        }
+
+        if (this.x && this.y) {
+            viewInit.center = [this.x, this.y]
+        }
+
+        if (this.projection) {
+            viewInit.projection = getProjection(this.projection)
+        }
+
         this.map = new OpenLayersMap({
             target: this.mapElement,
-            view: new View({
-                center: fromLonLat([this.lon, this.lat]),
-                zoom: this.zoom
-            })
+            view: new View(viewInit)
         })
 
         const query = [...this.querySelectorAll('*')]
