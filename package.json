@@ -1,47 +1,21 @@
 {
-  "name": "open-layers-elements",
-  "version": "0.0.0",
-  "description": "Custom element to declaratively build OpenLayers map",
-  "main": "index.js",
-  "repository": "git@github.com:zazuko/sparql-wkt-map.git",
-  "author": "tpluscode <tpluscode@users.noreply.github.com>",
-  "license": "MIT",
-  "private": false,
+  "private": true,
+  "name": "open-layers",
+  "workspaces": [
+    "demos",
+    "elements/*"
+  ],
   "scripts": {
-    "build": "tsc",
-    "dev": "webpack-dev-server",
+    "start": "lerna run --scope demos start",
+    "start:es5": "lerna run --scope demos start:es5",
+    "build": "lerna run --no-private build",
     "pretest": "tslint -p tsconfig.json",
     "test": "echo 0",
-    "prepare": "npm run build",
-    "analyze": "polymer analyze --sources ol-*.js > analysis.json",
-    "docs": "npm run build; npm run analyze; webpack"
+    "analyze": "polymer analyze --sources elements/**/*.js > demos/analysis.json",
+    "docs": "lerna run --scope demos build"
   },
-  "files": [
-    "**/*.d.ts",
-    "**/*.js"
-  ],
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-transform-template-literals": "^7.2.0",
-    "@babel/preset-env": "^7.2.3",
-    "@polymer/iron-component-page": "^4.0.1",
-    "@polymer/iron-demo-helpers": "^3.0.2",
-    "@polymer/paper-styles": "^3.0.1",
-    "@polymer/polymer": "^3.1.0",
-    "@types/ol": "^4.4.2",
-    "babel-loader": "^8.0.5",
-    "polymer-cli": "^1.9.6",
-    "proj4": "^2.5.0",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
-  },
-  "dependencies": {
-    "lit-element": "^2.0.0-rc.2",
-    "lit-html": "^1.0.0-rc.2",
-    "ol": "^5.3.0",
-    "resize-observer-polyfill": "^1.5.1"
+    "lerna": "^3.13.0",
+    "polymer-cli": "^1.9.6"
   }
 }
