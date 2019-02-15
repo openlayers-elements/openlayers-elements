@@ -1,7 +1,7 @@
-import OlLayerBase from './ol-layer-base'
+import {customElement} from 'lit-element'
 import TileLayer from 'ol/layer/Tile'
 import OSM from 'ol/source/OSM'
-import {customElement} from 'lit-element'
+import OlLayerBase from './ol-layer-base'
 
 /**
  * A basic OpenStreetMap tile layer
@@ -10,9 +10,9 @@ import {customElement} from 'lit-element'
  */
 @customElement('ol-layer-openstreetmap')
 export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
-    createLayer(): TileLayer {
+    protected createLayer(): TileLayer {
         return new TileLayer({
-            source: new OSM()
-        });
+            source: new OSM(),
+        })
     }
 }

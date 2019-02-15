@@ -11,5 +11,5 @@ export abstract class OlMapPart<T> extends LitElement {
      * @abstract
      * @returns {T}
      */
-    abstract createPart(): T
+    public abstract createPart(): T
 }

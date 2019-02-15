@@ -32,15 +32,15 @@ export class OlSelect extends OlInteraction {
      * @event feature-unselected
      */
 
-    createPart(): Interaction {
-        const select = new Select();
+    public createPart(): Interaction {
+        const select = new Select()
 
         select.on(['select'], (e: any) => {
             const feature = e.selected[0]
 
             if (feature) {
                 this.dispatchEvent(new CustomEvent('feature-selected', {
-                    detail: {feature}
+                    detail: {feature},
                 }))
             } else {
                 this.dispatchEvent(new CustomEvent('feature-unselected'))
