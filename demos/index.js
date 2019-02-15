@@ -12,7 +12,7 @@ const template = html`
     <custom-style>
       <style include="demo-pages-shared-styles">
         .vertical-section-container {
-          max-width: 500px;
+          max-width: 800px;
         }
       </style>
     </custom-style>`;
