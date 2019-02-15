@@ -5,7 +5,7 @@ import {register} from 'ol/proj/proj4.js'
 // @ts-ignore
 import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
 import OlLayerBase from 'open-layers-elements/ol-layer-base'
-import './projecttions'
+import './projections'
 
 const parser = new WMTSCapabilities()
 

@@ -4,7 +4,8 @@ import '@polymer/iron-component-page/iron-component-page'
 import 'open-layers-elements/ol-map'
 import 'open-layers-elements/ol-layer-openstreetmap'
 import 'open-layers-elements/ol-layer-wkt'
-import '@zazuko/swiss-topo-elements/swiss-topo-layer'
+import '@zazuko/swiss-topo-elements/swiss-topo-wmts'
+import '@zazuko/swiss-topo-elements/swiss-topo-reprojected'
 
 import {html} from '@polymer/polymer/lib/utils/html-tag'
 const template = html`
