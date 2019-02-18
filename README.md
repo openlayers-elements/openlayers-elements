@@ -2,7 +2,7 @@
 
 This is monorepo which contains: 
 
-1. base OpenLayers elements (`./elements/open-layers/elements`)
+1. base OpenLayers elements (`./elements/openlayers-elements`)
 1. Swiss maps from geoadmin.ch (`./elements/swisstopo-elements`)
 
 ## Demo

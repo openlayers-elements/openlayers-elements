@@ -1,5 +1,5 @@
 {
-  "name": "open-layers-elements",
+  "name": "openlayers-elements",
   "version": "0.0.0",
   "description": "Custom element to declaratively build OpenLayers map",
   "repository": "git@github.com:zazuko/open-layers.git",

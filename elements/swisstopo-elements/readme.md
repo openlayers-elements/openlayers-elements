@@ -1,6 +1,6 @@
 # swisstopo-elements
 
-OpenLayers elements for adding swisstopo maps to `open-layers-elements`
+OpenLayers elements for adding swisstopo maps to `openlayers-elements`
 
 ## Quick start
 
@@ -14,8 +14,8 @@ Then add the WMTS layer to your `ol-map`
 
 ```html
 <script type="module">
-  import 'open-layers-elements/ol-map'
-  import 'open-layers-elements/ol-layer-openstreetmap'
+  import 'openlayers-elements/ol-map'
+  import 'openlayers-elements/ol-layer-openstreetmap'
 </script>
 
 <ol-map zoom="7" lat="46.7985" lon="8.2318">
