@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "description": "Custom element to declaratively build OpenLayers map",
   "repository": "git@github.com:zazuko/open-layers.git",
-  "author": "tpluscode <tpluscode@users.noreply.github.com>",
+  "author": "Zazuko GmbH",
+  "contributors": [
+    "tpluscode <tpluscode@users.noreply.github.com>"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",

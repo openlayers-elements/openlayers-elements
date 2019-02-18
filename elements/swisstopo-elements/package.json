@@ -1,6 +1,10 @@
 {
   "name": "@zazuko/swisstopo-elements",
   "version": "0.0.0",
+  "author": "Zazuko GmbH",
+  "contributors": [
+    "tpluscode <tpluscode@users.noreply.github.com>"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
