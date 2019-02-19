@@ -2,21 +2,27 @@
   "private": true,
   "name": "open-layers",
   "workspaces": [
-    "demos",
     "elements/*"
   ],
   "scripts": {
-    "start": "lerna run --scope demos start",
-    "start:es5": "lerna run --scope demos start:es5",
+    "start": "webpack-dev-server --mode development",
+    "start:es5": "webpack-dev-server --mode development --es5",
     "build": "lerna run --no-private build",
     "pretest": "tslint -p tsconfig.json",
     "test": "echo 0",
-    "analyze": "polymer analyze --sources elements/**/*.js > demos/analysis.json",
-    "docs": "yarn build; yarn analyze; lerna run --scope demos build"
+    "analyze": "polymer analyze --sources elements/**/*.js > analysis.json",
+    "docs": "yarn build; yarn analyze; webpack --mode production"
   },
   "devDependencies": {
+    "@open-wc/building-webpack": "^0.1.7",
+    "@polymer/iron-component-page": "^4.0.1",
+    "@polymer/iron-demo-helpers": "^3.0.2",
+    "@polymer/polymer": "^3.1.0",
+    "copy-webpack-plugin": "^4.6.0",
     "lerna": "^3.13.0",
     "polymer-cli": "^1.9.6",
-    "webpack-cli": "^3.2.3"
+    "webpack": "^4.0.0",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   }
 }

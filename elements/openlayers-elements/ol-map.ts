@@ -42,7 +42,7 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
  * </ol-map>
  * ```
  *
- * @demo demo/index.html
+ * @demo demo/ol-map.html
  * @customElement
  */
 @customElement('ol-map')
