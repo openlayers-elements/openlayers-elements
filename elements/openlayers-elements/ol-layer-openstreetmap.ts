@@ -1,4 +1,3 @@
-import {customElement} from 'lit-element'
 import TileLayer from 'ol/layer/Tile'
 import OSM from 'ol/source/OSM'
 import OlLayerBase from './ol-layer-base'
@@ -7,8 +6,9 @@ import OlLayerBase from './ol-layer-base'
  * A basic OpenStreetMap tile layer
  *
  * @customElement
+ * @demo demo/ol-map.html Standard map
+ * @demo demo/swiss-topo.html Mix with swisstopo elements
  */
-@customElement('ol-layer-openstreetmap')
 export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
     protected async createLayer() {
         return new TileLayer({
@@ -16,3 +16,5 @@ export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
         })
     }
 }
+
+customElements.define('ol-layer-openstreetmap', OlLayerOpenstreetmap)

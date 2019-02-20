@@ -1,4 +1,4 @@
-import {customElement, html, LitElement, property, query} from 'lit-element'
+import {html, LitElement, property, query} from 'lit-element'
 import Base from 'ol/layer/base'
 import OpenLayersMap from 'ol/Map'
 // @ts-ignore
@@ -42,10 +42,26 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
  * </ol-map>
  * ```
  *
- * @demo demo/index.html
+ * ### Controlling zoom level
+ *
+ * The simpler way to set zoom is to set the `zoom` property. Alternatively, `resoltution` can be used instead.
+ *
+ * It is important to note that the two properties are mutually exclusive. `zoom` is ignored when `resolution` is set.
+ * This is actually a design of OpenLayers as described
+ * [here](https://openlayers.org/en/latest/doc/tutorials/concepts.html)
+ *
+ * ### Setting initial coordinates
+ *
+ * The position of the map can also be controlled in two ways:
+ *
+ * 1. with `x`/`y` coordinates
+ * 1. with latitude and longitude
+ *
+ * If `x` and `y` are set, the geographic coordinates are ignored.
+ *
+ * @demo demo/ol-map.html
  * @customElement
  */
-@customElement('ol-map')
 export default class OlMap extends LitElement {
     /**
      * Zoom level
@@ -71,17 +87,41 @@ export default class OlMap extends LitElement {
     @query('div')
     public mapElement: HTMLDivElement
 
+    /**
+     * A string identifier of the projection to be used. Custom projections can be added using [`proj4` library][p4].
+     *
+     * If falsy, the default projection is applied (Spherical Mercator aka EPSG:3857), which uses meters for map units.
+     *
+     * [p4]: https://github.com/proj4js/proj4js
+     *
+     * @type {string}
+     */
     @property({ type: String })
-    public projection: string
+    public projection: string = undefined
 
+    /**
+     * Sets the zoom level by directly selecting the resolution.
+     *
+     * @type {number}
+     */
     @property({ type: Number })
-    public resolution: number
+    public resolution: number = undefined
 
+    /**
+     * The X coordinate on the map in map units (see `projection`).
+     *
+     * @type {number}
+     */
     @property({ type: Number })
-    public x: number
+    public x: number = null
 
+    /**
+     * The Y coordinate on the map in map units (see `projection`).
+     *
+     * @type {number}
+     */
     @property({ type: Number })
-    public y: number
+    public y: number = null
 
     /**
      * The underlying OpenLayers map instance
@@ -158,3 +198,5 @@ export default class OlMap extends LitElement {
 <div id="map"></div>`
     }
 }
+
+customElements.define('ol-map', OlMap)

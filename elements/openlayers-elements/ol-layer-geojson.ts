@@ -1,4 +1,4 @@
-import {customElement, property} from 'lit-element'
+import {property} from 'lit-element'
 import GeoJSON from 'ol/format/geojson'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
@@ -10,7 +10,6 @@ import OlLayerBase from './ol-layer-base'
  * @demo demo/select.html
  * @customElement
  */
-@customElement('ol-layer-geojson')
 export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
     /**
      * The URL to fetch the GeoJSON. It can be relative or absolute
@@ -18,7 +17,7 @@ export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
      * @type {String}
      */
     @property({ type: String })
-    public url: string
+    public url: string = null
 
     protected async createLayer() {
         return new VectorLayer({
@@ -28,5 +27,6 @@ export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
             }),
         })
     }
-
 }
+
+customElements.define('ol-layer-geojson', OlLayerGeoJson)

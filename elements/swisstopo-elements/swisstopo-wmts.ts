@@ -1,4 +1,4 @@
-import {customElement, property} from 'lit-element'
+import {property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
 // @ts-ignore
@@ -11,8 +11,6 @@ const parser = new WMTSCapabilities()
 type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
 
 /**
- * ### <swisstopo-wmts>
- *
  * Layer which loads official Swiss maps from [WMTS capabilities document][wmts-list]
  *
  * [wmts-list]: http://api3.geo.admin.ch/services/sdiservices.html#supported-projections
@@ -20,10 +18,9 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  * @demo demo/swiss-topo.html
  * @customElement
  */
-@customElement('swisstopo-wmts')
 export class SwisstopoWmts extends SwisstopoElement {
     /**
-     * One of projection supported by swisstopo maps:
+     * One of projections supported by swisstopo maps:
      *
      * 1. EPSG:3857 (Mercator) (default)
      * 1. EPSG:2056
@@ -50,3 +47,5 @@ export class SwisstopoWmts extends SwisstopoElement {
         })
     }
 }
+
+customElements.define('swisstopo-wmts', SwisstopoWmts)

@@ -7,8 +7,8 @@ import 'openlayers-elements/ol-layer-wkt'
 import 'openlayers-elements/ol-layer-geojson'
 import 'openlayers-elements/ol-select'
 import 'openlayers-elements/ol-control'
-import '@zazuko/swisstopo-elements/swisstopo-wmts'
-import '@zazuko/swisstopo-elements/swisstopo-reprojected'
+import 'openlayers-elements-swisstopo/swisstopo-wmts'
+import 'openlayers-elements-swisstopo/swisstopo-reprojected'
 
 import {html} from '@polymer/polymer/lib/utils/html-tag'
 const template = html`
@@ -19,4 +19,4 @@ const template = html`
         }
       </style>
     </custom-style>`;
-window.setTimeout(() => document.body.appendChild(template.content), 1000)
+window.addEventListener('DOMContentLoaded', () => document.body.appendChild(template.content))

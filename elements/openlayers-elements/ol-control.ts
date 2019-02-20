@@ -1,4 +1,4 @@
-import {customElement, html} from 'lit-element'
+import {html} from 'lit-element'
 import {render} from 'lit-html'
 import Control from 'ol/control/Control'
 import Map from 'ol/map'
@@ -7,7 +7,7 @@ import {OlMapPart} from './ol-map-part'
 /**
  * A base element for implementing map controls.
  *
- * To place it on the map, a `id` must be set
+ * To place it on the map the `id` must be set
  *
  * ```html
  * <ol-map>
@@ -31,7 +31,6 @@ import {OlMapPart} from './ol-map-part'
  * @demo demo/control.html
  * @customElement
  */
-@customElement('ol-control')
 export default class OlControl extends OlMapPart<Control> {
     public static addToMap(c: Control, map: Map) {
         map.addControl(c)
@@ -59,14 +58,14 @@ export default class OlControl extends OlMapPart<Control> {
     <slot name="${slot}"></slot>
 </div>`, tempDiv)
 
-        const control = new Control({
+        return new Control({
             element: tempDiv.firstElementChild,
         })
-
-        return control
     }
 
     protected render() {
         return html`<slot></slot>`
     }
 }
+
+customElements.define('ol-control', OlControl)

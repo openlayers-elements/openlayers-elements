@@ -1,6 +1,6 @@
 {
   "name": "openlayers-elements",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Custom element to declaratively build OpenLayers map",
   "repository": "git@github.com:zazuko/openlayers-elements.git",
   "author": "Zazuko GmbH",

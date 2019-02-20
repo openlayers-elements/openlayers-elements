@@ -1,4 +1,4 @@
-import {customElement, property} from 'lit-element'
+import {property} from 'lit-element'
 import WKT from 'ol/format/WKT'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
@@ -13,11 +13,27 @@ interface IFeature {
 }
 
 /**
+ * Adds a layer with features defined as [WKT strings][wkt]
  *
+ * To populate the layer `featureData` property must be set with an array of objects.
+ *
+ * ```js
+ * const layer = document.querySelector('ol-layer-wkt')
+ *
+ * layer.featureData = [
+ *   {
+ *     id: 'Feature 1',
+ *     wkt: 'POLYGON(...)'
+ *   }
+ * ]
+ * ```
+ *
+ * `id` and `wkt` props are required. Any additional keys will be stored added to feature's props.
+ *
+ * [wkt]: https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
  *
  * @customElement
  */
-@customElement('ol-layer-wkt')
 export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
     /**
      * The features to be placed on the layer
@@ -51,3 +67,5 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
         })
     }
 }
+
+customElements.define('ol-layer-wkt', OlLayerWkt)

@@ -1,4 +1,3 @@
-import {customElement} from 'lit-element'
 import Select from 'ol/interaction/Select'
 import OlInteraction from './ol-interaction'
 
@@ -16,7 +15,6 @@ import OlInteraction from './ol-interaction'
  * @customElement
  * @demo demo/select.html
  */
-@customElement('ol-select')
 export class OlSelect extends OlInteraction {
     /**
      * Fired when a feature has been selected
@@ -50,3 +48,5 @@ export class OlSelect extends OlInteraction {
         return select
     }
 }
+
+customElements.define('ol-select', OlSelect)

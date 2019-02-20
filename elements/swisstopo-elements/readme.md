@@ -7,7 +7,7 @@ OpenLayers elements for adding swisstopo maps to `openlayers-elements`
 To install run
 
 ```
-yarn add @zazuko/swisstopo-elements
+yarn add openlayers-elements-swisstopo
 ```
 
 Then add the WMTS layer to your `ol-map` 
