@@ -1,6 +1,6 @@
-import { property} from 'lit-element'
+import OlLayerBase from '@openlayers-elements/maps/ol-layer-base'
+import { property } from 'lit-element'
 import TileLayer from 'ol/layer/Tile'
-import OlLayerBase from 'openlayers-elements/ol-layer-base'
 
 /**
  * Base class for swisstopo elements

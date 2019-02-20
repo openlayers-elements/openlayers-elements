@@ -1,5 +1,5 @@
 {
-  "name": "openlayers-elements-swisstopo",
+  "name": "@openlayers-elements/swisstopo",
   "version": "0.1.0",
   "author": "Zazuko GmbH",
   "repository": "git@github.com:zazuko/openlayers-elements.git",
@@ -19,7 +19,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "openlayers-elements": "^0.1.0",
+    "@openlayers-elements/maps": "^0.1.0",
     "proj4": "^2.5.0",
     "lit-element": "^2.0.0"
   }
