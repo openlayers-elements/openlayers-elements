@@ -22,5 +22,8 @@
     "@openlayers-elements/maps": "^0.1.0",
     "proj4": "^2.5.0",
     "lit-element": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
