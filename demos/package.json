@@ -1,6 +1,6 @@
 {
   "name": "demos",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -9,11 +9,11 @@
   },
   "devDependencies": {
     "@open-wc/building-webpack": "^0.1.7",
-    "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/iron-component-page": "^4.0.1",
+    "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/polymer": "^3.1.0",
-    "copy-webpack-plugin":"^4.6.0",
-    "webpack-dev-server": "^3.1.14",
-    "webpack": "^4.0.0"
+    "copy-webpack-plugin": "^4.6.0",
+    "webpack": "^4.0.0",
+    "webpack-dev-server": "^3.1.14"
   }
 }
