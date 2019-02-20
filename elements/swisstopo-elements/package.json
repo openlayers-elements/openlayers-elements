@@ -2,7 +2,7 @@
   "name": "@openlayers-elements/swisstopo",
   "version": "0.1.0",
   "author": "Zazuko GmbH",
-  "repository": "git@github.com:zazuko/openlayers-elements.git",
+  "repository": "https://github.com:zazuko/openlayers-elements",
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
