@@ -34,6 +34,6 @@ export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
      * Implement to create the OpenLayers layer object
      */
     protected createLayer(): Promise<L> {
-        return null
+        throw new Error('createLayer must be implemented in derived class')
     }
 }

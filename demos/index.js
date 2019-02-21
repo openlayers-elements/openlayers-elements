@@ -7,6 +7,7 @@ import '@openlayers-elements/maps/ol-layer-wkt'
 import '@openlayers-elements/maps/ol-layer-geojson'
 import '@openlayers-elements/maps/ol-select'
 import '@openlayers-elements/maps/ol-control'
+import '@openlayers-elements/maps/ol-layer-xyz'
 import '@openlayers-elements/swisstopo/swisstopo-wmts'
 import '@openlayers-elements/swisstopo/swisstopo-reprojected'
 
