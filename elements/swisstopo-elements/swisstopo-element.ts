@@ -1,13 +1,15 @@
 import {LitElement, property} from 'lit-element'
 
+let SwisstopoElementMixin
 type Constructor = new (...args: any[]) => LitElement
 
 /**
  * Base mixin for swisstopo elements
  *
+ * @polymer
  * @mixinFunction
  */
-export default function<B extends Constructor>(Base: B) {
+SwisstopoElementMixin = function<B extends Constructor>(Base: B) { // tslint:disable-line only-arrow-functions
     /**
      * Base class for swisstopo elements
      *
@@ -28,3 +30,5 @@ export default function<B extends Constructor>(Base: B) {
 
     return SwisstopoElement
 }
+
+export default SwisstopoElementMixin
