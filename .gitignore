@@ -1,5 +1,6 @@
 .idea/
-elements/**/*.js
+elements/openlayers-elements/ol-*.js
+elements/swisstopo-elements/swisstopo-*.js
 *.js.map
 *.d.ts
 node_modules/

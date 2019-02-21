@@ -1,19 +1,30 @@
-import OlLayerBase from '@openlayers-elements/maps/ol-layer-base'
-import { property } from 'lit-element'
-import TileLayer from 'ol/layer/Tile'
+import {LitElement, property} from 'lit-element'
+
+type Constructor = new (...args: any[]) => LitElement
 
 /**
- * Base class for swisstopo elements
+ * Base mixin for swisstopo elements
+ *
+ * @mixinFunction
  */
-export default abstract class SwisstopoElement extends OlLayerBase<TileLayer> {
+export default function<B extends Constructor>(Base: B) {
     /**
-     * One of the official layer names provided by geo.admin.ch.
+     * Base class for swisstopo elements
      *
-     * Complete list of layers is available
-     * [here](http://api3.geo.admin.ch/api/faq/index.html#which-layers-are-available)
-     *
-     * @type {string}
+     * @mixinClass
      */
-    @property({ type: String, attribute: 'layer-name' })
-    public layerName: string = null
+    class SwisstopoElement extends Base {
+        /**
+         * One of the official layer names provided by geo.admin.ch.
+         *
+         * Complete list of layers is available
+         * [here](http://api3.geo.admin.ch/api/faq/index.html#which-layers-are-available)
+         *
+         * @type {string}
+         */
+        @property({ type: String, attribute: 'layer-name' })
+        public layerName: string = null
+    }
+
+    return SwisstopoElement
 }

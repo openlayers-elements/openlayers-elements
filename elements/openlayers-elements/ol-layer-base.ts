@@ -5,7 +5,7 @@ import {OlMapPart} from './ol-map-part'
 /**
  * Base class used to create layers
  */
-export default abstract class OlLayerBase<L extends Layer> extends OlMapPart<L> {
+export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
     public static addToMap(layer, map) {
         map.addLayer(layer)
     }
@@ -33,5 +33,7 @@ export default abstract class OlLayerBase<L extends Layer> extends OlMapPart<L> 
      * Called from [`createPart`](#method-createPart)
      * Implement to create the OpenLayers layer object
      */
-    protected abstract createLayer(): Promise<L>
+    protected createLayer(): Promise<L> {
+        return null
+    }
 }

@@ -1,3 +1,4 @@
+import OlLayerBase from '@openlayers-elements/maps/ol-layer-base'
 import {property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
@@ -10,15 +11,18 @@ const parser = new WMTSCapabilities()
 
 type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
 
+class Base extends OlLayerBase<TileLayer> {}
+
 /**
  * Layer which loads official Swiss maps from [WMTS capabilities document][wmts-list]
  *
  * [wmts-list]: http://api3.geo.admin.ch/services/sdiservices.html#supported-projections
  *
  * @demo demo/swiss-topo.html
+ * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
-export class SwisstopoWmts extends SwisstopoElement {
+export class SwisstopoWmts extends SwisstopoElement(Base) { // tslint:disable-line max-classes-per-file
     /**
      * One of projections supported by swisstopo maps:
      *

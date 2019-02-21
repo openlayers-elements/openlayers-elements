@@ -1,5 +1,4 @@
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ.js'
+import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz'
 import SwisstopoElement from './swisstopo-element'
 
 /**
@@ -15,13 +14,9 @@ import SwisstopoElement from './swisstopo-element'
  * @demo demo/swiss-reprojected.html
  * @customElement
  */
-export default class SwisstopoReprojected extends SwisstopoElement {
-    public async createLayer() {
-        return new TileLayer({
-            source: new XYZ({
-                url: 'https://wmts10.geo.admin.ch/1.0.0/' + this.layerName + '/default/current/3857/{z}/{x}/{y}.jpeg',
-            }),
-        })
+export default class SwisstopoReprojected extends SwisstopoElement(OlLayerXyz) {
+    get url() {
+        return 'https://wmts10.geo.admin.ch/1.0.0/' + this.layerName + '/default/current/3857/{z}/{x}/{y}.jpeg'
     }
 }
 
