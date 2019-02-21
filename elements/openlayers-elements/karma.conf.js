@@ -13,5 +13,8 @@ module.exports = config => {
             // your custom config
         }),
     );
+
+    delete config.coverageIstanbulReporter.thresholds;
+
     return config;
 };
