@@ -20,3 +20,9 @@ And open the webpack-dev-server page (typically http://localhost:8080)
 
 [wa]: https://shop.swisstopo.admin.ch/en/products/geoservice/swisstopo_geoservices/WMTS_info
 [demo]: https://openlayers-elements.netlify.com/
+
+## Acknowledgements
+
+Carefully tested on Browserstack
+
+[![img](https://github.com/zazuko/openlayers-elements/raw/master/assets/Browserstack-logo%402x.png)](https://www.browserstack.com/open-source)
