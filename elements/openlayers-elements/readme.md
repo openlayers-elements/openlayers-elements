@@ -8,7 +8,7 @@ way to create online maps.
 To install run
 
 ```
-yarn add open-layer-elements
+yarn add @openlayers-elements/maps
 ```
 
 Here's the simplest possible OpenStreetMap:
