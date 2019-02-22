@@ -1,5 +1,5 @@
 import {property} from 'lit-element'
-import GeoJSON from 'ol/format/geojson'
+import GeoJSON from 'ol/format/GeoJSON'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
