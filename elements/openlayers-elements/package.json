@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepare": "yarn build",
     "pretest": "yarn build",
-    "posttest": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly",
+    "remap-coverage": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly",
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",

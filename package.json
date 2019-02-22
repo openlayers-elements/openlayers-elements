@@ -11,6 +11,7 @@
     "build": "lerna run --no-private build",
     "pretest": "tslint -p tsconfig.json; yarn build",
     "test": "lerna run test:es5:bs --stream --concurrency 1",
+    "posttest": "lerna run remap-coverage",
     "analyze": "polymer analyze --sources elements/**/*.js > demos/analysis.json",
     "docs": "yarn build; yarn analyze; lerna run --scope demos build"
   },
