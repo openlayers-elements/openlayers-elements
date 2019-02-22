@@ -11,8 +11,6 @@ const parser = new WMTSCapabilities()
 
 type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
 
-class Base extends OlLayerBase<TileLayer> {}
-
 /**
  * Layer which loads official Swiss maps from [WMTS capabilities document][wmts-list]
  *
@@ -22,7 +20,7 @@ class Base extends OlLayerBase<TileLayer> {}
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
-export class SwisstopoWmts extends SwisstopoElement(Base) { // tslint:disable-line max-classes-per-file
+export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args: any[]) => OlLayerBase<TileLayer>) {
     /**
      * One of projections supported by swisstopo maps:
      *
