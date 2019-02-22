@@ -2,7 +2,6 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit-html'
 import '../ol-layer-xyz'
-import OlLayerXyz from '../ol-layer-xyz'
 
 describe('ol-layer-xyz', () => {
   it('should pass url property to created layer', async () => {
