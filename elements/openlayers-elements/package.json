@@ -12,6 +12,7 @@
     "build": "tsc",
     "prepare": "yarn build",
     "pretest": "yarn build",
+    "posttest": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly",
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
@@ -27,6 +28,7 @@
     "@open-wc/testing-karma": "^0.4.11",
     "@open-wc/testing-karma-bs": "^0.2.12",
     "@types/ol": "^4.4.2",
+    "remap-istanbul": "^0.13.0",
     "standard": "^12.0.1",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"

@@ -11,6 +11,9 @@ module.exports = config => {
             ],
 
             // your custom config
+            coverageIstanbulReporter: {
+                reports: ['json']
+            }
         }),
     );
 
