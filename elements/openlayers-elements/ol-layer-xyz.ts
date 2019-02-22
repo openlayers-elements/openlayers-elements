@@ -17,12 +17,21 @@ export default class OlLayerXyz extends OlLayerBase<TileLayer> {
      * @type {String}
      */
     @property({ type: String })
-    public url: string
+    public url: string = undefined
+
+    /**
+     * An optional set of URL templates to be used to load tiles
+     *
+     * @type {Array}
+     */
+    @property({ type: String })
+    public urls: string[] = undefined
 
     protected async createLayer() {
         return new TileLayer({
             source: new XYZ({
                 url: this.url,
+                urls: this.urls,
             }),
         })
     }
