@@ -15,7 +15,8 @@
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "files": [
     "**/*.d.ts",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@open-wc/testing": "^0.9.19",
     "@open-wc/testing-karma": "^0.4.11",
+    "@open-wc/testing-karma-bs": "^0.2.12",
     "@types/ol": "^4.4.2",
     "standard": "^12.0.1",
     "tslint": "^5.12.1",

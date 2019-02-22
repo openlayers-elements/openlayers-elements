@@ -1,4 +1,4 @@
-# Open Layers Web Components
+# OpenLayers Web Components
 
 This is monorepo which contains: 
 
