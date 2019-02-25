@@ -27,6 +27,7 @@
     "@open-wc/testing": "^0.9.19",
     "@open-wc/testing-karma": "^0.4.11",
     "@open-wc/testing-karma-bs": "^0.2.12",
+    "@types/mocha": "^5.2.6",
     "@types/ol": "^4.4.2",
     "remap-istanbul": "^0.13.0",
     "standard": "^12.0.1",
