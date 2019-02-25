@@ -6,6 +6,9 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "noEmitOnError": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": [
+      "mocha"
+    ]
   }
 }
