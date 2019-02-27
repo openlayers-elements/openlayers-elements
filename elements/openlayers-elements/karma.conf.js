@@ -8,6 +8,10 @@ module.exports = config => {
             files: [
                 // allows running single tests with the --grep flag
                 config.grep ? config.grep : 'test/**/*.test.js',
+                {
+                    pattern: 'test/assets/*.png',
+                    included: false, served: true, watched: false
+                }
             ],
 
             // your custom config
