@@ -12,8 +12,7 @@ export function forEvent(element, event) {
 }
 export async function mapFixture(template, query) {
     const map = await fixture(html `<ol-map>${template}</ol-map>`);
-    // hackish but only way I found to ensure map is done processing
-    await new Promise((r) => setTimeout(r, 1000));
+    await forEvent(map.map, 'rendercomplete');
     return map.querySelector(query);
 }
 //# sourceMappingURL=util.js.map

@@ -8,7 +8,7 @@ function updateFeatures(this: OlLayerVector, mutationList: MutationRecord[]) {
     mutationList
         .filter((m) => m.type === 'childList')
         .forEach((mutation) => {
-            mutation.removedNodes.forEach((node: any) => {
+            [...mutation.removedNodes].forEach((node: any) => {
                 if (this.features.has(node)) {
                     this.source.removeFeature(this.features.get(node))
                     this.features.delete(node)
