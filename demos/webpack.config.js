@@ -26,7 +26,7 @@ const config = merge(defaultConfig({
         disableHostCheck: true
     },
     plugins: [
-        new CopyWebpackPlugin(['analysis.json']),
+        new CopyWebpackPlugin(['analysis.json', 'assets/*.*']),
         ...demoHtmls
     ]
 });
