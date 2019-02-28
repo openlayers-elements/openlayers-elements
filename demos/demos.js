@@ -10,14 +10,3 @@ import '@openlayers-elements/maps/ol-control'
 import '@openlayers-elements/maps/ol-layer-xyz'
 import '@openlayers-elements/swisstopo/swisstopo-wmts'
 import '@openlayers-elements/swisstopo/swisstopo-reprojected'
-
-import {html} from '@polymer/polymer/lib/utils/html-tag'
-const template = html`
-    <custom-style>
-      <style include="demo-pages-shared-styles">
-        .vertical-section-container {
-          max-width: 800px;
-        }
-      </style>
-    </custom-style>`;
-window.addEventListener('DOMContentLoaded', () => document.body.appendChild(template.content))
