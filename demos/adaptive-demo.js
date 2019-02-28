@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element'
+import {until} from 'lit-html/directives/until'
 
 const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
@@ -7,9 +8,10 @@ customElements.define('adaptive-demo', class extends LitElement {
     const template = this.querySelector('template')
 
     if(isIE11) {
-      debugger
-      const realNodes = [...template.content.childNodes]
-        .slice(1, template.content.childNodes.length - 1)
+      const nodes = template.content ? template.content.childNodes : template.childNodes
+
+      const onlyElements = [...nodes]
+        .slice(1, nodes.length - 1)
         .reduce((text, currentValue) => {
           if (currentValue.outerHTML) {
             text = text + currentValue.outerHTML
@@ -17,11 +19,11 @@ customElements.define('adaptive-demo', class extends LitElement {
 
           return text + '\r\n'
         }, '')
-      return html`<div>${template.content}</div><div><pre>${realNodes}</pre></div>`
+      return html`<div>${[...nodes].map(m => html`${m}`)}</div><div><pre>${onlyElements}</pre></div>`
     }
 
     return html`<demo-snippet>
-<template>${template.content}</template>
+<template>${template.childNodes}</template>
 </demo-snippet>`
   }
 })
