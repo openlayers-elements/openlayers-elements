@@ -23,7 +23,7 @@ customElements.define('adaptive-demo', class extends LitElement {
     }
 
     return html`<demo-snippet>
-<template>${template.childNodes}</template>
+<template>${template.content}</template>
 </demo-snippet>`
   }
 })
