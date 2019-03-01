@@ -19,7 +19,7 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
         .filter((m) => m.type === 'childList')
         .forEach((mutation) => {
             mutation.removedNodes.forEach((node: any) => {
-                if (this.parts.has(node)) {
+                if (this.parts.has(node) && !this.contains(node)) {
                     node.constructor.removeFromMap(this.parts.get(node), this.map)
                     this.parts.delete(node)
                 }
@@ -44,7 +44,7 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
  *
  * ### Controlling zoom level
  *
- * The simpler way to set zoom is to set the `zoom` property. Alternatively, `resoltution` can be used instead.
+ * The simpler way to set zoom is to set the `zoom` property. Alternatively, `resolution` can be used instead.
  *
  * It is important to note that the two properties are mutually exclusive. `zoom` is ignored when `resolution` is set.
  * This is actually a design of OpenLayers as described

@@ -17,6 +17,7 @@ const config = merge(defaultConfig({
         indexJS: path.resolve(__dirname, './index.js'),
     }), {
     devtool: "source-map",
+    output: { publicPath: '/' },
     devServer: {
         compress: true,
         overlay: {
