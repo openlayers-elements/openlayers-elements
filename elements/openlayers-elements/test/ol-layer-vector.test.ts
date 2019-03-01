@@ -3,6 +3,7 @@ import {html} from 'lit-html'
 import OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import '../ol-map'
+import OlMarkerIcon from '../ol-marker-icon'
 import '../ol-marker-icon'
 import {forEvent} from './util'
 
@@ -41,5 +42,20 @@ describe('ol-layer-vector', () => {
         // then
         await forEvent(element, 'ol-updated')
         expect(layer.getSource().getFeatures().length).to.equal(3)
+    })
+
+    it('should handle markers added dynamically', async () => {
+        // given
+        const element = await fixture(html`<ol-layer-vector></ol-layer-vector>`) as OlLayerVector
+        const layer = await element.createPart() as any
+
+        // when
+        const marker = document.createElement('ol-marker-icon') as OlMarkerIcon
+        marker.src = dotUrl
+        element.appendChild(marker)
+
+        // then
+        await forEvent(element, 'ol-updated')
+        expect(layer.getSource().getFeatures().length).to.equal(1)
     })
 })
