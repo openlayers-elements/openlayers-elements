@@ -8,15 +8,15 @@ import ResizeObserver from 'resize-observer-polyfill'
 import OlLayerBase from './ol-layer-base'
 
 function addPart(this: OlMap, node) {
-    node.createPart().then((part) => {
+    return node.createPart().then((part) => {
         node.constructor.addToMap(part, this.map)
         this.parts.set(node, part)
     })
 }
 
 function updateParts(this: OlMap, mutationList: MutationRecord[]) {
-    mutationList
-        .forEach((mutation) => {
+    const additions = mutationList
+        .reduce((promises, mutation) => {
             mutation.removedNodes.forEach((node: any) => {
                 if (this.parts.has(node)) {
                     node.constructor.removeFromMap(this.parts.get(node), this.map)
@@ -24,10 +24,16 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
                 }
             })
             const addedNodes = [...mutation.addedNodes]
-            addedNodes
+            const next = addedNodes
                 .filter((n) => 'createPart' in n)
-                .forEach(addPart.bind(this))
-        })
+                .map(addPart.bind(this))
+
+            return promises.concat(next)
+        }, [])
+
+    Promise.all(additions).then(() => {
+        this.dispatchEvent(new CustomEvent('parts-updated'))
+    })
 }
 
 /**

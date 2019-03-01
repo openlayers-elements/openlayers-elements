@@ -15,9 +15,9 @@ function updateFeatures(this: OlLayerVector, mutationList: MutationRecord[]) {
             })
 
             addFeatures(this, mutation.addedNodes)
-
-            this.dispatchEvent(new CustomEvent('ol-updated'))
         })
+
+    this.dispatchEvent(new CustomEvent('ol-updated'))
 }
 
 function addFeatures(element, addedNodes: NodeList) {
