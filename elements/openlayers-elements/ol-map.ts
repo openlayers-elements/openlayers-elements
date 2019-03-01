@@ -16,10 +16,9 @@ function addPart(this: OlMap, node) {
 
 function updateParts(this: OlMap, mutationList: MutationRecord[]) {
     mutationList
-        .filter((m) => m.type === 'childList')
         .forEach((mutation) => {
             mutation.removedNodes.forEach((node: any) => {
-                if (this.parts.has(node) && !this.contains(node)) {
+                if (this.parts.has(node)) {
                     node.constructor.removeFromMap(this.parts.get(node), this.map)
                     this.parts.delete(node)
                 }
@@ -145,7 +144,11 @@ export default class OlMap extends LitElement {
 
     public connectedCallback() {
         super.connectedCallback()
-        this.partObserver.observe(this, { childList: true })
+        if (window['ShadyDOM']) {
+            window['ShadyDOM'].observeChildren(this, updateParts.bind(this))
+        } else {
+            this.partObserver.observe(this, { childList: true })
+        }
         this.sizeObserver.observe(this)
     }
 

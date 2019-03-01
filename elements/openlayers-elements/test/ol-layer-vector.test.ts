@@ -36,7 +36,7 @@ describe('ol-layer-vector', () => {
         const layer = await element.createPart() as any
 
         // when
-        element.querySelector('ol-marker-icon').remove()
+        element.removeChild(element.querySelector('ol-marker-icon'))
 
         // then
         await forEvent(element, 'ol-updated')

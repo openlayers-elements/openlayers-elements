@@ -6,9 +6,8 @@ import OlLayerBase from './ol-layer-base'
 
 function updateFeatures(this: OlLayerVector, mutationList: MutationRecord[]) {
     mutationList
-        .filter((m) => m.type === 'childList')
         .forEach((mutation) => {
-            [...mutation.removedNodes].forEach((node: any) => {
+            mutation.removedNodes.forEach((node: any) => {
                 if (this.features.has(node)) {
                     this.source.removeFeature(this.features.get(node))
                     this.features.delete(node)
@@ -49,7 +48,11 @@ export default class OlLayerVector extends OlLayerBase<VectorLayer> {
 
     public connectedCallback() {
         super.connectedCallback()
-        this.partObserver.observe(this, { childList: true })
+        if (window['ShadyDOM']) {
+            window['ShadyDOM'].observeChildren(this, updateFeatures.bind(this))
+        } else {
+            this.partObserver.observe(this, { childList: true })
+        }
     }
 
     public disconnectedCallback() {
