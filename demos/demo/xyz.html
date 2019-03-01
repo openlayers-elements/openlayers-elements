@@ -16,22 +16,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
+</head>
 <body unresolved>
-<div class="vertical-section-container centered">
+<div style="max-width: 800px; margin: 0 auto;">
     <h3>Hillshades XYZ layer overlayed with cycling paths</h3>
     <p>
         For other layers you can check <a href="https://wiki.openstreetmap.org/wiki/Tile_servers">OSM wiki</a>.
         (Note the different style of interpolating x/y/z parameters)
     </p>
-    <demo-snippet class="centered-demo">
-        <template>
-            <ol-map zoom="7" lat="46.7985" lon="8.2318">
-                <ol-layer-xyz url="http://c.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png"></ol-layer-xyz>
-                <ol-layer-xyz url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"></ol-layer-xyz>
-            </ol-map>
-        </template>
-    </demo-snippet>
+<adaptive-demo>
+<template>
+<ol-map zoom="7" lat="46.7985" lon="8.2318">
+    <ol-layer-xyz url="http://c.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png"></ol-layer-xyz>
+    <ol-layer-xyz url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"></ol-layer-xyz>
+</ol-map>
+</template>
+</adaptive-demo>
 </div>
 </body>
 </html>

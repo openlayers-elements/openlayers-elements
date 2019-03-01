@@ -19,7 +19,7 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
         .filter((m) => m.type === 'childList')
         .forEach((mutation) => {
             mutation.removedNodes.forEach((node: any) => {
-                if (this.parts.has(node)) {
+                if (this.parts.has(node) && !this.contains(node)) {
                     node.constructor.removeFromMap(this.parts.get(node), this.map)
                     this.parts.delete(node)
                 }
