@@ -5,7 +5,9 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true,
+    "es6": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -16,13 +18,24 @@
     "@typescript-eslint/eslint-plugin"
   ],
   "rules": {
+    "@typescript-eslint/indent": 0,
     "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "none"
+        }
+      }
+    ],
     "@typescript-eslint/member-naming": [
       "error",
       {
         "private": "^__",
         "protected": "^_"
       }
-    ]
+    ],
+    "no-extra-semi": "error",
+    "semi": "off"
   }
 }

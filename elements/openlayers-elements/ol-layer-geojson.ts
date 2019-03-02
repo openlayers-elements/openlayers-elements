@@ -11,22 +11,22 @@ import OlLayerBase from './ol-layer-base'
  * @customElement
  */
 export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
-    /**
-     * The URL to fetch the GeoJSON. It can be relative or absolute
-     *
-     * @type {String}
-     */
-    @property({ type: String })
-    public url: string = null
+  /**
+   * The URL to fetch the GeoJSON. It can be relative or absolute
+   *
+   * @type {String}
+   */
+  @property({type: String})
+  public url?: string = undefined
 
-    protected async createLayer() {
-        return new VectorLayer({
-            source: new VectorSource({
-                format: new GeoJSON(),
-                url: this.url,
-            }),
-        })
-    }
+  protected async _createLayer() {
+    return new VectorLayer({
+      source: new VectorSource({
+        format: new GeoJSON(),
+        url: this.url,
+      }),
+    })
+  }
 }
 
 customElements.define('ol-layer-geojson', OlLayerGeoJson)

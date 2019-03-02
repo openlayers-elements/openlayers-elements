@@ -16,37 +16,39 @@ import OlInteraction from './ol-interaction'
  * @demo demo/select.html
  */
 export class OlSelect extends OlInteraction {
-    /**
-     * Fired when a feature has been selected
-     *
-     * @event feature-selected
-     * @param {feature} feature The selected feature
-     */
+  /**
+   * Fired when a feature has been selected
+   *
+   * @event feature-selected
+   * @param {feature} feature The selected feature
+   */
 
-    /**
-     * Fired when a selection has been cleared
-     *
-     * @event feature-unselected
-     */
+  /**
+   * Fired when a selection has been cleared
+   *
+   * @event feature-unselected
+   */
 
-    public async createPart() {
-        const selectEl = this
-        const select = new Select()
+  public async createPart() {
+    const selectEl = this
+    const select = new Select()
 
-        select.on(['select'], (e: any) => {
-            const feature = e.selected[0]
+    select.on(['select'], (e: any) => {
+      const feature = e.selected[0]
 
-            if (feature) {
-                selectEl.dispatchEvent(new CustomEvent('feature-selected', {
-                    detail: {feature},
-                }))
-            } else {
-                selectEl.dispatchEvent(new CustomEvent('feature-unselected'))
-            }
-        })
+      if (feature) {
+        selectEl.dispatchEvent(
+          new CustomEvent('feature-selected', {
+            detail: {feature},
+          }),
+        )
+      } else {
+        selectEl.dispatchEvent(new CustomEvent('feature-unselected'))
+      }
+    })
 
-        return select
-    }
+    return select
+  }
 }
 
 customElements.define('ol-select', OlSelect)

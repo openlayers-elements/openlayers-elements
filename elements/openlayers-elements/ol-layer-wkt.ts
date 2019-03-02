@@ -6,10 +6,10 @@ import OlLayerBase from './ol-layer-base'
 
 const format = new WKT()
 
-interface IFeature {
-    wkt: string
-    id: string
-    props?: { [key: string]: string }
+interface Feature {
+  wkt: string
+  id: string
+  props?: {[key: string]: string}
 }
 
 /**
@@ -35,37 +35,38 @@ interface IFeature {
  * @customElement
  */
 export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
-    /**
-     * The features to be placed on the layer
-     *
-     * @type {Array}
-     */
-    @property({ type: String })
-    public featureData: IFeature[] = []
+  /**
+   * The features to be placed on the layer
+   *
+   * @type {Array}
+   */
+  @property({type: String})
+  public featureData: Feature[] = []
 
-    public async createLayer() {
-        const features = this.featureData.map((data) => {
-            const feature = format.readFeature(data.wkt, {
-                dataProjection: 'EPSG:4326',
-                featureProjection: 'EPSG:3857',
-            })
+  public async _createLayer() {
+    const features = this.featureData.map((data) => {
+      const feature = format.readFeature(data.wkt, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857',
+      })
 
-            feature.setId(data.id)
-            for (const propsKey in data.props) {
-                if (data.props.hasOwnProperty(propsKey)) {
-                    feature.set(propsKey, data.props[propsKey])
-                }
-            }
+      feature.setId(data.id)
+      const props = data.props || []
+      for (const propsKey in props) {
+        if (props.hasOwnProperty(propsKey)) {
+          feature.set(propsKey, props[propsKey])
+        }
+      }
 
-            return feature
-        })
+      return feature
+    })
 
-        return new VectorLayer({
-            source: new VectorSource({
-                features,
-            }),
-        })
-    }
+    return new VectorLayer({
+      source: new VectorSource({
+        features,
+      }),
+    })
+  }
 }
 
 customElements.define('ol-layer-wkt', OlLayerWkt)
