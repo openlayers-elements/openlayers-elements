@@ -12,6 +12,7 @@ import SwisstopoElement from './swisstopo-element'
  * use the [`swisstopo-wmts` layer](#/elements/SwissTopoWMTS)
  *
  * @demo demo/swiss-reprojected.html
+ * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
 export default class SwisstopoReprojected extends SwisstopoElement(OlLayerXyz) {

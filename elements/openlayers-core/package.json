@@ -1,9 +1,25 @@
 {
   "name": "@openlayers-elements/core",
   "version": "0.1.0",
+  "repository": "https://github.com:zazuko/openlayers-elements",
+  "author": "Zazuko GmbH",
+  "contributors": [
+    "tpluscode <tpluscode@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "**/*.d.ts",
+    "**/*.js"
+  ],
   "dependencies": {
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
     "ol": "^5.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2"
   }
 }

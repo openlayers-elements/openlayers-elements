@@ -180,6 +180,9 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
         this.parts.set(node, part)
     }
 
+    /**
+     * Called when the child elements changed and those changes have been reflected on the map
+     */
     protected notifyMutationComplete() {
         this.dispatchEvent(new CustomEvent('parts-updated'))
     }

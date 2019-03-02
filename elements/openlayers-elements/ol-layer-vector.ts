@@ -5,16 +5,37 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
 
+/**
+ * An "empty" vector layer. It is a base class to other vector layers.
+ *
+ * It can also be used alone to add markers to the map.
+ *
+ * ### Usage
+ *
+ * ```html
+ * <ol-map>
+ *     <ol-layer-vector>
+ *         <!-- markers go here -->
+ *     </ol-layer-vector>
+ * </ol-map>
+ * ```
+ *
+ * @appliesMixin ChildObserverMixin
+ * @customElement
+ */
 export default class OlLayerVector
     extends ChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>) {
 
-    get childFeatures() {
-        return [...this.childNodes]
-            .filter((node) => 'createFeature' in node)
-            .map((node: OlFeature) => node.createFeature())
-    }
-
+    /**
+     * The Openlayers vector source, containing the features
+     *
+     * @type {VectorSource}
+     */
     public source: VectorSource
+
+    /**
+     * The individual features
+     */
     public features: Map<Node, Feature> = new Map<Node, Feature>()
 
     protected async createLayer() {
@@ -41,6 +62,9 @@ export default class OlLayerVector
         }
     }
 
+    /**
+     * Called when the child elements changed and those changes have been reflected on the map
+     */
     protected notifyMutationComplete() {
         this.dispatchEvent(new CustomEvent('ol-updated'))
     }
