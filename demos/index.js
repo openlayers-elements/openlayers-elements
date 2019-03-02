@@ -1,6 +1,6 @@
-import loadPolyfills from '@open-wc/polyfills-loader';
+import loadPolyfills from '@open-wc/polyfills-loader'
 
 loadPolyfills().then(() => {
-  import ('./adaptive-demo')
-  import('./demos.js');
-});
+  import('./adaptive-demo')
+  import('./demos.js')
+})

@@ -1,6 +1,5 @@
 import {LitElement, property} from 'lit-element'
 
-let SwisstopoElementMixin
 type Constructor = new (...args: any[]) => LitElement
 
 /**
@@ -9,26 +8,26 @@ type Constructor = new (...args: any[]) => LitElement
  * @polymer
  * @mixinFunction
  */
-SwisstopoElementMixin = function<B extends Constructor>(Base: B) { // tslint:disable-line only-arrow-functions
+export default function<B extends Constructor>(Base: B) {
+  /**
+   * Base class for swisstopo elements
+   *
+   * @mixinClass
+   */
+  class SwisstopoElement extends Base {
     /**
-     * Base class for swisstopo elements
+     * One of the official layer names provided by geo.admin.ch.
      *
-     * @mixinClass
+     * Complete list of layers is available
+     * [here](http://api3.geo.admin.ch/api/faq/index.html#which-layers-are-available)
+     *
+     * @type {string}
      */
-    class SwisstopoElement extends Base {
-        /**
-         * One of the official layer names provided by geo.admin.ch.
-         *
-         * Complete list of layers is available
-         * [here](http://api3.geo.admin.ch/api/faq/index.html#which-layers-are-available)
-         *
-         * @type {string}
-         */
-        @property({ type: String, attribute: 'layer-name' })
-        public layerName: string = null
-    }
+    @property({type: String, attribute: 'layer-name'})
+    public layerName?: string = undefined
+  }
 
-    return SwisstopoElement
+  return SwisstopoElement
 }
 
-export default SwisstopoElementMixin
+//export default SwisstopoElementMixin
