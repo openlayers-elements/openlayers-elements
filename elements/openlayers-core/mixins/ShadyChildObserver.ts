@@ -1,6 +1,6 @@
 import {LitElement} from 'lit-element'
 
-let ShadyObserverMixin
+let ShadyObserverMixin: <B extends Constructor>(Base: B) => B
 type Constructor = new (...args: any[]) => LitElement
 
 interface IShadyDOM {

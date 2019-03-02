@@ -1,4 +1,4 @@
-import OlChildObserverMixin from '@openlayers-elements/core/mixins/ChildObserver'
+import ChildObserverMixin from '@openlayers-elements/core/mixins/ChildObserver'
 import OlFeature from '@openlayers-elements/core/ol-feature'
 import Feature from 'ol/Feature'
 import VectorLayer from 'ol/layer/Vector'
@@ -6,7 +6,7 @@ import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
 
 export default class OlLayerVector
-    extends OlChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>) {
+    extends ChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>) {
 
     get childFeatures() {
         return [...this.childNodes]

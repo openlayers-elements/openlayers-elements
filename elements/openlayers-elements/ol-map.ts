@@ -1,3 +1,4 @@
+import ChildObserverMixin from '@openlayers-elements/core/mixins/ChildObserver'
 import {html, LitElement, property, query} from 'lit-element'
 import Base from 'ol/layer/base'
 import OpenLayersMap from 'ol/Map'
@@ -6,35 +7,6 @@ import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
 import OlLayerBase from './ol-layer-base'
-
-function addPart(this: OlMap, node) {
-    return node.createPart().then((part) => {
-        node.constructor.addToMap(part, this.map)
-        this.parts.set(node, part)
-    })
-}
-
-function updateParts(this: OlMap, mutationList: MutationRecord[]) {
-    const additions = mutationList
-        .reduce((promises, mutation) => {
-            mutation.removedNodes.forEach((node: any) => {
-                if (this.parts.has(node)) {
-                    node.constructor.removeFromMap(this.parts.get(node), this.map)
-                    this.parts.delete(node)
-                }
-            })
-            const addedNodes = [...mutation.addedNodes]
-            const next = addedNodes
-                .filter((n) => 'createPart' in n)
-                .map(addPart.bind(this))
-
-            return promises.concat(next)
-        }, [])
-
-    Promise.all(additions).then(() => {
-        this.dispatchEvent(new CustomEvent('parts-updated'))
-    })
-}
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -67,7 +39,7 @@ function updateParts(this: OlMap, mutationList: MutationRecord[]) {
  * @demo demo/ol-map.html
  * @customElement
  */
-export default class OlMap extends LitElement {
+export default class OlMap extends ChildObserverMixin(LitElement) {
     /**
      * Zoom level
      * @type {Number}
@@ -135,12 +107,10 @@ export default class OlMap extends LitElement {
     public map: OpenLayersMap = null
 
     public parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
-    public partObserver: MutationObserver
     public sizeObserver: ResizeObserver
 
     constructor() {
         super()
-        this.partObserver = new MutationObserver(updateParts.bind(this))
         this.sizeObserver = new ResizeObserver(() => {
             if (this.map) {
                 this.map.updateSize()
@@ -150,17 +120,11 @@ export default class OlMap extends LitElement {
 
     public connectedCallback() {
         super.connectedCallback()
-        if (window['ShadyDOM']) {
-            window['ShadyDOM'].observeChildren(this, updateParts.bind(this))
-        } else {
-            this.partObserver.observe(this, { childList: true })
-        }
         this.sizeObserver.observe(this)
     }
 
     public disconnectedCallback() {
         super.disconnectedCallback()
-        this.partObserver.disconnect()
         this.sizeObserver.disconnect()
     }
 
@@ -191,11 +155,7 @@ export default class OlMap extends LitElement {
             view: new View(viewInit),
         })
 
-        const children = [...this.querySelectorAll('*')]
-
-        children
-            .filter((n) => 'createPart' in n)
-            .forEach(addPart.bind(this))
+        this.childNodes.forEach(this.handleAddedChildNode.bind(this))
     }
 
     public render() {
@@ -205,6 +165,23 @@ export default class OlMap extends LitElement {
   :host { display: block; }
 </style>
 <div id="map"></div>`
+    }
+
+    protected handleRemovedChildNode(node: any) {
+        if (this.parts.has(node)) {
+            node.constructor.removeFromMap(this.parts.get(node), this.map)
+            this.parts.delete(node)
+        }
+    }
+
+    protected async handleAddedChildNode(node: any) {
+        const part = await node.createPart()
+        node.constructor.addToMap(part, this.map)
+        this.parts.set(node, part)
+    }
+
+    protected notifyMutationComplete() {
+        this.dispatchEvent(new CustomEvent('parts-updated'))
     }
 }
 

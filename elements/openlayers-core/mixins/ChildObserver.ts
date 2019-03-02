@@ -1,7 +1,7 @@
 import {LitElement} from 'lit-element'
 import ShadyObserverMixin from './ShadyChildObserver'
 
-let ChildObserverMixin
+let ChildObserverMixin: <B extends Constructor>(Base: B) => B
 type Constructor = new (...args: any[]) => LitElement
 
 /**
@@ -39,11 +39,11 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) { // tslint:disabl
             this.childObserver.disconnect()
         }
 
-        protected handleRemovedChildNode() {
+        protected handleRemovedChildNode(node: Node) {
             // to be implemented in mixed class
         }
 
-        protected handleAddedChildNode() {
+        protected handleAddedChildNode(node: Node) {
             // to be implemented in mixed class
         }
 
@@ -52,13 +52,15 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) { // tslint:disabl
         }
 
         private handleMutation(mutationList: MutationRecord[]) {
-            mutationList
-                .forEach((mutation) => {
-                    mutation.removedNodes.forEach(this.handleRemovedChildNode.bind(this))
-                    mutation.addedNodes.forEach(this.handleAddedChildNode.bind(this))
-                })
+            const mutationHandlers = mutationList
+                .reduce((promises, mutation) => {
+                    const removals = [...mutation.removedNodes].map((n) => this.handleRemovedChildNode(n))
+                    const additions = [...mutation.addedNodes].map((n) => this.handleAddedChildNode(n))
 
-            this.notifyMutationComplete()
+                    return promises.concat(additions).concat(removals)
+                }, [])
+
+            Promise.all(mutationHandlers).then(this.notifyMutationComplete.bind(this))
         }
     }
 

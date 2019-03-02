@@ -29,22 +29,23 @@ ChildObserverMixin = function (Base) {
         disconnectObserver() {
             this.childObserver.disconnect();
         }
-        handleRemovedChildNode() {
+        handleRemovedChildNode(node) {
             // to be implemented in mixed class
         }
-        handleAddedChildNode() {
+        handleAddedChildNode(node) {
             // to be implemented in mixed class
         }
         notifyMutationComplete() {
             // to be implemented in mixed class
         }
         handleMutation(mutationList) {
-            mutationList
-                .forEach((mutation) => {
-                mutation.removedNodes.forEach(this.handleRemovedChildNode.bind(this));
-                mutation.addedNodes.forEach(this.handleAddedChildNode.bind(this));
-            });
-            this.notifyMutationComplete();
+            const mutationHandlers = mutationList
+                .reduce((promises, mutation) => {
+                const removals = [...mutation.removedNodes].map((n) => this.handleRemovedChildNode(n));
+                const additions = [...mutation.addedNodes].map((n) => this.handleAddedChildNode(n));
+                return promises.concat(additions).concat(removals);
+            }, []);
+            Promise.all(mutationHandlers).then(this.notifyMutationComplete.bind(this));
         }
     }
     if ('ShadyDOM' in window) {
