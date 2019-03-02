@@ -9,6 +9,10 @@
     "sourceMap": true,
     "types": [
       "mocha"
-    ]
+    ],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "noImplicitAny": false
   }
 }

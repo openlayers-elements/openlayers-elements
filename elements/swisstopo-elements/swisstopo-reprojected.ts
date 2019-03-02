@@ -16,12 +16,14 @@ import SwisstopoElement from './swisstopo-element'
  * @customElement
  */
 export default class SwisstopoReprojected extends SwisstopoElement(OlLayerXyz) {
-    /**
-     * @type {string}
-     */
-    get url() {
-        return 'https://wmts10.geo.admin.ch/1.0.0/' + this.layerName + '/default/current/3857/{z}/{x}/{y}.jpeg'
-    }
+  /**
+   * @type {string}
+   */
+  public get url() {
+    return `https://wmts10.geo.admin.ch/1.0.0/${
+      this.layerName
+    }/default/current/3857/{z}/{x}/{y}.jpeg`
+  }
 }
 
 customElements.define('swisstopo-reprojected', SwisstopoReprojected)

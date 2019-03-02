@@ -10,11 +10,11 @@ import OlLayerBase from './ol-layer-base'
  * @demo demo/swiss-topo.html Mix with swisstopo elements
  */
 export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
-    protected async createLayer() {
-        return new TileLayer({
-            source: new OSM(),
-        })
-    }
+  protected async _createLayer() {
+    return new TileLayer({
+      source: new OSM(),
+    })
+  }
 }
 
 customElements.define('ol-layer-openstreetmap', OlLayerOpenstreetmap)

@@ -1,8 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
-const merge = require('webpack-merge');
+/* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
+const defaultSettings = require('@open-wc/testing-karma/default-settings.js')
+const merge = require('webpack-merge')
 
-module.exports = config => {
+module.exports = (config) => {
     config.set(
         merge(defaultSettings(config), {
             files: [
@@ -14,14 +14,14 @@ module.exports = config => {
                 }
             ],
 
-            // your custom config
-            coverageIstanbulReporter: {
-                reports: ['json']
-            }
-        }),
-    );
+      // your custom config
+      coverageIstanbulReporter: {
+        reports: ['json'],
+      },
+    }),
+  )
 
-    delete config.coverageIstanbulReporter.thresholds;
+  delete config.coverageIstanbulReporter.thresholds
 
-    return config;
-};
+  return config
+}

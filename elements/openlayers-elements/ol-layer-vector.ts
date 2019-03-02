@@ -23,51 +23,51 @@ import OlLayerBase from './ol-layer-base'
  * @appliesMixin ChildObserverMixin
  * @customElement
  */
-export default class OlLayerVector
-    extends ChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>) {
+export default class OlLayerVector extends ChildObserverMixin(
+  OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>,
+) {
+  /**
+   * The Openlayers vector source, containing the features
+   *
+   * @type {VectorSource}
+   */
+  public source: VectorSource
 
-    /**
-     * The Openlayers vector source, containing the features
-     *
-     * @type {VectorSource}
-     */
-    public source: VectorSource
+  /**
+   * The individual features
+   */
+  public features: Map<Node, Feature> = new Map<Node, Feature>()
 
-    /**
-     * The individual features
-     */
-    public features: Map<Node, Feature> = new Map<Node, Feature>()
+  protected async createLayer() {
+    this.source = new VectorSource()
+    this.childNodes.forEach(this.handleAddedChildNode.bind(this))
 
-    protected async createLayer() {
-        this.source = new VectorSource()
-        this.childNodes.forEach(this.handleAddedChildNode.bind(this))
+    return new VectorLayer({
+      source: this.source,
+    })
+  }
 
-        return new VectorLayer({
-            source: this.source,
-        })
+  protected handleRemovedChildNode(node: Node) {
+    if (this.features.has(node)) {
+      this.source.removeFeature(this.features.get(node))
+      this.features.delete(node)
     }
+  }
 
-    protected handleRemovedChildNode(node: Node) {
-        if (this.features.has(node)) {
-            this.source.removeFeature(this.features.get(node))
-            this.features.delete(node)
-        }
+  protected handleAddedChildNode(node: OlFeature) {
+    if ('createFeature' in node) {
+      const feature = node.createFeature()
+      this.features.set(node, feature)
+      this.source.addFeature(feature)
     }
+  }
 
-    protected handleAddedChildNode(node: OlFeature) {
-        if ('createFeature' in node) {
-            const feature = node.createFeature()
-            this.features.set(node, feature)
-            this.source.addFeature(feature)
-        }
-    }
-
-    /**
-     * Called when the child elements changed and those changes have been reflected on the map
-     */
-    protected notifyMutationComplete() {
-        this.dispatchEvent(new CustomEvent('ol-updated'))
-    }
+  /**
+   * Called when the child elements changed and those changes have been reflected on the map
+   */
+  protected notifyMutationComplete() {
+    this.dispatchEvent(new CustomEvent('ol-updated'))
+  }
 }
 
 customElements.define('ol-layer-vector', OlLayerVector)

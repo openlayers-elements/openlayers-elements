@@ -40,152 +40,159 @@ import OlLayerBase from './ol-layer-base'
  * @customElement
  */
 export default class OlMap extends ChildObserverMixin(LitElement) {
-    /**
-     * Zoom level
-     * @type {Number}
-     */
-    @property({ type: Number })
-    public zoom: number = 1
+  /**
+   * Zoom level
+   * @type {Number}
+   */
+  @property({type: Number})
+  public zoom: number = 1
 
-    /**
-     * Longitude
-     * @type {Number}
-     */
-    @property({ type: Number })
-    public lon: number = 0
+  /**
+   * Longitude
+   * @type {Number}
+   */
+  @property({type: Number})
+  public lon: number = 0
 
-    /**
-     * Latitude
-     * @type {Number}
-     */
-    @property({ type: Number })
-    public lat: number = 0
+  /**
+   * Latitude
+   * @type {Number}
+   */
+  @property({type: Number})
+  public lat: number = 0
 
-    @query('div')
-    public mapElement: HTMLDivElement
+  @query('div')
+  public mapElement!: HTMLDivElement
 
-    /**
-     * A string identifier of the projection to be used. Custom projections can be added using [`proj4` library][p4].
-     *
-     * If falsy, the default projection is applied (Spherical Mercator aka EPSG:3857), which uses meters for map units.
-     *
-     * [p4]: https://github.com/proj4js/proj4js
-     *
-     * @type {string}
-     */
-    @property({ type: String })
-    public projection: string = undefined
+  /**
+   * A string identifier of the projection to be used. Custom projections can be added using [`proj4` library][p4].
+   *
+   * If falsy, the default projection is applied (Spherical Mercator aka EPSG:3857), which uses meters for map units.
+   *
+   * [p4]: https://github.com/proj4js/proj4js
+   *
+   * @type {string}
+   */
+  @property({type: String})
+  public projection?: string = undefined
 
-    /**
-     * Sets the zoom level by directly selecting the resolution.
-     *
-     * @type {number}
-     */
-    @property({ type: Number })
-    public resolution: number = undefined
+  /**
+   * Sets the zoom level by directly selecting the resolution.
+   *
+   * @type {number}
+   */
+  @property({type: Number})
+  public resolution?: number = undefined
 
-    /**
-     * The X coordinate on the map in map units (see `projection`).
-     *
-     * @type {number}
-     */
-    @property({ type: Number })
-    public x: number = null
+  /**
+   * The X coordinate on the map in map units (see `projection`).
+   *
+   * @type {number}
+   */
+  @property({type: Number})
+  public x?: number = undefined
 
-    /**
-     * The Y coordinate on the map in map units (see `projection`).
-     *
-     * @type {number}
-     */
-    @property({ type: Number })
-    public y: number = null
+  /**
+   * The Y coordinate on the map in map units (see `projection`).
+   *
+   * @type {number}
+   */
+  @property({type: Number})
+  public y?: number = undefined
 
-    /**
-     * The underlying OpenLayers map instance
-     * @type {Object}
-     */
-    public map: OpenLayersMap = null
+  /**
+   * The underlying OpenLayers map instance
+   * @type {Object}
+   */
+  public map?: OpenLayersMap = undefined
 
-    public parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
-    public sizeObserver: ResizeObserver
+  public parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
+  public sizeObserver: ResizeObserver
 
-    constructor() {
-        super()
-        this.sizeObserver = new ResizeObserver(() => {
-            if (this.map) {
-                this.map.updateSize()
-            }
-        })
+  public constructor() {
+    super()
+    this.sizeObserver = new ResizeObserver(() => {
+      if (this.map) {
+        this.map.updateSize()
+      }
+    })
+  }
+
+  public connectedCallback() {
+    super.connectedCallback()
+    this.sizeObserver.observe(this)
+  }
+
+  public disconnectedCallback() {
+    super.disconnectedCallback()
+    this.sizeObserver.disconnect()
+  }
+
+  public firstUpdated() {
+    const viewInit = {
+      center: [0, 0],
+      resolution: this.resolution,
+      zoom: this.zoom,
+    } as any
+
+    if (this.lon && this.lat) {
+      if (this.projection) {
+        viewInit.center = fromLonLat([this.lon, this.lat], this.projection)
+      } else {
+        viewInit.center = fromLonLat([this.lon, this.lat])
+      }
     }
 
-    public connectedCallback() {
-        super.connectedCallback()
-        this.sizeObserver.observe(this)
+    if (this.x && this.y) {
+      viewInit.center = [this.x, this.y]
     }
 
-    public disconnectedCallback() {
-        super.disconnectedCallback()
-        this.sizeObserver.disconnect()
+    if (this.projection) {
+      viewInit.projection = getProjection(this.projection)
     }
+    this.map = new OpenLayersMap({
+      target: this.mapElement,
+      view: new View(viewInit),
+    })
 
-    public firstUpdated() {
-        const viewInit = {
-            center: [0, 0],
-            resolution: this.resolution,
-            zoom: this.zoom,
-        } as any
+    this.childNodes.forEach(this.handleAddedChildNode.bind(this))
+  }
 
-        if (this.lon && this.lat) {
-            if (this.projection) {
-                viewInit.center = fromLonLat([this.lon, this.lat], this.projection)
-            } else {
-                viewInit.center = fromLonLat([this.lon, this.lat])
-            }
+  public render() {
+    return html`
+      <link
+        rel="stylesheet"
+        href="https://openlayers.org/en/v5.3.0/css/ol.css"
+        type="text/css"
+      />
+      <style>
+        :host {
+          display: block;
         }
+      </style>
+      <div id="map"></div>
+    `
+  }
 
-        if (this.x && this.y) {
-            viewInit.center = [this.x, this.y]
-        }
-
-        if (this.projection) {
-            viewInit.projection = getProjection(this.projection)
-        }
-        this.map = new OpenLayersMap({
-            target: this.mapElement,
-            view: new View(viewInit),
-        })
-
-        this.childNodes.forEach(this.handleAddedChildNode.bind(this))
+  protected handleRemovedChildNode(node: any) {
+    if (this.parts.has(node)) {
+      node.constructor.removeFromMap(this.parts.get(node), this.map)
+      this.parts.delete(node)
     }
+  }
 
-    public render() {
-        return html`
-<link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
-<style>
-  :host { display: block; }
-</style>
-<div id="map"></div>`
-    }
+  protected async handleAddedChildNode(node: any) {
+    const part = await node.createPart()
+    node.constructor.addToMap(part, this.map)
+    this.parts.set(node, part)
+  }
 
-    protected handleRemovedChildNode(node: any) {
-        if (this.parts.has(node)) {
-            node.constructor.removeFromMap(this.parts.get(node), this.map)
-            this.parts.delete(node)
-        }
-    }
-
-    protected async handleAddedChildNode(node: any) {
-        const part = await node.createPart()
-        node.constructor.addToMap(part, this.map)
-        this.parts.set(node, part)
-    }
-
-    /**
-     * Called when the child elements changed and those changes have been reflected on the map
-     */
-    protected notifyMutationComplete() {
-        this.dispatchEvent(new CustomEvent('parts-updated'))
-    }
+  /**
+   * Called when the child elements changed and those changes have been reflected on the map
+   */
+  protected notifyMutationComplete() {
+    this.dispatchEvent(new CustomEvent('parts-updated'))
+  }
 }
 
 customElements.define('ol-map', OlMap)
