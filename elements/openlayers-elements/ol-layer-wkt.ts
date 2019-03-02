@@ -51,7 +51,7 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
       })
 
       feature.setId(data.id)
-      const props = data.props || []
+      const props = data.props || {}
       for (const propsKey in props) {
         if (props.hasOwnProperty(propsKey)) {
           feature.set(propsKey, props[propsKey])
