@@ -1,20 +1,19 @@
 import ShadyObserverMixin from './ShadyChildObserver';
-let ChildObserverMixin;
 /**
  * Mixin which helps handling child nodes being added and removed
  *
  * @polymer
  * @mixinFunction
  */
-ChildObserverMixin = function (Base) {
+export default function (Base) {
     /**
      * Class implementing the child observer mixin
      *
      * @mixinClass
      */
     class ChildObservingElement extends Base {
-        connectedCallback() {
-            super.connectedCallback();
+        constructor(...args) {
+            super(args);
             this.childObserver = this.connectObserver();
         }
         disconnectedCallback() {
@@ -29,29 +28,30 @@ ChildObserverMixin = function (Base) {
         disconnectObserver() {
             this.childObserver.disconnect();
         }
-        handleRemovedChildNode(node) {
+        // @ts-ignore
+        _handleRemovedChildNode(node) {
             // to be implemented in mixed class
         }
-        handleAddedChildNode(node) {
+        // @ts-ignore
+        _handleAddedChildNode(node) {
             // to be implemented in mixed class
         }
-        notifyMutationComplete() {
+        _notifyMutationComplete() {
             // to be implemented in mixed class
         }
         handleMutation(mutationList) {
             const mutationHandlers = mutationList
                 .reduce((promises, mutation) => {
-                const removals = [...mutation.removedNodes].map((n) => this.handleRemovedChildNode(n));
-                const additions = [...mutation.addedNodes].map((n) => this.handleAddedChildNode(n));
+                const removals = [...mutation.removedNodes].map(this._handleRemovedChildNode.bind(this));
+                const additions = [...mutation.addedNodes].map(this._handleAddedChildNode.bind(this));
                 return promises.concat(additions).concat(removals);
             }, []);
-            Promise.all(mutationHandlers).then(this.notifyMutationComplete.bind(this));
+            Promise.all(mutationHandlers).then(this._notifyMutationComplete.bind(this));
         }
     }
     if ('ShadyDOM' in window) {
         return ShadyObserverMixin(ChildObservingElement);
     }
     return ChildObservingElement;
-};
-export default ChildObserverMixin;
+}
 //# sourceMappingURL=ChildObserver.js.map

@@ -3,7 +3,6 @@ import {html} from 'lit-html'
 import '../ol-layer-vector'
 import OlLayerVector from '../ol-layer-vector'
 import '../ol-map'
-import OlMarkerIcon from '../ol-marker-icon'
 import '../ol-marker-icon'
 import {mapFixture} from './util'
 

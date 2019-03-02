@@ -38,23 +38,23 @@ export default class OlLayerVector extends ChildObserverMixin(
    */
   public features: Map<Node, Feature> = new Map<Node, Feature>()
 
-  protected async createLayer() {
+  protected async _createLayer() {
     this.source = new VectorSource()
-    this.childNodes.forEach(this.handleAddedChildNode.bind(this))
+    this.childNodes.forEach(this._handleAddedChildNode.bind(this))
 
     return new VectorLayer({
       source: this.source,
     })
   }
 
-  protected handleRemovedChildNode(node: Node) {
+  protected _handleRemovedChildNode(node: Node) {
     if (this.features.has(node)) {
       this.source.removeFeature(this.features.get(node))
       this.features.delete(node)
     }
   }
 
-  protected handleAddedChildNode(node: OlFeature) {
+  protected _handleAddedChildNode(node: OlFeature) {
     if ('createFeature' in node) {
       const feature = node.createFeature()
       this.features.set(node, feature)
@@ -65,7 +65,7 @@ export default class OlLayerVector extends ChildObserverMixin(
   /**
    * Called when the child elements changed and those changes have been reflected on the map
    */
-  protected notifyMutationComplete() {
+  protected _notifyMutationComplete() {
     this.dispatchEvent(new CustomEvent('ol-updated'))
   }
 }

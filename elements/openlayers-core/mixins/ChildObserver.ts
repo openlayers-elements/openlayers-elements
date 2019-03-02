@@ -1,7 +1,6 @@
 import {LitElement} from 'lit-element'
 import ShadyObserverMixin from './ShadyChildObserver'
 
-let ChildObserverMixin: <B extends Constructor>(Base: B) => B
 type Constructor = new (...args: any[]) => LitElement
 
 /**
@@ -10,7 +9,7 @@ type Constructor = new (...args: any[]) => LitElement
  * @polymer
  * @mixinFunction
  */
-ChildObserverMixin = function<B extends Constructor>(Base: B) { // tslint:disable-line only-arrow-functions
+export default function<B extends Constructor>(Base: B) { // tslint:disable-line only-arrow-functions
     /**
      * Class implementing the child observer mixin
      *
@@ -19,48 +18,50 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) { // tslint:disabl
     class ChildObservingElement extends Base {
         private childObserver: MutationObserver
 
-        public connectedCallback() {
-            super.connectedCallback()
-            this.childObserver = this.connectObserver()
-        }
+      constructor(...args: any[]) {
+        super(args)
+        this.childObserver = this.connectObserver()
+      }
 
         public disconnectedCallback() {
             super.disconnectedCallback()
             this.disconnectObserver()
         }
 
-        protected connectObserver(): MutationObserver {
+        public connectObserver(): MutationObserver {
             const observer = new MutationObserver(this.handleMutation.bind(this))
             observer.observe(this, { childList: true })
             return observer
         }
 
-        protected disconnectObserver() {
+        public disconnectObserver() {
             this.childObserver.disconnect()
         }
 
-        protected handleRemovedChildNode(node: Node) {
+        // @ts-ignore
+        protected _handleRemovedChildNode(node: Node) {
             // to be implemented in mixed class
         }
 
-        protected handleAddedChildNode(node: Node) {
+        // @ts-ignore
+        protected _handleAddedChildNode(node: Node) {
             // to be implemented in mixed class
         }
 
-        protected notifyMutationComplete() {
+        protected _notifyMutationComplete() {
             // to be implemented in mixed class
         }
 
         private handleMutation(mutationList: MutationRecord[]) {
             const mutationHandlers = mutationList
                 .reduce((promises, mutation) => {
-                    const removals = [...mutation.removedNodes].map((n) => this.handleRemovedChildNode(n))
-                    const additions = [...mutation.addedNodes].map((n) => this.handleAddedChildNode(n))
+                    const removals = [...mutation.removedNodes].map(this._handleRemovedChildNode.bind(this)) as Promise<any>[]
+                    const additions = [...mutation.addedNodes].map(this._handleAddedChildNode.bind(this)) as Promise<any>[]
 
                     return promises.concat(additions).concat(removals)
-                }, [])
+                }, [] as Promise<any>[])
 
-            Promise.all(mutationHandlers).then(this.notifyMutationComplete.bind(this))
+            Promise.all(mutationHandlers).then(this._notifyMutationComplete.bind(this))
         }
     }
 
@@ -70,5 +71,3 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) { // tslint:disabl
 
     return ChildObservingElement
 }
-
-export default ChildObserverMixin

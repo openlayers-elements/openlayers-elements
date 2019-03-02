@@ -33,13 +33,13 @@ export default class OlMarkerIcon extends OlFeature {
   public anchorY: number = 0.5
 
   @property({type: String, attribute: 'anchor-x-units'})
-  public anchorXUnits: IconAnchorUnits = undefined
+  public anchorXUnits?: IconAnchorUnits = undefined
 
   @property({type: String, attribute: 'anchor-y-units'})
-  public anchorYUnits: IconAnchorUnits = undefined
+  public anchorYUnits?: IconAnchorUnits = undefined
 
   @property({type: String, attribute: 'anchor-origin'})
-  public anchorOrigin: IconOrigin = undefined
+  public anchorOrigin?: IconOrigin = undefined
 
   @property({type: String})
   public color: string
@@ -66,7 +66,7 @@ export default class OlMarkerIcon extends OlFeature {
   public rotateWithView: boolean = false
 
   @property({type: Number})
-  public size: Size = undefined
+  public size?: Size = undefined
 
   public createFeature() {
     let point = new Point([this.x, this.y])
@@ -80,14 +80,14 @@ export default class OlMarkerIcon extends OlFeature {
 
     feature.setStyle(
       new Style({
-        image: new Icon(this.iconInit),
+        image: new Icon(this.__iconInit),
       }),
     )
 
     return feature
   }
 
-  private get iconInit() {
+  private get __iconInit() {
     return {
       anchor: [this.anchorX, this.anchorY],
       anchorOrigin: this.anchorOrigin,

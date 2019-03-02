@@ -155,9 +155,10 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
       view: new View(viewInit),
     })
 
-    this.childNodes.forEach(this.handleAddedChildNode.bind(this))
+    this.childNodes.forEach(this._handleAddedChildNode.bind(this))
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-naming
   public render() {
     return html`
       <link
@@ -174,14 +175,14 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
     `
   }
 
-  protected handleRemovedChildNode(node: any) {
+  protected _handleRemovedChildNode(node: any) {
     if (this.parts.has(node)) {
       node.constructor.removeFromMap(this.parts.get(node), this.map)
       this.parts.delete(node)
     }
   }
 
-  protected async handleAddedChildNode(node: any) {
+  protected async _handleAddedChildNode(node: any) {
     const part = await node.createPart()
     node.constructor.addToMap(part, this.map)
     this.parts.set(node, part)
@@ -190,7 +191,7 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
   /**
    * Called when the child elements changed and those changes have been reflected on the map
    */
-  protected notifyMutationComplete() {
+  protected _notifyMutationComplete() {
     this.dispatchEvent(new CustomEvent('parts-updated'))
   }
 }
