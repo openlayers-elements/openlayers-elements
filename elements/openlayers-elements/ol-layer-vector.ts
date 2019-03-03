@@ -38,8 +38,12 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
    */
   public features: Map<Node, Feature> = new Map<Node, Feature>()
 
+  protected _createSource() {
+    return new VectorSource()
+  }
+
   protected async _createLayer() {
-    this.source = new VectorSource()
+    this.source = this._createSource()
     this._initializeChildren()
 
     return new VectorLayer({
