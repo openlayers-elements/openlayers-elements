@@ -11,7 +11,9 @@ export function forEvent(element, event) {
     });
 }
 export async function mapFixture(template, query) {
-    const map = await fixture(html `<ol-map>${template}</ol-map>`);
+    const map = (await fixture(html `
+      <ol-map>${template}</ol-map>
+    `));
     await forEvent(map.map, 'rendercomplete');
     return map.querySelector(query);
 }

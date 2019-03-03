@@ -183,7 +183,7 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
   }
 
   protected async _handleAddedChildNode(node: any) {
-    if('createPart' in node) {
+    if ('createPart' in node) {
       const part = await node.createPart()
       node.constructor.addToMap(part, this.map)
       this.parts.set(node, part)

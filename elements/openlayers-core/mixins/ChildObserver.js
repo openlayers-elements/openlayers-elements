@@ -29,6 +29,7 @@ export default function (Base) {
             this.childObserver.disconnect();
         }
         _initializeChildren() {
+            ;
             [...this.childNodes].forEach(this._handleAddedChildNode.bind(this));
         }
         // @ts-ignore
@@ -43,8 +44,7 @@ export default function (Base) {
             // to be implemented in mixed class
         }
         handleMutation(mutationList) {
-            const mutationHandlers = mutationList
-                .reduce((promises, mutation) => {
+            const mutationHandlers = mutationList.reduce((promises, mutation) => {
                 const removals = [...mutation.removedNodes].map(this._handleRemovedChildNode.bind(this));
                 const additions = [...mutation.addedNodes].map(this._handleAddedChildNode.bind(this));
                 return promises.concat(additions).concat(removals);
