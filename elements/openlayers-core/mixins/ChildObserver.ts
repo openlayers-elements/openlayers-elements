@@ -59,21 +59,15 @@ export default function<B extends Constructor>(Base: B) {
     private handleMutation(mutationList: MutationRecord[]) {
       const mutationHandlers = mutationList.reduce(
         (promises, mutation) => {
-          const removals = [...mutation.removedNodes].map(
-            this._handleRemovedChildNode.bind(this),
-          ) as Promise<any>[]
-          const additions = [...mutation.addedNodes].map(
-            this._handleAddedChildNode.bind(this),
-          ) as Promise<any>[]
+          const removals = [...mutation.removedNodes].map(this._handleRemovedChildNode.bind(this)) as Promise<any>[]
+          const additions = [...mutation.addedNodes].map(this._handleAddedChildNode.bind(this)) as Promise<any>[]
 
           return promises.concat(additions).concat(removals)
         },
         [] as Promise<any>[],
       )
 
-      Promise.all(mutationHandlers).then(
-        this._notifyMutationComplete.bind(this),
-      )
+      Promise.all(mutationHandlers).then(this._notifyMutationComplete.bind(this))
     }
   }
 

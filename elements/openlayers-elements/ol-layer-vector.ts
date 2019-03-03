@@ -23,9 +23,9 @@ import OlLayerBase from './ol-layer-base'
  * @appliesMixin ChildObserverMixin
  * @customElement
  */
-export default class OlLayerVector extends ChildObserverMixin(
-  OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>,
-) {
+export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<
+  VectorLayer
+>) {
   /**
    * The Openlayers vector source, containing the features
    *
