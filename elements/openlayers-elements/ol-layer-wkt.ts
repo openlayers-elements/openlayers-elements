@@ -1,7 +1,7 @@
 import {property} from 'lit-element'
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
-import OlLayerVector from "./ol-layer-vector";
+import OlLayerVector from './ol-layer-vector'
 
 const format = new WKT()
 
@@ -42,7 +42,7 @@ export default class OlLayerWkt extends OlLayerVector {
   @property({type: String})
   public featureData: Feature[] = []
 
-  public _createSource() {
+  protected _createSource() {
     const features = this.featureData.map((data) => {
       const feature = format.readFeature(data.wkt, {
         dataProjection: 'EPSG:4326',
@@ -60,8 +60,8 @@ export default class OlLayerWkt extends OlLayerVector {
       return feature
     })
 
-    return  new VectorSource({
-        features,
+    return new VectorSource({
+      features,
     })
   }
 }

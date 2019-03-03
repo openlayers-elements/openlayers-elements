@@ -5,7 +5,7 @@ let ChildObserverMixin: <B extends Constructor>(
   Base: B,
 ) => {
   new (...args: any[]): {
-    _initializeChildren(): any
+    initializeChildren(): any
   }
 } & B
 type Constructor = new (...args: any[]) => LitElement
@@ -45,7 +45,7 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) {
       this.childObserver.disconnect()
     }
 
-    protected _initializeChildren() {
+    public initializeChildren() {
       ;[...this.childNodes].forEach(this._handleAddedChildNode.bind(this))
     }
 

@@ -1,7 +1,7 @@
 import {property} from 'lit-element'
 import GeoJSON from 'ol/format/GeoJSON'
 import VectorSource from 'ol/source/Vector'
-import OlLayerVector from "./ol-layer-vector";
+import OlLayerVector from './ol-layer-vector'
 
 /**
  * A layer which loads features from a GeoJSON input

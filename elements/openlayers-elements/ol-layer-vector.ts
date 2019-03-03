@@ -44,7 +44,7 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
 
   protected async _createLayer() {
     this.source = this._createSource()
-    this._initializeChildren()
+    this.initializeChildren()
 
     return new VectorLayer({
       source: this.source,

@@ -29,7 +29,7 @@ ChildObserverMixin = function (Base) {
         disconnectObserver() {
             this.childObserver.disconnect();
         }
-        _initializeChildren() {
+        initializeChildren() {
             ;
             [...this.childNodes].forEach(this._handleAddedChildNode.bind(this));
         }

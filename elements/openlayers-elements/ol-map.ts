@@ -156,7 +156,7 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
       view: new View(viewInit),
     })
 
-    this._initializeChildren()
+    this.initializeChildren()
   }
 
   // eslint-disable-next-line @typescript-eslint/member-naming
