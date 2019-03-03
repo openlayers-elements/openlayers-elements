@@ -28,6 +28,9 @@ export default function (Base) {
         disconnectObserver() {
             this.childObserver.disconnect();
         }
+        _initializeChildren() {
+            [...this.childNodes].forEach(this._handleAddedChildNode.bind(this));
+        }
         // @ts-ignore
         _handleRemovedChildNode(node) {
             // to be implemented in mixed class

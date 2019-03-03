@@ -38,6 +38,10 @@ export default function<B extends Constructor>(Base: B) { // tslint:disable-line
             this.childObserver.disconnect()
         }
 
+        protected _initializeChildren() {
+          [...this.childNodes].forEach(this._handleAddedChildNode.bind(this))
+        }
+
         // @ts-ignore
         protected _handleRemovedChildNode(node: Node) {
             // to be implemented in mixed class

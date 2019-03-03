@@ -155,7 +155,7 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
       view: new View(viewInit),
     })
 
-    this.childNodes.forEach(this._handleAddedChildNode.bind(this))
+    this._initializeChildren()
   }
 
   // eslint-disable-next-line @typescript-eslint/member-naming
@@ -183,9 +183,11 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
   }
 
   protected async _handleAddedChildNode(node: any) {
-    const part = await node.createPart()
-    node.constructor.addToMap(part, this.map)
-    this.parts.set(node, part)
+    if('createPart' in node) {
+      const part = await node.createPart()
+      node.constructor.addToMap(part, this.map)
+      this.parts.set(node, part)
+    }
   }
 
   /**
