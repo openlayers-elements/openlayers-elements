@@ -1,6 +1,5 @@
 import {LitElement} from 'lit-element'
 
-let ShadyObserverMixin: <B extends Constructor>(Base: B) => B
 type Constructor = new (...args: any[]) => LitElement
 
 interface IShadyDOM {
@@ -9,13 +8,13 @@ interface IShadyDOM {
 }
 declare var ShadyDOM: IShadyDOM
 
-ShadyObserverMixin = function<B extends Constructor>(Base: B) {
+export default function<B extends Constructor>(Base: B) {
   /**
    * Class implementing the child observer mixin
    *
    * @mixinClass
    */
-  class ChildObservingElement extends Base {
+  class ShadyChildObservingElement extends Base {
     protected connectObserver(this: any): MutationObserver {
       return ShadyDOM.observeChildren(this, this.handleMutation.bind(this))
     }
@@ -25,7 +24,5 @@ ShadyObserverMixin = function<B extends Constructor>(Base: B) {
     }
   }
 
-  return ChildObservingElement
+  return ShadyChildObservingElement
 }
-
-export default ShadyObserverMixin

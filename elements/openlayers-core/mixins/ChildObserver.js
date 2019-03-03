@@ -1,11 +1,12 @@
 import ShadyObserverMixin from './ShadyChildObserver';
+let ChildObserverMixin;
 /**
  * Mixin which helps handling child nodes being added and removed
  *
  * @polymer
  * @mixinFunction
  */
-export default function (Base) {
+ChildObserverMixin = function (Base) {
     /**
      * Class implementing the child observer mixin
      *
@@ -56,5 +57,6 @@ export default function (Base) {
         return ShadyObserverMixin(ChildObservingElement);
     }
     return ChildObservingElement;
-}
+};
+export default ChildObserverMixin;
 //# sourceMappingURL=ChildObserver.js.map

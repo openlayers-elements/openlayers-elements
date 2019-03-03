@@ -1,6 +1,13 @@
 import {LitElement} from 'lit-element'
 import ShadyObserverMixin from './ShadyChildObserver'
 
+let ChildObserverMixin: <B extends Constructor>(
+  Base: B,
+) => {
+  new (...args: any[]): {
+    _initializeChildren(): any
+  }
+} & B
 type Constructor = new (...args: any[]) => LitElement
 
 /**
@@ -9,7 +16,7 @@ type Constructor = new (...args: any[]) => LitElement
  * @polymer
  * @mixinFunction
  */
-export default function<B extends Constructor>(Base: B) {
+ChildObserverMixin = function<B extends Constructor>(Base: B) {
   /**
    * Class implementing the child observer mixin
    *
@@ -77,3 +84,5 @@ export default function<B extends Constructor>(Base: B) {
 
   return ChildObservingElement
 }
+
+export default ChildObserverMixin
