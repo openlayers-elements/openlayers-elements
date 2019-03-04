@@ -40,19 +40,19 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {string}
    */
   @property({type: String})
-  public src: string
+  public src: string = undefined
 
   /**
    * @type {number}
    */
   @property({type: Number})
-  public lon: number
+  public lon: number = undefined
 
   /**
    * @type {number}
    */
   @property({type: Number})
-  public lat: number
+  public lat: number = undefined
 
   /**
    * @type {number}
