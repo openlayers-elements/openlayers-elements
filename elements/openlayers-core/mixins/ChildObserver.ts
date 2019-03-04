@@ -11,7 +11,9 @@ let ChildObserverMixin: <B extends Constructor>(
 type Constructor = new (...args: any[]) => LitElement
 
 /**
- * Mixin which helps handling child nodes being added and removed
+ * Mixin which helps handling child nodes being added and removed.
+ *
+ * See [ChildObservingElement class](#/classes/ChildObservingElement)
  *
  * @polymer
  * @mixinFunction
@@ -45,20 +47,41 @@ ChildObserverMixin = function<B extends Constructor>(Base: B) {
       this.childObserver.disconnect()
     }
 
+    /**
+     * Processes the current child elements and adds them to the map
+     *
+     * Should be called by inherited element when it's ready to initialize the map
+     */
     public initializeChildren() {
       ;[...this.childNodes].forEach(this._handleAddedChildNode.bind(this))
     }
 
-    // @ts-ignore
-    protected _handleRemovedChildNode(node: Node) {
+    /**
+     * Implemented in derived classes to remove a removed child node from the map
+     *
+     * @param node {Node}
+     * @private
+     */
+    protected _handleRemovedChildNode() {
       // to be implemented in mixed class
     }
 
-    // @ts-ignore
-    protected _handleAddedChildNode(node: Node) {
+    /**
+     * Implemented in derived classes to add a added child node from the map
+     *
+     * @param node {Node}
+     * @private
+     */
+    protected _handleAddedChildNode() {
       // to be implemented in mixed class
     }
 
+    /**
+     * Implemented in derived classes to dispatch an event, notifying listeners
+     * that child nodes have been applied to the map
+     *
+     * @private
+     */
     protected _notifyMutationComplete() {
       // to be implemented in mixed class
     }

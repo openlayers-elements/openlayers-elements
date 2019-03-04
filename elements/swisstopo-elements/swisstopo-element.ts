@@ -12,6 +12,8 @@ type Constructor = new (...args: any[]) => LitElement
 /**
  * Base mixin for swisstopo elements
  *
+ * See [SwisstopoElement class](#/classes/SwisstopoElement)
+ *
  * @polymer
  * @mixinFunction
  */

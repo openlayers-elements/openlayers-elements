@@ -105,7 +105,7 @@ export default class OlMarkerIcon extends OlFeature {
   /**
    * @type {string}
    */
-  @property({type: String})
+  @property({type: String, attribute: 'cross-origin'})
   public crossOrigin?: string = undefined
 
   /**

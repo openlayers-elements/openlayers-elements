@@ -31,12 +31,14 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
    *
    * @type {VectorSource}
    */
-  public source: VectorSource
+  public source: VectorSource = undefined
 
   /**
    * The individual features
+   *
+   * @type {Map}
    */
-  public features: Map<Node, Feature> = new Map<Node, Feature>()
+  public features = new Map<Node, Feature>()
 
   protected _createSource() {
     return new VectorSource()
