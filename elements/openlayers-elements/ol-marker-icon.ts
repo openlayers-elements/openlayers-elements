@@ -6,9 +6,10 @@ import Point from 'ol/geom/Point'
 import {fromLonLat} from 'ol/proj'
 import Icon from 'ol/style/Icon'
 import Style from 'ol/style/Style'
-import {Size, style} from 'openlayers'
+import { olx, Size, style } from "openlayers";
 import IconAnchorUnits = style.IconAnchorUnits
 import IconOrigin = style.IconOrigin
+import IconOptions = olx.style.IconOptions;
 
 /**
  * A basic map marker. Loaded from an image file
@@ -27,6 +28,8 @@ import IconOrigin = style.IconOrigin
  *
  * 1. The base position is either `[x, y]` or `[lat, lon]`
  * 1. The anchor on the map is by default the image's center and can be change by setting the `anchor*` properties
+ *
+ * For an in-depth description of individual properties go to OpenLayer's docs for [ol/Style/Icon](https://openlayers.org/en/latest/apidoc/module-ol_style_Icon.html)
  *
  * @demo demo/markers.html
  */
@@ -93,8 +96,17 @@ export default class OlMarkerIcon extends OlFeature {
   @property({type: String, attribute: 'anchor-origin'})
   public anchorOrigin?: IconOrigin = undefined
 
+  /**
+   * @type {string}
+   */
   @property({type: String})
-  public color: string
+  public color: string = undefined
+
+  /**
+   * @type {string}
+   */
+  @property({type: String})
+  public crossOrigin?: string = undefined
 
   /**
    * @type {number}
@@ -163,13 +175,14 @@ export default class OlMarkerIcon extends OlFeature {
     return feature
   }
 
-  private get __iconInit() {
+  private get __iconInit(): IconOptions {
     return {
       anchor: [this.anchorX, this.anchorY],
       anchorOrigin: this.anchorOrigin,
       anchorXUnits: this.anchorXUnits,
       anchorYUnits: this.anchorYUnits,
       color: this.color,
+      crossOrigin: this.crossOrigin,
       offset: [this.offsetX, this.offsetY],
       offsetOrigin: this.offsetOrigin,
       opacity: this.opacity,
