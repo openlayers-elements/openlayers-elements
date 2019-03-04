@@ -16,7 +16,7 @@ async function fixture(template): Promise<any> {
     'ol-layer-vector',
   )
 
-  return layer.features.values().next().value
+  return layer._features.values().next().value
 }
 
 describe('ol-marker-icon', () => {

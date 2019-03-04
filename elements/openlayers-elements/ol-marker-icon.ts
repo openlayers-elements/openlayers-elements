@@ -6,10 +6,10 @@ import Point from 'ol/geom/Point'
 import {fromLonLat} from 'ol/proj'
 import Icon from 'ol/style/Icon'
 import Style from 'ol/style/Style'
-import { olx, Size, style } from "openlayers";
+import {olx, Size, style} from 'openlayers'
 import IconAnchorUnits = style.IconAnchorUnits
 import IconOrigin = style.IconOrigin
-import IconOptions = olx.style.IconOptions;
+import IconOptions = olx.style.IconOptions
 
 /**
  * A basic map marker. Loaded from an image file

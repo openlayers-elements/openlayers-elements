@@ -159,7 +159,6 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
     this.initializeChildren()
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-naming
   public render() {
     return html`
       <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css" />

@@ -38,7 +38,7 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
    *
    * @type {Map}
    */
-  public features = new Map<Node, Feature>()
+  protected _features = new Map<Node, Feature>()
 
   protected _createSource() {
     return new VectorSource()
@@ -54,16 +54,16 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
   }
 
   protected _handleRemovedChildNode(node: Node) {
-    if (this.features.has(node)) {
-      this.source.removeFeature(this.features.get(node))
-      this.features.delete(node)
+    if (this._features.has(node)) {
+      this.source.removeFeature(this._features.get(node))
+      this._features.delete(node)
     }
   }
 
   protected _handleAddedChildNode(node: OlFeature) {
     if ('createFeature' in node) {
       const feature = node.createFeature()
-      this.features.set(node, feature)
+      this._features.set(node, feature)
       this.source.addFeature(feature)
     }
   }
