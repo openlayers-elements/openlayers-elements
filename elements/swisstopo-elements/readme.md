@@ -2,6 +2,8 @@
 
 OpenLayers elements for adding swisstopo maps to `openlayers-elements`
 
+See [documentation and demos](https://openlayers-elements.netlify.com).
+
 ## Quick start
 
 To install run
