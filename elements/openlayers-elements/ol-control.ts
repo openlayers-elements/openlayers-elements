@@ -67,8 +67,7 @@ export default class OlControl extends OlMapPart<Control> {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-naming
-  protected render() {
+  public render() {
     return html`
       <slot></slot>
     `

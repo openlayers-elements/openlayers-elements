@@ -1,8 +1,7 @@
 import {property} from 'lit-element'
 import WKT from 'ol/format/WKT'
-import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import OlLayerBase from './ol-layer-base'
+import OlLayerVector from './ol-layer-vector'
 
 const format = new WKT()
 
@@ -34,7 +33,7 @@ interface Feature {
  *
  * @customElement
  */
-export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
+export default class OlLayerWkt extends OlLayerVector {
   /**
    * The features to be placed on the layer
    *
@@ -43,7 +42,7 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
   @property({type: String})
   public featureData: Feature[] = []
 
-  public async _createLayer() {
+  protected _createSource() {
     const features = this.featureData.map((data) => {
       const feature = format.readFeature(data.wkt, {
         dataProjection: 'EPSG:4326',
@@ -61,10 +60,8 @@ export default class OlLayerWkt extends OlLayerBase<VectorLayer> {
       return feature
     })
 
-    return new VectorLayer({
-      source: new VectorSource({
-        features,
-      }),
+    return new VectorSource({
+      features,
     })
   }
 }

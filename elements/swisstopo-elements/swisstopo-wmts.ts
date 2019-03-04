@@ -20,9 +20,7 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
-export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (
-  ...args: any[]
-) => OlLayerBase<TileLayer>) {
+export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args: any[]) => OlLayerBase<TileLayer>) {
   /**
    * One of projections supported by swisstopo maps:
    *
@@ -38,9 +36,7 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (
 
   public async createLayer() {
     const projectionSegments = this.projection.replace(/:/, '/')
-    const response = await fetch(
-      `https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`,
-    )
+    const response = await fetch(`https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`)
     const capabilities = parser.read(await response.text())
 
     const options = optionsFromCapabilities(capabilities, {

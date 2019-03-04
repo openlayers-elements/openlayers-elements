@@ -28,7 +28,7 @@ const config = merge(
       host: '0.0.0.0',
       disableHostCheck: true,
     },
-    plugins: [new CopyWebpackPlugin(['analysis.json']), ...demoHtmls],
+    plugins: [new CopyWebpackPlugin(['analysis.json', 'assets/*.*', '**/*.css']), ...demoHtmls],
   },
 )
 

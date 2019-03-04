@@ -1,14 +1,23 @@
 import {LitElement, property} from 'lit-element'
 
+let SwisstopoElementMixin: <B extends Constructor>(
+  Base: B,
+) => {
+  new (...args: any[]): {
+    layerName?: string
+  }
+} & B
 type Constructor = new (...args: any[]) => LitElement
 
 /**
  * Base mixin for swisstopo elements
  *
+ * See [SwisstopoElement class](#/classes/SwisstopoElement)
+ *
  * @polymer
  * @mixinFunction
  */
-export default function<B extends Constructor>(Base: B) {
+SwisstopoElementMixin = function<B extends Constructor>(Base: B) {
   /**
    * Base class for swisstopo elements
    *
@@ -30,4 +39,4 @@ export default function<B extends Constructor>(Base: B) {
   return SwisstopoElement
 }
 
-//export default SwisstopoElementMixin
+export default SwisstopoElementMixin

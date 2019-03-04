@@ -1,16 +1,16 @@
 import {property} from 'lit-element'
 import GeoJSON from 'ol/format/GeoJSON'
-import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import OlLayerBase from './ol-layer-base'
+import OlLayerVector from './ol-layer-vector'
 
 /**
  * A layer which loads features from a GeoJSON input
  *
  * @demo demo/select.html
+ * @demo demo/markers.html Combined with markers
  * @customElement
  */
-export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
+export default class OlLayerGeoJson extends OlLayerVector {
   /**
    * The URL to fetch the GeoJSON. It can be relative or absolute
    *
@@ -19,12 +19,10 @@ export default class OlLayerGeoJson extends OlLayerBase<VectorLayer> {
   @property({type: String})
   public url?: string = undefined
 
-  protected async _createLayer() {
-    return new VectorLayer({
-      source: new VectorSource({
-        format: new GeoJSON(),
-        url: this.url,
-      }),
+  protected _createSource() {
+    return new VectorSource({
+      format: new GeoJSON(),
+      url: this.url,
     })
   }
 }
