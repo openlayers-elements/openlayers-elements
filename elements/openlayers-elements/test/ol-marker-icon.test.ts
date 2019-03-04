@@ -1,7 +1,6 @@
 import {expect} from '@open-wc/testing'
 import {html} from 'lit-html'
 import '../ol-layer-vector'
-import OlLayerVector from '../ol-layer-vector'
 import '../ol-map'
 import '../ol-marker-icon'
 import {mapFixture} from './util'
@@ -9,7 +8,7 @@ import {mapFixture} from './util'
 const dotUrl = '/base/test/assets/icon.png'
 
 async function fixture(template): Promise<any> {
-  const layer = await mapFixture<OlLayerVector>(
+  const layer = await mapFixture<any>(
     html`
       <ol-layer-vector>${template}</ol-layer-vector>
     `,
