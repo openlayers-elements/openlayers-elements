@@ -3,6 +3,8 @@
 Custom element wrapping OpenLayers 5 API, thus providing a declarative
 way to create online maps.
 
+See [documentation and demos](https://openlayers-elements.netlify.com).
+
 ## Quick start
 
 To install run
