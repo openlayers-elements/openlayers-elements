@@ -37,6 +37,7 @@ import OlLayerBase from './ol-layer-base'
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
  * @demo demo/ol-map.html
+ * @demo demo/zoom-to-extent.html Zoom to extent
  * @appliesMixin ChildObserverMixin
  * @customElement
  */
