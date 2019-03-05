@@ -6,6 +6,7 @@
     "elements/*"
   ],
   "scripts": {
+    "prestart": "yarn analyze",
     "start": "lerna run --scope demos start",
     "start:es5": "lerna run --scope demos start:es5",
     "build": "lerna run --no-private build",
