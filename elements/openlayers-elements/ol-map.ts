@@ -117,6 +117,16 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
         this.map.updateSize()
       }
     })
+
+    this.addEventListener('zoom', (e:CustomEvent) => {
+      this.map.getView().fit(e.detail.extent, {
+        size: this.map.getSize(),
+        constrainResolution: false,
+        nearest: false
+      })
+
+      e.stopPropagation()
+    })
   }
 
   public connectedCallback() {

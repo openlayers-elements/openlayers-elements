@@ -40,6 +40,15 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
    */
   protected _features = new Map<Node, Feature>()
 
+  public zoom() {
+    this.dispatchEvent(new CustomEvent('zoom', {
+      detail: {
+        extent: this.source.getExtent()
+      },
+      bubbles: true
+    }))
+  }
+
   protected _createSource() {
     return new VectorSource()
   }
