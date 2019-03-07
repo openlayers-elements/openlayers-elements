@@ -1,6 +1,6 @@
 import TileLayer from 'ol/layer/Tile'
 import OSM from 'ol/source/OSM'
-import OlLayerBase from './ol-layer-base'
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
 
 /**
  * A basic OpenStreetMap tile layer

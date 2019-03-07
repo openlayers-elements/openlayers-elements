@@ -1,10 +1,9 @@
 import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
-import OlLayerVector from '../ol-layer-vector'
-import '../ol-layer-vector'
-import '../ol-map'
-import OlMarkerIcon from '../ol-marker-icon'
-import '../ol-marker-icon'
+import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
+import '@openlayers-elements/core/ol-layer-vector'
+import '@openlayers-elements/maps/ol-map'
+import './test-elements/ol-test-feature'
 import {forEvent} from './util'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
@@ -14,10 +13,10 @@ describe('ol-layer-vector', () => {
     // given
     const element = (await fixture(html`
       <ol-layer-vector>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
       </ol-layer-vector>
     `)) as OlLayerVector
 
@@ -30,16 +29,16 @@ describe('ol-layer-vector', () => {
     // given
     const element = (await fixture(html`
       <ol-layer-vector>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
-        <ol-marker-icon src="${dotUrl}"></ol-marker-icon>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
+        <ol-test-feature src="${dotUrl}"></ol-test-feature>
       </ol-layer-vector>
     `)) as OlLayerVector
     const layer = (await element.createPart()) as any
 
     // when
-    element.removeChild(element.querySelector('ol-marker-icon'))
+    element.removeChild(element.querySelector('ol-test-feature'))
 
     // then
     await forEvent(element, 'ol-updated')
@@ -56,8 +55,7 @@ describe('ol-layer-vector', () => {
     const layer = (await element.createPart()) as any
 
     // when
-    const marker = document.createElement('ol-marker-icon') as OlMarkerIcon
-    marker.src = dotUrl
+    const marker = document.createElement('ol-test-feature')
     element.appendChild(marker)
 
     // then

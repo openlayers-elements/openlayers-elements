@@ -10,23 +10,12 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "prepare": "yarn build",
-    "pretest": "yarn build",
-    "remap-coverage": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly",
-    "test": "karma start",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "prepare": "yarn build"
   },
   "files": [
     "**/*.d.ts",
     "**/*.js"
   ],
-  "devDependencies": {
-    "remap-istanbul": "^0.13.0",
-    "typescript": "^3.2.2"
-  },
   "dependencies": {
     "@openlayers-elements/core": "^0.1.0",
     "resize-observer-polyfill": "^1.5.1"
