@@ -6,7 +6,7 @@ import OlLayerVector from './ol-layer-vector'
 /**
  * A layer which loads features from a GeoJSON input
  *
- * @demo https://openlayers-elements.netlify.com/https://openlayers-elements.netlify.com/demo/select.html
+ * @demo https://openlayers-elements.netlify.com/demo/select.html
  * @demo https://openlayers-elements.netlify.com/demo/markers.html Combined with markers
  * @customElement
  */
