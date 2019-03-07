@@ -28,7 +28,7 @@ import {OlMapPart} from './ol-map-part'
  * | --map-button-control-left | Left CSS offset |
  * | --map-button-control-right | Right CSS offset |
  *
- * @demo demo/control.html
+ * @demo https://openlayers-elements.netlify.com/demo/control.html
  * @customElement
  */
 export default class OlControl extends OlMapPart<Control> {

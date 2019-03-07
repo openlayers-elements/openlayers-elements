@@ -31,7 +31,7 @@ import IconOptions = olx.style.IconOptions
  *
  * For an in-depth description of individual properties go to OpenLayer's docs for [ol/Style/Icon](https://openlayers.org/en/latest/apidoc/module-ol_style_Icon.html)
  *
- * @demo demo/markers.html
+ * @demo https://openlayers-elements.netlify.com/demo/markers.html
  */
 export default class OlMarkerIcon extends OlFeature {
   /**

@@ -6,7 +6,7 @@ import OlLayerBase from './ol-layer-base'
 /**
  * A simple layer element, sourcing from a raster tile server using X/Y/Z coordinates
  *
- * @demo demo/xyz.html
+ * @demo https://openlayers-elements.netlify.com/demo/xyz.html
  * @customElement
  */
 export default class OlLayerXyz extends OlLayerBase<TileLayer> {
