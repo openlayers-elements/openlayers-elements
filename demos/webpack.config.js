@@ -34,7 +34,7 @@ const config = merge(
         {
           from: 'analysis.json',
           transform: (analysis) => {
-            return analysis.toString().replace(/https:\/\/openlayers-elements.netlify.com\//, '')
+            return analysis.toString().replace(/https:\/\/openlayers-elements.netlify.com\//g, '')
           },
         },
       ]),
