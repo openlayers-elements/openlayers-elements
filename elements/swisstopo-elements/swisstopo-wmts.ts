@@ -1,4 +1,4 @@
-import OlLayerBase from '@openlayers-elements/maps/ol-layer-base'
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
 import {property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
@@ -16,7 +16,7 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  *
  * [wmts-list]: http://api3.geo.admin.ch/services/sdiservices.html#supported-projections
  *
- * @demo demo/swiss-topo.html
+ * @demo https://openlayers-elements.netlify.com/demo/swiss-topo.html
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */

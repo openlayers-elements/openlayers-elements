@@ -28,7 +28,18 @@ const config = merge(
       host: '0.0.0.0',
       disableHostCheck: true,
     },
-    plugins: [new CopyWebpackPlugin(['analysis.json', 'assets/*.*', '**/*.css']), ...demoHtmls],
+    plugins: [
+      new CopyWebpackPlugin(['assets/*.*', '**/*.css']),
+      new CopyWebpackPlugin([
+        {
+          from: 'analysis.json',
+          transform: (analysis) => {
+            return analysis.toString().replace(/https:\/\/openlayers-elements.netlify.com\//g, '')
+          },
+        },
+      ]),
+      ...demoHtmls,
+    ],
   },
 )
 

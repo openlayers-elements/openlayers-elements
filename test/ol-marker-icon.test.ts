@@ -1,8 +1,8 @@
 import {expect} from '@open-wc/testing'
 import {html} from 'lit-html'
-import '../ol-layer-vector'
-import '../ol-map'
-import '../ol-marker-icon'
+import '@openlayers-elements/core/ol-layer-vector'
+import '@openlayers-elements/maps/ol-map'
+import '@openlayers-elements/maps/ol-marker-icon'
 import {mapFixture} from './util'
 
 const dotUrl = '/base/test/assets/icon.png'

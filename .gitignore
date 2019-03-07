@@ -2,7 +2,7 @@
 elements/openlayers-core/**/*.js
 elements/openlayers-elements/**/ol-*.js
 elements/swisstopo-elements/**/swisstopo-*.js
-**/test/*.js
+test/**/*.js
 *.js.map
 *.d.ts
 node_modules/

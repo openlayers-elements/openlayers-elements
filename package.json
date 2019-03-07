@@ -3,19 +3,24 @@
   "name": "open-layers",
   "workspaces": [
     "demos",
-    "elements/*"
+    "elements/*",
+    "test"
   ],
   "scripts": {
     "prestart": "yarn analyze",
     "start": "lerna run --scope demos start",
     "start:es5": "lerna run --scope demos start:es5",
-    "build": "lerna run --no-private build",
+    "build": "lerna run --ignore demos build",
     "lint": "eslint elements/**/*.ts demos/**/*.js",
-    "pretest": "yarn lint; yarn build",
-    "test": "lerna run test:es5:bs --stream --concurrency 1",
-    "posttest": "lerna run remap-coverage",
+    "pretest": "yarn lint --quiet; yarn build",
+    "test": "karma start",
+    "test:watch": "yarn test --auto-watch=true --single-run=false",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:es5:bs": "karma start karma.es5.bs.config.js",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
-    "docs": "yarn build; yarn analyze; lerna run --scope demos build"
+    "docs": "yarn build; yarn analyze; lerna run --scope demos build",
+    "remap-coverage": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly"
   },
   "devDependencies": {
     "@open-wc/testing": "^0.9.19",

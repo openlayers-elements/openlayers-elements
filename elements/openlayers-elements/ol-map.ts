@@ -6,7 +6,7 @@ import OpenLayersMap from 'ol/Map'
 import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
-import OlLayerBase from './ol-layer-base'
+import OlLayerBase from '@openlayers-elements/core//ol-layer-base'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -36,8 +36,8 @@ import OlLayerBase from './ol-layer-base'
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
- * @demo demo/ol-map.html
- * @demo demo/zoom-to-extent.html Zoom to extent
+ * @demo https://openlayers-elements.netlify.com/demo/ol-map.html
+ * @demo https://openlayers-elements.netlify.com/demo/zoom-to-extent.html Zoom to extent
  * @appliesMixin ChildObserverMixin
  * @customElement
  */

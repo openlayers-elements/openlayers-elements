@@ -1,13 +1,13 @@
 import {property} from 'lit-element'
 import GeoJSON from 'ol/format/GeoJSON'
 import VectorSource from 'ol/source/Vector'
-import OlLayerVector from './ol-layer-vector'
+import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
 
 /**
  * A layer which loads features from a GeoJSON input
  *
- * @demo demo/select.html
- * @demo demo/markers.html Combined with markers
+ * @demo https://openlayers-elements.netlify.com/demo/select.html
+ * @demo https://openlayers-elements.netlify.com/demo/markers.html Combined with markers
  * @customElement
  */
 export default class OlLayerGeoJson extends OlLayerVector {

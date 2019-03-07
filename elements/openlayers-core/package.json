@@ -8,7 +8,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "yarn build"
   },
   "files": [
     "**/*.d.ts",
@@ -18,8 +19,5 @@
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
     "ol": "^5.3.0"
-  },
-  "devDependencies": {
-    "typescript": "^3.2.2"
   }
 }

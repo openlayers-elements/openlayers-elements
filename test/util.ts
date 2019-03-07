@@ -1,6 +1,5 @@
 import {fixture} from '@open-wc/testing'
 import {html, TemplateResult} from 'lit-html'
-import OlMap from '../ol-map'
 
 export function forEvent(element, event) {
   return new Promise((resolve) => {
@@ -17,7 +16,7 @@ export async function mapFixture<T>(template: TemplateResult, query: string) {
     html`
       <ol-map>${template}</ol-map>
     `,
-  )) as OlMap
+  )) as any
 
   await forEvent(map.map, 'rendercomplete')
 

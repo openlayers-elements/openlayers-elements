@@ -2,7 +2,7 @@ import {html} from 'lit-element'
 import {render} from 'lit-html'
 import Control from 'ol/control/Control'
 import Map from 'ol/map'
-import {OlMapPart} from './ol-map-part'
+import {OlMapPart} from '@openlayers-elements/core/ol-map-part'
 
 /**
  * A base element for implementing map controls.
@@ -28,7 +28,7 @@ import {OlMapPart} from './ol-map-part'
  * | --map-button-control-left | Left CSS offset |
  * | --map-button-control-right | Right CSS offset |
  *
- * @demo demo/control.html
+ * @demo https://openlayers-elements.netlify.com/demo/control.html
  * @customElement
  */
 export default class OlControl extends OlMapPart<Control> {

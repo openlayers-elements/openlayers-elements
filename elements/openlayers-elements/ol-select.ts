@@ -1,5 +1,5 @@
 import Select from 'ol/interaction/Select'
-import OlInteraction from './ol-interaction'
+import OlInteraction from '@openlayers-elements/core/ol-interaction'
 
 /**
  * Non-visual element which enables selecting map features
@@ -13,7 +13,7 @@ import OlInteraction from './ol-interaction'
  * ```
  *
  * @customElement
- * @demo demo/select.html
+ * @demo https://openlayers-elements.netlify.com/demo/select.html
  */
 export class OlSelect extends OlInteraction {
   /**

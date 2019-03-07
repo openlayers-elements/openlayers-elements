@@ -1,8 +1,8 @@
 import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
-import '../ol-layer-openstreetmap'
-import '../ol-map'
-import OlMap from '../ol-map'
+import '@openlayers-elements/maps/ol-layer-openstreetmap'
+import '@openlayers-elements/maps/ol-map'
+import OlMap from '@openlayers-elements/maps/ol-map'
 import {forEvent} from './util'
 
 describe('ol-map', () => {

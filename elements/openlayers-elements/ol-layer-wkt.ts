@@ -1,7 +1,7 @@
 import {property} from 'lit-element'
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
-import OlLayerVector from './ol-layer-vector'
+import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
 
 const format = new WKT()
 
