@@ -1,4 +1,4 @@
-import OlLayerBase from '@openlayers-elements/maps/ol-layer-base'
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
 import {property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
