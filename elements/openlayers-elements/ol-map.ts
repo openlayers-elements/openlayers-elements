@@ -1,12 +1,9 @@
-import ChildObserverMixin from '@openlayers-elements/core/mixins/ChildObserver'
 import {html, LitElement, property, query} from 'lit-element'
-import Base from 'ol/layer/base'
 import OpenLayersMap from 'ol/Map'
 // @ts-ignore
 import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
-import OlLayerBase from '@openlayers-elements/core//ol-layer-base'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -40,7 +37,7 @@ import OlLayerBase from '@openlayers-elements/core//ol-layer-base'
  * @appliesMixin ChildObserverMixin
  * @customElement
  */
-export default class OlMap extends ChildObserverMixin(LitElement) {
+export default class OlMap extends LitElement {
   /**
    * Zoom level
    * @type {Number}
@@ -107,7 +104,6 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
    */
   public map?: OpenLayersMap = undefined
 
-  public parts: Map<Node, any> = new Map<OlLayerBase<Base>, Base>()
   public sizeObserver: ResizeObserver
 
   public constructor() {
@@ -122,6 +118,11 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
   public connectedCallback() {
     super.connectedCallback()
     this.sizeObserver.observe(this)
+
+    this.addEventListener('child-attaching', (e: CustomEvent) => {
+      e.detail.map = this
+      e.stopPropagation()
+    })
   }
 
   public disconnectedCallback() {
@@ -156,7 +157,7 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
       view: new View(viewInit),
     })
 
-    this.initializeChildren()
+    this.dispatchEvent(new Event('map-ready'))
   }
 
   public render() {
@@ -169,28 +170,6 @@ export default class OlMap extends ChildObserverMixin(LitElement) {
       </style>
       <div id="map"></div>
     `
-  }
-
-  protected _handleRemovedChildNode(node: any) {
-    if (this.parts.has(node)) {
-      node.constructor.removeFromMap(this.parts.get(node), this.map)
-      this.parts.delete(node)
-    }
-  }
-
-  protected async _handleAddedChildNode(node: any) {
-    if ('createPart' in node) {
-      const part = await node.createPart()
-      node.constructor.addToMap(part, this.map)
-      this.parts.set(node, part)
-    }
-  }
-
-  /**
-   * Called when the child elements changed and those changes have been reflected on the map
-   */
-  protected _notifyMutationComplete() {
-    this.dispatchEvent(new CustomEvent('parts-updated'))
   }
 }
 

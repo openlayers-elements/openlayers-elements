@@ -6,11 +6,11 @@ import {OlMapPart} from './ol-map-part'
  * Base class for implementing interactions
  */
 export default abstract class OlInteraction extends OlMapPart<Interaction> {
-  public static addToMap(i: Interaction, map: Map) {
+  public _addToMap(map: Map, i: Interaction) {
     map.addInteraction(i)
   }
 
-  public static removeFromMap(i: Interaction, map: Map) {
+  public _removeFromMap(map: Map, i: Interaction) {
     map.removeInteraction(i)
   }
 }

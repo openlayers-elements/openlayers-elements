@@ -22,6 +22,8 @@ export default class SwisstopoReprojected extends SwisstopoElement(OlLayerXyz) {
   public get url() {
     return `https://wmts10.geo.admin.ch/1.0.0/${this.layerName}/default/current/3857/{z}/{x}/{y}.jpeg`
   }
+
+  public set url(_) {}
 }
 
 customElements.define('swisstopo-reprojected', SwisstopoReprojected)

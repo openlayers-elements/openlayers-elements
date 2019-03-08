@@ -15,10 +15,11 @@ describe('ol-map', () => {
     )) as OlMap
 
     // when
-    map.appendChild(document.createElement('ol-layer-openstreetmap'))
+    const layer = document.createElement('ol-layer-openstreetmap')
+    map.appendChild(layer)
 
     // then
-    await forEvent(map, 'parts-updated')
+    await forEvent(layer, 'child-attached')
     expect(map.map.getLayers().getLength()).to.equal(1)
   })
 
@@ -34,7 +35,6 @@ describe('ol-map', () => {
     map.removeChild(map.querySelector('ol-layer-openstreetmap'))
 
     // then
-    await forEvent(map, 'parts-updated')
     expect(map.map.getLayers().getLength()).to.equal(0)
   })
 })
