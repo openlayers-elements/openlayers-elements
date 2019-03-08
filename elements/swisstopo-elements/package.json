@@ -10,10 +10,6 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "files": [
-    "**/*.d.ts",
-    "**/*.js"
-  ],
   "devDependencies": {
     "typescript": "^3.2.2"
   },

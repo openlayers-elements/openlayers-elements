@@ -1,10 +1,10 @@
 import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
-import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
-import '@openlayers-elements/core/ol-layer-vector'
+import OlLayerVector from '../ol-layer-vector'
+import '../ol-layer-vector'
 import '@openlayers-elements/maps/ol-map'
 import './test-elements/ol-test-feature'
-import {forEvent} from './util'
+import {forEvent} from '../../../test/util'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
 

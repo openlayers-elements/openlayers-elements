@@ -3,8 +3,7 @@
   "name": "open-layers",
   "workspaces": [
     "demos",
-    "elements/*",
-    "test"
+    "elements/*"
   ],
   "scripts": {
     "prestart": "yarn analyze",
