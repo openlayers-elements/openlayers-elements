@@ -13,7 +13,7 @@ export default abstract class OlFeature extends LitElement {
   public connectedCallback() {
     super.connectedCallback()
     const detail: any = {}
-    this.dispatchEvent(new CustomEvent('child-attaching', {detail, bubbles: true}))
+    this.dispatchEvent(new CustomEvent('attaching', {detail, bubbles: true}))
 
     if (detail.layer) {
       detail.layer.then((layer: OlLayerVector) => {
@@ -22,7 +22,7 @@ export default abstract class OlFeature extends LitElement {
 
         this._source.addFeature(this._feature)
 
-        this.dispatchEvent(new Event('child-attached', {bubbles: true}))
+        this.dispatchEvent(new Event('attached', {bubbles: true}))
       })
     }
   }

@@ -26,11 +26,11 @@ export abstract class OlMapPart<T> extends LitElement {
     super.connectedCallback()
 
     const detail: any = {}
-    this.dispatchEvent(new CustomEvent('child-attaching', {detail, bubbles: true}))
+    this.dispatchEvent(new CustomEvent('attaching', {detail, bubbles: true}))
 
     if (detail.map) {
       detail.map
-        .then(map => {
+        .then((map) => {
           this._map = map.map
 
           return this.createPart()
@@ -40,8 +40,8 @@ export abstract class OlMapPart<T> extends LitElement {
 
           this._addToMap(this._map, this._part)
 
-          this.dispatchEvent(new Event('child-attached', {bubbles: true}))
-      })
+          this.dispatchEvent(new Event('attached', {bubbles: true}))
+        })
     }
   }
 

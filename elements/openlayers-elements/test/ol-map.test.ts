@@ -19,7 +19,7 @@ describe('ol-map', () => {
     map.appendChild(layer)
 
     // then
-    await forEvent(layer, 'child-attached')
+    await forEvent(layer, 'attached')
     expect(map.map.getLayers().getLength()).to.equal(1)
   })
 

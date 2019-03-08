@@ -118,7 +118,7 @@ export default class OlMap extends LitElement {
     super.connectedCallback()
     this.sizeObserver.observe(this)
 
-    this.addEventListener('child-attaching', (e: CustomEvent) => {
+    this.addEventListener('attaching', (e: CustomEvent) => {
       if (this.map) {
         e.detail.map = Promise.resolve(this)
       } else {

@@ -30,12 +30,12 @@ export default class OlLayerVector extends OlLayerBase<VectorLayer> {
   public connectedCallback() {
     super.connectedCallback()
 
-    this.addEventListener('child-attaching', (e: CustomEvent) => {
+    this.addEventListener('attaching', (e: CustomEvent) => {
       if (this.source) {
         e.detail.layer = Promise.resolve(this)
       } else {
         e.detail.layer = new Promise((resolve) => {
-          this.addEventListener('child-attached', () => {
+          this.addEventListener('attached', () => {
             resolve(this)
           })
         })
