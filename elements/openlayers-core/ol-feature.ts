@@ -1,6 +1,7 @@
 import Feature from 'ol/Feature'
 import {LitElement} from 'lit-element'
 import VectorSource from 'ol/source/vector'
+import OlLayerVector from './ol-layer-vector'
 
 export default abstract class OlFeature extends LitElement {
   protected _feature: Feature
@@ -15,21 +16,9 @@ export default abstract class OlFeature extends LitElement {
     this.dispatchEvent(new CustomEvent('child-attaching', {detail, bubbles: true}))
 
     if (detail.layer) {
-      let layerPromise: Promise<VectorSource>
-
-      if (!detail.layer.source) {
-        layerPromise = new Promise((resolve) => {
-          detail.layer.addEventListener('child-attached', (e) => {
-            resolve(e.target.source)
-          })
-        })
-      } else {
-        layerPromise = Promise.resolve(detail.layer.source)
-      }
-
-      layerPromise.then((source) => {
+      detail.layer.then((layer: OlLayerVector) => {
         this._feature = this.createFeature()
-        this._source = source
+        this._source = layer.source
 
         this._source.addFeature(this._feature)
 

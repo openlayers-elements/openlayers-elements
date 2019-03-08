@@ -24,31 +24,23 @@ export abstract class OlMapPart<T> extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback()
-    const partPromise = this.createPart()
 
     const detail: any = {}
     this.dispatchEvent(new CustomEvent('child-attaching', {detail, bubbles: true}))
 
     if (detail.map) {
-      let mapPromise: Promise<Map>
+      detail.map
+        .then(map => {
+          this._map = map.map
 
-      if (!detail.map.map) {
-        mapPromise = new Promise((resolve) => {
-          detail.map.addEventListener('map-ready', (e) => {
-            resolve(e.target.map)
-          })
+          return this.createPart()
         })
-      } else {
-        mapPromise = Promise.resolve(detail.map.map)
-      }
+        .then((part) => {
+          this._part = part
 
-      Promise.all([partPromise, mapPromise]).then(([part, map]) => {
-        this._part = part
-        this._map = map
+          this._addToMap(this._map, this._part)
 
-        this._addToMap(this._map, this._part)
-
-        this.dispatchEvent(new Event('child-attached', {bubbles: true}))
+          this.dispatchEvent(new Event('child-attached', {bubbles: true}))
       })
     }
   }

@@ -119,7 +119,16 @@ export default class OlMap extends LitElement {
     this.sizeObserver.observe(this)
 
     this.addEventListener('child-attaching', (e: CustomEvent) => {
-      e.detail.map = this
+      if (this.map) {
+        e.detail.map = Promise.resolve(this)
+      } else {
+        e.detail.map = new Promise((resolve) => {
+          this.addEventListener('map-ready', () => {
+            resolve(this)
+          })
+        })
+      }
+
       e.stopPropagation()
     })
   }

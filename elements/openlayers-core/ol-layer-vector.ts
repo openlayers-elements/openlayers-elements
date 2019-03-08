@@ -21,7 +21,7 @@ import OlLayerBase from './ol-layer-base'
  */
 export default class OlLayerVector extends OlLayerBase<VectorLayer> {
   /**
-   * The Openlayers vector source, containing the features
+   * The OpenLayers vector source, containing the features
    *
    * @type {VectorSource}
    */
@@ -31,7 +31,15 @@ export default class OlLayerVector extends OlLayerBase<VectorLayer> {
     super.connectedCallback()
 
     this.addEventListener('child-attaching', (e: CustomEvent) => {
-      e.detail.layer = this
+      if (this.source) {
+        e.detail.layer = Promise.resolve(this)
+      } else {
+        e.detail.layer = new Promise((resolve) => {
+          this.addEventListener('child-attached', () => {
+            resolve(this)
+          })
+        })
+      }
     })
   }
 
