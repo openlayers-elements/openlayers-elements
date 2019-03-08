@@ -34,7 +34,6 @@ import ResizeObserver from 'resize-observer-polyfill'
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
  * @demo https://openlayers-elements.netlify.com/demo/ol-map.html
- * @appliesMixin ChildObserverMixin
  * @customElement
  */
 export default class OlMap extends LitElement {

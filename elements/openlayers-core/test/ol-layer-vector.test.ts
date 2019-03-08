@@ -21,8 +21,7 @@ describe('ol-layer-vector', () => {
     `)) as OlLayerVector
 
     // then
-    const layer = (await element.createPart()) as any
-    expect(layer.getSource().getFeatures().length).to.equal(4)
+    expect(element.source.getFeatures().length).to.equal(4)
   })
 
   it('should remove markers from layer when node is removed', async () => {
@@ -35,14 +34,12 @@ describe('ol-layer-vector', () => {
         <ol-test-feature src="${dotUrl}"></ol-test-feature>
       </ol-layer-vector>
     `)) as OlLayerVector
-    const layer = (await element.createPart()) as any
 
     // when
     element.removeChild(element.querySelector('ol-test-feature'))
 
     // then
-    await forEvent(element, 'ol-updated')
-    expect(layer.getSource().getFeatures().length).to.equal(3)
+    expect(element.source.getFeatures().length).to.equal(3)
   })
 
   it('should handle markers added dynamically', async () => {
@@ -57,9 +54,9 @@ describe('ol-layer-vector', () => {
     // when
     const marker = document.createElement('ol-test-feature')
     element.appendChild(marker)
+    await forEvent(marker, 'child-attached')
 
     // then
-    await forEvent(element, 'ol-updated')
     expect(layer.getSource().getFeatures().length).to.equal(1)
   })
 })
