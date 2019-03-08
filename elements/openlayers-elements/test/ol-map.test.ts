@@ -1,9 +1,9 @@
 import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
-import '@openlayers-elements/maps/ol-layer-openstreetmap'
-import '@openlayers-elements/maps/ol-map'
-import OlMap from '@openlayers-elements/maps/ol-map'
-import {forEvent} from './util'
+import '../ol-layer-openstreetmap'
+import '../ol-map'
+import OlMap from '../ol-map'
+import {forEvent} from '../../../test/util'
 
 describe('ol-map', () => {
   it('should handle layers added dynamically', async () => {

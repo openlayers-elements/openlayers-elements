@@ -2,7 +2,7 @@ import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
 import TileLayer from 'ol/layer/tile'
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
-import '@openlayers-elements/maps/ol-layer-xyz'
+import '../ol-layer-xyz'
 
 describe('ol-layer-xyz', () => {
   it('should pass url property to created layer', async () => {
