@@ -3,7 +3,7 @@ import {html} from 'lit-html'
 import OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import '@openlayers-elements/maps/ol-map'
-import './ol-test-feature'
+import './test-elements/ol-test-feature'
 import {forEvent} from '../../../test/util'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'

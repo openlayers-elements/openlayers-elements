@@ -11,10 +11,6 @@
     "build": "tsc",
     "prepare": "yarn build"
   },
-  "files": [
-    "**/*.d.ts",
-    "**/*.js"
-  ],
   "dependencies": {
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
