@@ -2,7 +2,7 @@ import {LitElement} from 'lit-element'
 
 let AttachableAwareMixin: <B extends Constructor>(
   Base: B,
-  name: string
+  detailPropName: string
 ) => {
   new (...args: any[]): {
     notifyReady(): void
@@ -10,7 +10,7 @@ let AttachableAwareMixin: <B extends Constructor>(
 } & B
 type Constructor = new (...args: any[]) => LitElement
 
-AttachableAwareMixin = function<B extends Constructor>(Base: B, name: string) {
+AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: string) {
   class AttachableAware extends Base {
     private readonly __attachReady: Promise<AttachableAware>
     private readonly __attachReadyResolve: (AttachableAware) => void
@@ -28,7 +28,7 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, name: string) {
     connectedCallback() {
       super.connectedCallback()
       this.addEventListener('attaching', (e: CustomEvent) => {
-        e.detail[name] = this.__attachReady
+        e.detail[detailPropName] = this.__attachReady
       }, true)
     }
 
