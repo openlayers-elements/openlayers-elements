@@ -21,7 +21,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:last-of-type'), 'attached')
+    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
 
     // then
     expect(element.source.getFeatures().length).to.equal(4)
@@ -39,7 +39,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:last-of-type'), 'attached')
+    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
 
     // when
     element.removeChild(element.querySelector('ol-test-feature'))
