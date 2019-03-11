@@ -12,6 +12,18 @@ export default abstract class OlFeature extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback()
+    setTimeout(this.__attach.bind(this), 0)
+  }
+
+  public disconnectedCallback() {
+    super.disconnectedCallback()
+
+    if (this._source) {
+      this._source.removeFeature(this._feature)
+    }
+  }
+
+  private __attach() {
     const detail: any = {}
     this.dispatchEvent(new CustomEvent('attaching', {detail, bubbles: true}))
 
@@ -24,14 +36,6 @@ export default abstract class OlFeature extends LitElement {
 
         this.dispatchEvent(new Event('attached', {bubbles: true}))
       })
-    }
-  }
-
-  public disconnectedCallback() {
-    super.disconnectedCallback()
-
-    if (this._source) {
-      this._source.removeFeature(this._feature)
     }
   }
 }

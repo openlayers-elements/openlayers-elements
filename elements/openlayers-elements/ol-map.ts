@@ -177,6 +177,7 @@ export default class OlMap extends LitElement {
         }
       </style>
       <div id="map"></div>
+      <slot></slot>
     `
   }
 }

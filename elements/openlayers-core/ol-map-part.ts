@@ -24,7 +24,17 @@ export abstract class OlMapPart<T> extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback()
+    setTimeout(this.__attach.bind(this), 0)
+  }
 
+  public disconnectedCallback() {
+    super.disconnectedCallback()
+    if (this._map) {
+      this._removeFromMap(this._map, this._part)
+    }
+  }
+
+  private __attach() {
     const detail: any = {}
     this.dispatchEvent(new CustomEvent('attaching', {detail, bubbles: true}))
 
@@ -42,14 +52,6 @@ export abstract class OlMapPart<T> extends LitElement {
 
           this.dispatchEvent(new Event('attached', {bubbles: true}))
         })
-    }
-  }
-
-  public disconnectedCallback() {
-    super.disconnectedCallback()
-
-    if (this._map) {
-      this._removeFromMap(this._map, this._part)
     }
   }
 }
