@@ -1,17 +1,16 @@
-import OlLayerBase from "@openlayers-elements/core/ol-layer-base";
-import { property } from "lit-element";
-import WMTSCapabilities from "ol/format/WMTSCapabilities";
-import TileLayer from "ol/layer/Tile";
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
+import {property} from 'lit-element'
+import WMTSCapabilities from 'ol/format/WMTSCapabilities'
+import TileLayer from 'ol/layer/Tile'
 // @ts-ignore
-import WMTS, {optionsFromCapabilities} from "ol/source/WMTS";
-import "./projections";
-import SwisstopoElement from "./swisstopo-element";
-import OlMap from "@openlayers-elements/maps/ol-map";
+import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
+import './projections'
+import SwisstopoElement from './swisstopo-element'
+import OlMap from '@openlayers-elements/maps/ol-map'
 
+const parser = new WMTSCapabilities()
 
-const parser = new WMTSCapabilities();
-
-type Projections = "EPSG:3857" | "EPSG:21718" | "EPSG:2056" | "EPSG:4329"
+type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
 
 /**
  * Layer which loads official Swiss maps from [WMTS capabilities document][wmts-list]
@@ -34,30 +33,30 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args:
    * @type {string}
    */
   @property({type: String})
-  public projection: Projections = "EPSG:3857";
+  public projection: Projections = 'EPSG:3857'
 
   protected _attach(map: OlMap) {
     if (map.projection) {
       this.projection = map.projection as Projections
     }
 
-    return super._attach(map);
+    return super._attach(map)
   }
 
   protected async _createLayer() {
     const projectionSegments = this.projection.replace(/:/, '/')
-    const response = await fetch(`https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`);
-    const capabilities = parser.read(await response.text());
+    const response = await fetch(`https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`)
+    const capabilities = parser.read(await response.text())
 
     const options = optionsFromCapabilities(capabilities, {
       layer: this.layerName,
-      matrixSet: this.projection
-    });
+      matrixSet: this.projection,
+    })
 
     return new TileLayer({
-      source: new WMTS(options)
-    });
+      source: new WMTS(options),
+    })
   }
 }
 
-customElements.define("swisstopo-wmts", SwisstopoWmts);
+customElements.define('swisstopo-wmts', SwisstopoWmts)

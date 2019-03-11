@@ -4,7 +4,7 @@ import OpenLayersMap from 'ol/Map'
 import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
-import AttachableAwareMixin from "@openlayers-elements/core/mixins/AttachableAware";
+import AttachableAwareMixin from '@openlayers-elements/core/mixins/AttachableAware'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
