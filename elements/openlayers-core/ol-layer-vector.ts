@@ -1,6 +1,7 @@
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
+import AttachableAwareMixin from "./mixins/AttachableAware";
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
@@ -19,7 +20,7 @@ import OlLayerBase from './ol-layer-base'
  *
  * @customElement
  */
-export default class OlLayerVector extends OlLayerBase<VectorLayer> {
+export default class OlLayerVector extends AttachableAwareMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>, 'vector') {
   /**
    * The OpenLayers vector source, containing the features
    *
@@ -27,28 +28,13 @@ export default class OlLayerVector extends OlLayerBase<VectorLayer> {
    */
   public source: VectorSource = undefined
 
-  public connectedCallback() {
-    super.connectedCallback()
-
-    this.addEventListener('attaching', (e: CustomEvent) => {
-      if (this.source) {
-        e.detail.layer = Promise.resolve(this)
-      } else {
-        e.detail.layer = new Promise((resolve) => {
-          this.addEventListener('attached', () => {
-            resolve(this)
-          })
-        })
-      }
-    })
-  }
-
   protected _createSource() {
     return new VectorSource()
   }
 
   protected async _createLayer() {
     this.source = this._createSource()
+    this.notifyReady()
 
     return new VectorLayer({
       source: this.source,

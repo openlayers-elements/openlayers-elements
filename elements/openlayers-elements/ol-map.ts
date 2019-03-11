@@ -4,6 +4,7 @@ import OpenLayersMap from 'ol/Map'
 import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
+import AttachableAwareMixin from "@openlayers-elements/core/mixins/AttachableAware";
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -36,7 +37,7 @@ import ResizeObserver from 'resize-observer-polyfill'
  * @demo https://openlayers-elements.netlify.com/demo/ol-map.html
  * @customElement
  */
-export default class OlMap extends LitElement {
+export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
    * Zoom level
    * @type {Number}
@@ -117,20 +118,6 @@ export default class OlMap extends LitElement {
   public connectedCallback() {
     super.connectedCallback()
     this.sizeObserver.observe(this)
-
-    this.addEventListener('attaching', (e: CustomEvent) => {
-      if (this.map) {
-        e.detail.map = Promise.resolve(this)
-      } else {
-        e.detail.map = new Promise((resolve) => {
-          this.addEventListener('map-ready', () => {
-            resolve(this)
-          })
-        })
-      }
-
-      e.stopPropagation()
-    })
   }
 
   public disconnectedCallback() {
@@ -165,7 +152,7 @@ export default class OlMap extends LitElement {
       view: new View(viewInit),
     })
 
-    this.dispatchEvent(new Event('map-ready'))
+    this.notifyReady()
   }
 
   public render() {
