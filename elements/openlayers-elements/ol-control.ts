@@ -32,11 +32,11 @@ import {OlMapPart} from '@openlayers-elements/core/ol-map-part'
  * @customElement
  */
 export default class OlControl extends OlMapPart<Control> {
-  public static addToMap(c: Control, map: Map) {
+  protected _addToMap(map: Map, c: Control) {
     map.addControl(c)
   }
 
-  public static removeFromMap(c: Control, map: Map) {
+  protected _removeFromMap(map: Map, c: Control) {
     map.removeControl(c)
   }
 

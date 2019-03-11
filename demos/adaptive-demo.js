@@ -11,7 +11,7 @@ customElements.define(
       if (isIE11) {
         const nodes = template.content ? template.content.childNodes : template.childNodes
 
-        const onlyElements = [...nodes].slice(1, nodes.length - 1).reduce((text, currentValue) => {
+        const onlyElements = Array.prototype.slice.call(nodes, 1, nodes.length - 1).reduce((text, currentValue) => {
           if (currentValue.outerHTML) {
             text = text + currentValue.outerHTML
           }
@@ -20,7 +20,8 @@ customElements.define(
         }, '')
         return html`
           <div>
-            ${[...nodes].map(
+            ${Array.prototype.map.call(
+              nodes,
               (m) =>
                 html`
                   ${m}
