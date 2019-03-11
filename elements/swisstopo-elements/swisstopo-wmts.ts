@@ -6,7 +6,6 @@ import TileLayer from 'ol/layer/Tile'
 import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
 import './projections'
 import SwisstopoElement from './swisstopo-element'
-import OlMap from '@openlayers-elements/maps/ol-map'
 
 const parser = new WMTSCapabilities()
 
@@ -35,12 +34,14 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args:
   @property({type: String})
   public projection: Projections = 'EPSG:3857'
 
-  protected _attach(map: OlMap) {
-    if (map.projection) {
-      this.projection = map.projection as Projections
+  protected async _attach(detail) {
+    const projection = (await detail.map).projection
+
+    if (projection) {
+      this.projection = projection as Projections
     }
 
-    return super._attach(map)
+    return super._attach(detail)
   }
 
   protected async _createLayer() {

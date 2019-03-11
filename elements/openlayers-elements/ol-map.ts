@@ -35,6 +35,7 @@ import AttachableAwareMixin from '@openlayers-elements/core/mixins/AttachableAwa
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
  * @demo https://openlayers-elements.netlify.com/demo/ol-map.html
+ * @appliesMixin AttachableAwareMixin
  * @customElement
  */
 export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {

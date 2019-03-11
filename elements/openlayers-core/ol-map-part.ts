@@ -4,6 +4,8 @@ import AttachableMixin from './mixins/Attachable'
 
 /**
  * Abstract base class used to create map objects such as layers and interactions
+ *
+ * @appliesMixin AttachableMixin
  */
 export abstract class OlMapPart<T> extends AttachableMixin(LitElement, 'map') {
   /**
@@ -19,9 +21,9 @@ export abstract class OlMapPart<T> extends AttachableMixin(LitElement, 'map') {
 
   protected abstract _removeFromMap(map: Map, part: T)
 
-  protected async _attach(map) {
+  protected async _attach({map}) {
     if (map) {
-      const olMap = map.map
+      const olMap = (await map).map
       const part = await this.createPart()
       this._addToMap(olMap, part)
 

@@ -18,6 +18,7 @@ import AttachableAwareMixin from './mixins/AttachableAware'
  * </ol-map>
  * ```
  *
+ * @appliesMixin AttachableAwareMixin
  * @customElement
  */
 export default class OlLayerVector extends AttachableAwareMixin(
