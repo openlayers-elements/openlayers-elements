@@ -54,7 +54,8 @@ describe('ol-layer-vector', () => {
       html`
         <ol-map>
           <ol-layer-vector></ol-layer-vector>
-        </ol-map>`,
+        </ol-map>
+      `,
     )).querySelector('ol-layer-vector') as OlLayerVector
 
     // when

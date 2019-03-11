@@ -2,10 +2,9 @@ import {LitElement} from 'lit-element'
 
 let AttachableMixin: <B extends Constructor>(
   Base: B,
-  detailPropName: string
+  detailPropName: string,
 ) => {
-  new (...args: any[]): {
-  }
+  new (...args: any[]): {}
 } & B
 type Constructor = new (...args: any[]) => LitElement
 
@@ -30,7 +29,7 @@ AttachableMixin = function<B extends Constructor>(Base: B, detailPropName: strin
       if (detailPropName in detail) {
         detail[detailPropName]
           .then((value) => this._attach(value))
-          .then(detachFunc => {
+          .then((detachFunc) => {
             if (detachFunc) {
               this.__detachFromMap = detachFunc
 

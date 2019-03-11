@@ -1,8 +1,8 @@
-import {LitElement} from 'lit-element'
+import {html, LitElement} from 'lit-element'
 
 let AttachableAwareMixin: <B extends Constructor>(
   Base: B,
-  detailPropName: string
+  detailPropName: string,
 ) => {
   new (...args: any[]): {
     notifyReady(): void
@@ -19,7 +19,7 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: 
       super(args)
 
       let tempResolve
-      this.__attachReady = new Promise(resolve => {
+      this.__attachReady = new Promise((resolve) => {
         tempResolve = resolve
       })
       this.__attachReadyResolve = tempResolve
@@ -27,13 +27,23 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: 
 
     connectedCallback() {
       super.connectedCallback()
-      this.addEventListener('attaching', (e: CustomEvent) => {
-        e.detail[detailPropName] = this.__attachReady
-      }, true)
+      this.addEventListener(
+        'attaching',
+        (e: CustomEvent) => {
+          e.detail[detailPropName] = this.__attachReady
+        },
+        true,
+      )
     }
 
     notifyReady() {
       this.__attachReadyResolve(this)
+    }
+
+    render() {
+      return html`
+        <slot></slot>
+      `
     }
   }
 
