@@ -14,7 +14,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.1.0",
+    "@openlayers-elements/core": "*",
     "lit-element": "^2.0.0",
     "proj4": "^2.5.0"
   },

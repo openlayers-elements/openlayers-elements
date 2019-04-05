@@ -13,7 +13,7 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.1.0",
+    "@openlayers-elements/core": "*",
     "resize-observer-polyfill": "^1.5.1"
   },
   "publishConfig": {
