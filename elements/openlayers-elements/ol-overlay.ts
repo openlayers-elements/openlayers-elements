@@ -1,5 +1,5 @@
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part';
-import Overlay from 'ol/overlay';
+import Overlay from 'ol/Overlay';
 import Map from 'ol/map';
 import { html } from 'lit-html';
 import { property } from 'lit-element';
