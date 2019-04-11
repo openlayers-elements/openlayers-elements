@@ -2,8 +2,8 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
 import AttachableAwareMixin from './mixins/AttachableAware'
-import {LitElement, property} from 'lit-element';
-import {Style, StyleFunction} from 'ol/Style';
+import {property} from 'lit-element'
+import {Style, StyleFunction} from 'ol/Style'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
@@ -35,7 +35,7 @@ export default class OlLayerVector extends AttachableAwareMixin(
    */
   public source: VectorSource = undefined
 
-  @property({ type: Object })
+  @property({type: Object})
   public featureStyle: Style | Style[] | StyleFunction = undefined
 
   protected _createSource() {
@@ -48,17 +48,9 @@ export default class OlLayerVector extends AttachableAwareMixin(
 
     return new VectorLayer({
       source: this.source,
-      style: this.featureStyle
+      style: this.featureStyle,
     })
   }
 }
-
-customElements.define('second-el', class extends LitElement {
-  static get properties() {
-    return {
-      featureStyle: { type: Object }
-    }
-  }
-})
 
 customElements.define('ol-layer-vector', OlLayerVector)
