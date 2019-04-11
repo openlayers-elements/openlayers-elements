@@ -3,6 +3,7 @@ elements/openlayers-core/**/*.js
 elements/openlayers-elements/**/ol-*.js
 elements/swisstopo-elements/**/swisstopo-*.js
 test/**/*.js
+demos/demo-elements/*.js
 *.js.map
 *.d.ts
 node_modules/

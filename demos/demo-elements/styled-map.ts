@@ -1,6 +1,6 @@
 import {html, css, LitElement} from 'lit-element'
 import {DEVICE_PIXEL_RATIO} from 'ol/has'
-import {Fill, Stroke, Style} from 'ol/Style'
+import {Fill, Stroke, Style} from 'ol/style'
 
 var canvas = document.createElement('canvas');
 var context = canvas.getContext('2d');
