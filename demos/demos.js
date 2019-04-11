@@ -1,7 +1,5 @@
-import '@polymer/iron-demo-helpers/demo-snippet'
 import '@polymer/iron-demo-helpers/demo-pages-shared-styles'
-import '@polymer/iron-component-page/iron-component-page'
-import '@openlayers-elements/maps/ol-map'
+
 import '@openlayers-elements/maps/ol-layer-openstreetmap'
 import '@openlayers-elements/maps/ol-layer-wkt'
 import '@openlayers-elements/maps/ol-layer-geojson'
