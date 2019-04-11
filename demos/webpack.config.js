@@ -1,6 +1,6 @@
 const path = require('path')
 const glob = require('glob')
-const defaultConfig = require('@open-wc/building-webpack/default-config')
+const defaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -15,7 +15,7 @@ const demoHtmls = glob.sync('./demo/*.html').map((html) => {
 
 const config = merge(
   defaultConfig({
-    indexJS: path.resolve(__dirname, './index.js'),
+    input: path.resolve(__dirname, './index.html'),
   }),
   {
     devtool: 'source-map',
