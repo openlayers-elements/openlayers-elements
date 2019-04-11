@@ -1,4 +1,5 @@
-import { expect, fixture } from '@open-wc/testing';
+import { assert, expect, fixture } from '@open-wc/testing';
+import * as sinon from 'sinon'
 import '../ol-map';
 import '../ol-overlay';
 import OlOverlay from '../ol-overlay';
@@ -100,5 +101,35 @@ describe('ol-overlay', () => {
 
     // then
     expect(map.map.getOverlays().getLength()).to.equal(0)
+  })
+
+  describe('hide', () => {
+    it(`unsets the underlying overlay's position`, async () => {
+      // given
+      const element = (await fixture('<ol-overlay id="foo"></ol-overlay>')) as OlOverlay
+      await element.createPart()
+      const spy = sinon.spy(element.overlay, 'setPosition');
+
+      // when
+      element.hide()
+
+      // then
+      assert(spy.calledWith(undefined))
+    })
+  })
+
+  describe('setPosition', () => {
+    it(`unsets the underlying overlay's position`, async () => {
+      // given
+      const element = (await fixture('<ol-overlay id="foo"></ol-overlay>')) as OlOverlay
+      await element.createPart()
+      const spy = sinon.spy(element.overlay, 'setPosition');
+
+      // when
+      element.setPosition([1, 2])
+
+      // then
+      assert(spy.calledWithExactly([1, 2]))
+    })
   })
 })
