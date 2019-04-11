@@ -60,7 +60,6 @@ class StyledMap extends LitElement {
     `;
     }
     __getStackedStyle(feature) {
-        debugger;
         var id = feature.getId();
         fill.setColor(id > 'J' ? gradient : pattern);
         return style;
