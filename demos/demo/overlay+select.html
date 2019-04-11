@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html lang="en">
 <head>
-    <title>ol-overlay demo</title>
+    <title>ol-overlay combined with ol-select</title>
 
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,12 +23,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <div>
     <h3>Simple overlay popup</h3>
   <p>
-    This demo, inspired by the <a href="https://openlayers.org/en/latest/examples/popup.html">official one from OpenLayers</a>
-    creates a popup with coordinates of where the map was clicked.
+    Very similar to basic example of <code>&lt;ol-overlay&gt;</code> where the popup contents
+    are filled with the name of selected country.
+  </p>
+  <p>
+    Note that separate event handler is used to position the popup where clicked. It could be easily done by calculating
+    geographic center of each country, thus requiring only the <code>feature-selected</code> event. However, oversea
+    territories of certain countries position the center outside of its main surface. For example in the case of this
+    GeoJSON, Alaska pulls the center of the United States into western Canada.
   </p>
   <p>
     The demo does not work in IE11 due to polyfilled <code>&lt;template&gt;</code> tag limitation
   </p>
+
 <demo-snippet>
 <template>
   <style>
@@ -42,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border: 1px solid #cccccc;
       bottom: 12px;
       left: -50px;
-      min-width: 280px;
+      min-width: 70px
     }
     .ol-popup:after, .ol-popup:before {
       top: 100%;
@@ -65,23 +72,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       left: 48px;
       margin-left: -11px;
     }
-    .ol-popup-closer {
-      text-decoration: none;
-      position: absolute;
-      top: 2px;
-      right: 8px;
-    }
-    .ol-popup-closer:after {
-      content: "✖";
-    }
   </style>
 
 <ol-map zoom="4" lat="46.7985" lon="8.2318">
-    <ol-layer-openstreetmap></ol-layer-openstreetmap>
-    <ol-overlay id="popup" class="ol-popup" auto-pan auto-pan-animation-duration="250">
-      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-      <div id="popup-content"></div>
-    </ol-overlay>
+  <ol-layer-geojson url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"></ol-layer-geojson>
+  <ol-select></ol-select>
+  <ol-overlay id="popup" class="ol-popup" auto-pan auto-pan-animation-duration="250">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </ol-overlay>
 </ol-map>
 
 <script>
@@ -90,18 +89,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   const overlay = document.querySelector('ol-overlay')
 
   mapEl.updateComplete.then(() => {
-      mapEl.map.on('singleclick', function (evt) {
-        const coordinate = evt.coordinate
-
-        content.innerHTML = '<p>You clicked here:</p><code>' + coordinate + '</code>'
-        overlay.setPosition(coordinate)
+    mapEl.map.on('singleclick', function (selected) {
+      overlay.setPosition(selected.coordinate)
     })
   })
 
-  document.querySelector('#popup-closer')
-    .addEventListener('click', function (e) {
+  document.querySelector('ol-select')
+    .addEventListener('feature-selected', e => {
+      content.textContent = e.detail.feature.get('name')
+    })
+
+  document.querySelector('ol-select')
+    .addEventListener('feature-unselected', e => {
       overlay.hide()
-      e.preventDefault()
     })
 </script>
 </template>
