@@ -10,12 +10,16 @@ import {property} from 'lit-element'
  */
 export default class OlOverlay extends OlMapPart<Overlay> {
   @property({type: Boolean, attribute: 'auto-pan'})
-  public autoPan: boolean
+  public autoPan = false
 
   @property({type: Number, attribute: 'auto-pan-animation-duration'})
-  public autoPanAnimationDuration: number
+  public autoPanAnimationDuration = 0
 
-  protected _overlay: Overlay
+  public get overlay() {
+    return this.__overlay
+  }
+
+  private __overlay: Overlay
 
   protected _addToMap(map: Map, overlay: Overlay) {
     map.addOverlay(overlay)
@@ -26,15 +30,19 @@ export default class OlOverlay extends OlMapPart<Overlay> {
   }
 
   public async createPart() {
+    if (!this.id) {
+      throw new Error('ol-overlay element must have an id')
+    }
+
     const slot = this.id
     this.slot = slot
 
     const slotEl = document.createElement('slot')
     slotEl.name = slot
 
-    this._overlay = new Overlay({
+    this.__overlay = new Overlay({
       element: slotEl,
-      autoPan: true,
+      autoPan: this.autoPan,
       autoPanAnimation: {
         duration: this.autoPanAnimationDuration,
       } as any,
@@ -42,11 +50,11 @@ export default class OlOverlay extends OlMapPart<Overlay> {
 
     // hack to get panning correctly calculate overlay dimensions,
     // which would otherwise be calculated from the <slot> element
-    this._overlay.getElement = () => {
+    this.overlay.getElement = () => {
       return this
     }
 
-    return this._overlay
+    return this.overlay
   }
 
   public render() {
