@@ -1,4 +1,5 @@
 import {LitElement, html} from 'lit-element'
+import '@polymer/iron-demo-helpers/demo-snippet'
 
 const isIE11 = !!window.MSInputMethodContext && !!document.documentMode
 

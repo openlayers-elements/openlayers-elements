@@ -1,16 +1,22 @@
 const path = require('path')
 const glob = require('glob')
-const defaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config')
+const defaultConfig = require('@open-wc/building-webpack/modern-config')
 const merge = require('webpack-merge')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const demoHtmls = glob.sync('./demo/*.html').map((html) => {
-  return new HtmlWebpackPlugin({
-    filename: html,
-    template: path.resolve(__dirname, html),
-    inject: true,
-  })
+const demos = glob.sync('./demo/**/index.html').map((html) => {
+  const demoDir = /^(.+)\/index.html$/.exec(html)[1]
+
+  return merge(
+    defaultConfig({
+      input: path.resolve(__dirname, html),
+    }),
+    {
+      output: {
+        path: path.resolve(__dirname, `dist/${demoDir}`),
+      },
+    },
+  )
 })
 
 const config = merge(
@@ -38,9 +44,8 @@ const config = merge(
           },
         },
       ]),
-      ...demoHtmls,
     ],
   },
 )
 
-module.exports = config
+module.exports = [config, ...demos]
