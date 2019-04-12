@@ -35,6 +35,12 @@ export default class OlLayerVector extends AttachableAwareMixin(
    */
   public source: VectorSource = undefined
 
+  /**
+   * The style to be applied to layer features. It can be either an `ol/Style`, array thereof,
+   * or a function which returns either.
+   *
+   * @type {Style | Style[] | StyleFunction}
+   */
   @property({type: Object})
   public featureStyle: Style | Style[] | StyleFunction = undefined
 
