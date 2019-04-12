@@ -3,7 +3,7 @@ import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
 import AttachableAwareMixin from './mixins/AttachableAware'
 import {property} from 'lit-element'
-import {Style, StyleFunction} from 'ol/Style'
+import {Style, StyleFunction} from 'ol/style'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
