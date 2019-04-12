@@ -6,8 +6,8 @@ import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
  * A basic OpenStreetMap tile layer
  *
  * @customElement
- * @demo https://openlayers-elements.netlify.com/demo/ol-map.html Standard map
- * @demo https://openlayers-elements.netlify.com/demo/swiss-topo.html Mix with swisstopo elements
+ * @demo https://openlayers-elements.netlify.com/demo/ol-map/ Standard map
+ * @demo https://openlayers-elements.netlify.com/demo/swiss-topo/ Mix with swisstopo elements
  */
 export default class OlLayerOpenstreetmap extends OlLayerBase<TileLayer> {
   protected async _createLayer() {

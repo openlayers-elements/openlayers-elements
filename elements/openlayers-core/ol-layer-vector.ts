@@ -20,7 +20,7 @@ import {Style, StyleFunction} from 'ol/Style'
  * </ol-map>
  * ```
  *
- * @demo https://openlayers-elements.netlify.com/demo/vector-styling.html Styling
+ * @demo https://openlayers-elements.netlify.com/demo/vector-styling/ Styling
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */
