@@ -65,7 +65,7 @@ class StyledMap extends LitElement {
       <ol-map zoom="4" lat="46.7985" lon="8.2318">
         <ol-layer-geojson
           url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
-          .featureStyle="${this.__getStackedStyle}"
+          .featureStyle="${this.getStackedStyle}"
         ></ol-layer-geojson>
       </ol-map>
     `
@@ -74,7 +74,7 @@ class StyledMap extends LitElement {
   /**
    * @private
    */
-  __getStackedStyle(feature) {
+  getStackedStyle(feature) {
     const id = feature.getId()
     fill.setColor(id > 'J' ? gradient : pattern)
     return style
