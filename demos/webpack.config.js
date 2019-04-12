@@ -1,29 +1,39 @@
 const path = require('path')
 const glob = require('glob')
-const defaultConfig = require('@open-wc/building-webpack/modern-config')
+const defaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config')
 const merge = require('webpack-merge')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const demos = glob.sync('./demo/**/index.html').map((html) => {
   const demoDir = /^(.+)\/index.html$/.exec(html)[1]
 
-  return merge(
-    defaultConfig({
-      input: path.resolve(__dirname, html),
-    }),
-    {
+  let configs = defaultConfig({
+    input: path.resolve(__dirname, html),
+  })
+
+  if (!Array.isArray(configs)) {
+    configs = [configs]
+  }
+
+  return configs.map((config) => {
+    return merge(config, {
       output: {
         path: path.resolve(__dirname, `dist/${demoDir}`),
       },
-    },
-  )
+    })
+  })
 })
 
-const config = merge(
-  defaultConfig({
-    input: path.resolve(__dirname, './index.html'),
-  }),
-  {
+let configs = defaultConfig({
+  input: path.resolve(__dirname, './index.html'),
+})
+
+if (!Array.isArray(configs)) {
+  configs = [configs]
+}
+
+const indexConfigs = configs.map((config) => {
+  return merge(config, {
     devtool: 'source-map',
     output: {publicPath: '/'},
     devServer: {
@@ -45,7 +55,7 @@ const config = merge(
         },
       ]),
     ],
-  },
-)
+  })
+})
 
-module.exports = [config, ...demos]
+module.exports = [...indexConfigs, ...demos.reduce((acc, val) => acc.concat(val), [])]
