@@ -1,7 +1,7 @@
 import {LitElement} from 'lit-element'
 import Map from 'ol/Map'
 import AttachableMixin from './mixins/Attachable'
-import OlMap from './ol-map';
+import OlMap from './ol-map'
 
 /**
  * Abstract base class used to create map objects such as layers and interactions

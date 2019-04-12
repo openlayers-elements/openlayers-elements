@@ -176,7 +176,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       size: this.map.getSize(),
       constrainResolution: false,
       nearest: false,
-      ...options
+      ...options,
     })
   }
 }
