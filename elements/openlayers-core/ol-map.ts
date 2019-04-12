@@ -1,10 +1,11 @@
 import {html, LitElement, property, query} from 'lit-element'
 import OpenLayersMap from 'ol/Map'
+import SimpleGeometry from 'ol/geom/simplegeometry'
 // @ts-ignore
 import {fromLonLat, get as getProjection} from 'ol/proj'
 import View from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
-import AttachableAwareMixin from '@openlayers-elements/core/mixins/AttachableAware'
+import AttachableAwareMixin from './mixins/AttachableAware'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -115,16 +116,6 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
         this.map.updateSize()
       }
     })
-
-    this.addEventListener('zoom', (e:CustomEvent) => {
-      this.map.getView().fit(e.detail.extent, {
-        size: this.map.getSize(),
-        constrainResolution: false,
-        nearest: false
-      })
-
-      e.stopPropagation()
-    })
   }
 
   public connectedCallback() {
@@ -178,6 +169,15 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       <div id="map"></div>
       <slot></slot>
     `
+  }
+
+  public fit(extent: SimpleGeometry | [number, number, number, number], options?: object) {
+    this.map.getView().fit(extent, {
+      size: this.map.getSize(),
+      constrainResolution: false,
+      nearest: false,
+      ...options
+    })
   }
 }
 

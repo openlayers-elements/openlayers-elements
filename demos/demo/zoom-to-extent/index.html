@@ -21,7 +21,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body unresolved>
     <div>
-      <h3>Zoom to layer</h3>
+      <h3>Zoom to entire layer</h3>
+      <p>
+        Vector layers have a <code>fit</code> method which aligns the map view to show its entirety.
+      </p>
       <demo-snippet>
         <template>
 <style>
@@ -41,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <script>
   function goToEurope() {
-    document.querySelector('ol-layer-geoJson').zoom()
+    document.querySelector('ol-layer-geoJson').fit()
   }
 </script>
         </template>
@@ -49,11 +52,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <h3>Zooming to individual features</h3>
       <p>
-        To zoom to a single feature, an event has to be dispatched from
+        To zoom to a single feature you need a reference to the map element and pass the
+        geometry's extent. In this example the selected feature's shape is used.
+      </p>
+      <p>
+        The <code>fit</code> method also accepts a second parameter which allows for customizing the behavior
+        using the <a href="https://openlayers.org/en/latest/apidoc/module-ol_View.html#~FitOptions"><code>FitOptions</code> object</a>
       </p>
       <demo-snippet class="centered-demo">
         <template>
-<ol-map zoom="4" lat="46.7985" lon="8.2318">
+<ol-map id="eu" zoom="4" lat="46.7985" lon="8.2318">
   <ol-layer-openstreetmap></ol-layer-openstreetmap>
   <ol-layer-geojson
     url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
@@ -62,14 +70,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </ol-map>
 
 <script>
+  const map = document.querySelector('#eu')
+
   document.querySelector('ol-select')
     .addEventListener('feature-selected', (e) => {
-      e.target.dispatchEvent(new CustomEvent('zoom', {
-        detail: {
-          extent: e.detail.feature.getGeometry().getExtent(),
-        },
-        bubbles: true,
-      }))
+      map.fit(e.detail.feature.getGeometry().getExtent(), {
+        duration: 400,
+      })
   })
 </script>
         </template>

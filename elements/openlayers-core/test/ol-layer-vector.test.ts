@@ -2,7 +2,7 @@ import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
 import OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
-import '@openlayers-elements/maps/ol-map'
+import '@openlayers-elements/core/ol-map'
 import './test-elements/ol-test-feature'
 import {forEvent} from '../../../test/util'
 

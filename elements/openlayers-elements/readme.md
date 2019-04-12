@@ -17,7 +17,7 @@ Here's the simplest possible OpenStreetMap:
 
 ```html
 <script type="module">
-  import '@openlayers-elements/maps/ol-map'
+  import '@openlayers-elements/core/ol-map'
   import '@openlayers-elements/maps/ol-layer-openstreetmap'
 </script>
 

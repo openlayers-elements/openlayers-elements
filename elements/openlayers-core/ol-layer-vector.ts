@@ -44,13 +44,8 @@ export default class OlLayerVector extends AttachableAwareMixin(
   @property({type: Object})
   public featureStyle: Style | Style[] | StyleFunction = undefined
 
-  public zoom() {
-    this.dispatchEvent(new CustomEvent('zoom', {
-      detail: {
-        extent: this.source.getExtent()
-      },
-      bubbles: true
-    }))
+  public fit() {
+    this._map.fit(this.source.getExtent())
   }
 
   protected _createSource() {

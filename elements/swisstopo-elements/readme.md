@@ -16,7 +16,7 @@ Then add the WMTS layer to your `ol-map`
 
 ```html
 <script type="module">
-  import '@openlayers-elements/swisstopo/maps/ol-map'
+  import '@openlayers-elements/swisstopo/core/ol-map'
   import '@openlayers-elements/swisstopo/swisstopo-wmts'
 </script>
 

@@ -1,7 +1,7 @@
 import {html, css, LitElement} from 'lit-element'
 import {DEVICE_PIXEL_RATIO} from 'ol/has'
 import {Fill, Stroke, Style} from 'ol/style'
-import '@openlayers-elements/maps/ol-map'
+import '@openlayers-elements/core/ol-map'
 import '@openlayers-elements/maps/ol-layer-geojson'
 
 var canvas = document.createElement('canvas')
