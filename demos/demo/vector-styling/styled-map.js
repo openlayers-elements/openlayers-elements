@@ -71,9 +71,6 @@ class StyledMap extends LitElement {
     `
   }
 
-  /**
-   * @private
-   */
   getStackedStyle(feature) {
     const id = feature.getId()
     fill.setColor(id > 'J' ? gradient : pattern)
