@@ -1,9 +1,9 @@
-import ChildObserverMixin from '@openlayers-elements/core/mixins/ChildObserver'
-import OlFeature from '@openlayers-elements/core/ol-feature'
-import Feature from 'ol/Feature'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OlLayerBase from './ol-layer-base'
+import AttachableAwareMixin from './mixins/AttachableAware'
+import {property} from 'lit-element'
+import {Style, StyleFunction} from 'ol/style'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
@@ -20,25 +20,29 @@ import OlLayerBase from './ol-layer-base'
  * </ol-map>
  * ```
  *
- * @appliesMixin ChildObserverMixin
+ * @demo https://openlayers-elements.netlify.com/demo/vector-styling/ Styling
+ * @appliesMixin AttachableAwareMixin
  * @customElement
  */
-export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new (...args: any[]) => OlLayerBase<
-  VectorLayer
->) {
+export default class OlLayerVector extends AttachableAwareMixin(
+  OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer>,
+  'vector',
+) {
   /**
-   * The Openlayers vector source, containing the features
+   * The OpenLayers vector source, containing the features
    *
    * @type {VectorSource}
    */
   public source: VectorSource = undefined
 
   /**
-   * The individual features
+   * The style to be applied to layer features. It can be either an `ol/Style`, array thereof,
+   * or a function which returns either.
    *
-   * @type {Map}
+   * @type {Style | Style[] | StyleFunction}
    */
-  protected _features = new Map<Node, Feature>()
+  @property({type: Object})
+  public featureStyle: Style | Style[] | StyleFunction = undefined
 
   public zoom() {
     this.dispatchEvent(new CustomEvent('zoom', {
@@ -55,33 +59,12 @@ export default class OlLayerVector extends ChildObserverMixin(OlLayerBase as new
 
   protected async _createLayer() {
     this.source = this._createSource()
-    this.initializeChildren()
+    this.notifyReady()
 
     return new VectorLayer({
       source: this.source,
+      style: this.featureStyle,
     })
-  }
-
-  protected _handleRemovedChildNode(node: Node) {
-    if (this._features.has(node)) {
-      this.source.removeFeature(this._features.get(node))
-      this._features.delete(node)
-    }
-  }
-
-  protected _handleAddedChildNode(node: OlFeature) {
-    if ('createFeature' in node) {
-      const feature = node.createFeature()
-      this._features.set(node, feature)
-      this.source.addFeature(feature)
-    }
-  }
-
-  /**
-   * Called when the child elements changed and those changes have been reflected on the map
-   */
-  protected _notifyMutationComplete() {
-    this.dispatchEvent(new CustomEvent('ol-updated'))
   }
 }
 

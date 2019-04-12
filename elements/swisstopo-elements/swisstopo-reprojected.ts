@@ -11,7 +11,7 @@ import SwisstopoElement from './swisstopo-element'
  * Apparently this style of layer source does not work with every one of Swiss layers. If you get 404s (blank map),
  * use the [`swisstopo-wmts` layer](#/elements/SwissTopoWMTS)
  *
- * @demo https://openlayers-elements.netlify.com/demo/swiss-reprojected.html
+ * @demo https://openlayers-elements.netlify.com/demo/swiss-reprojected/
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
@@ -22,6 +22,8 @@ export default class SwisstopoReprojected extends SwisstopoElement(OlLayerXyz) {
   public get url() {
     return `https://wmts10.geo.admin.ch/1.0.0/${this.layerName}/default/current/3857/{z}/{x}/{y}.jpeg`
   }
+
+  public set url(_) {}
 }
 
 customElements.define('swisstopo-reprojected', SwisstopoReprojected)

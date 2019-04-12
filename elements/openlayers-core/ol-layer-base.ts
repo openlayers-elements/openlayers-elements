@@ -7,11 +7,11 @@ import {OlMapPart} from './ol-map-part'
  * Base class used to create layers
  */
 export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
-  public static addToMap(layer: Layer, map: Map) {
+  protected _addToMap(map: Map, layer: L) {
     map.addLayer(layer)
   }
 
-  public static removeFromMap(layer: Layer, map: Map) {
+  protected _removeFromMap(map: Map, layer: L) {
     map.removeLayer(layer)
   }
 

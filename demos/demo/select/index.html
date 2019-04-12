@@ -17,13 +17,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="../style.css" >
 </head>
 <body unresolved>
 <div>
     <h3>Selecting features</h3>
     <p>
-        The demo does not work in IE11 but selecting should.
+        The demo does not work in IE11 due to polyfilled <code>&lt;template&gt;</code> tag limitation
     </p>
     <demo-snippet class="centered-demo">
         <template>
@@ -49,5 +49,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
     </demo-snippet>
 </div>
+<script src="index.js" type="module"></script>
 </body>
 </html>

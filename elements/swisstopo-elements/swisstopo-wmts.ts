@@ -16,7 +16,7 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  *
  * [wmts-list]: http://api3.geo.admin.ch/services/sdiservices.html#supported-projections
  *
- * @demo https://openlayers-elements.netlify.com/demo/swiss-topo.html
+ * @demo https://openlayers-elements.netlify.com/demo/swiss-topo/
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */
@@ -34,7 +34,17 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args:
   @property({type: String})
   public projection: Projections = 'EPSG:3857'
 
-  public async createLayer() {
+  protected async _attach(detail) {
+    const projection = (await detail.map).projection
+
+    if (projection) {
+      this.projection = projection as Projections
+    }
+
+    return super._attach(detail)
+  }
+
+  protected async _createLayer() {
     const projectionSegments = this.projection.replace(/:/, '/')
     const response = await fetch(`https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`)
     const capabilities = parser.read(await response.text())

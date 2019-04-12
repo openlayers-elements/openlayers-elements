@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, @typescript-eslint/no-var-requires */
-const defaultSettings = require('@open-wc/testing-karma/default-settings.js')
+const defaultSettings = require('@open-wc/testing-karma/default-config')
 const merge = require('webpack-merge')
 
 module.exports = (config) => {

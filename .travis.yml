@@ -7,7 +7,7 @@ before_install:
 - npm install -g codecov
 script:
 - yarn pretest
-- yarn test:es5:bs
+- yarn test:bs
 - lerna run remap-coverage
 after_success:
 - codecov

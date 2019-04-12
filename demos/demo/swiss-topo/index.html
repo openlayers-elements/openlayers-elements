@@ -10,30 +10,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html lang="en">
 <head>
-    <title>ol-layer-xyz demo</title>
+    <title>ol-map demo</title>
 
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="../style.css" >
 </head>
 <body unresolved>
 <div>
-    <h3>Hillshades XYZ layer overlayed with cycling paths</h3>
+    <h3>Swiss topo with changed projection</h3>
+<adaptive-demo>
+<template>
+<ol-map zoom="9" lat="46.7985" lon="8.2318" projection="EPSG:2056">
+    <swisstopo-wmts
+            layer-name="ch.swisstopo.pixelkarte-grau"></swisstopo-wmts>
+    <swisstopo-wmts
+            layer-name="ch.bafu.neophyten-gestreiftes_suessgras"
+            z-index="1"></swisstopo-wmts>
+</ol-map>
+</template>
+</adaptive-demo>
+
+    <h3>Swiss topo mixed with OSM</h3>
     <p>
-        For other layers you can check <a href="https://wiki.openstreetmap.org/wiki/Tile_servers">OSM wiki</a>.
-        (Note the different style of interpolating x/y/z parameters)
+        By keeping the default projection the grass map nicely fits OpenStreetMap
     </p>
 <adaptive-demo>
 <template>
-<ol-map zoom="7" lat="46.7985" lon="8.2318">
-    <ol-layer-xyz url="http://c.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png"></ol-layer-xyz>
-    <ol-layer-xyz url="https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png"></ol-layer-xyz>
+<ol-map zoom="9" lat="46.7985" lon="8.2318">
+    <ol-layer-openstreetmap></ol-layer-openstreetmap>
+    <swisstopo-wmts layer-name="ch.bafu.neophyten-gestreiftes_suessgras" z-index="1"></swisstopo-wmts>
 </ol-map>
 </template>
 </adaptive-demo>
 </div>
+<script src="index.js" type="module"></script>
 </body>
 </html>
