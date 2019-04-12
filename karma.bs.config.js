@@ -6,6 +6,11 @@ const karmaEs5Config = require('./karma.es5.config.js')
 module.exports = (config) => {
   config.set(
     merge(bsSettings(config), karmaEs5Config(config), {
+      files: [
+        {
+          pattern: 'test/_polyfills.js',
+        },
+      ],
       browserStack: {
         project: '@openlayers-elements/maps',
       },

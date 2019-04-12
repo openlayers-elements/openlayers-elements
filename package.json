@@ -14,9 +14,9 @@
     "pretest": "yarn lint --quiet; yarn build",
     "test": "karma start",
     "test:watch": "yarn test --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "test:es5": "yarn test --legacy",
+    "test:es5:watch": "yarn test:watch --legacy",
+    "test:bs": "karma start karma.bs.config.js --legacy --coverage",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
     "docs": "yarn build; yarn analyze; lerna run --scope demos build",
     "remap-coverage": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly"
