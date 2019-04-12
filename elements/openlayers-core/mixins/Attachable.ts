@@ -62,6 +62,8 @@ AttachableMixin = function<B extends Constructor>(Base: B, detailPropName: strin
               this.dispatchEvent(new Event('attached'))
             }
           })
+      } else {
+        console.warn(`Failed to attach to the parent ${detailPropName}. Either it's not ready yet or not a parent of this element.`)
       }
     }
 
