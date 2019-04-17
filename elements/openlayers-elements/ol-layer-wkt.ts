@@ -38,6 +38,12 @@ export default class OlLayerWkt extends OlLayerVector {
   /**
    * The features to be placed on the layer
    *
+   * Note that only replacing the entire array will cause the layer to update.
+   * If you wish to alter or remove individual features from the layer,
+   * the `resetFeatures()` method must be called to refresh the layer.
+   *
+   * It will be grossly inefficient, so use sparingly.
+   *
    * @type {Array}
    */
   @property({type: String})
@@ -62,6 +68,17 @@ export default class OlLayerWkt extends OlLayerVector {
     })
   }
 
+  /**
+   * Removes all current features from the layer and
+   * replaces with the current values found in the `featureData` property.
+   */
+  public resetFeatures() {
+    if (this.source) {
+      this.source.clear(true)
+      this.source.addFeatures(this.__features)
+    }
+  }
+
   protected _createSource() {
     return new VectorSource({
       features: this.__features,
@@ -70,8 +87,7 @@ export default class OlLayerWkt extends OlLayerVector {
 
   protected updated(changedProps: PropertyValues) {
     if(changedProps.has('featureData') && this.source) {
-      this.source.clear(true)
-      this.source.addFeatures(this.__features)
+      this.resetFeatures()
     }
   }
 }
