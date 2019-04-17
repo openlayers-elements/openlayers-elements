@@ -10,7 +10,7 @@ See [documentation and demos](https://openlayers-elements.netlify.com).
 To install run
 
 ```
-yarn add @openlayers-elements/maps
+yarn add @openlayers-elements/maps @openlayers-elements/core
 ```
 
 Here's the simplest possible OpenStreetMap:
