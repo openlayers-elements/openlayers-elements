@@ -40,4 +40,20 @@ describe('ol-layer-xyz', () => {
     // then
     expect(element.source.getFeatures().length).to.equal(1)
   })
+
+  describe('resetFeatures', () => {
+    it('has no effect before source is created', async () => {
+      const element = (await fixture(
+        html`
+        <ol-layer-wkt></ol-layer-wkt>
+      `,
+      )) as OlLayerWkt
+
+      // when
+      element.resetFeatures()
+
+      // then
+      // should not have thrown
+    })
+  })
 })

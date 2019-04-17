@@ -1,4 +1,4 @@
-import { property, PropertyValues } from 'lit-element';
+import {property, PropertyValues} from 'lit-element'
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
@@ -85,8 +85,9 @@ export default class OlLayerWkt extends OlLayerVector {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-naming
   protected updated(changedProps: PropertyValues) {
-    if(changedProps.has('featureData') && this.source) {
+    if (changedProps.has('featureData')) {
       this.resetFeatures()
     }
   }
