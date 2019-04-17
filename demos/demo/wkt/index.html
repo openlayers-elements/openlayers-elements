@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <div>
     <h3>Loading features from WKT data</h3>
     <p>
-        The demo does not work in IE11 due to polyfilled <code>&lt;template&gt;</code> tag limitation
+        These demos do not work in IE11 due to polyfilled <code>&lt;template&gt;</code> tag limitation
     </p>
     <demo-snippet class="centered-demo">
         <template>
@@ -33,15 +33,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
             <script>
-              const wktLayer = document.querySelector('ol-layer-wkt')
-              fetch('/assets/europe.wkt')
-                .then(res => res.json())
-                .then(data => {
-                  wktLayer.featureData = data
-                })
+              (function() {
+                const wktLayer = document.querySelector('#wkt')
+                fetch('/assets/europe.wkt')
+                  .then(res => res.json())
+                  .then(data => {
+                    wktLayer.featureData = data
+                  })
+              })()
             </script>
         </template>
     </demo-snippet>
+
+
+  <h3>Manually refreshing the layer</h3>
+  <demo-snippet class="centered-demo">
+    <template>
+      <style>
+        ol-map {
+          --remove-countries-control-bottom: 10px;
+          --remove-countries-control-left: 10px;
+        }
+      </style>
+
+      <ol-map zoom="7" lat="46.7985" lon="8.2318">
+        <ol-layer-wkt id="wkt_manual"></ol-layer-wkt>
+        <ol-control id="remove-countries">
+          <button>Remove random canton</button>
+        </ol-control>
+      </ol-map>
+
+      <script>
+        (function(){
+          const wktLayer = document.querySelector('#wkt_manual')
+          const removeButton = document.querySelector('button')
+
+          removeButton.addEventListener('click', () => {
+            const randomCountryIndex = Math.floor(Math.random() * wktLayer.featureData.length)
+            wktLayer.featureData.splice(randomCountryIndex, 1)
+            wktLayer.resetFeatures()
+          })
+
+          fetch('/assets/europe.wkt')
+            .then(res => res.json())
+            .then(data => {
+              wktLayer.featureData = data
+            })
+        })()
+      </script>
+    </template>
+  </demo-snippet>
 </div>
 <script src="index.js" type="module"></script>
 </body>
