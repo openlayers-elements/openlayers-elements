@@ -1,4 +1,4 @@
-import {property} from 'lit-element'
+import { property, PropertyValues } from 'lit-element';
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
@@ -31,6 +31,7 @@ interface Feature {
  *
  * [wkt]: https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
  *
+ * @demo https://openlayers-elements.netlify.com/demo/wkt/
  * @customElement
  */
 export default class OlLayerWkt extends OlLayerVector {
@@ -42,8 +43,8 @@ export default class OlLayerWkt extends OlLayerVector {
   @property({type: String})
   public featureData: Feature[] = []
 
-  protected _createSource() {
-    const features = this.featureData.map((data) => {
+  private get __features() {
+    return this.featureData.map((data) => {
       const feature = format.readFeature(data.wkt, {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857',
@@ -59,10 +60,19 @@ export default class OlLayerWkt extends OlLayerVector {
 
       return feature
     })
+  }
 
+  protected _createSource() {
     return new VectorSource({
-      features,
+      features: this.__features,
     })
+  }
+
+  protected updated(changedProps: PropertyValues) {
+    if(changedProps.has('featureData') && this.source) {
+      this.source.clear(true)
+      this.source.addFeatures(this.__features)
+    }
   }
 }
 
