@@ -44,6 +44,10 @@ export default class OlLayerVector extends AttachableAwareMixin(
   @property({type: Object})
   public featureStyle: Style | Style[] | StyleFunction = undefined
 
+  public fit() {
+    this._map.fit(this.source.getExtent())
+  }
+
   protected _createSource() {
     return new VectorSource()
   }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html lang="en">
+  <head>
+    <title>Zooming to layers and features</title>
+
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body unresolved>
+    <div>
+      <h3>Zoom to entire layer</h3>
+      <p>
+        Vector layers have a <code>fit</code> method which aligns the map view to show its entirety.
+      </p>
+      <demo-snippet>
+        <template>
+<style>
+  ol-map {
+    --zoom-control-top: 10px;
+    --zoom-control-right: 10px;
+  }
+</style>
+
+<ol-map zoom="4" lat="39.828175" lon="-98.5795">
+  <ol-layer-openstreetmap></ol-layer-openstreetmap>
+  <ol-layer-geojson url="/assets/europe.geojson"></ol-layer-geojson>
+  <ol-control id="zoom">
+    <button onclick="goToEurope()">Go to Europe</button>
+  </ol-control>
+</ol-map>
+
+<script>
+  function goToEurope() {
+    document.querySelector('ol-layer-geoJson').fit()
+  }
+</script>
+        </template>
+      </demo-snippet>
+
+      <h3>Zooming to individual features</h3>
+      <p>
+        To zoom to a single feature you need a reference to the map element and pass the
+        geometry's extent. In this example the selected feature's shape is used.
+      </p>
+      <p>
+        The <code>fit</code> method also accepts a second parameter which allows for customizing the behavior
+        using the <a href="https://openlayers.org/en/latest/apidoc/module-ol_View.html#~FitOptions"><code>FitOptions</code> object</a>
+      </p>
+      <demo-snippet class="centered-demo">
+        <template>
+<ol-map id="eu" zoom="4" lat="46.7985" lon="8.2318">
+  <ol-layer-openstreetmap></ol-layer-openstreetmap>
+  <ol-layer-geojson
+    url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
+  ></ol-layer-geojson>
+  <ol-select></ol-select>
+</ol-map>
+
+<script>
+  const map = document.querySelector('#eu')
+
+  document.querySelector('ol-select')
+    .addEventListener('feature-selected', (e) => {
+      map.fit(e.detail.feature.getGeometry().getExtent(), {
+        duration: 400,
+      })
+  })
+</script>
+        </template>
+      </demo-snippet>
+    </div>
+  <script src="index.js" type="module"></script>
+  </body>
+</html>

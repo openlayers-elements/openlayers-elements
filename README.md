@@ -2,8 +2,8 @@
 
 This is monorepo which contains: 
 
-1. base OpenLayers elements (`./elements/openlayers-elements`) ([in catalog](https://www.webcomponents.org/element/@openlayers-elements/maps))
-1. Swiss maps from geoadmin.ch (`./elements/swisstopo-elements`) ([in catalog](https://www.webcomponents.org/element/@openlayers-elements/swisstopo))
+1. base OpenLayers elements ([`./elements/openlayers-elements`](./tree/master/elements/openlayers-elements)) ([in catalog](https://www.webcomponents.org/element/@openlayers-elements/maps))
+1. Swiss maps from geoadmin.ch ([`./elements/swisstopo-elements`](./tree/master/elements/swisstopo-elements)) ([in catalog](https://www.webcomponents.org/element/@openlayers-elements/swisstopo))
 
 ## Demo
 
