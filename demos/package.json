@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "start:es5": "webpack-dev-server --mode development --es5",
-    "build": "webpack --mode development"
+    "build": "webpack --mode production"
   },
   "devDependencies": {
     "@open-wc/polyfills-loader": "^0.3.1",
