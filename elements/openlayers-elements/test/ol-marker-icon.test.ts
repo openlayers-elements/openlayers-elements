@@ -1,7 +1,7 @@
 import {expect, fixture} from '@open-wc/testing'
 import {html} from 'lit-html'
 import '@openlayers-elements/core/ol-layer-vector'
-import '../ol-map'
+import '@openlayers-elements/core/ol-map'
 import '../ol-marker-icon'
 
 const dotUrl = '/base/test/assets/icon.png'

@@ -1,10 +1,11 @@
-import {expect, fixture} from '@open-wc/testing'
+import {expect, fixture, assert} from '@open-wc/testing'
 import {html} from 'lit-html'
 import OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import '@openlayers-elements/core/ol-map'
 import './test-elements/ol-test-feature'
 import {forEvent} from '../../../test/util'
+import * as sinon from 'sinon'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
 
@@ -65,5 +66,27 @@ describe('ol-layer-vector', () => {
 
     // then
     expect(element.source.getFeatures().length).to.equal(1)
+  })
+
+  describe('fit', () => {
+    it('calls fit on the underlying map', async () => {
+      // given
+      const element = (await fixture(
+        html`
+        <ol-map>
+          <ol-layer-vector></ol-layer-vector>
+        </ol-map>
+      `,
+      )).querySelector('ol-layer-vector')
+      await forEvent(element, 'attached')
+      const mapFit = sinon.spy(element._map, 'fit')
+      sinon.stub(element.source, 'getExtent').callsFake(() => [1,2,3,4])
+
+      // when
+      element.fit()
+
+      // then
+      assert(mapFit.calledWith([1,2,3,4]))
+    })
   })
 })
