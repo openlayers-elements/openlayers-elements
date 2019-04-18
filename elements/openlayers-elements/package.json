@@ -1,6 +1,6 @@
 {
   "name": "@openlayers-elements/maps",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-beta.0",
   "description": "Custom elements to declaratively build OpenLayers map",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "author": "Zazuko GmbH",
@@ -13,7 +13,7 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.2.0-alpha.0",
+    "@openlayers-elements/core": "^0.2.0-beta.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "@openlayers-elements/swisstopo",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-beta.0",
   "author": "Zazuko GmbH",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "contributors": [
@@ -14,7 +14,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.2.0-alpha.0",
+    "@openlayers-elements/core": "^0.2.0-beta.0",
     "lit-element": "^2.0.0",
     "proj4": "^2.5.0"
   },
