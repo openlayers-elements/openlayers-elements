@@ -33,9 +33,6 @@ supported by the components live:
 1. Swiss layers
     * [WMTS source](https://openlayers-elements.netlify.com/#/elements/swisstopo-wmts/demos/demo/swiss-topo/)
     * [XYZ layers, reprojected to Mercator](https://openlayers-elements.netlify.com/#/elements/swisstopo-reprojected/demos/demo/swiss-reprojected/)
-    
-Currently the Swiss maps only work locally due to [access restrictions][wa]. Read below for local run
-instructions.
 
 ## API Docs
 
