@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved>
 <div>
     <h3>Swiss topo with changed projection</h3>
-<adaptive-demo>
+<demo-snippet>
 <template>
 <ol-map zoom="9" lat="46.7985" lon="8.2318" projection="EPSG:2056">
     <swisstopo-wmts
@@ -32,20 +32,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             z-index="1"></swisstopo-wmts>
 </ol-map>
 </template>
-</adaptive-demo>
+</demo-snippet>
 
     <h3>Swiss topo mixed with OSM</h3>
     <p>
         By keeping the default projection the grass map nicely fits OpenStreetMap
     </p>
-<adaptive-demo>
+<demo-snippet>
 <template>
 <ol-map zoom="9" lat="46.7985" lon="8.2318">
     <ol-layer-openstreetmap></ol-layer-openstreetmap>
     <swisstopo-wmts layer-name="ch.bafu.neophyten-gestreiftes_suessgras" z-index="1"></swisstopo-wmts>
 </ol-map>
 </template>
-</adaptive-demo>
+</demo-snippet>
 </div>
 <script src="index.js" type="module"></script>
 </body>

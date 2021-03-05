@@ -8,6 +8,6 @@ loadPolyfills()
     ]),
   )
   .then(() => {
-    import('../../adaptive-demo')
+    import('@polymer/iron-demo-helpers/demo-snippet')
     import('@openlayers-elements/maps/ol-layer-openstreetmap')
   })
