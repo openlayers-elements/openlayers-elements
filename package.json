@@ -28,7 +28,7 @@
     "@open-wc/testing-karma": "^1.1.0",
     "@open-wc/testing-karma-bs": "^1.0.3",
     "@types/mocha": "^5.2.6",
-    "@types/ol": "^4.4.2",
+    "@types/ol": "^6.4.2",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",
     "eslint": "^5.15.0",

@@ -63,7 +63,7 @@ export default class OlControl extends OlMapPart<Control> {
     )
 
     return new Control({
-      element: tempDiv.firstElementChild || undefined,
+      element: tempDiv.firstElementChild instanceof HTMLElement ? tempDiv.firstElementChild : undefined,
     })
   }
 

@@ -2,7 +2,6 @@ import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
 import {property} from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
-// @ts-ignore
 import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
 import './projections'
 import SwisstopoElement from './swisstopo-element'

@@ -1,7 +1,5 @@
 /* tslint:disable:max-line-length */
-// @ts-ignore
 import {register} from 'ol/proj/proj4.js'
-// @ts-ignore
 import proj4 from 'proj4'
 
 proj4.defs(

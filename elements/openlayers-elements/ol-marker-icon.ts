@@ -2,14 +2,12 @@ import OlFeature from '@openlayers-elements/core/ol-feature'
 import {property} from 'lit-element'
 import Feature from 'ol/Feature'
 import Point from 'ol/geom/Point'
-// @ts-ignore
 import {fromLonLat} from 'ol/proj'
-import Icon from 'ol/style/Icon'
+import Icon, {Options} from 'ol/style/Icon'
 import Style from 'ol/style/Style'
-import {olx, Size, style} from 'openlayers'
-import IconAnchorUnits = style.IconAnchorUnits
-import IconOrigin = style.IconOrigin
-import IconOptions = olx.style.IconOptions
+import IconAnchorUnits from 'ol/style/IconAnchorUnits'
+import IconOrigin from 'ol/style/IconOrigin'
+import {Size} from 'ol/size'
 
 /**
  * A basic map marker. Loaded from an image file
@@ -175,7 +173,7 @@ export default class OlMarkerIcon extends OlFeature {
     return feature
   }
 
-  private get __iconInit(): IconOptions {
+  private get __iconInit(): Options {
     return {
       anchor: [this.anchorX, this.anchorY],
       anchorOrigin: this.anchorOrigin,

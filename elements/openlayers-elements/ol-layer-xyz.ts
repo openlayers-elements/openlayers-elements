@@ -10,6 +10,8 @@ import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
  * @customElement
  */
 export default class OlLayerXyz extends OlLayerBase<TileLayer> {
+  private __url?: string = undefined
+
   /**
    * The url template for the source tiles. The `x`, `y`, `z` parameters must be provided wrapped in
    * curly brackets (not using ES6 interpolation syntax)
@@ -17,7 +19,13 @@ export default class OlLayerXyz extends OlLayerBase<TileLayer> {
    * @type {String}
    */
   @property({type: String})
-  public url?: string = undefined
+  public get url(): string | undefined {
+    return this.__url
+  }
+
+  public set url(value: string | undefined) {
+    this.__url = value
+  }
 
   /**
    * An optional set of URL templates to be used to load tiles
