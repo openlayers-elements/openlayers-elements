@@ -1,7 +1,7 @@
 import { html } from 'lit-element'
 import { render } from 'lit-html'
 import Control from 'ol/control/Control'
-import Map from 'ol/map'
+import Map from 'ol/Map'
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
 
 /**

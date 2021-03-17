@@ -1,6 +1,6 @@
 import { html, LitElement, property, query } from 'lit-element'
 import OpenLayersMap from 'ol/Map'
-import SimpleGeometry from 'ol/geom/simplegeometry'
+import SimpleGeometry from 'ol/geom/SimpleGeometry'
 import { fromLonLat, get as getProjection } from 'ol/proj'
 import View, { FitOptions } from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
