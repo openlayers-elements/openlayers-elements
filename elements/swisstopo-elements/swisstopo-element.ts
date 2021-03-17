@@ -1,7 +1,7 @@
 import { LitElement, property } from 'lit-element'
 
 type Constructor = new (...args: any[]) => LitElement
-type SwisstopoElementMixin = <B extends Constructor>(
+type ISwisstopoElementMixin = <B extends Constructor>(
   Base: B,
 ) => {
   new (...args: any[]): {
@@ -17,7 +17,7 @@ type SwisstopoElementMixin = <B extends Constructor>(
  * @polymer
  * @mixinFunction
  */
-const Mixin: SwisstopoElementMixin = function<B extends Constructor> (Base: B) {
+const SwisstopoElementMixin: ISwisstopoElementMixin = function<B extends Constructor> (Base: B) {
   /**
    * Base class for swisstopo elements
    *
@@ -39,4 +39,4 @@ const Mixin: SwisstopoElementMixin = function<B extends Constructor> (Base: B) {
   return SwisstopoElement
 }
 
-export default Mixin
+export default SwisstopoElementMixin

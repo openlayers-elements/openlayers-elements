@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit-element'
 
 type Constructor = new (...args: any[]) => LitElement
-type AttachableAwareMixin = <B extends Constructor>(
+type IAttachableAwareMixin = <B extends Constructor>(
   Base: B,
   detailPropName: string,
 ) => {
@@ -36,7 +36,7 @@ type AttachableAwareMixin = <B extends Constructor>(
  * @polymer
  * @mixinFunction
  */
-const Mixin: AttachableAwareMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
+const AttachableAwareMixin: IAttachableAwareMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
   class AttachableAware extends Base {
     private readonly __attachReady: Promise<AttachableAware>
     private readonly __attachReadyResolve?: (aa: AttachableAware) => void
@@ -81,4 +81,4 @@ const Mixin: AttachableAwareMixin = function<B extends Constructor> (Base: B, de
   return AttachableAware
 }
 
-export default Mixin
+export default AttachableAwareMixin

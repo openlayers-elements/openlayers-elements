@@ -1,10 +1,7 @@
 import { LitElement } from 'lit-element'
 
 type Constructor = new (...args: any[]) => LitElement
-type AttachableMixin = <B extends Constructor>(
-  Base: B,
-  detailPropName: string,
-) => B
+type IAttachableMixin = <B extends Constructor>(Base: B, detailPropName: string) => B
 
 /**
  * Base mixin for elements which need additional context from their parents
@@ -35,7 +32,7 @@ type AttachableMixin = <B extends Constructor>(
  * @polymer
  * @mixinFunction
  */
-const Mixin: AttachableMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
+const AttachableMixin: IAttachableMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
   abstract class Attachable extends Base {
     private __detachFromMap?: () => void
 
@@ -75,4 +72,4 @@ const Mixin: AttachableMixin = function<B extends Constructor> (Base: B, detailP
   return Attachable
 }
 
-export default Mixin
+export default AttachableMixin
