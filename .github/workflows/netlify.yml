@@ -21,7 +21,6 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: Preview ${{ env.BRANCH_NAME }}
           build_command: yarn docs
           build_directory: demos/dist
-          install_command: yarn
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
 
