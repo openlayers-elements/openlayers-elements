@@ -1,6 +1,6 @@
 import Interaction from 'ol/interaction/Interaction'
-import Map from 'ol/map'
-import {OlMapPart} from './ol-map-part'
+import Map from 'ol/Map'
+import { OlMapPart } from './ol-map-part'
 
 /**
  * Base class for implementing interactions

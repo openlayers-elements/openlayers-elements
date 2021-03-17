@@ -1,4 +1,4 @@
-import {property, PropertyValues} from 'lit-element'
+import { property, PropertyValues } from 'lit-element'
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
@@ -46,7 +46,7 @@ export default class OlLayerWkt extends OlLayerVector {
    *
    * @type {Array}
    */
-  @property({type: String})
+  @property({ type: String })
   public featureData: Feature[] = []
 
   private get __features() {
@@ -58,8 +58,8 @@ export default class OlLayerWkt extends OlLayerVector {
 
       feature.setId(data.id)
       const props = data.props || {}
-      for (const propsKey in props) {
-        if (props.hasOwnProperty(propsKey)) {
+      for (const propsKey of Object.keys(props)) {
+        if (Object.prototype.hasOwnProperty.call(props, propsKey)) {
           feature.set(propsKey, props[propsKey])
         }
       }
@@ -85,7 +85,6 @@ export default class OlLayerWkt extends OlLayerVector {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-naming
   protected updated(changedProps: PropertyValues) {
     if (changedProps.has('featureData')) {
       this.resetFeatures()

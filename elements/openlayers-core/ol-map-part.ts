@@ -1,4 +1,4 @@
-import {LitElement} from 'lit-element'
+import { LitElement } from 'lit-element'
 import Map from 'ol/Map'
 import AttachableMixin from './mixins/Attachable'
 import OlMap from './ol-map'
@@ -18,16 +18,16 @@ export abstract class OlMapPart<T> extends AttachableMixin(LitElement, 'map') {
    */
   public abstract createPart(): Promise<T>
 
-  protected _map: OlMap
+  public _map: OlMap
 
-  protected abstract _addToMap(map: Map, part: T)
+  protected abstract _addToMap(map: Map, part: T): void
 
-  protected abstract _removeFromMap(map: Map, part: T)
+  protected abstract _removeFromMap(map: Map, part: T): void
 
-  protected async _attach({map}) {
+  protected async _attach({ map }: { map: OlMap }): Promise<(() => void) | null> {
     if (map) {
       this._map = await map
-      const olMap = this._map.map
+      const olMap = this._map.map!
       const part = await this.createPart()
       this._addToMap(olMap, part)
 
@@ -35,5 +35,7 @@ export abstract class OlMapPart<T> extends AttachableMixin(LitElement, 'map') {
         this._removeFromMap(olMap, part)
       }
     }
+
+    return null
   }
 }

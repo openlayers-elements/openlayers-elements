@@ -8,16 +8,21 @@
     "build": "webpack --mode production"
   },
   "devDependencies": {
-    "@open-wc/polyfills-loader": "^0.3.1",
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/polymer": "^3.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.0.0",
+    "webpack-merge": "^5.7.3",
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "lit-html": "^1.0.0"
+    "@open-wc/polyfills-loader": "^0.3.1",
+    "@openlayers-elements/core": "^0.2.0-beta.0",
+    "@openlayers-elements/maps": "^0.2.0-beta.0",
+    "lit-element": "^2.4.0",
+    "lit-html": "^1.0.0",
+    "ol": "^6.5.0"
   }
 }

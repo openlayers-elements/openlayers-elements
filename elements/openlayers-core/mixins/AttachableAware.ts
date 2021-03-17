@@ -1,6 +1,7 @@
-import {html, LitElement} from 'lit-element'
+import { html, LitElement } from 'lit-element'
 
-let AttachableAwareMixin: <B extends Constructor>(
+type Constructor = new (...args: any[]) => LitElement
+type AttachableAwareMixin = <B extends Constructor>(
   Base: B,
   detailPropName: string,
 ) => {
@@ -8,7 +9,6 @@ let AttachableAwareMixin: <B extends Constructor>(
     notifyReady(): void
   }
 } & B
-type Constructor = new (...args: any[]) => LitElement
 
 /**
  * Base mixin for elements which provide additional context to their children
@@ -36,10 +36,10 @@ type Constructor = new (...args: any[]) => LitElement
  * @polymer
  * @mixinFunction
  */
-AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: string) {
+const Mixin: AttachableAwareMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
   class AttachableAware extends Base {
     private readonly __attachReady: Promise<AttachableAware>
-    private readonly __attachReadyResolve: (AttachableAware) => void
+    private readonly __attachReadyResolve?: (aa: AttachableAware) => void
 
     constructor(...args: any[]) {
       super(args)
@@ -55,7 +55,7 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: 
       super.connectedCallback()
       this.addEventListener(
         'attach',
-        (e: CustomEvent) => {
+        (e: any) => {
           e.detail[detailPropName] = this.__attachReady
         },
         true,
@@ -66,7 +66,9 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: 
      * Call this in implementing class when the element has finish initializing
      */
     notifyReady() {
-      this.__attachReadyResolve(this)
+      if (this.__attachReadyResolve) {
+        this.__attachReadyResolve(this)
+      }
     }
 
     render() {
@@ -79,4 +81,4 @@ AttachableAwareMixin = function<B extends Constructor>(Base: B, detailPropName: 
   return AttachableAware
 }
 
-export default AttachableAwareMixin
+export default Mixin

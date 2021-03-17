@@ -1,4 +1,4 @@
-import {property} from 'lit-element'
+import { property } from 'lit-element'
 import GeoJSON from 'ol/format/GeoJSON'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
@@ -16,7 +16,7 @@ export default class OlLayerGeoJson extends OlLayerVector {
    *
    * @type {String}
    */
-  @property({type: String})
+  @property({ type: String })
   public url?: string = undefined
 
   protected _createSource() {

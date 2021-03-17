@@ -1,6 +1,6 @@
-import {expect, fixture} from '@open-wc/testing'
-import {html} from 'lit-html'
-import TileLayer from 'ol/layer/tile'
+import { expect, fixture } from '@open-wc/testing'
+import { html } from 'lit-html'
+import TileLayer from 'ol/layer/Tile'
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
 import '../ol-layer-xyz'
 

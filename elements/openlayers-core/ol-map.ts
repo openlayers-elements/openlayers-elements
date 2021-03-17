@@ -1,9 +1,8 @@
-import {html, LitElement, property, query} from 'lit-element'
+import { html, LitElement, property, query } from 'lit-element'
 import OpenLayersMap from 'ol/Map'
-import SimpleGeometry from 'ol/geom/simplegeometry'
-// @ts-ignore
-import {fromLonLat, get as getProjection} from 'ol/proj'
-import View from 'ol/View'
+import SimpleGeometry from 'ol/geom/SimpleGeometry'
+import { fromLonLat, get as getProjection } from 'ol/proj'
+import View, { FitOptions } from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
 import AttachableAwareMixin from './mixins/AttachableAware'
 
@@ -45,22 +44,22 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    * Zoom level
    * @type {Number}
    */
-  @property({type: Number})
-  public zoom: number = 1
+  @property({ type: Number })
+  public zoom = 1
 
   /**
    * Longitude
    * @type {Number}
    */
-  @property({type: Number})
-  public lon: number = 0
+  @property({ type: Number })
+  public lon = 0
 
   /**
    * Latitude
    * @type {Number}
    */
-  @property({type: Number})
-  public lat: number = 0
+  @property({ type: Number })
+  public lat = 0
 
   @query('div')
   public mapElement!: HTMLDivElement
@@ -74,7 +73,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    *
    * @type {string}
    */
-  @property({type: String})
+  @property({ type: String })
   public projection?: string = undefined
 
   /**
@@ -82,7 +81,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    *
    * @type {number}
    */
-  @property({type: Number})
+  @property({ type: Number })
   public resolution?: number = undefined
 
   /**
@@ -90,7 +89,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    *
    * @type {number}
    */
-  @property({type: Number})
+  @property({ type: Number })
   public x?: number = undefined
 
   /**
@@ -98,7 +97,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    *
    * @type {number}
    */
-  @property({type: Number})
+  @property({ type: Number })
   public y?: number = undefined
 
   /**
@@ -160,10 +159,14 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
 
   public render() {
     return html`
-      <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css" />
+      <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css" type="text/css" />
       <style>
         :host {
           display: block;
+        }
+
+        #map {
+          height: 100%;
         }
       </style>
       <div id="map"></div>
@@ -171,10 +174,10 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     `
   }
 
-  public fit(extent: SimpleGeometry | [number, number, number, number], options?: object) {
-    this.map.getView().fit(extent, {
+  public fit(extent: SimpleGeometry | [number, number, number, number], options?: FitOptions) {
+    this.map?.getView().fit(extent, {
       size: this.map.getSize(),
-      constrainResolution: false,
+      // constrainResolution: false,
       nearest: false,
       ...options,
     })

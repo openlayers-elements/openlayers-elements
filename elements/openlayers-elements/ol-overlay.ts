@@ -1,8 +1,8 @@
-import {OlMapPart} from '@openlayers-elements/core/ol-map-part'
+import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
 import Overlay from 'ol/Overlay'
-import Map from 'ol/map'
-import {html} from 'lit-html'
-import {property} from 'lit-element'
+import Map from 'ol/Map'
+import { html } from 'lit-html'
+import { property } from 'lit-element'
 
 /**
  * An element used to place HTML on the map surface. Similar to `ol-control` but
@@ -36,7 +36,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
    *
    * @type {boolean}
    */
-  @property({type: Boolean, attribute: 'auto-pan'})
+  @property({ type: Boolean, attribute: 'auto-pan' })
   public autoPan = false
 
   /**
@@ -44,7 +44,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
    *
    * @type {number}
    */
-  @property({type: Number, attribute: 'auto-pan-animation-duration'})
+  @property({ type: Number, attribute: 'auto-pan-animation-duration' })
   public autoPanAnimationDuration = 0
 
   /**
@@ -87,9 +87,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
 
     // hack to get panning correctly calculate overlay dimensions,
     // which would otherwise be calculated from the <slot> element
-    this.overlay.getElement = () => {
-      return this
-    }
+    this.overlay.getElement = () => this
 
     return this.overlay
   }

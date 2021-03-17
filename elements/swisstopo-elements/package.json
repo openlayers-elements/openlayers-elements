@@ -10,16 +10,17 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "devDependencies": {
-    "typescript": "^3.2.2"
-  },
   "dependencies": {
     "@openlayers-elements/core": "^0.2.0-beta.0",
+    "@openlayers-elements/maps": "^0.2.0-beta.0",
     "lit-element": "^2.0.0",
+    "ol": "^6.5.0",
     "proj4": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/proj4": "^2.5.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "5de1bb007775724f79779eb0ec7ddfd8434e34c2"
+  }
 }

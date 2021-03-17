@@ -1,43 +1,27 @@
 {
   "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "@open-wc/eslint-config",
+    "@tpluscode"
   ],
   "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+    "browser": true
   },
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module"
+    "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint/eslint-plugin"
-  ],
   "rules": {
-    "@typescript-eslint/indent": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-unused-vars": 0,
-    "@typescript-eslint/member-delimiter-style": [
-      "error",
-      {
-        "multiline": {
-          "delimiter": "none"
-        }
-      }
-    ],
-    "@typescript-eslint/member-naming": [
-      "error",
-      {
-        "private": "^__",
-        "protected": "^_",
-        "public": "^[^_]"
-      }
-    ],
-    "no-extra-semi": "error",
-    "semi": "off"
-  }
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.ts", "**/demo/**", "**/*.config.*"]}],
+    "no-shadow": "off",
+    "max-len": ["error", 200],
+    "wc/guard-super-call": "off",
+    "class-methods-use-this": "off",
+    "no-param-reassign": ["error", { "props": false }]
+  },
+  "overrides": [{
+    "files": "**/*.test.ts",
+    "rules": {
+      "no-unused-expressions": "warn",
+      "babel/no-unused-expressions": "off"
+    }
+  }]
 }
