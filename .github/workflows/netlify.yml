@@ -1,0 +1,35 @@
+name: Netlify
+
+on: push
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14
+
+      - run: yarn install --ci
+
+      - uses: nelonoel/branch-name@v1.0.1
+
+      - name: Publish preview
+        uses: jsmrcaga/action-netlify-deploy@v1.5.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: Preview ${{ env.BRANCH_NAME }}
+          build_command: yarn docs
+          build_directory: demos/dist
+          deploy_alias: ${{ env.BRANCH_NAME }}
+          NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
+
+      - name: Status check
+        uses: Sibz/github-status-action@v1.1.1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: Netlify Site
+          state: success
+          target_url: https://${{ env.BRANCH_NAME }}--openlayers-elements.netlify.app
