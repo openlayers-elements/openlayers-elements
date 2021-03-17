@@ -8,3 +8,4 @@ analysis.json
 dist/
 lerna-debug.log
 coverage/
+*.log

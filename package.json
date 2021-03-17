@@ -29,6 +29,7 @@
     "@web/dev-server-esbuild": "^0.2.11",
     "@web/dev-server-rollup": "^0.3.2",
     "@web/test-runner": "^0.12.17",
+    "@web/test-runner-browserstack": "^0.4.2",
     "eslint": "^7.22.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-babel": "^5.3.1",
