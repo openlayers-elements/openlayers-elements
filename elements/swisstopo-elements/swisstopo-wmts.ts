@@ -1,8 +1,8 @@
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
-import {property} from 'lit-element'
+import { property } from 'lit-element'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
-import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS'
+import WMTS, { optionsFromCapabilities } from 'ol/source/WMTS'
 import './projections'
 import SwisstopoElement from './swisstopo-element'
 
@@ -30,11 +30,11 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args:
    *
    * @type {string}
    */
-  @property({type: String})
+  @property({ type: String })
   public projection: Projections = 'EPSG:3857'
 
-  protected async _attach(detail) {
-    const projection = (await detail.map).projection
+  protected async _attach(detail: any) {
+    const { projection } = await detail.map
 
     if (projection) {
       this.projection = projection as Projections

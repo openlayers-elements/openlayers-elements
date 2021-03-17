@@ -1,15 +1,16 @@
-import {html, css, LitElement} from 'lit-element'
-import {DEVICE_PIXEL_RATIO} from 'ol/has'
-import {Fill, Stroke, Style} from 'ol/style'
+/* eslint-disable max-len */
+import { html, css, LitElement } from 'lit-element'
+import { DEVICE_PIXEL_RATIO } from 'ol/has'
+import { Fill, Stroke, Style } from 'ol/style'
 import '@openlayers-elements/core/ol-map'
 import '@openlayers-elements/maps/ol-layer-geojson'
 
-var canvas = document.createElement('canvas')
-var context = canvas.getContext('2d')
-var pixelRatio = DEVICE_PIXEL_RATIO
+const canvas = document.createElement('canvas')
+const context = canvas.getContext('2d')
+const pixelRatio = DEVICE_PIXEL_RATIO
 
-var gradient = (function() {
-  var grad = context.createLinearGradient(0, 0, 512 * pixelRatio, 0)
+const gradient = (function () {
+  const grad = context.createLinearGradient(0, 0, 512 * pixelRatio, 0)
   grad.addColorStop(0, 'red')
   grad.addColorStop(1 / 6, 'orange')
   grad.addColorStop(2 / 6, 'yellow')
@@ -21,7 +22,7 @@ var gradient = (function() {
 })()
 
 // Generate a canvasPattern with two circles on white background
-var pattern = (function() {
+const pattern = (function () {
   canvas.width = 8 * pixelRatio
   canvas.height = 8 * pixelRatio
   // white background
@@ -41,9 +42,9 @@ var pattern = (function() {
 })()
 
 // Generate style for gradient or pattern fill
-var fill = new Fill()
-var style = new Style({
-  fill: fill,
+const fill = new Fill()
+const style = new Style({
+  fill,
   stroke: new Stroke({
     color: '#333',
     width: 2,

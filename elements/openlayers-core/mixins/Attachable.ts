@@ -1,10 +1,10 @@
-import {LitElement} from 'lit-element'
+import { LitElement } from 'lit-element'
 
-let AttachableMixin: <B extends Constructor>(
+type Constructor = new (...args: any[]) => LitElement
+type AttachableMixin = <B extends Constructor>(
   Base: B,
   detailPropName: string,
 ) => B
-type Constructor = new (...args: any[]) => LitElement
 
 /**
  * Base mixin for elements which need additional context from their parents
@@ -35,9 +35,9 @@ type Constructor = new (...args: any[]) => LitElement
  * @polymer
  * @mixinFunction
  */
-AttachableMixin = function<B extends Constructor>(Base: B, detailPropName: string) {
+const Mixin: AttachableMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
   abstract class Attachable extends Base {
-    private __detachFromMap = () => {}
+    private __detachFromMap?: () => void
 
     public connectedCallback() {
       super.connectedCallback()
@@ -46,12 +46,14 @@ AttachableMixin = function<B extends Constructor>(Base: B, detailPropName: strin
 
     public disconnectedCallback() {
       super.disconnectedCallback()
-      this.__detachFromMap()
+      if (this.__detachFromMap) {
+        this.__detachFromMap()
+      }
     }
 
     private __attachToMap() {
       const detail: any = {}
-      this.dispatchEvent(new CustomEvent('attach', {detail}))
+      this.dispatchEvent(new CustomEvent('attach', { detail }))
 
       if (detailPropName in detail) {
         this._attach(detail)
@@ -67,10 +69,10 @@ AttachableMixin = function<B extends Constructor>(Base: B, detailPropName: strin
       }
     }
 
-    protected abstract _attach(eventDetail: any): Promise<() => void>
+    protected abstract _attach(eventDetail: any): Promise<(() => void) | null>
   }
 
   return Attachable
 }
 
-export default AttachableMixin
+export default Mixin

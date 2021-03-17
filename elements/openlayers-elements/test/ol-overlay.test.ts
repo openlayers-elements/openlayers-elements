@@ -1,10 +1,10 @@
-import { assert, expect, fixture } from '@open-wc/testing';
+import { assert, expect, fixture } from '@open-wc/testing'
 import * as sinon from 'sinon'
-import '../ol-map';
-import '../ol-overlay';
-import OlOverlay from '../ol-overlay';
-import OlMap from '../ol-map';
-import {forEvent} from '../../../test/util';
+import '../ol-map'
+import '../ol-overlay'
+import type OlOverlay from '../ol-overlay'
+import type OlMap from '../ol-map'
+import { forEvent } from '../../../test/util'
 
 describe('ol-overlay', () => {
   describe('auto-panning', () => {
@@ -16,7 +16,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay['autoPan']).to.equal(true)
+      expect(overlay.getOptions().autoPan).to.equal(true)
     })
 
     it('can be enabled through property', async () => {
@@ -28,7 +28,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay['autoPan']).to.equal(true)
+      expect(overlay.getOptions().autoPan).to.equal(true)
     })
 
     it('is disabled by default', async () => {
@@ -39,7 +39,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay['autoPan']).to.equal(false)
+      expect(overlay.getOptions().autoPan).to.equal(false)
     })
   })
 
@@ -74,7 +74,9 @@ describe('ol-overlay', () => {
     const element = (await fixture('<ol-overlay></ol-overlay>')) as OlOverlay
 
     // when
-    await element.createPart().catch(e => thrown = e)
+    await element.createPart().catch((e: Error) => {
+      thrown = e
+    })
 
     // then
     expect(thrown).to.be.ok
@@ -88,7 +90,7 @@ describe('ol-overlay', () => {
     await forEvent(map.querySelector('ol-overlay'), 'attached')
 
     // then
-    expect(map.map.getOverlays().getLength()).to.equal(1)
+    expect(map.map!.getOverlays().getLength()).to.equal(1)
   })
 
   it('remove itself from the map', async () => {
@@ -97,18 +99,18 @@ describe('ol-overlay', () => {
     await forEvent(map.querySelector('ol-overlay'), 'attached')
 
     // when
-    map.removeChild(map.querySelector('ol-overlay'))
+    map.removeChild(map.querySelector('ol-overlay')!)
 
     // then
-    expect(map.map.getOverlays().getLength()).to.equal(0)
+    expect(map.map!.getOverlays().getLength()).to.equal(0)
   })
 
   describe('hide', () => {
-    it(`unsets the underlying overlay's position`, async () => {
+    it('unsets the underlying overlay\'s position', async () => {
       // given
       const element = (await fixture('<ol-overlay id="foo"></ol-overlay>')) as OlOverlay
       await element.createPart()
-      const spy = sinon.spy(element.overlay, 'setPosition');
+      const spy = sinon.spy(element.overlay, 'setPosition')
 
       // when
       element.hide()
@@ -119,11 +121,11 @@ describe('ol-overlay', () => {
   })
 
   describe('setPosition', () => {
-    it(`unsets the underlying overlay's position`, async () => {
+    it('unsets the underlying overlay\'s position', async () => {
       // given
       const element = (await fixture('<ol-overlay id="foo"></ol-overlay>')) as OlOverlay
       await element.createPart()
-      const spy = sinon.spy(element.overlay, 'setPosition');
+      const spy = sinon.spy(element.overlay, 'setPosition')
 
       // when
       element.setPosition([1, 2])

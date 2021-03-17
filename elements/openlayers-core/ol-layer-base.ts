@@ -1,7 +1,7 @@
-import {property} from 'lit-element'
+import { property } from 'lit-element'
 import Layer from 'ol/layer/base'
 import Map from 'ol/Map'
-import {OlMapPart} from './ol-map-part'
+import { OlMapPart } from './ol-map-part'
 
 /**
  * Base class used to create layers
@@ -20,7 +20,7 @@ export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
    *
    * @type {Number}
    */
-  @property({type: Number, attribute: 'z-index'})
+  @property({ type: Number, attribute: 'z-index' })
   public zIndex = 0
 
   public async createPart() {

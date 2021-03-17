@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path')
 const glob = require('glob')
 const defaultConfig = require('@open-wc/building-webpack/modern-config')
@@ -25,7 +26,7 @@ const config = merge(
   }),
   {
     devtool: 'source-map',
-    output: {publicPath: '/'},
+    output: { publicPath: '/' },
     devServer: {
       compress: true,
       overlay: {
@@ -39,9 +40,7 @@ const config = merge(
       new CopyWebpackPlugin([
         {
           from: 'analysis.json',
-          transform: (analysis) => {
-            return analysis.toString().replace(/https:\/\/openlayers-elements.netlify.com\//g, '')
-          },
+          transform: analysis => analysis.toString().replace(/https:\/\/openlayers-elements.netlify.com\//g, ''),
         },
       ]),
     ],

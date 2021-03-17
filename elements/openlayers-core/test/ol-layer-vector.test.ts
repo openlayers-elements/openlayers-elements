@@ -1,11 +1,11 @@
-import {expect, fixture, assert} from '@open-wc/testing'
-import {html} from 'lit-html'
-import OlLayerVector from '../ol-layer-vector'
-import '../ol-layer-vector'
-import '@openlayers-elements/core/ol-map'
-import './test-elements/ol-test-feature'
-import {forEvent} from '../../../test/util'
+import { expect, fixture, assert } from '@open-wc/testing'
+import { html } from 'lit-html'
 import * as sinon from 'sinon'
+import '@openlayers-elements/core/ol-map'
+import type OlLayerVector from '../ol-layer-vector'
+import '../ol-layer-vector'
+import './test-elements/ol-test-feature'
+import { forEvent } from '../../../test/util'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
 
@@ -25,7 +25,7 @@ describe('ol-layer-vector', () => {
     await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
 
     // then
-    expect(element.source.getFeatures().length).to.equal(4)
+    expect(element.source!.getFeatures().length).to.equal(4)
   })
 
   it('should remove markers from layer when node is removed', async () => {
@@ -43,10 +43,10 @@ describe('ol-layer-vector', () => {
     await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
 
     // when
-    element.removeChild(element.querySelector('ol-test-feature'))
+    element.removeChild(element.querySelector('ol-test-feature')!)
 
     // then
-    expect(element.source.getFeatures().length).to.equal(3)
+    expect(element.source!.getFeatures().length).to.equal(3)
   })
 
   it('should handle markers added dynamically', async () => {
@@ -65,7 +65,7 @@ describe('ol-layer-vector', () => {
     await forEvent(marker, 'attached')
 
     // then
-    expect(element.source.getFeatures().length).to.equal(1)
+    expect(element.source!.getFeatures().length).to.equal(1)
   })
 
   describe('fit', () => {
@@ -77,16 +77,16 @@ describe('ol-layer-vector', () => {
           <ol-layer-vector></ol-layer-vector>
         </ol-map>
       `,
-      )).querySelector('ol-layer-vector')
+      )).querySelector<OlLayerVector>('ol-layer-vector')!
       await forEvent(element, 'attached')
       const mapFit = sinon.spy(element._map, 'fit')
-      sinon.stub(element.source, 'getExtent').callsFake(() => [1,2,3,4])
+      sinon.stub(element.source!, 'getExtent').callsFake(() => [1, 2, 3, 4])
 
       // when
       element.fit()
 
       // then
-      assert(mapFit.calledWith([1,2,3,4]))
+      assert(mapFit.calledWith([1, 2, 3, 4]))
     })
   })
 })

@@ -1,4 +1,4 @@
-import {property} from 'lit-element'
+import { property } from 'lit-element'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
@@ -18,7 +18,7 @@ export default class OlLayerXyz extends OlLayerBase<TileLayer> {
    *
    * @type {String}
    */
-  @property({type: String})
+  @property({ type: String })
   public get url(): string | undefined {
     return this.__url
   }
@@ -32,7 +32,7 @@ export default class OlLayerXyz extends OlLayerBase<TileLayer> {
    *
    * @type {Array}
    */
-  @property({type: String})
+  @property({ type: String })
   public urls?: string[] = undefined
 
   protected async _createLayer() {

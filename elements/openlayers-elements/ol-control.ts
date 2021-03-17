@@ -1,8 +1,8 @@
-import {html} from 'lit-element'
-import {render} from 'lit-html'
+import { html } from 'lit-element'
+import { render } from 'lit-html'
 import Control from 'ol/control/Control'
 import Map from 'ol/map'
-import {OlMapPart} from '@openlayers-elements/core/ol-map-part'
+import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
 
 /**
  * A base element for implementing map controls.

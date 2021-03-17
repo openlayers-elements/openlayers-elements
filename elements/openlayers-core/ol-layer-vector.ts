@@ -1,9 +1,9 @@
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
+import { property } from 'lit-element'
+import Style, { StyleFunction } from 'ol/style/Style'
 import OlLayerBase from './ol-layer-base'
 import AttachableAwareMixin from './mixins/AttachableAware'
-import {property} from 'lit-element'
-import Style, {StyleFunction} from 'ol/style/Style'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
@@ -33,7 +33,7 @@ export default class OlLayerVector extends AttachableAwareMixin(
    *
    * @type {VectorSource}
    */
-  public source: VectorSource = undefined
+  public source?: VectorSource = undefined
 
   /**
    * The style to be applied to layer features. It can be either an `ol/Style`, array thereof,
@@ -41,11 +41,13 @@ export default class OlLayerVector extends AttachableAwareMixin(
    *
    * @type {Style | Style[] | StyleFunction}
    */
-  @property({type: Object})
-  public featureStyle: Style | Style[] | StyleFunction = undefined
+  @property({ type: Object })
+  public featureStyle?: Style | Style[] | StyleFunction = undefined
 
   public fit() {
-    this._map.fit(this.source.getExtent())
+    if (this.source) {
+      this._map.fit(this.source.getExtent())
+    }
   }
 
   protected _createSource() {
