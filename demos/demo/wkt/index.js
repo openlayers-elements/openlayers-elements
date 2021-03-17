@@ -1,10 +1,5 @@
-import loadPolyfills from '@open-wc/polyfills-loader'
-
-loadPolyfills()
-  .then(() => import('@openlayers-elements/core/ol-map'))
-  .then(() => {
-    import('@polymer/iron-demo-helpers/demo-snippet')
-    import('@openlayers-elements/maps/ol-control')
-    import('@openlayers-elements/maps/ol-select')
-    import('@openlayers-elements/maps/ol-layer-wkt')
-  })
+import '@openlayers-elements/core/ol-map'
+import '@polymer/iron-demo-helpers/demo-snippet'
+import '@openlayers-elements/maps/ol-control'
+import '@openlayers-elements/maps/ol-select'
+import '@openlayers-elements/maps/ol-layer-wkt'
