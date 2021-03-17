@@ -1,15 +1,16 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit-html'
-import OlLayerWkt from '../ol-layer-wkt'
+import type OlLayerWkt from '../ol-layer-wkt'
+import '../ol-layer-wkt'
 
 describe('ol-layer-xyz', () => {
   it('creates a layer with not features when no featureData is provided', async () => {
     // given
-    const element = (await fixture(
+    const element = (await fixture<OlLayerWkt>(
       html`
         <ol-layer-wkt></ol-layer-wkt>
       `,
-    )) as OlLayerWkt
+    ))
 
     // when
     await element.createPart()
@@ -20,11 +21,11 @@ describe('ol-layer-xyz', () => {
 
   it("set layer's features when featureData is set", async () => {
     // given
-    const element = (await fixture(
+    const element = (await fixture<OlLayerWkt>(
       html`
         <ol-layer-wkt></ol-layer-wkt>
       `,
-    )) as OlLayerWkt
+    ))
 
     // when
     await element.createPart()
@@ -42,11 +43,11 @@ describe('ol-layer-xyz', () => {
 
   describe('resetFeatures', () => {
     it('has no effect before source is created', async () => {
-      const element = (await fixture(
+      const element = (await fixture<OlLayerWkt>(
         html`
         <ol-layer-wkt></ol-layer-wkt>
       `,
-      )) as OlLayerWkt
+      ))
 
       // when
       element.resetFeatures()
