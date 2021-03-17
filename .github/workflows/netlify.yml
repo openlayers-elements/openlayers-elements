@@ -14,7 +14,7 @@ jobs:
       - uses: nelonoel/branch-name@v1.0.1
 
       - name: Publish preview
-        uses: tpluscode/action-netlify-deploy@patch-3
+        uses: tpluscode/action-netlify-deploy@detect-install-command
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
