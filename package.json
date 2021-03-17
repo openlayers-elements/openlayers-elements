@@ -9,13 +9,12 @@
   "scripts": {
     "prestart": "yarn analyze",
     "start": "lerna run --scope demos start",
-    "start:es5": "lerna run --scope demos start:es5",
     "build": "lerna run --ignore demos build",
     "lint": "eslint elements/**/*.ts demos/**/*.js --quiet",
     "test": "wtr",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
     "docs": "yarn build; yarn analyze; lerna run --scope demos build",
-    "remap-coverage": "cat ./coverage/coverage-final.json | yarn remap-istanbul -o ./coverage/lcov.info -t lcovonly"
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.14.1",
