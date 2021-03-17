@@ -3034,6 +3034,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/proj4@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@types/proj4/-/proj4-2.5.0.tgz#40f1ed1cb9ef66e442ab6e57eba32eadc0f0501a"
+  integrity sha512-9bR9qvg4wZE6UiIlmhodCOZ2r38SeN8T35SsmMDuIMfACxxaMvIwiwoTJnEA9f/KEhL+BQSuD+arbZucUzYu7w==
+
 "@types/qs@*":
   version "6.9.6"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.6.tgz#df9c3c8b31a247ec315e6996566be3171df4b3b1"

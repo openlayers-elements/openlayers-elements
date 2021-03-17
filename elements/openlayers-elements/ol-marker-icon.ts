@@ -38,19 +38,19 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {string}
    */
   @property({ type: String })
-  public src: string = undefined
+  public src?: string = undefined
 
   /**
    * @type {number}
    */
   @property({ type: Number })
-  public lon: number = undefined
+  public lon?: number = undefined
 
   /**
    * @type {number}
    */
   @property({ type: Number })
-  public lat: number = undefined
+  public lat?: number = undefined
 
   /**
    * @type {number}
@@ -98,7 +98,7 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {string}
    */
   @property({ type: String })
-  public color: string = undefined
+  public color?: string = undefined
 
   /**
    * @type {string}

@@ -1,11 +1,10 @@
 import { assert, expect, fixture } from '@open-wc/testing'
+import { forEvent } from '@openlayers-elements/testing'
 import { html } from 'lit-html'
 import '../ol-layer-vector'
 import * as sinon from 'sinon'
 import '../ol-map'
 import type OlMap from '../ol-map'
-
-import { forEvent } from '../../../test/util'
 
 describe('ol-map', () => {
   it('should handle layers added dynamically', async () => {

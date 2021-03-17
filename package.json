@@ -3,6 +3,7 @@
   "name": "open-layers",
   "workspaces": [
     "demos",
+    "test",
     "elements/*"
   ],
   "scripts": {

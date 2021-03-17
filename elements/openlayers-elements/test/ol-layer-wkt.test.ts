@@ -1,6 +1,5 @@
-import {expect, fixture} from '@open-wc/testing'
-import {html} from 'lit-html'
-import '../ol-layer-wkt'
+import { expect, fixture } from '@open-wc/testing'
+import { html } from 'lit-html'
 import OlLayerWkt from '../ol-layer-wkt'
 
 describe('ol-layer-xyz', () => {
@@ -16,7 +15,7 @@ describe('ol-layer-xyz', () => {
     await element.createPart()
 
     // then
-    expect(element.source.getFeatures().length).to.equal(0)
+    expect(element.source!.getFeatures().length).to.equal(0)
   })
 
   it("set layer's features when featureData is set", async () => {
@@ -32,13 +31,13 @@ describe('ol-layer-xyz', () => {
     element.featureData = [
       {
         id: 'feature',
-        wkt: "POLYGON((10.689 -25.092, 34.595 -20.170, 38.814 -35.639, 13.502 -39.155, 10.689 -25.092))"
-      }
+        wkt: 'POLYGON((10.689 -25.092, 34.595 -20.170, 38.814 -35.639, 13.502 -39.155, 10.689 -25.092))',
+      },
     ]
     await element.updateComplete
 
     // then
-    expect(element.source.getFeatures().length).to.equal(1)
+    expect(element.source!.getFeatures().length).to.equal(1)
   })
 
   describe('resetFeatures', () => {

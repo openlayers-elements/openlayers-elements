@@ -175,7 +175,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   }
 
   public fit(extent: SimpleGeometry | [number, number, number, number], options?: FitOptions) {
-    this.map.getView().fit(extent, {
+    this.map?.getView().fit(extent, {
       size: this.map.getSize(),
       // constrainResolution: false,
       nearest: false,

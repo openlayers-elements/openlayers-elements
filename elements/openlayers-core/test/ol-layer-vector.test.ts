@@ -2,10 +2,10 @@ import { expect, fixture, assert } from '@open-wc/testing'
 import { html } from 'lit-html'
 import * as sinon from 'sinon'
 import '@openlayers-elements/core/ol-map'
+import { forEvent } from '@openlayers-elements/testing'
 import type OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import './test-elements/ol-test-feature'
-import { forEvent } from '../../../test/util'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
 
@@ -22,7 +22,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
+    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
 
     // then
     expect(element.source!.getFeatures().length).to.equal(4)
@@ -40,7 +40,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)'), 'attached')
+    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
 
     // when
     element.removeChild(element.querySelector('ol-test-feature')!)

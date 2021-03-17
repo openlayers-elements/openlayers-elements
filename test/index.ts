@@ -1,13 +1,9 @@
-import {fixture} from '@open-wc/testing'
-import {html, TemplateResult} from 'lit-html'
+import { fixture } from '@open-wc/testing'
+import { html, TemplateResult } from 'lit-html'
 
-export function forEvent(element, event) {
+export function forEvent(element: Element, event: string) {
   return new Promise((resolve) => {
-    if ('on' in element) {
-      element.on(event, resolve)
-    } else {
-      element.addEventListener(event, resolve)
-    }
+    element.addEventListener(event, resolve)
   })
 }
 

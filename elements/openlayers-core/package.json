@@ -20,6 +20,7 @@
   "devDependencies": {
     "@openlayers-elements/core": "^0.2.0-beta.0",
     "@open-wc/testing": "^2.5.32",
-    "sinon": "^9.2.4"
+    "sinon": "^9.2.4",
+    "@openlayers-elements/testing": "0.0.0"
   }
 }

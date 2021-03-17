@@ -12,7 +12,9 @@
     "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": [
     "demos",
