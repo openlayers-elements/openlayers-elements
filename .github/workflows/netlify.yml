@@ -16,7 +16,7 @@ jobs:
       - uses: nelonoel/branch-name@v1.0.1
 
       - name: Publish preview
-        uses: jsmrcaga/action-netlify-deploy@1.7.2
+        uses: jsmrcaga/action-netlify-deploy@v1.7.2
         if: env.NETLIFY_AUTH_TOKEN
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
