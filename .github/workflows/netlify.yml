@@ -26,6 +26,7 @@ jobs:
           build_directory: demos/dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
+          node_version: 14
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
