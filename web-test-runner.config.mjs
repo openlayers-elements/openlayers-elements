@@ -33,9 +33,9 @@ if (process.env.BROWSER_STACK_USERNAME && process.env.BROWSER_STACK_ACCESS_KEY) 
         capabilities: {
           ...sharedCapabilities,
           browserName: 'Safari',
-          browser_version: '11.1',
+          browser_version: '14.1',
           os: 'OS X',
-          os_version: 'High Sierra',
+          os_version: 'Big Sur',
         },
       }),
 
