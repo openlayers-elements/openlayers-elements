@@ -25,7 +25,6 @@ jobs:
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
           BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
-      - run: lerna run remap-coverage
       - name: Codecov
         uses: codecov/codecov-action@v1.0.5
         with:

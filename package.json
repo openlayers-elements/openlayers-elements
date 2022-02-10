@@ -9,11 +9,11 @@
   "scripts": {
     "prestart": "yarn analyze",
     "start": "wsrun -p demos -c start",
-    "build": "wsrun -p demos -c build",
+    "build": "wsrun -x demos -x @openlayers-elements/testing -c build",
     "lint": "eslint elements/**/*.ts demos/**/*.js --quiet",
     "test": "wtr",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
-    "docs": "yarn build; yarn analyze; lerna run --scope demos build",
+    "docs": "yarn build; yarn analyze; wsrun -p demos -c build",
     "release": "changeset publish"
   },
   "devDependencies": {
