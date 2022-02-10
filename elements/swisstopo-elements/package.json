@@ -6,6 +6,7 @@
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
