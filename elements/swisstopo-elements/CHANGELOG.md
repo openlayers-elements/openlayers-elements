@@ -1,6 +1,13 @@
 # @openlayers-elements/swisstopo
 
+## 0.2.1
+
+### Patch Changes
+
+- 7acd485: Missing license
+
 ## 0.2.0
+
 ### Minor Changes
 
 - a9a6a83: Update OpenLayers
