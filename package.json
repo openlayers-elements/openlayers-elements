@@ -41,7 +41,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-wc": "^1.3.2",
-    "polymer-cli": "^1.9.6",
+    "polymer-cli": "^1.9.11",
     "prettier": "^1.16.4",
     "typescript": "^4.2.3",
     "webpack-cli": "^3.2.3",
