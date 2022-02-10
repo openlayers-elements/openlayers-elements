@@ -1593,9 +1593,9 @@
   integrity sha512-tx5TauYSmzsIvmSqepUPDYbs4/Ejz2XbZ1IkD7JEGqkdNUJlh+9KU85G56Tfdk/xjEZ8zorFfN09OSwiMrIQWA==
 
 "@polymer/iron-a11y-announcer@^3.0.0-pre.26":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@polymer/iron-a11y-announcer/-/iron-a11y-announcer-3.1.0.tgz#3d3712a165070ed3cdfc39e54f95515c913c9613"
-  integrity sha512-lc5i4NKB8kSQHH0Hwu8WS3ym93m+J69OHJWSSBxwd17FI+h2wmgxDzeG9LI4ojMMck17/uc2pLe7g/UHt5/K/A==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-a11y-announcer/-/iron-a11y-announcer-3.2.0.tgz#d04b1301413d473336cc5797dfd97b3b36dd0cd7"
+  integrity sha512-We+hyaFHcg7Ke8ovsoxUpYEXFIJLHxMCDaLehTB4dELS+C+K0zMnGSiqQvb/YzGS+nSYpAfkQIyg1msOCdHMtA==
   dependencies:
     "@polymer/polymer" "^3.0.0"
 
@@ -1822,7 +1822,7 @@
     "@polymer/iron-overlay-behavior" "^3.0.0-pre.27"
     "@polymer/polymer" "^3.0.0"
 
-"@polymer/polymer@^3.0.0", "@polymer/polymer@^3.1.0":
+"@polymer/polymer@^3.0.0", "@polymer/polymer@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@polymer/polymer/-/polymer-3.4.1.tgz#333bef25711f8411bb5624fb3eba8212ef8bee96"
   integrity sha512-KPWnhDZibtqKrUz7enIPOiO4ZQoJNOuLwqrhV2MXzIt3VVnUVJVG5ORz4Z2sgO+UZ+/UZnPD0jqY+jmw/+a9mQ==
@@ -12073,7 +12073,7 @@ polymer-bundler@^4.0.9:
     source-map "^0.5.6"
     vscode-uri "=1.0.6"
 
-polymer-cli@^1.9.6:
+polymer-cli@^1.9.11:
   version "1.9.11"
   resolved "https://registry.yarnpkg.com/polymer-cli/-/polymer-cli-1.9.11.tgz#0b5310732b787e07b811af96627ef0fd1263f5da"
   integrity sha512-tiURjHDCOUUtDVPuVYvrfFI9PXe4OOUmBbn6Sg5GJNQ2POtP7r7hv+I5yI8P9qsxmalHTa19chVtf5/t9IBXDg==
