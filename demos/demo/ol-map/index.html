@@ -31,5 +31,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </demo-snippet>
 </div>
 <script type="module" src="index.js"></script>
+<script>
+  const mapEl = document.querySelector('ol-map')
+
+  mapEl.updateComplete.then(() => {
+    mapEl.addEventListener('moveend', console.log)
+    mapEl.addEventListener('view-change', console.log)
+  })
+</script>
 </body>
 </html>

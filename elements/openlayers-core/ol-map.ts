@@ -1,10 +1,12 @@
 import { html, LitElement, property, query } from 'lit-element'
 import OpenLayersMap from 'ol/Map'
+import { MapEvent } from 'ol'
 import SimpleGeometry from 'ol/geom/SimpleGeometry'
-import { fromLonLat, get as getProjection } from 'ol/proj'
+import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj'
 import View, { FitOptions } from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
 import AttachableAwareMixin from './mixins/AttachableAware'
+import { forwardEvents } from './lib/events'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -41,6 +43,28 @@ import AttachableAwareMixin from './mixins/AttachableAware'
  */
 export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
+   * Forwards `moveend` event from OpenLayers object
+   *
+   * @event moveend
+   * @param {detail} the event itself
+   */
+
+  /**
+   * Forwards `change` event from OpenLayers object
+   *
+   * @event change
+   * @param {detail} the event itself
+   */
+
+  /**
+   * Fired when the map finished moving, as the result of human interaction, as well as programmatically
+   *
+   * @event view-change
+   * @param {lat} latitude
+   * @param {lon} longitude
+   */
+
+  /**
    * Zoom level
    * @type {Number}
    */
@@ -63,6 +87,10 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
 
   @query('div')
   public mapElement!: HTMLDivElement
+
+  private static get __forwardedEvents() {
+    return ['moveend', 'change']
+  }
 
   /**
    * A string identifier of the projection to be used. Custom projections can be added using [`proj4` library][p4].
@@ -154,6 +182,9 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       view: new View(viewInit),
     })
 
+    forwardEvents(OlMap.__forwardedEvents, this, this.map)
+    this.map.on('moveend', this.__dispatchViewChange.bind(this))
+
     this.notifyReady()
   }
 
@@ -181,6 +212,19 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       nearest: false,
       ...options,
     })
+  }
+
+  private __dispatchViewChange(event: MapEvent) {
+    const { center } = event.frameState.viewState
+    const [lon, lat] = toLonLat(center, this.projection)
+
+    this.dispatchEvent(new CustomEvent('view-change', {
+      detail: {
+        ...event.frameState.viewState,
+        lat,
+        lon,
+      },
+    }))
   }
 }
 
