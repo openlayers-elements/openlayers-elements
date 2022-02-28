@@ -7,6 +7,13 @@ import { OlMapPart } from './ol-map-part'
  * Base class used to create layers
  */
 export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
+  /**
+   * Forwards `change` event from OpenLayers object
+   *
+   * @event change
+   * @param {detail} the event itself
+   */
+
   protected _addToMap(map: Map, layer: L) {
     map.addLayer(layer)
   }
@@ -22,6 +29,10 @@ export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
    */
   @property({ type: Number, attribute: 'z-index' })
   public zIndex = 0
+
+  protected get _forwardedEvents() {
+    return ['change']
+  }
 
   public async createPart() {
     const layer = await this._createLayer()
