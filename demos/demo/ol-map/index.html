@@ -36,6 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   mapEl.updateComplete.then(() => {
     mapEl.addEventListener('moveend', ev => console.log(ev.detail))
+    mapEl.addEventListener('view-change', console.log)
   })
 </script>
 </body>
