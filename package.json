@@ -18,7 +18,7 @@
     "postinstall": "npx yarn-deduplicate"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.20.0",
+    "@changesets/cli": "^2.21.0",
     "@open-wc/building-webpack": "^2.13.46",
     "@open-wc/eslint-config": "^7.0.0",
     "@rollup/plugin-commonjs": "^17.1.0",
