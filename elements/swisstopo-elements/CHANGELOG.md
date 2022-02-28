@@ -1,5 +1,22 @@
 # @openlayers-elements/swisstopo
 
+## 0.2.2
+
+### Patch Changes
+
+- f8ab7fa: Forward events from OpenLayers objects:
+
+  - `ol-map`:
+    - `moveend`
+    - `change`
+  - `ol-layer-*`, swisstopo layers:
+    - `change`
+
+- Updated dependencies [f8ab7fa]
+- Updated dependencies [f8ab7fa]
+  - @openlayers-elements/core@0.2.1
+  - @openlayers-elements/maps@0.2.1
+
 ## 0.2.1
 
 ### Patch Changes
