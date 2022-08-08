@@ -1,8 +1,7 @@
-import { expect, fixture, assert } from '@open-wc/testing'
+import { expect, fixture, assert, oneEvent } from '@open-wc/testing'
 import { html } from 'lit'
 import * as sinon from 'sinon'
 import '@openlayers-elements/core/ol-map'
-import { forEvent } from '@openlayers-elements/testing'
 import type OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import './test-elements/ol-test-feature'
@@ -22,7 +21,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
+    await oneEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
 
     // then
     expect(element.source!.getFeatures().length).to.equal(4)
@@ -40,7 +39,7 @@ describe('ol-layer-vector', () => {
         </ol-layer-vector>
       </ol-map>
     `)).querySelector('ol-layer-vector') as OlLayerVector
-    await forEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
+    await oneEvent(element.querySelector('ol-test-feature:nth-of-type(4)')!, 'attached')
 
     // when
     element.removeChild(element.querySelector('ol-test-feature')!)
@@ -62,7 +61,7 @@ describe('ol-layer-vector', () => {
     // when
     const marker = document.createElement('ol-test-feature')
     element.appendChild(marker)
-    await forEvent(marker, 'attached')
+    await oneEvent(marker, 'attached')
 
     // then
     expect(element.source!.getFeatures().length).to.equal(1)
@@ -78,7 +77,7 @@ describe('ol-layer-vector', () => {
         </ol-map>
       `,
       )).querySelector<OlLayerVector>('ol-layer-vector')!
-      await forEvent(element, 'attached')
+      await oneEvent(element, 'attached')
       const mapFit = sinon.spy(element._map, 'fit')
       sinon.stub(element.source!, 'getExtent').callsFake(() => [1, 2, 3, 4])
 

@@ -62,6 +62,7 @@ const AttachableMixin: IAttachableMixin = function<B extends Constructor> (Base:
             }
           })
       } else {
+        // eslint-disable-next-line no-console
         console.warn(`Failed to attach to the parent ${detailPropName}. Either it's not ready yet or not a parent of this element.`)
       }
     }

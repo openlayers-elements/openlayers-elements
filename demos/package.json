@@ -8,7 +8,6 @@
     "build": "webpack --mode production"
   },
   "devDependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/polymer": "^3.4.1",
     "copy-webpack-plugin": "^5",
     "html-webpack-plugin": "^4",
@@ -18,6 +17,7 @@
   },
   "dependencies": {
     "@polymer/iron-component-page": "^4.0.1",
+    "@polymer/iron-demo-helpers": "^3.0.2",
     "@openlayers-elements/core": "^0.2.0-beta.0",
     "@openlayers-elements/maps": "^0.2.0-beta.0",
     "@openlayers-elements/swisstopo": "^0.2.0-beta.0",
