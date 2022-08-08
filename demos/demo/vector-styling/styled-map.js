@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { html, css, LitElement } from 'lit-element'
+import { html, css, LitElement } from 'lit'
 import { DEVICE_PIXEL_RATIO } from 'ol/has'
 import { Fill, Stroke, Style } from 'ol/style'
 import '@openlayers-elements/core/ol-map'

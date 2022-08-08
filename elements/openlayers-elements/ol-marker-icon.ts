@@ -1,5 +1,5 @@
 import OlFeature from '@openlayers-elements/core/ol-feature'
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import Feature from 'ol/Feature'
 import Point from 'ol/geom/Point'
 import { fromLonLat } from 'ol/proj'

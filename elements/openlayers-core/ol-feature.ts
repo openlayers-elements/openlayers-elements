@@ -1,5 +1,5 @@
 import Feature from 'ol/Feature'
-import { LitElement } from 'lit-element'
+import { LitElement } from 'lit'
 import AttachableMixin from './mixins/Attachable'
 import { forwardEvents } from './lib/events'
 

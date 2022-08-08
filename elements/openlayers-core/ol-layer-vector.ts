@@ -1,6 +1,6 @@
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import Style, { StyleFunction } from 'ol/style/Style'
 import OlLayerBase from './ol-layer-base'
 import AttachableAwareMixin from './mixins/AttachableAware'

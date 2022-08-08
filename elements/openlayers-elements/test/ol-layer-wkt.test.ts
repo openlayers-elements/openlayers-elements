@@ -1,5 +1,5 @@
 import { expect, fixture } from '@open-wc/testing'
-import { html } from 'lit-html'
+import { html } from 'lit'
 import type OlLayerWkt from '../ol-layer-wkt'
 import '../ol-layer-wkt'
 

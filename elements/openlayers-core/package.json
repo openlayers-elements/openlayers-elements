@@ -12,13 +12,12 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "lit-element": "^2.0.0",
-    "lit-html": "^1.0.0",
+    "lit": "^2.0.0",
     "ol": "^6.5.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.32",
+    "@open-wc/testing": "^3.1.6",
     "sinon": "^9.2.4",
     "@openlayers-elements/testing": "0.0.0"
   },

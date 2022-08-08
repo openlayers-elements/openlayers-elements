@@ -1,4 +1,4 @@
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import Layer from 'ol/layer/Base'
 import Map from 'ol/Map'
 import { OlMapPart } from './ol-map-part'

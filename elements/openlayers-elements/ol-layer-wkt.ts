@@ -1,4 +1,5 @@
-import { property, PropertyValues } from 'lit-element'
+import { PropertyValues } from 'lit'
+import { property } from 'lit/decorators.js'
 import WKT from 'ol/format/WKT'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'

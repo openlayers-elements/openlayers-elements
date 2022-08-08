@@ -1,5 +1,5 @@
 import { fixture } from '@open-wc/testing'
-import { html, TemplateResult } from 'lit-html'
+import { html, TemplateResult } from 'lit'
 
 export function forEvent(element: Element, event: string) {
   return new Promise((resolve) => {

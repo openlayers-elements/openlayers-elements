@@ -1,5 +1,5 @@
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
 import WMTS, { optionsFromCapabilities } from 'ol/source/WMTS'

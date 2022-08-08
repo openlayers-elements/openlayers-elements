@@ -1,5 +1,5 @@
 import { expect, fixture, assert } from '@open-wc/testing'
-import { html } from 'lit-html'
+import { html } from 'lit'
 import * as sinon from 'sinon'
 import '@openlayers-elements/core/ol-map'
 import { forEvent } from '@openlayers-elements/testing'

@@ -14,7 +14,7 @@
   "dependencies": {
     "@openlayers-elements/core": "^0.2.1",
     "@openlayers-elements/maps": "^0.2.1",
-    "lit-element": "^2.0.0",
+    "lit": "^2.0.0",
     "ol": "^6.5.0",
     "proj4": "^2.5.0"
   },
