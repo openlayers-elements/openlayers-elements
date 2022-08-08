@@ -53,13 +53,23 @@ const AttachableAwareMixin: IAttachableAwareMixin = function<B extends Construct
 
     connectedCallback() {
       super.connectedCallback()
-      this.addEventListener(
-        'attach',
-        (e: any) => {
-          e.detail[detailPropName] = this.__attachReady
-        },
-        true,
-      )
+      this.addEventListener('attach', this.__onAttach, true)
+      this.addEventListener('attach', this.__stopPropagation)
+      this.addEventListener('attached', this.__stopPropagation)
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback()
+      this.removeEventListener('attach', this.__onAttach)
+      this.removeEventListener('attached', this.__stopPropagation)
+    }
+
+    __onAttach(e: any) {
+      e.detail[detailPropName] = this.__attachReady
+    }
+
+    __stopPropagation(e: Event) {
+      e.stopPropagation()
     }
 
     /**

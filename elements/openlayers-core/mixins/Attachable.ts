@@ -50,7 +50,7 @@ const AttachableMixin: IAttachableMixin = function<B extends Constructor> (Base:
 
     private __attachToMap() {
       const detail: any = {}
-      this.dispatchEvent(new CustomEvent('attach', { detail }))
+      this.dispatchEvent(new CustomEvent('attach', { detail, bubbles: true, composed: true }))
 
       if (detailPropName in detail) {
         this._attach(detail)
@@ -58,7 +58,7 @@ const AttachableMixin: IAttachableMixin = function<B extends Constructor> (Base:
             if (detachFunc) {
               this.__detachFromMap = detachFunc
 
-              this.dispatchEvent(new Event('attached'))
+              this.dispatchEvent(new Event('attached', { bubbles: true, composed: true }))
             }
           })
       } else {

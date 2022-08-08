@@ -1,5 +1,5 @@
 import Feature from 'ol/Feature'
-import OlFeature from '@openlayers-elements/core/ol-feature'
+import OlFeature from '../../ol-feature'
 
 export default class OlTestFeature extends OlFeature {
   createFeature(): Feature {
