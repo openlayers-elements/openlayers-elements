@@ -1,5 +1,11 @@
 # @openlayers-elements/core
 
+## 0.2.2
+
+### Patch Changes
+
+- f51a093: `attach` and `attached` events should work from with nested Shadow DOM (re #76)
+
 ## 0.2.1
 
 ### Patch Changes
