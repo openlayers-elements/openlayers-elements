@@ -19,8 +19,7 @@
   "devDependencies": {
     "@open-wc/testing": "^3.1.6",
     "sinon": "^9.2.4",
-    "@openlayers-elements/testing": "0.0.0",
-    "@openlayers-elements/core": "^0.2.1"
+    "@openlayers-elements/testing": "0.0.0"
   },
   "publishConfig": {
     "access": "public"

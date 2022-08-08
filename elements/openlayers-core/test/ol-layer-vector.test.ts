@@ -1,7 +1,7 @@
 import { expect, fixture, assert, oneEvent } from '@open-wc/testing'
 import { html } from 'lit'
 import * as sinon from 'sinon'
-import '@openlayers-elements/core/ol-map'
+import '../ol-map'
 import type OlLayerVector from '../ol-layer-vector'
 import '../ol-layer-vector'
 import './test-elements/ol-test-feature'
