@@ -1,7 +1,8 @@
-import { assert, expect, fixture } from '@open-wc/testing'
+import { assert, expect, fixture, nextFrame, waitUntil } from '@open-wc/testing'
 import { forEvent } from '@openlayers-elements/testing'
 import { html } from 'lit-html'
 import '../ol-layer-vector'
+import './test-elements/ol-test-feature'
 import * as sinon from 'sinon'
 import '../ol-map'
 import type OlMap from '../ol-map'
@@ -85,6 +86,90 @@ describe('ol-map', () => {
           extra: 'setting',
         }),
       ))
+    })
+  })
+
+  describe('@attach', () => {
+    it('should not bubble the event beyond the map', async () => {
+      // given
+      const onAttach = sinon.spy()
+
+      // when
+      await fixture(
+        html`
+        <div @attach="${onAttach}">
+          <ol-map><ol-test-feature></ol-test-feature></ol-map>
+        </div>
+      `,
+      )
+      await nextFrame()
+
+      // then
+      expect(onAttach).not.to.have.been.called
+    })
+
+    it('is composed and bubbles', async () => {
+      // given
+      let attach: Event | undefined
+      const onAttach = (e: Event) => {
+        attach = e
+      }
+
+      // when
+      await fixture(
+        html`
+          <ol-map><ol-layer-vector @attached="${onAttach}"></ol-layer-vector></ol-map>
+        `,
+      )
+      await waitUntil(() => !!attach)
+
+      // then
+      expect(attach).to.contain({
+        composed: true,
+        bubbles: true,
+      })
+    })
+  })
+
+  describe('@attached', () => {
+    it('should not bubble the event beyond the map', async () => {
+      // given
+      const onAttached = sinon.spy()
+
+      // when
+      await fixture(
+        html`
+        <div @attached="${onAttached}">
+          <ol-map><ol-test-feature></ol-test-feature></ol-map>
+        </div>
+      `,
+      )
+      await nextFrame()
+
+      // then
+      expect(onAttached).not.to.have.been.called
+    })
+
+    it('is composed and bubbles', async () => {
+      // given
+      let attached: Event | undefined
+      const onAttached = (e: Event) => {
+        attached = e
+      }
+
+      // when
+      await fixture(
+        html`
+          <ol-map><ol-layer-vector @attached="${onAttached}"></ol-layer-vector></ol-map>
+        `,
+      )
+      await waitUntil(() => !!attached)
+
+      // then
+      expect(attached).to.contain({
+        composed: true,
+        bubbles: true,
+      })
     })
   })
 })
