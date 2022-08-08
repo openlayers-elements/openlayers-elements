@@ -1,8 +1,8 @@
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
 import Overlay from 'ol/Overlay'
 import Map from 'ol/Map'
-import { html } from 'lit-html'
-import { property } from 'lit-element'
+import { html } from 'lit'
+import { property } from 'lit/decorators.js'
 
 /**
  * An element used to place HTML on the map surface. Similar to `ol-control` but

@@ -1,4 +1,4 @@
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import GeoJSON from 'ol/format/GeoJSON'
 import VectorSource from 'ol/source/Vector'
 import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'

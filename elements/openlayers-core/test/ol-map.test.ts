@@ -1,6 +1,6 @@
 import { assert, expect, fixture, nextFrame, waitUntil } from '@open-wc/testing'
 import { forEvent } from '@openlayers-elements/testing'
-import { html } from 'lit-html'
+import { html } from 'lit'
 import '../ol-layer-vector'
 import './test-elements/ol-test-feature'
 import * as sinon from 'sinon'

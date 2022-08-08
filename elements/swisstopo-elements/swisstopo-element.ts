@@ -1,4 +1,5 @@
-import { LitElement, property } from 'lit-element'
+import { LitElement } from 'lit'
+import { property } from 'lit/decorators.js'
 
 type Constructor = new (...args: any[]) => LitElement
 type ISwisstopoElementMixin = <B extends Constructor>(

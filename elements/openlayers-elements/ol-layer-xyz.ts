@@ -1,4 +1,4 @@
-import { property } from 'lit-element'
+import { property } from 'lit/decorators.js'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import OlLayerBase from '@openlayers-elements/core/ol-layer-base'

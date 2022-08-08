@@ -1,4 +1,5 @@
-import { html, LitElement, property, query } from 'lit-element'
+import { html, LitElement } from 'lit'
+import { property, query } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map'
 import { MapEvent } from 'ol'
 import SimpleGeometry from 'ol/geom/SimpleGeometry'

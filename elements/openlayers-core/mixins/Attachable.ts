@@ -1,4 +1,4 @@
-import { LitElement } from 'lit-element'
+import { LitElement } from 'lit'
 
 type Constructor = new (...args: any[]) => LitElement
 type IAttachableMixin = <B extends Constructor>(Base: B, detailPropName: string) => B

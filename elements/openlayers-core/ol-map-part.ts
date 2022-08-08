@@ -1,4 +1,4 @@
-import { LitElement } from 'lit-element'
+import { LitElement } from 'lit'
 import Map from 'ol/Map'
 import BaseObject from 'ol/Object'
 import AttachableMixin from './mixins/Attachable'

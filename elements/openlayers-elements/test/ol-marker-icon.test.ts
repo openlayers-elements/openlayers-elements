@@ -1,5 +1,5 @@
-import {expect, fixture} from '@open-wc/testing'
-import {html} from 'lit-html'
+import { expect, fixture } from '@open-wc/testing'
+import { html } from 'lit'
 import '@openlayers-elements/core/ol-layer-vector'
 import '@openlayers-elements/core/ol-map'
 import '../ol-marker-icon'
