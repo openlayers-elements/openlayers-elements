@@ -1,5 +1,4 @@
-import { assert, expect, fixture, nextFrame, waitUntil } from '@open-wc/testing'
-import { forEvent } from '@openlayers-elements/testing'
+import { assert, expect, fixture, nextFrame, oneEvent, waitUntil } from '@open-wc/testing'
 import { html } from 'lit'
 import '../ol-layer-vector'
 import './test-elements/ol-test-feature'
@@ -21,7 +20,7 @@ describe('ol-map', () => {
     map.appendChild(layer)
 
     // then
-    await forEvent(layer, 'attached')
+    await oneEvent(layer, 'attached')
     expect(map.map!.getLayers().getLength()).to.equal(1)
   })
 

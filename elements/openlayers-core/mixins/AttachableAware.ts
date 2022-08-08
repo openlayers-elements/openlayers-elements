@@ -38,6 +38,7 @@ type IAttachableAwareMixin = <B extends Constructor>(
  */
 const AttachableAwareMixin: IAttachableAwareMixin = function<B extends Constructor> (Base: B, detailPropName: string) {
   class AttachableAware extends Base {
+    /* eslint-disable no-use-before-define */
     private readonly __attachReady: Promise<AttachableAware>
     private readonly __attachReadyResolve?: (aa: AttachableAware) => void
 
