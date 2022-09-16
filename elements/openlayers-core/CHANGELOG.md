@@ -1,5 +1,16 @@
 # @openlayers-elements/core
 
+## 0.3.0
+
+### Minor Changes
+
+- 3658c65: Updated `lit-html` and `lit-element` to `lit@2`
+
+### Patch Changes
+
+- a75e392: Let created features access the map element, for example to get the projection
+- d3165fc: Type declarations were not included in the packages no NPM (fixes #82)
+
 ## 0.2.2
 
 ### Patch Changes

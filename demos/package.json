@@ -1,6 +1,6 @@
 {
   "name": "demos",
-  "version": "0.2.0-beta.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -18,9 +18,9 @@
   "dependencies": {
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.0.2",
-    "@openlayers-elements/core": "^0.2.0-beta.0",
-    "@openlayers-elements/maps": "^0.2.0-beta.0",
-    "@openlayers-elements/swisstopo": "^0.2.0-beta.0",
+    "@openlayers-elements/core": "^0.3.0",
+    "@openlayers-elements/maps": "^0.3.0",
+    "@openlayers-elements/swisstopo": "^0.3.0",
     "lit": "^2.2.8",
     "ol": "^6.5.0"
   }

@@ -1,5 +1,21 @@
 # @openlayers-elements/swisstopo
 
+## 0.3.0
+
+### Minor Changes
+
+- 3658c65: Updated `lit-html` and `lit-element` to `lit@2`
+
+### Patch Changes
+
+- d3165fc: Type declarations were not included in the packages no NPM (fixes #82)
+- Updated dependencies [a75e392]
+- Updated dependencies [a75e392]
+- Updated dependencies [d3165fc]
+- Updated dependencies [3658c65]
+  - @openlayers-elements/core@0.3.0
+  - @openlayers-elements/maps@0.3.0
+
 ## 0.2.2
 
 ### Patch Changes

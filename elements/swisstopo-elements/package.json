@@ -1,6 +1,6 @@
 {
   "name": "@openlayers-elements/swisstopo",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Zazuko GmbH",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "contributors": [
@@ -16,8 +16,8 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.2.1",
-    "@openlayers-elements/maps": "^0.2.1",
+    "@openlayers-elements/core": "^0.3.0",
+    "@openlayers-elements/maps": "^0.3.0",
     "lit": "^2.0.0",
     "ol": "^6.5.0",
     "proj4": "^2.5.0"
