@@ -6,6 +6,14 @@
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "mixins/*.js",
+    "mixins/*.d.ts",
+    "lib/*.js",
+    "lib/*.d.ts"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",

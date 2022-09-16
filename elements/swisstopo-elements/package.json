@@ -6,6 +6,10 @@
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
+  "files": [
+    "*.js",
+    "*.d.ts"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
