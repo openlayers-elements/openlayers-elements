@@ -8,6 +8,7 @@ import Style from 'ol/style/Style'
 import IconAnchorUnits from 'ol/style/IconAnchorUnits'
 import IconOrigin from 'ol/style/IconOrigin'
 import { Size } from 'ol/size'
+import OlMap from './ol-map'
 
 /**
  * A basic map marker. Loaded from an image file
@@ -154,10 +155,10 @@ export default class OlMarkerIcon extends OlFeature {
   @property({ type: Number })
   public size?: Size = undefined
 
-  public createFeature() {
+  public createFeature(map: OlMap | undefined) {
     let point = new Point([this.x, this.y])
     if (this.lat && this.lon) {
-      point = new Point(fromLonLat([this.lon, this.lat]))
+      point = new Point(fromLonLat([this.lon, this.lat], map?.projection))
     }
 
     const feature = new Feature({
