@@ -1,0 +1,15 @@
+{
+  "name": "@openlayers-elements/bundle",
+  "version": "0.0.0",
+  "type": "module",
+  "files": ["dist"],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "./build.js",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.16.4",
+    "rimraf": "^3.0.2"
+  }
+}
