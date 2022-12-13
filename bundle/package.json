@@ -13,5 +13,8 @@
   "devDependencies": {
     "esbuild": "^0.16.4",
     "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
