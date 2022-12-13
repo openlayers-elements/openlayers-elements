@@ -19,6 +19,7 @@
   "include": [
     "demos",
     "elements",
+    "bundle",
     "web-test-runner.config.mjs"
   ]
 }
