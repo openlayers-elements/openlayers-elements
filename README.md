@@ -2,9 +2,10 @@
 
 This is monorepo which contains: 
 
-1. core OpenLayers elements (incl. map itself) ([`elements/openlayers-core`](elements/openlayers-core))
-1. common OpenLayers elements (layers, markers, etc) ([`elements/openlayers-elements`](elements/openlayers-elements))
-1. Swiss layers from geoadmin.ch ([`elements/swisstopo-elements`](elements/swisstopo-elements))
+1. core OpenLayers elements (incl. map itself) ([`@openlayers-elements/core`](elements/openlayers-core))
+1. common OpenLayers elements (layers, markers, etc) ([`@openlayers-elements/openlayers-elements`](elements/openlayers-elements))
+1. Swiss layers from geoadmin.ch ([`@openlayers-elements/swisstopo-elements`](elements/swisstopo-elements))
+1. Package with bundles for quick and easy usage ([`@openlayers-elements/bundle`](budle))
 
 ## Features
 
