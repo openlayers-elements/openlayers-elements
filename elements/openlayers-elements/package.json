@@ -19,7 +19,7 @@
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",
     "lit": "^2.0.0",
-    "ol": "^6.6.0",
+    "ol": "^6.15.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
