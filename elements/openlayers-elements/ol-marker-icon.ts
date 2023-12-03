@@ -168,6 +168,18 @@ export default class OlMarkerIcon extends OlFeature {
       }),
     )
 
+    // // TODO update to flat style format
+    // feature.setStyle(
+    //   new Style(this.__iconInit),
+    // )
+    // // Example properties
+    // this.__iconInit = {
+    //   'icon-src': '../images/icon.png',
+    //   'icon-scale': 2,
+    //   'icon-size': [16, 16],
+    //   'icon-offset': [32, 64],
+    // }
+
     return feature
   }
 
