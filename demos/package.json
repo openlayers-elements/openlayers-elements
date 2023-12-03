@@ -19,6 +19,6 @@
     "@openlayers-elements/swisstopo": "^0.3.0",
     "glob": "^10.3.16",
     "lit": "^2.2.8",
-    "ol": "^6.5.0"
+    "ol": "^7.5.0"
   }
 }
