@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "lit": "^2.0.0",
-    "ol": "^6.6.0"
+    "ol": "^6.15.0"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.6",
