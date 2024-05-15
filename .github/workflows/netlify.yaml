@@ -8,12 +8,12 @@ jobs:
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 20
 
-      - uses: nelonoel/branch-name@v1.0.1
+      - uses: Wohlstand/branch-name@v1.0.2-wohl
 
       - name: Publish preview
         uses: jsmrcaga/action-netlify-deploy@v1.7.2
@@ -22,11 +22,11 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_MESSAGE: Preview ${{ env.BRANCH_NAME }}
-          build_command: yarn docs
+          build_command: npm run docs
           build_directory: demos/dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
-          node_version: 14
+          node_version: 20
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
