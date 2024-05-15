@@ -43,8 +43,9 @@ All the [live demos](https://openlayers-elements.netlify.com/) also include gene
 Simply execute
 
 ```sh
-yarn build
-yarn start
+npm install
+npm run build
+npm run start
 ```
 
 And open the webpack-dev-server page (typically http://localhost:8080)
