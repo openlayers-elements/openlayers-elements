@@ -14,12 +14,12 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "ol": ["node_modules/@types/ol"],
+      "ol/*": ["node_modules/@types/ol/*"]
+    }
   },
-  "include": [
-    "demos",
-    "elements",
-    "bundle",
-    "web-test-runner.config.mjs"
-  ]
+  "include": ["demos", "elements", "bundle", "web-test-runner.config.mjs"]
 }
