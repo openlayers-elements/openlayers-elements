@@ -9,7 +9,7 @@ See [documentation and demos](https://openlayers-elements.netlify.com).
 To install run
 
 ```
-yarn add @openlayers-elements/swisstopo @openlayers-elements/core
+npm add @openlayers-elements/swisstopo @openlayers-elements/core
 ```
 
 Then add the WMTS layer to your `ol-map` 
