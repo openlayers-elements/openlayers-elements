@@ -1,5 +1,5 @@
 import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz'
-import SwisstopoElement from './swisstopo-element'
+import SwisstopoElement from './swisstopo-element.js'
 
 /**
  * A simpler form SwissTopo layers projects as Mercator.

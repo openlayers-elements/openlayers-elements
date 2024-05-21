@@ -1,7 +1,7 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit'
-import type OlLayerWkt from '../ol-layer-wkt'
-import '../ol-layer-wkt'
+import type OlLayerWkt from '../ol-layer-wkt.js'
+import '../ol-layer-wkt.js'
 
 describe('ol-layer-xyz', () => {
   it('creates a layer with not features when no featureData is provided', async () => {

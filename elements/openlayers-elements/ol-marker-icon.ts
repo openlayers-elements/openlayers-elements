@@ -8,7 +8,7 @@ import Style from 'ol/style/Style'
 import IconAnchorUnits from 'ol/style/IconAnchorUnits'
 import IconOrigin from 'ol/style/IconOrigin'
 import { Size } from 'ol/size'
-import OlMap from './ol-map'
+import OlMap from './ol-map.js'
 
 /**
  * A basic map marker. Loaded from an image file

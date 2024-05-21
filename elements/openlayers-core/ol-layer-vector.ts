@@ -2,8 +2,8 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { property } from 'lit/decorators.js'
 import Style, { StyleFunction } from 'ol/style/Style'
-import OlLayerBase from './ol-layer-base'
-import AttachableAwareMixin from './mixins/AttachableAware'
+import OlLayerBase from './ol-layer-base.js'
+import AttachableAwareMixin from './mixins/AttachableAware.js'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.

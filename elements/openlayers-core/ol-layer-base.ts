@@ -1,7 +1,7 @@
 import { property } from 'lit/decorators.js'
 import Layer from 'ol/layer/Base'
 import Map from 'ol/Map'
-import { OlMapPart } from './ol-map-part'
+import { OlMapPart } from './ol-map-part.js'
 
 /**
  * Base class used to create layers

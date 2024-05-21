@@ -1,9 +1,9 @@
 import { LitElement } from 'lit'
 import Map from 'ol/Map'
 import BaseObject from 'ol/Object'
-import AttachableMixin from './mixins/Attachable'
-import OlMap from './ol-map'
-import { forwardEvents } from './lib/events'
+import AttachableMixin from './mixins/Attachable.js'
+import OlMap from './ol-map.js'
+import { forwardEvents } from './lib/events.js'
 
 /**
  * Abstract base class used to create map objects such as layers and interactions

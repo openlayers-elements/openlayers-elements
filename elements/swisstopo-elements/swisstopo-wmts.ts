@@ -3,8 +3,8 @@ import { property } from 'lit/decorators.js'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import TileLayer from 'ol/layer/Tile'
 import WMTS, { optionsFromCapabilities } from 'ol/source/WMTS'
-import './projections'
-import SwisstopoElement from './swisstopo-element'
+import './projections.js'
+import SwisstopoElement from './swisstopo-element.js'
 
 const parser = new WMTSCapabilities()
 

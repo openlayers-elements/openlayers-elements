@@ -6,8 +6,8 @@ import SimpleGeometry from 'ol/geom/SimpleGeometry'
 import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj'
 import View, { FitOptions } from 'ol/View'
 import ResizeObserver from 'resize-observer-polyfill'
-import AttachableAwareMixin from './mixins/AttachableAware'
-import { forwardEvents } from './lib/events'
+import AttachableAwareMixin from './mixins/AttachableAware.js'
+import { forwardEvents } from './lib/events.js'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers

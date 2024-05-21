@@ -1,2 +1,2 @@
 import '@polymer/iron-demo-helpers/demo-snippet'
-import './styled-map'
+import './styled-map.js'
