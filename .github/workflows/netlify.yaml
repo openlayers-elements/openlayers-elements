@@ -16,7 +16,7 @@ jobs:
       - uses: Wohlstand/branch-name@v1.0.2-wohl
 
       - name: Publish preview
-        uses: jsmrcaga/action-netlify-deploy@v1.7.2
+        uses: jsmrcaga/action-netlify-deploy@v2.2.0
         if: env.NETLIFY_AUTH_TOKEN
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -26,10 +26,9 @@ jobs:
           build_directory: demos/dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
-          node_version: 20
 
       - name: Status check
-        uses: Sibz/github-status-action@v1.1.1
+        uses: guibranco/github-status-action-v2@v1.1.13
         if: env.NETLIFY_AUTH_TOKEN
         with:
           authToken: ${{ secrets.GITHUB_TOKEN }}
