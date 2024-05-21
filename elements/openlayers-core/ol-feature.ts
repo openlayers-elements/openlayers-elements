@@ -1,4 +1,4 @@
-import Feature from 'ol/Feature'
+import Feature from 'ol/Feature.js'
 import { LitElement } from 'lit'
 import AttachableMixin from './mixins/Attachable.js'
 import { forwardEvents } from './lib/events.js'

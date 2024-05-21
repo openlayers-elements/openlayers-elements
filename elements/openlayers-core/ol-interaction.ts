@@ -1,5 +1,5 @@
-import Interaction from 'ol/interaction/Interaction'
-import Map from 'ol/Map'
+import Interaction from 'ol/interaction/Interaction.js'
+import Map from 'ol/Map.js'
 import { OlMapPart } from './ol-map-part.js'
 
 /**

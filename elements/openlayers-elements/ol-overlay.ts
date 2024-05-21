@@ -1,6 +1,6 @@
-import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
-import Overlay from 'ol/Overlay'
-import Map from 'ol/Map'
+import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
+import Overlay from 'ol/Overlay.js'
+import Map from 'ol/Map.js'
 import { html } from 'lit'
 import { property } from 'lit/decorators.js'
 

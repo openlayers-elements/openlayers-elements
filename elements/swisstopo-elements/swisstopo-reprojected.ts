@@ -1,4 +1,4 @@
-import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz'
+import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz.js'
 import SwisstopoElement from './swisstopo-element.js'
 
 /**
