@@ -12,6 +12,7 @@
     "start": "wsrun -p demos -c start",
     "build": "wsrun -x demos -x @openlayers-elements/testing -c build",
     "lint": "eslint --ext .ts,.js elements demos --quiet",
+    "lint-staged": "lint-staged",
     "test": "wtr",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
     "docs": "npm run build; npm run analyze; wsrun -p demos -c build",
