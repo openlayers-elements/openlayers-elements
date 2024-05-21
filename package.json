@@ -15,7 +15,8 @@
     "test": "wtr",
     "analyze": "polymer analyze --sources elements > demos/analysis.json",
     "docs": "npm run build; npm run analyze; wsrun -p demos -c build",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.21.0",
