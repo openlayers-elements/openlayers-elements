@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "prepare": "yarn build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",
