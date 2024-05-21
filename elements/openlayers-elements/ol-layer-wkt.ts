@@ -1,8 +1,8 @@
 import { PropertyValues } from 'lit'
 import { property } from 'lit/decorators.js'
-import WKT from 'ol/format/WKT'
-import VectorSource from 'ol/source/Vector'
-import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
+import WKT from 'ol/format/WKT.js'
+import VectorSource from 'ol/source/Vector.js'
+import OlLayerVector from '@openlayers-elements/core/ol-layer-vector.js'
 
 const format = new WKT()
 

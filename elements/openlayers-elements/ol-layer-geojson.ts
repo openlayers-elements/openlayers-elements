@@ -1,7 +1,7 @@
 import { property } from 'lit/decorators.js'
-import GeoJSON from 'ol/format/GeoJSON'
-import VectorSource from 'ol/source/Vector'
-import OlLayerVector from '@openlayers-elements/core/ol-layer-vector'
+import GeoJSON from 'ol/format/GeoJSON.js'
+import VectorSource from 'ol/source/Vector.js'
+import OlLayerVector from '@openlayers-elements/core/ol-layer-vector.js'
 
 /**
  * A layer which loads features from a GeoJSON input

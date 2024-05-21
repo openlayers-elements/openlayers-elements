@@ -1,4 +1,4 @@
-import Feature from 'ol/Feature'
+import Feature from 'ol/Feature.js'
 import OlFeature from '../../ol-feature.js'
 
 export default class OlTestFeature extends OlFeature {

@@ -2,6 +2,7 @@
   "name": "demos",
   "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "start:es5": "webpack-dev-server --mode development --es5",

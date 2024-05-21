@@ -1,13 +1,13 @@
-import OlFeature from '@openlayers-elements/core/ol-feature'
+import OlFeature from '@openlayers-elements/core/ol-feature.js'
 import { property } from 'lit/decorators.js'
-import Feature from 'ol/Feature'
-import Point from 'ol/geom/Point'
-import { fromLonLat } from 'ol/proj'
-import Icon, { Options } from 'ol/style/Icon'
-import Style from 'ol/style/Style'
-import IconAnchorUnits from 'ol/style/IconAnchorUnits'
-import IconOrigin from 'ol/style/IconOrigin'
-import { Size } from 'ol/size'
+import Feature from 'ol/Feature.js'
+import Point from 'ol/geom/Point.js'
+import { fromLonLat } from 'ol/proj.js'
+import Icon, { Options } from 'ol/style/Icon.js'
+import Style from 'ol/style/Style.js'
+import IconAnchorUnits from 'ol/style/IconAnchorUnits.js'
+import IconOrigin from 'ol/style/IconOrigin.js'
+import { Size } from 'ol/size.js'
 import OlMap from './ol-map.js'
 
 /**
@@ -81,19 +81,19 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {IconAnchorUnits}
    */
   @property({ type: String, attribute: 'anchor-x-units' })
-  public anchorXUnits?: IconAnchorUnits = undefined
+  public anchorXUnits?: typeof IconAnchorUnits = undefined
 
   /**
    * @type {IconAnchorUnits}
    */
   @property({ type: String, attribute: 'anchor-y-units' })
-  public anchorYUnits?: IconAnchorUnits = undefined
+  public anchorYUnits?: typeof IconAnchorUnits = undefined
 
   /**
    * @type {IconOrigin}
    */
   @property({ type: String, attribute: 'anchor-origin' })
-  public anchorOrigin?: IconOrigin = undefined
+  public anchorOrigin?: typeof IconOrigin = undefined
 
   /**
    * @type {string}
@@ -123,7 +123,7 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {IconOrigin}
    */
   @property({ type: Number, attribute: 'offset-origin' })
-  public offsetOrigin: IconOrigin
+  public offsetOrigin: typeof IconOrigin
 
   /**
    * @type {number}

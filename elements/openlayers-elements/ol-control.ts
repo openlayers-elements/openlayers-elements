@@ -1,7 +1,7 @@
 import { html, render } from 'lit'
-import Control from 'ol/control/Control'
-import Map from 'ol/Map'
-import { OlMapPart } from '@openlayers-elements/core/ol-map-part'
+import Control from 'ol/control/Control.js'
+import Map from 'ol/Map.js'
+import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
 
 /**
  * A base element for implementing map controls.

@@ -1,6 +1,6 @@
 import { LitElement } from 'lit'
-import Map from 'ol/Map'
-import BaseObject from 'ol/Object'
+import Map from 'ol/Map.js'
+import BaseObject from 'ol/Object.js'
 import AttachableMixin from './mixins/Attachable.js'
 import OlMap from './ol-map.js'
 import { forwardEvents } from './lib/events.js'

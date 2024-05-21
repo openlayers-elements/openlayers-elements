@@ -1,5 +1,5 @@
-import Select from 'ol/interaction/Select'
-import OlInteraction from '@openlayers-elements/core/ol-interaction'
+import Select from 'ol/interaction/Select.js'
+import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
 
 /**
  * Non-visual element which enables selecting map features
