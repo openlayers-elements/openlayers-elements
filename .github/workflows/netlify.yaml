@@ -26,6 +26,7 @@ jobs:
           build_directory: demos/dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
+          monorepo_package: demos
 
       - name: Status check
         uses: guibranco/github-status-action-v2@v1.1.13
