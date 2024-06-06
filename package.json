@@ -15,7 +15,7 @@
     "test": "wtr",
     "analyze": "polymer analyze --sources elements > demos/public/analysis.json",
     "prepredocs": "tsc",
-    "predocs": "npm run analyze",
+    "predocs": "tsc && npm run analyze",
     "docs": "wsrun -p demos -c build",
     "release": "changeset publish",
     "prepare": "husky"
