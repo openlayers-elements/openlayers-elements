@@ -25,8 +25,8 @@ import { property } from 'lit/decorators.js'
  * Use `setPosition` method to move and show the overlay.
  * Use `hide` method to... hide it.
  *
- * @demo https://openlayers-elements.netlify.com/demo/overlay/ Basic example
- * @demo https://openlayers-elements.netlify.com/demo/overlay+select/ Combined with ol-select
+ * @demo demo/overlay/ Basic example
+ * @demo demo/overlay+select/ Combined with ol-select
  * @customElement
  */
 export default class OlOverlay extends OlMapPart<Overlay> {

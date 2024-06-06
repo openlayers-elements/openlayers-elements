@@ -30,7 +30,7 @@ import OlMap from './ol-map.js'
  *
  * For an in-depth description of individual properties go to OpenLayer's docs for [ol/Style/Icon](https://openlayers.org/en/latest/apidoc/module-ol_style_Icon.html)
  *
- * @demo https://openlayers-elements.netlify.com/demo/markers/
+ * @demo demo/markers/
  */
 export default class OlMarkerIcon extends OlFeature {
   /**

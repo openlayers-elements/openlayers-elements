@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
     <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
     <link rel="stylesheet" href="../style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
   </head>
   <body unresolved>
     <div>
@@ -36,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <ol-map zoom="4" lat="39.828175" lon="-98.5795">
   <ol-layer-openstreetmap></ol-layer-openstreetmap>
-  <ol-layer-geojson url="/assets/europe.geojson"></ol-layer-geojson>
+  <ol-layer-geojson url="/europe.geojson"></ol-layer-geojson>
   <ol-control id="zoom">
     <button onclick="goToEurope()">Go to Europe</button>
   </ol-control>
@@ -64,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <ol-map id="eu" zoom="4" lat="46.7985" lon="8.2318">
   <ol-layer-openstreetmap></ol-layer-openstreetmap>
   <ol-layer-geojson
-    url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
+    url="/countries.geojson"
   ></ol-layer-geojson>
   <ol-select></ol-select>
 </ol-map>
@@ -82,6 +83,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
       </demo-snippet>
     </div>
-  <script src="index.js" type="module"></script>
+  <script src="index.ts" type="module"></script>
   </body>
 </html>

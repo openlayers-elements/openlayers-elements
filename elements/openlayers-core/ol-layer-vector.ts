@@ -20,7 +20,7 @@ import AttachableAwareMixin from './mixins/AttachableAware.js'
  * </ol-map>
  * ```
  *
- * @demo https://openlayers-elements.netlify.com/demo/vector-styling/ Styling
+ * @demo demo/vector-styling/ Styling
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */

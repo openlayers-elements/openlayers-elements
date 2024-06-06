@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="../style.css" >
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
 </head>
 <body unresolved>
 <div>
@@ -27,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <ol-layer-openstreetmap></ol-layer-openstreetmap>
     <ol-layer-vector z-index="1">
         <ol-marker-icon id="Madrid"
-                        src="../../assets/icon.png"
+                        src="../../icon.png"
                         lat="40.4" lon="-3.683333"
                         anchor-y="46" anchor-y-units="pixels"></ol-marker-icon>
     </ol-layer-vector>
@@ -41,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <ol-map zoom="4">
     <ol-layer-openstreetmap></ol-layer-openstreetmap>
     <ol-layer-vector z-index="1">
-        <ol-marker-icon src="../../assets/icon.png"
+        <ol-marker-icon src="../../icon.png"
                         opacity="0.3"></ol-marker-icon>
     </ol-layer-vector>
 </ol-map>
@@ -57,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template>
 <ol-map zoom="4" lat="46.7985" lon="8.2318">
     <ol-layer-openstreetmap></ol-layer-openstreetmap>
-    <ol-layer-geojson z-index="1" url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson">
+    <ol-layer-geojson z-index="1" url="/countries.geojson">
         <ol-marker-icon src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/320px-Flag_of_Germany.svg.png"
                         lat="51.163375" lon="10.447683" scale="0.1"></ol-marker-icon>
         <ol-marker-icon src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/320px-Flag_of_Poland.svg.png"
@@ -73,6 +74,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
     </demo-snippet>
 </div>
-<script src="index.js" type="module"></script>
+<script src="index.ts" type="module"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
  * ```
  *
  * @customElement
- * @demo https://openlayers-elements.netlify.com/demo/select/
+ * @demo demo/select/
  */
 export class OlSelect extends OlInteraction {
   /**

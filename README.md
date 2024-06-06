@@ -48,10 +48,4 @@ npm run build
 npm run start
 ```
 
-And open the webpack-dev-server page (typically http://localhost:8080)
-
-## Acknowledgements
-
-Carefully tested on Browserstack
-
-[![img](https://github.com/zazuko/openlayers-elements/raw/master/assets/Browserstack-logo%402x.png)](https://www.browserstack.com/open-source)
+And open http://localhost:8080
