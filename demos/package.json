@@ -2,18 +2,14 @@
   "name": "demos",
   "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "start:es5": "webpack-dev-server --mode development --es5",
-    "build": "webpack --mode production"
+    "start": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
     "@polymer/polymer": "^3.4.1",
-    "copy-webpack-plugin": "^5",
-    "html-webpack-plugin": "^4",
-    "webpack": "^4.0.0",
-    "webpack-merge": "^5.8.0",
-    "webpack-dev-server": "^3.11.3"
+    "vite": "^5.2.11"
   },
   "dependencies": {
     "@polymer/iron-component-page": "^4.0.1",
@@ -21,6 +17,7 @@
     "@openlayers-elements/core": "^0.3.0",
     "@openlayers-elements/maps": "^0.3.0",
     "@openlayers-elements/swisstopo": "^0.3.0",
+    "glob": "^10.3.16",
     "lit": "^2.2.8",
     "ol": "^6.5.0"
   }

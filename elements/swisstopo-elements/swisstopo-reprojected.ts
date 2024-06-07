@@ -1,5 +1,5 @@
-import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz'
-import SwisstopoElement from './swisstopo-element'
+import OlLayerXyz from '@openlayers-elements/maps/ol-layer-xyz.js'
+import SwisstopoElement from './swisstopo-element.js'
 
 /**
  * A simpler form SwissTopo layers projects as Mercator.
@@ -11,7 +11,7 @@ import SwisstopoElement from './swisstopo-element'
  * Apparently this style of layer source does not work with every one of Swiss layers. If you get 404s (blank map),
  * use the [`swisstopo-wmts` layer](#/elements/SwissTopoWMTS)
  *
- * @demo https://openlayers-elements.netlify.com/demo/swiss-reprojected/
+ * @demo demo/swiss-reprojected/
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */

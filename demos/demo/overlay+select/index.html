@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
     <link rel="stylesheet" href="../style.css" >
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
 </head>
 <body unresolved>
 <div>
@@ -71,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
 
 <ol-map zoom="4" lat="46.7985" lon="8.2318">
-  <ol-layer-geojson url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"></ol-layer-geojson>
+  <ol-layer-geojson url="/countries.geojson"></ol-layer-geojson>
   <ol-select></ol-select>
   <ol-overlay id="popup" class="ol-popup" auto-pan auto-pan-animation-duration="250">
     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -104,6 +105,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </demo-snippet>
 
 </div>
-<script src="index.js" type="module"></script>
+<script src="index.ts" type="module"></script>
 </body>
 </html>

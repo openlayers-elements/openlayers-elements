@@ -2,6 +2,7 @@
   "name": "@openlayers-elements/swisstopo",
   "version": "0.3.0",
   "author": "Zazuko GmbH",
+  "type": "module",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
@@ -12,8 +13,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
+    "build": "tsc"
   },
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",

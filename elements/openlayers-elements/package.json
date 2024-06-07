@@ -1,6 +1,7 @@
 {
   "name": "@openlayers-elements/maps",
   "version": "0.3.0",
+  "type": "module",
   "description": "Custom elements to declaratively build OpenLayers map",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "author": "Zazuko GmbH",
@@ -13,8 +14,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
+    "build": "tsc"
   },
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",

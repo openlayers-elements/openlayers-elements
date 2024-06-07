@@ -1,13 +1,12 @@
 import { html, LitElement } from 'lit'
 import { property, query } from 'lit/decorators.js'
-import OpenLayersMap from 'ol/Map'
+import OpenLayersMap from 'ol/Map.js'
 import { MapEvent } from 'ol'
-import SimpleGeometry from 'ol/geom/SimpleGeometry'
-import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj'
-import View, { FitOptions } from 'ol/View'
-import ResizeObserver from 'resize-observer-polyfill'
-import AttachableAwareMixin from './mixins/AttachableAware'
-import { forwardEvents } from './lib/events'
+import SimpleGeometry from 'ol/geom/SimpleGeometry.js'
+import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj.js'
+import View, { FitOptions } from 'ol/View.js'
+import AttachableAwareMixin from './mixins/AttachableAware.js'
+import { forwardEvents } from './lib/events.js'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -37,8 +36,8 @@ import { forwardEvents } from './lib/events'
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
- * @demo https://openlayers-elements.netlify.com/demo/ol-map/
- * @demo https://openlayers-elements.netlify.com/demo/zoom-to-extent/ Zoom to extent
+ * @demo demo/ol-map/
+ * @demo demo/zoom-to-extent/ Zoom to extent
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */
@@ -206,7 +205,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     `
   }
 
-  public fit(extent: SimpleGeometry | [number, number, number, number], options?: FitOptions) {
+  public fit(extent: SimpleGeometry | number[], options?: FitOptions) {
     this.map?.getView().fit(extent, {
       size: this.map.getSize(),
       // constrainResolution: false,
@@ -216,6 +215,10 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   }
 
   private __dispatchViewChange(event: MapEvent) {
+    if (!event.frameState) {
+      return
+    }
+
     const { center } = event.frameState.viewState
     const [lon, lat] = toLonLat(center, this.projection)
 

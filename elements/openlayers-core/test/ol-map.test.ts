@@ -1,10 +1,10 @@
 import { assert, expect, fixture, nextFrame, oneEvent, waitUntil } from '@open-wc/testing'
 import { html } from 'lit'
-import '../ol-layer-vector'
-import './test-elements/ol-test-feature'
+import '../ol-layer-vector.js'
+import './test-elements/ol-test-feature.js'
 import * as sinon from 'sinon'
-import '../ol-map'
-import type OlMap from '../ol-map'
+import '../ol-map.js'
+import type OlMap from '../ol-map.js'
 
 describe('ol-map', () => {
   it('should handle layers added dynamically', async () => {

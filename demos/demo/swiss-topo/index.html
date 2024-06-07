@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script
     src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
   <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
 </head>
 <body unresolved>
 <div>
@@ -42,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <swisstopo-wmts layer-name="ch.swisstopo.pixelkarte-grau"></swisstopo-wmts>
         <ol-layer-vector z-index="1">
           <ol-marker-icon id="Zurich"
-                          src="../../assets/icon.png"
+                          src="../../icon.png"
                           lat="47.3738" lon="8.5451"
                           anchor-y="46" anchor-y-units="pixels"></ol-marker-icon>
         </ol-layer-vector>
@@ -63,6 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </demo-snippet>
 </div>
-<script src="index.js" type="module"></script>
+<script src="index.ts" type="module"></script>
 </body>
 </html>

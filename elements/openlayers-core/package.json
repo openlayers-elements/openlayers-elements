@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "repository": "https://github.com:zazuko/openlayers-elements",
   "author": "Zazuko GmbH",
+  "type": "module",
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
@@ -16,8 +17,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
+    "build": "tsc"
   },
   "dependencies": {
     "lit": "^2.0.0",

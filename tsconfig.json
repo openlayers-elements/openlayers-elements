@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "NodeNext",
     "target": "ES2018",
     "declaration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "noEmitOnError": false,
     "sourceMap": true,
     "noUnusedLocals": true,
@@ -13,13 +13,8 @@
     "strict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "ol": ["node_modules/@types/ol"],
-      "ol/*": ["node_modules/@types/ol/*"]
-    }
+    "baseUrl": "./"
   },
   "include": ["demos", "elements", "bundle", "web-test-runner.config.mjs"]
 }

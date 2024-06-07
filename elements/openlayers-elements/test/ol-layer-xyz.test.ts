@@ -1,8 +1,8 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit'
-import TileLayer from 'ol/layer/Tile'
-import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
-import '../ol-layer-xyz'
+import TileLayer from 'ol/layer/Tile.js'
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base.js'
+import '../ol-layer-xyz.js'
 
 describe('ol-layer-xyz', () => {
   it('should pass url property to created layer', async () => {
@@ -12,7 +12,7 @@ describe('ol-layer-xyz', () => {
       html`
         <ol-layer-xyz url="${url}"></ol-layer-xyz>
       `,
-    )) as OlLayerBase<TileLayer>
+    )) as OlLayerBase<TileLayer<any>>
 
     // when
     const layer: any = await element.createPart()

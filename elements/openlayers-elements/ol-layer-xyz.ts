@@ -1,15 +1,15 @@
 import { property } from 'lit/decorators.js'
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ'
-import OlLayerBase from '@openlayers-elements/core/ol-layer-base'
+import TileLayer from 'ol/layer/Tile.js'
+import XYZ from 'ol/source/XYZ.js'
+import OlLayerBase from '@openlayers-elements/core/ol-layer-base.js'
 
 /**
  * A simple layer element, sourcing from a raster tile server using X/Y/Z coordinates
  *
- * @demo https://openlayers-elements.netlify.com/demo/xyz/
+ * @demo demo/xyz/
  * @customElement
  */
-export default class OlLayerXyz extends OlLayerBase<TileLayer> {
+export default class OlLayerXyz extends OlLayerBase<TileLayer<any>> {
   private __url?: string = undefined
 
   /**

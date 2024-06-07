@@ -1,10 +1,10 @@
 import { expect, fixture, assert, oneEvent } from '@open-wc/testing'
 import { html } from 'lit'
 import * as sinon from 'sinon'
-import '../ol-map'
-import type OlLayerVector from '../ol-layer-vector'
-import '../ol-layer-vector'
-import './test-elements/ol-test-feature'
+import '../ol-map.js'
+import type OlLayerVector from '../ol-layer-vector.js'
+import '../ol-layer-vector.js'
+import './test-elements/ol-test-feature.js'
 
 const dotUrl = 'https://openlayers.org/en/latest/examples/data/dot.png'
 

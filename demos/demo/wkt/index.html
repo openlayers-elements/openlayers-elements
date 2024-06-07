@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CNodeList.prototype.forEach,requestAnimationFrame,Element.prototype.classList,URL,Array.prototype.includes"></script>
     <link rel="stylesheet" href="../style.css" >
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
 </head>
 <body unresolved>
 <div>
@@ -32,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <script>
               (function() {
                 const wktLayer = document.querySelector('#wkt')
-                fetch('/assets/europe.wkt')
+                fetch('/europe.wkt')
                   .then(res => res.json())
                   .then(data => {
                     wktLayer.featureData = data
@@ -71,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             wktLayer.resetFeatures()
           })
 
-          fetch('/assets/europe.wkt')
+          fetch('/europe.wkt')
             .then(res => res.json())
             .then(data => {
               wktLayer.featureData = data
@@ -81,6 +82,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </demo-snippet>
 </div>
-<script src="index.js" type="module"></script>
+<script src="index.ts" type="module"></script>
 </body>
 </html>

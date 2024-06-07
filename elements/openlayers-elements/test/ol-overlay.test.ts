@@ -1,9 +1,9 @@
 import { assert, expect, fixture, oneEvent } from '@open-wc/testing'
 import * as sinon from 'sinon'
-import '../ol-map'
-import '../ol-overlay'
-import type OlOverlay from '../ol-overlay'
-import type OlMap from '../ol-map'
+import '../ol-map.js'
+import '../ol-overlay.js'
+import type OlOverlay from '../ol-overlay.js'
+import type OlMap from '../ol-map.js'
 
 describe('ol-overlay', () => {
   describe('auto-panning', () => {
