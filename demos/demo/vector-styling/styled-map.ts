@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 import { html, css, LitElement } from 'lit'
-import { DEVICE_PIXEL_RATIO } from 'ol/has'
-import { Fill, Stroke, Style } from 'ol/style'
-import '@openlayers-elements/core/ol-map'
+import { DEVICE_PIXEL_RATIO } from 'ol/has.js'
+import { Fill, Stroke, Style } from 'ol/style.js'
+import '@openlayers-elements/core/ol-map.js'
 import '@openlayers-elements/maps/ol-layer-geojson'
+import Feature from 'ol/Feature.js'
 
 const canvas = document.createElement('canvas')
-const context = canvas.getContext('2d')
+const context = canvas.getContext('2d')!
 const pixelRatio = DEVICE_PIXEL_RATIO
 
 const gradient = (function () {
@@ -66,15 +67,15 @@ class StyledMap extends LitElement {
     return html`
       <ol-map zoom="4" lat="46.7985" lon="8.2318">
         <ol-layer-geojson
-          url="https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
+          url="/countries.geojson"
           .featureStyle="${this.getStackedStyle}"
         ></ol-layer-geojson>
       </ol-map>
     `
   }
 
-  getStackedStyle(feature) {
-    const id = feature.getId()
+  getStackedStyle(feature: Feature) {
+    const id = feature.getId()!
     fill.setColor(id > 'J' ? gradient : pattern)
     return style
   }

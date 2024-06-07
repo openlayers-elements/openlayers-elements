@@ -13,14 +13,15 @@
     "build": "wsrun -x demos -x @openlayers-elements/testing -c build",
     "lint": "eslint --ext .ts,.js elements demos --quiet",
     "test": "wtr",
-    "analyze": "polymer analyze --sources elements > demos/analysis.json",
-    "docs": "npm run build; npm run analyze; wsrun -p demos -c build",
+    "analyze": "polymer analyze --sources elements > demos/public/analysis.json",
+    "prepredocs": "tsc",
+    "predocs": "tsc && npm run analyze",
+    "docs": "wsrun -p demos -c build",
     "release": "changeset publish",
     "prepare": "husky"
   },
   "devDependencies": {
     "@changesets/cli": "^2.21.0",
-    "@open-wc/building-webpack": "^2.13.46",
     "@open-wc/eslint-config": "^8.0.2",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@tpluscode/eslint-config": "^0.4.5",
@@ -40,7 +41,6 @@
     "polymer-cli": "^1.9.11",
     "prettier": "^1.16.4",
     "typescript": "^5.4.5",
-    "webpack-cli": "^3.2.3",
     "wsrun": "^5.2.4"
   },
   "lint-staged": {

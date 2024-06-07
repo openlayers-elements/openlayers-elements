@@ -15,7 +15,7 @@ type Projections = 'EPSG:3857' | 'EPSG:21718' | 'EPSG:2056' | 'EPSG:4329'
  *
  * [wmts-list]: http://api3.geo.admin.ch/services/sdiservices.html#supported-projections
  *
- * @demo https://openlayers-elements.netlify.com/demo/swiss-topo/
+ * @demo demo/swiss-topo/
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */

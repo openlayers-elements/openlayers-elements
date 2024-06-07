@@ -32,7 +32,7 @@ interface Feature {
  *
  * [wkt]: https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
  *
- * @demo https://openlayers-elements.netlify.com/demo/wkt/
+ * @demo demo/wkt/
  * @customElement
  */
 export default class OlLayerWkt extends OlLayerVector {

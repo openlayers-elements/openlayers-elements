@@ -36,8 +36,8 @@ import { forwardEvents } from './lib/events.js'
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
- * @demo https://openlayers-elements.netlify.com/demo/ol-map/
- * @demo https://openlayers-elements.netlify.com/demo/zoom-to-extent/ Zoom to extent
+ * @demo demo/ol-map/
+ * @demo demo/zoom-to-extent/ Zoom to extent
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */
