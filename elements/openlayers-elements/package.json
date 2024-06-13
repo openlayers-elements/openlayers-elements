@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "type": "module",
   "description": "Custom elements to declaratively build OpenLayers map",
-  "repository": "https://github.com:zazuko/openlayers-elements",
+  "repository": "https://github.com/openlayers-elements/openlayers-elements",
   "author": "Zazuko GmbH",
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
