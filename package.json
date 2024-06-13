@@ -9,14 +9,14 @@
   ],
   "scripts": {
     "prestart": "npm run analyze",
-    "start": "wsrun -p demos -c start",
-    "build": "wsrun -x demos -x @openlayers-elements/testing -c build",
+    "start": "npm --workspace demos run start",
+    "build": "npm -w @openlayers-elements/core -w @openlayers-elements/maps -w @openlayers-elements/swisstopo -w @openlayers-elements/bundle run build",
     "lint": "eslint --ext .ts,.js elements demos --quiet",
     "test": "wtr",
     "preanalyze": "tsc",
     "analyze": "polymer analyze --sources elements > demos/public/analysis.json",
     "predocs": "npm run analyze",
-    "docs": "wsrun -p demos -c build",
+    "docs": "npm --workspace demos run build",
     "release": "changeset publish",
     "prepare": "husky"
   },
@@ -39,8 +39,7 @@
     "lint-staged": "^13.0.3",
     "polymer-cli": "^1.9.11",
     "prettier": "^1.16.4",
-    "typescript": "^5.4.5",
-    "wsrun": "^5.2.4"
+    "typescript": "^5.4.5"
   },
   "lint-staged": {
     "*.{ts,js}": [

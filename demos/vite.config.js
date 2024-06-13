@@ -16,6 +16,7 @@ const demos = glob.sync('./demo/**/index.html').reduce((acc, html) => {
 
 export default defineConfig({
   server: {
+    host: '0.0.0.0',
     port: 8080,
   },
   build: {
