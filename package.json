@@ -13,9 +13,9 @@
     "build": "wsrun -x demos -x @openlayers-elements/testing -c build",
     "lint": "eslint --ext .ts,.js elements demos --quiet",
     "test": "wtr",
+    "preanalyze": "tsc",
     "analyze": "polymer analyze --sources elements > demos/public/analysis.json",
-    "prepredocs": "tsc",
-    "predocs": "tsc && npm run analyze",
+    "predocs": "npm run analyze",
     "docs": "wsrun -p demos -c build",
     "release": "changeset publish",
     "prepare": "husky"
