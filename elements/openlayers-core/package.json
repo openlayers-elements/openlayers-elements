@@ -1,7 +1,7 @@
 {
   "name": "@openlayers-elements/core",
   "version": "0.3.0",
-  "repository": "https://github.com:zazuko/openlayers-elements",
+  "repository": "https://github.com/openlayers-elements/openlayers-elements",
   "author": "Zazuko GmbH",
   "type": "module",
   "contributors": [

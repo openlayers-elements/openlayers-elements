@@ -18,7 +18,7 @@ While extensive, human-friendly documentation is not yet available, be sure to c
 - Adding features to the map (aka. vector layers)
   - [GeoJSON](https://openlayers-elements.netlify.com/#/elements/ol-layer-geojson/demos/demo/select/)
   - [WKT](https://openlayers-elements.netlify.com/#/elements/ol-layer-wkt/demos/demo/wkt/)
-  - [Styling](https://openlayers-elements.netlify.com/#/elements/ol-layer-vector/demos/styling), actual code [here](https://github.com/zazuko/openlayers-elements/blob/master/demos/demo/vector-styling/styled-map.js#L53)
+  - [Styling](https://openlayers-elements.netlify.com/#/elements/ol-layer-vector/demos/styling), actual code [here](https://github.com/openlayers-elements/openlayers-elements/blob/master/demos/demo/vector-styling/styled-map.ts)
 - XYZ Tile layers
   - [DEMO](https://openlayers-elements.netlify.com/#/elements/ol-layer-xyz/demos/demo/xyz/)
 - Map markers

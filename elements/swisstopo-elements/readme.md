@@ -12,7 +12,7 @@ To install run
 npm add @openlayers-elements/swisstopo @openlayers-elements/core
 ```
 
-Then add the WMTS layer to your `ol-map` 
+Then add the WMTS layer to your `ol-map`
 
 ```html
 <script type="module">
@@ -21,7 +21,7 @@ Then add the WMTS layer to your `ol-map`
 </script>
 
 <ol-map zoom="7" lat="46.7985" lon="8.2318">
-    <swisstopo-wmts layer-name="ch.swisstopo.pixelkarte-grau"></swisstopo-wmts>
+  <swisstopo-wmts layer-name="ch.swisstopo.pixelkarte-grau"></swisstopo-wmts>
 </ol-map>
 ```
 
@@ -34,8 +34,8 @@ Note that these layers require to register with http://swisstopo.ch/webaccess
 For the reason mentioned above, the online demos don't work. You can run them locally (check the
 root readme). Here's a how the two sample maps look like in the browser when the map API is acessible:
 
-![swisstopo example](https://raw.githubusercontent.com/zazuko/openlayers-elements/master/elements/swisstopo-elements/assets/swisstopo.png)
+![swisstopo example](https://raw.githubusercontent.com/openlayers-elements/openlayers-elements/master/elements/swisstopo-elements/assets/swisstopo.png)
 
 It is jus tas easy to overlay OpenStreetMap with a Swisstopo layer:
 
-![swisstopo OSM](https://raw.githubusercontent.com/zazuko/openlayers-elements/master/elements/swisstopo-elements/assets/swisstopo+osm.png)
+![swisstopo OSM](https://raw.githubusercontent.com/openlayers-elements/openlayers-elements/master/elements/swisstopo-elements/assets/swisstopo+osm.png)
