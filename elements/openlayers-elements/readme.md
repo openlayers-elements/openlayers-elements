@@ -3,7 +3,7 @@
 Custom element wrapping OpenLayers 5 API, thus providing a declarative
 way to create online maps.
 
-See [documentation and demos](https://openlayers-elements.netlify.com).
+See [documentation and demos](https://openlayers-elements.netlify.app).
 
 ## Quick start
 
@@ -22,7 +22,7 @@ Here's the simplest possible OpenStreetMap:
 </script>
 
 <ol-map zoom="7" lat="46.7985" lon="8.2318">
-    <ol-layer-openstreetmap></ol-layer-openstreetmap>
+  <ol-layer-openstreetmap></ol-layer-openstreetmap>
 </ol-map>
 ```
 
