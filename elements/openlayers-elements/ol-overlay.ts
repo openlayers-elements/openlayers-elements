@@ -1,5 +1,6 @@
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
 import Overlay from 'ol/Overlay.js'
+import type { PanIntoViewOptions } from 'ol/Overlay.js'
 import Map from 'ol/Map.js'
 import { html } from 'lit'
 import { property } from 'lit/decorators.js'
@@ -79,11 +80,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
 
     const overlayOptions: {
       element: HTMLElement
-      autoPan?: {
-        animation: {
-          duration: number
-        }
-      }
+      autoPan?: PanIntoViewOptions | boolean
     } = {
       element: slotEl,
     }
