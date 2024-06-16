@@ -85,7 +85,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
       element: slotEl,
     }
 
-    if (this.autoPan) {
+    if (this.autoPan || this.autoPanAnimationDuration > 0) {
       overlayOptions.autoPan = {
         animation: {
           duration: this.autoPanAnimationDuration,
