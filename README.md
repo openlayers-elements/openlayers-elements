@@ -58,3 +58,18 @@ You may also start a watch process to update the generated custom elements manif
 ```sh
 npm -w storybook run custom-elements-manifest:watch
 ```
+
+## Running tests
+
+If the Chrome binary / driver is installed in your PATH, simply run:
+
+```sh
+npm run test
+```
+
+To run with a container-based Chrome driver, instead run:
+
+```sh
+docker compose -f contrib/docker/docker-compose.tests.yml \
+  run --rm test
+```

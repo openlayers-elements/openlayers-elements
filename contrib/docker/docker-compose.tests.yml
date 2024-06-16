@@ -1,0 +1,17 @@
+services:
+  test:
+    image: mcr.microsoft.com/playwright:v1.44.1
+    working_dir: /app
+    environment:
+      CHROME_PATH: /ms-playwright/chromium-1117/chrome-linux/chrome
+    volumes:
+      - ../../:/app/
+    # To prevent out of memory errors
+    ipc: host
+    # Required to run chromium sandbox
+    cap_add:
+      - SYS_ADMIN
+    # Required to run chromium sandbox
+    user: pwuser
+    command: npm run test
+    restart: "never"
