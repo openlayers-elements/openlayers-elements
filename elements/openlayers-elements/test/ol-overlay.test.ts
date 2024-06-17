@@ -15,10 +15,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      const autoPanOptions = overlay.getOptions().autoPan
-      if (typeof autoPanOptions === 'object') {
-        expect(autoPanOptions.animation?.duration).to.equal(0)
-      }
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 0 } })
     })
 
     it('can be enabled through property', async () => {
@@ -30,10 +27,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      const autoPanOptions = overlay.getOptions().autoPan
-      if (typeof autoPanOptions === 'object') {
-        expect(autoPanOptions.animation?.duration).to.equal(0)
-      }
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 0 } })
     })
 
     it('is undefined by default', async () => {
@@ -55,10 +49,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      const autoPanOptions = overlay.getOptions().autoPan
-      if (typeof autoPanOptions === 'object') {
-        expect(autoPanOptions.animation?.duration).to.equal(2)
-      }
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 2 } })
     })
 
     it('only duration is set, auto-enable auto-pan prop', async () => {
@@ -69,10 +60,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      const autoPanOptions = overlay.getOptions().autoPan
-      if (typeof autoPanOptions === 'object') {
-        expect(autoPanOptions.animation?.duration).to.equal(2)
-      }
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 2 } })
     })
   })
 
