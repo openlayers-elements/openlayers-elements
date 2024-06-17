@@ -22,7 +22,7 @@
     "@openlayers-elements/core": "^0.3.0",
     "@openlayers-elements/maps": "^0.3.0",
     "lit": "^3.1.4",
-    "ol": "^8.0.0",
+    "ol": "^9.2.4",
     "proj4": "^2.5.0"
   },
   "devDependencies": {
