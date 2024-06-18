@@ -65,6 +65,11 @@ export const Opacity: Story = {
 </ol-map>`,
 }
 
+/**
+ * A few national flags positioned in geographical centers of their respective countries.
+ *
+ * Notice the scale property is needed because the images are quite large.
+ */
 export const GeoJSON: Story = {
   name: 'Markers on a GeoJSON layer',
   render: ({ map }) => html`

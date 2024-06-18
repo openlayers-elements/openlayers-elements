@@ -15,7 +15,13 @@ const main: Meta = {
 
 export default main
 
+/**
+ * For other layers you can check [OSM wiki](https://wiki.openstreetmap.org/wiki/Tile_servers).
+ *
+ * (Note the different style of interpolating x/y/z parameters)
+ */
 export const Basic: Story = {
+  name: 'German OpenStreetmap XYZ layer overlayed with cycling paths',
   render: () => html`
 <ol-map zoom="7" lat="46.7985" lon="8.2318">
   <ol-layer-xyz url="https://a.tile.openstreetmap.de/{z}/{x}/{y}.png "></ol-layer-xyz>

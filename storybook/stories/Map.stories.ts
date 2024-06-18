@@ -36,6 +36,47 @@ export const Basic: Story = {
 </ol-map>`,
 }
 
+/**
+ * Vector layers have a `fit` method which aligns the map view to show its entirety.
+ */
+export const ZoomToLayer: Story = {
+  name: 'Zoom to entire layer',
+  args: {
+    zoom: 4,
+    lat: 39.828175,
+    lon: -98.5795,
+  },
+  render: args => html`
+<style>
+  ol-map {
+    --zoom-control-top: 10px;
+    --zoom-control-right: 10px;
+  }
+</style>
+
+<ol-map ${spread(args)}>
+  <ol-layer-openstreetmap></ol-layer-openstreetmap>
+  <ol-layer-geojson url="/europe.geojson"></ol-layer-geojson>
+  <ol-control id="zoom">
+    <button onclick="goToEurope()">Go to Europe</button>
+  </ol-control>
+</ol-map>
+
+<script>
+  function goToEurope() {
+    document.querySelector('ol-layer-geoJson').fit()
+  }
+</script>
+  `,
+}
+
+/**
+ * To zoom to a single feature you need a reference to the map element and pass the
+ * geometry's extent. In this example the selected feature's shape is used.
+ *
+ * The `fit` method also accepts a second parameter which allows for customizing the behavior
+ * using the [`FitOptions` object](https://openlayers.org/en/latest/apidoc/module-ol_View.html#~FitOptions)
+ */
 export const ZoomToExtent: Story = {
   name: 'Zooming to the extent of a feature',
   args: {

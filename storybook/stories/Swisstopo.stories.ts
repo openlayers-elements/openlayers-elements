@@ -59,6 +59,9 @@ export const AdjustedMarker: Story = {
 </ol-map>`,
 }
 
+/**
+ * By keeping the default projection the grass map nicely fits OpenStreetMap
+ */
 export const OSM: Story = {
   name: 'Swiss topo mixed with OSM',
   args: {
@@ -71,6 +74,9 @@ export const OSM: Story = {
 </ol-map>`,
 }
 
+/**
+ * Uses OpenLayers' [XYZ layer source](https://openlayers.org/en/latest/examples/xyz.html)
+ */
 export const Mercator: Story = {
   name: 'Swiss topo in Mercator projection',
   args: {

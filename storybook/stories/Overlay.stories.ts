@@ -36,6 +36,10 @@ const defaults: Meta = {
 
 export default defaults
 
+/**
+ * This demo, inspired by the [official one from OpenLayers](https://openlayers.org/en/latest/examples/popup.html),
+ * creates a popup with coordinates of where the map was clicked.
+ */
 export const Popup: Story = {
   name: 'Simple overlay popup',
   render: ({ map, 'auto-pan': autoPan, ...args }) => html`
@@ -113,6 +117,14 @@ export const Popup: Story = {
 </ol-map>`,
 }
 
+/**
+ * Very similar to basic example of `<ol-overlay>` where the popup contents are filled with the name of selected country.
+ *
+ *  Note that separate event handler is used to position the popup where clicked. It could be easily done by calculating
+ *  geographic center of each country, thus requiring only the `feature-selected` event. However, oversea
+ *  territories of certain countries position the center outside of its main surface. For example in the case of this
+ *  GeoJSON, Alaska pulls the center of the United States into western Canada.
+ */
 export const GeoJSON: Story = {
   name: 'Popup over GeoJSON layer',
   render: ({ map, 'auto-pan': autoPan, ...args }) => html`
