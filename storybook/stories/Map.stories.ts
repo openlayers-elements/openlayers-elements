@@ -9,7 +9,7 @@ import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
 import './Map.css'
 
 const main: Meta = {
-  title: 'Core/ol-map',
+  title: 'ol-map',
   component: 'ol-map',
   tags: ['autodocs'],
   args: {

@@ -5,6 +5,11 @@ setCustomElementsManifest(customElements)
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['ol-map']
+      }
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
