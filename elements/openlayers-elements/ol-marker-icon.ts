@@ -4,9 +4,8 @@ import Feature from 'ol/Feature.js'
 import Point from 'ol/geom/Point.js'
 import { fromLonLat } from 'ol/proj.js'
 import Icon, { Options } from 'ol/style/Icon.js'
+import type { IconAnchorUnits, IconOrigin } from 'ol/style/Icon.js'
 import Style from 'ol/style/Style.js'
-import IconAnchorUnits from 'ol/style/IconAnchorUnits.js'
-import IconOrigin from 'ol/style/IconOrigin.js'
 import { Size } from 'ol/size.js'
 import OlMap from './ol-map.js'
 
@@ -79,19 +78,19 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {IconAnchorUnits}
    */
   @property({ type: String, attribute: 'anchor-x-units' })
-  public anchorXUnits?: typeof IconAnchorUnits = undefined
+  public anchorXUnits?: IconAnchorUnits = undefined
 
   /**
    * @type {IconAnchorUnits}
    */
   @property({ type: String, attribute: 'anchor-y-units' })
-  public anchorYUnits?: typeof IconAnchorUnits = undefined
+  public anchorYUnits?: IconAnchorUnits = undefined
 
   /**
    * @type {IconOrigin}
    */
   @property({ type: String, attribute: 'anchor-origin' })
-  public anchorOrigin?: typeof IconOrigin = undefined
+  public anchorOrigin?: IconOrigin = undefined
 
   /**
    * @type {string}
@@ -121,7 +120,7 @@ export default class OlMarkerIcon extends OlFeature {
    * @type {IconOrigin}
    */
   @property({ type: Number, attribute: 'offset-origin' })
-  public offsetOrigin: typeof IconOrigin
+  public offsetOrigin: IconOrigin
 
   /**
    * @type {number}

@@ -15,7 +15,7 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay.getOptions().autoPan).to.equal(true)
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 0 } })
     })
 
     it('can be enabled through property', async () => {
@@ -27,10 +27,10 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay.getOptions().autoPan).to.equal(true)
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 0 } })
     })
 
-    it('is disabled by default', async () => {
+    it('is undefined by default', async () => {
       // given
       const element = (await fixture('<ol-overlay id="foo"></ol-overlay>')) as OlOverlay
 
@@ -38,7 +38,29 @@ describe('ol-overlay', () => {
       const overlay = await element.createPart()
 
       // then
-      expect(overlay.getOptions().autoPan).to.equal(false)
+      expect(overlay.getOptions().autoPan).to.equal(undefined)
+    })
+
+    it('duration can be configured', async () => {
+      // given
+      const element = (await fixture('<ol-overlay id="foo" auto-pan auto-pan-animation-duration="2"></ol-overlay>')) as OlOverlay
+
+      // when
+      const overlay = await element.createPart()
+
+      // then
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 2 } })
+    })
+
+    it('only duration is set, auto-enable auto-pan prop', async () => {
+      // given
+      const element = (await fixture('<ol-overlay id="foo" auto-pan-animation-duration="2"></ol-overlay>')) as OlOverlay
+
+      // when
+      const overlay = await element.createPart()
+
+      // then
+      expect(overlay.getOptions().autoPan).to.deep.equal({ animation: { duration: 2 } })
     })
   })
 
