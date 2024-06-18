@@ -1,7 +1,7 @@
 ---
-'@openlayers-elements/maps': patch
-'@openlayers-elements/swisstopo': patch
-'@openlayers-elements/core': patch
+'@openlayers-elements/maps': minor
+'@openlayers-elements/swisstopo': minor
+'@openlayers-elements/core': minor
 'demos': patch
 ---
 
