@@ -23,7 +23,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_MESSAGE: Preview ${{ env.BRANCH_NAME }}
           build_command: npm run docs
-          build_directory: demos/storybook-static
+          build_directory: storybook/storybook-static
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
           monorepo_package: storybook
