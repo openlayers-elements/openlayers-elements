@@ -65,7 +65,7 @@ class StyledMap extends LitElement {
 
   render() {
     return html`
-      <ol-map zoom="4" lat="46.7985" lon="8.2318">
+      <ol-map zoom="4" lat="46.7985" lon="28.2318">
         <ol-layer-geojson
           url="/countries.geojson"
           .featureStyle="${this.getStackedStyle}"

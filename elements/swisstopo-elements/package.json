@@ -9,11 +9,14 @@
   ],
   "files": [
     "*.js",
-    "*.d.ts"
+    "*.d.ts",
+    "custom-elements.json"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "custom-elements-manifest": "cem analyze --litelement",
+    "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",

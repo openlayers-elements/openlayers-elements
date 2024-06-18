@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "custom-elements.json"
   ],
   "scripts": {
+    "custom-elements-manifest": "cem analyze --litelement --globs \"../elements/**/*.ts\"",
     "prebuild": "rimraf dist",
     "build": "./build.js",
-    "prepack": "npm run build"
+    "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "devDependencies": {
     "esbuild": "^0.16.4",

@@ -36,8 +36,6 @@ import { forwardEvents } from './lib/events.js'
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
- * @demo demo/ol-map/
- * @demo demo/zoom-to-extent/ Zoom to extent
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */
@@ -85,9 +83,15 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   @property({ type: Number })
   public lat = 0
 
+  /**
+   * @ignore
+   */
   @query('div')
   public mapElement!: HTMLDivElement
 
+  /**
+   * @ignore
+   */
   private static get __forwardedEvents() {
     return ['moveend', 'change']
   }
@@ -131,9 +135,13 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
    * The underlying OpenLayers map instance
    * @type {Object}
+   * @ignore
    */
   public map?: OpenLayersMap = undefined
 
+  /**
+   * @ignore
+   */
   public sizeObserver: ResizeObserver
 
   public constructor() {

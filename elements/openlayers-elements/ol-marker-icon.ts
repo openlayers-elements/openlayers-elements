@@ -29,8 +29,6 @@ import OlMap from './ol-map.js'
  * 1. The anchor on the map is by default the image's center and can be change by setting the `anchor*` properties
  *
  * For an in-depth description of individual properties go to OpenLayer's docs for [ol/Style/Icon](https://openlayers.org/en/latest/apidoc/module-ol_style_Icon.html)
- *
- * @demo demo/markers/
  */
 export default class OlMarkerIcon extends OlFeature {
   /**

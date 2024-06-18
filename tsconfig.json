@@ -14,7 +14,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "baseUrl": "./"
-  },
-  "include": ["demos", "elements", "bundle", "web-test-runner.config.mjs"]
+    "baseUrl": "./",
+    "resolveJsonModule": true
+  }
 }

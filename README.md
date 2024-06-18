@@ -36,16 +36,21 @@ While extensive, human-friendly documentation is not yet available, be sure to c
 
 ## API Docs
 
-All the [live demos](https://openlayers-elements.netlify.app/) also include generated API documentation.
+[Storybook](https://openlayers-elements.netlify.app/) also include generated API documentation.
 
-## Running locally
+## Running Storybook locally
 
 Simply execute
 
 ```sh
 npm install
-npm run build
 npm run start
 ```
 
-And open http://localhost:8080
+And open http://localhost:6006
+
+You may also start a watch process to update the generated custom elements manifest automatically:
+
+```sh
+npm -w storybook run custom-elements-manifest:watch
+```

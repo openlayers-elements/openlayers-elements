@@ -23,10 +23,10 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_MESSAGE: Preview ${{ env.BRANCH_NAME }}
           build_command: npm run docs
-          build_directory: demos/dist
+          build_directory: demos/storybook-static
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
-          monorepo_package: demos
+          monorepo_package: storybook
 
       - name: Status check
         uses: guibranco/github-status-action-v2@v1.1.13

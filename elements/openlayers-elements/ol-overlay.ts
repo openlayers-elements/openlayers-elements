@@ -25,8 +25,6 @@ import { property } from 'lit/decorators.js'
  * Use `setPosition` method to move and show the overlay.
  * Use `hide` method to... hide it.
  *
- * @demo demo/overlay/ Basic example
- * @demo demo/overlay+select/ Combined with ol-select
  * @customElement
  */
 export default class OlOverlay extends OlMapPart<Overlay> {
@@ -56,6 +54,10 @@ export default class OlOverlay extends OlMapPart<Overlay> {
     return this.__overlay
   }
 
+  /**
+   * @ignore
+   * @private
+   */
   private __overlay: Overlay
 
   protected _addToMap(map: Map, overlay: Overlay) {

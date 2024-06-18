@@ -8,12 +8,11 @@ import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
  *
  * ```html
  * <ol-map>
- *   <ol-select @feature-selected="handleSelection"></ol-select>
+ *   <ol-select \@feature-selected="handleSelection"></ol-select>
  * </ol-map>
  * ```
  *
  * @customElement
- * @demo demo/select/
  */
 export class OlSelect extends OlInteraction {
   /**
