@@ -1,17 +1,18 @@
 services:
   test:
-    image: mcr.microsoft.com/playwright:v1.44.1
-    working_dir: /app
-    environment:
-      CHROME_PATH: /ms-playwright/chromium-1117/chrome-linux/chrome
+    image: ghcr.io/openlayers-elements/openlayers-elements:ci
+    build:
+      context: ../../
+      dockerfile: contrib/docker/Dockerfile
     volumes:
-      - ../../:/app/
+      # Required to not mount node_module dirs
+      - /app/elements/openlayers-core/node_modules
+      - /app/elements/openlayers-elements/node_modules
+      - /app/elements/swisstopo-elements/node_modules
+      - ../../elements:/app/elements
     # To prevent out of memory errors
     ipc: host
     # Required to run chromium sandbox
     cap_add:
       - SYS_ADMIN
-    # Required to run chromium sandbox
-    user: pwuser
-    command: npm run test
     restart: "never"
