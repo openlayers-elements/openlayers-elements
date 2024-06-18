@@ -1,5 +1,6 @@
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
 import Overlay from 'ol/Overlay.js'
+import type { PanIntoViewOptions } from 'ol/Overlay.js'
 import Map from 'ol/Map.js'
 import { html } from 'lit'
 import { property } from 'lit/decorators.js'
@@ -66,7 +67,7 @@ export default class OlOverlay extends OlMapPart<Overlay> {
     map.removeOverlay(overlay)
   }
 
-  public async createPart() {
+  public async createPart(): Promise<Overlay> {
     if (!this.id) {
       throw new Error('ol-overlay element must have an id')
     }
@@ -77,19 +78,28 @@ export default class OlOverlay extends OlMapPart<Overlay> {
     const slotEl = document.createElement('slot')
     slotEl.name = slot
 
-    this.__overlay = new Overlay({
+    const overlayOptions: {
+      element: HTMLElement
+      autoPan?: PanIntoViewOptions | boolean
+    } = {
       element: slotEl,
-      autoPan: this.autoPan,
-      autoPanAnimation: {
-        duration: this.autoPanAnimationDuration,
-      } as any,
-    })
+    }
 
-    // hack to get panning correctly calculate overlay dimensions,
+    if (this.autoPan || this.autoPanAnimationDuration > 0) {
+      overlayOptions.autoPan = {
+        animation: {
+          duration: this.autoPanAnimationDuration,
+        },
+      }
+    }
+
+    this.__overlay = new Overlay(overlayOptions)
+
+    // Hack to get panning to correctly calculate overlay dimensions,
     // which would otherwise be calculated from the <slot> element
-    this.overlay.getElement = () => this
+    this.__overlay.getElement = () => this
 
-    return this.overlay
+    return this.__overlay
   }
 
   /**
