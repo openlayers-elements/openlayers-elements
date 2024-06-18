@@ -4,7 +4,9 @@ import { html } from 'lit'
 import { spread } from '@open-wc/lit-helpers'
 
 import '@openlayers-elements/core/ol-map.js'
+import '@openlayers-elements/maps/ol-control.js'
 import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
+import '@openlayers-elements/maps/ol-layer-geojson.js'
 
 import './Map.css'
 
