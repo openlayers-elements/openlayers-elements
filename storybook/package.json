@@ -18,6 +18,9 @@
     "lit": "^3.1.4",
     "storybook": "^8.1.9"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
+  },
   "scripts": {
     "custom-elements-manifest": "cem analyze --globs \"../elements/*/*.ts\" --litelement",
     "custom-elements-manifest:watch": "npm run custom-elements-manifest -- --watch",
