@@ -1,9 +1,13 @@
 # OpenLayers Web Components
 
-This is monorepo which contains:
+While there are many great framework-specific OpenLayers wrappers, the goal of this
+project is to wrap OpenLayers in W3C Web Components, which are a web standard
+supported by allow browsers currently and into the future.
 
-- core OpenLayers elements (incl. map itself) ([`@openlayers-elements/core`](elements/openlayers-core))
-- common OpenLayers elements (layers, markers, etc) ([`@openlayers-elements/openlayers-elements`](elements/openlayers-elements))
+This is a monorepo which contains:
+
+- **core** OpenLayers elements (incl. map itself) ([`@openlayers-elements/core`](elements/openlayers-core))
+- **common** OpenLayers elements (layers, markers, etc) ([`@openlayers-elements/openlayers-elements`](elements/openlayers-elements))
 - Swiss layers from geoadmin.ch ([`@openlayers-elements/swisstopo-elements`](elements/swisstopo-elements))
 - Package with bundles for quick and easy usage ([`@openlayers-elements/bundle`](bundle))
 
