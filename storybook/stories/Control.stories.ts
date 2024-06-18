@@ -8,6 +8,8 @@ import '@openlayers-elements/core/ol-map.js'
 import '@openlayers-elements/maps/ol-control.js'
 import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
 
+import './Map.css'
+
 const defaults: Meta = {
   title: 'Core/ol-control',
   component: 'ol-control',
