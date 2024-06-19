@@ -19,6 +19,24 @@ import { forwardEvents } from './lib/events.js'
  * </ol-map>
  * ```
  *
+ * ### Setting the map container height
+ *
+ * It is expected that the map element will be wrapped in another element on your page.
+ * By default the map element has 100% height, meaning it will fill the parent element.
+ *
+ * In order to ensure the map fills the parent container, using `flex` may be required.
+ * An example CSS file:
+ *
+ * ```css
+ * #parent-element {
+ *   display: flex;
+ *   height: 400px;
+ * }
+ * ol-map {
+ *   flex: 1;
+ * }
+ * ```
+ *
  * ### Controlling zoom level
  *
  * The simpler way to set zoom is to set the `zoom` property. Alternatively, `resolution` can be used instead.
