@@ -8,8 +8,6 @@ import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
 import '@openlayers-elements/core/ol-layer-vector.js'
 import '@openlayers-elements/maps/ol-marker-icon.js'
 
-import './Map.css'
-
 const defaults: Meta = {
   title: 'Swisstopo/swisstopo',
   component: 'swisstopo-wmts',

@@ -5,8 +5,6 @@ import { html } from 'lit'
 import '@openlayers-elements/core/ol-map.js'
 import '@openlayers-elements/maps/ol-layer-xyz.js'
 
-import './Map.css'
-
 const main: Meta = {
   title: 'Layers/ol-layer-xyz',
   component: 'ol-layer-xyz',

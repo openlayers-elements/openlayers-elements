@@ -8,8 +8,6 @@ import '@openlayers-elements/maps/ol-control.js'
 import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
 import '@openlayers-elements/maps/ol-layer-geojson.js'
 
-import './Map.css'
-
 const main: Meta = {
   title: 'ol-map',
   component: 'ol-map',

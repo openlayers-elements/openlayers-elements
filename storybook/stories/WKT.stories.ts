@@ -7,8 +7,6 @@ import '@openlayers-elements/maps/ol-control.js'
 import '@openlayers-elements/maps/ol-select.js'
 import '@openlayers-elements/maps/ol-layer-wkt.js'
 
-import './Map.css'
-
 const main: Meta = {
   title: 'Layers/ol-layer-wkt',
   component: 'ol-layer-wkt',

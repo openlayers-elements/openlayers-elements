@@ -10,8 +10,6 @@ import '@openlayers-elements/maps/ol-layer-geojson.js'
 import '@openlayers-elements/core/ol-layer-vector.js'
 import '@openlayers-elements/maps/ol-marker-icon.js'
 
-import './Map.css'
-
 const defaultMap = {
   lat: 46.7985,
   lon: 8.2318,
