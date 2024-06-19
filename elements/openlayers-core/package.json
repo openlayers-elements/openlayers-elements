@@ -23,11 +23,11 @@
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
-    "lit": "^2.0.0",
+    "lit": "^3.1.4",
     "ol": "^7.5.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.1.6",
+    "@open-wc/testing": "^4.0.0",
     "sinon": "^9.2.4",
     "@openlayers-elements/testing": "0.1.0"
   },
