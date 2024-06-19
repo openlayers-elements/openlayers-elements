@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "@openlayers-elements/core": "^0.3.0",
-    "lit": "^2.0.0",
+    "lit": "^3.1.4",
     "ol": "^7.5.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.1.6",
+    "@open-wc/testing": "^4.0.0",
     "sinon": "^9.2.4"
   },
   "publishConfig": {

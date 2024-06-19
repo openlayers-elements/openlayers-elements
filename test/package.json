@@ -2,8 +2,8 @@
   "name": "@openlayers-elements/testing",
   "private": true,
   "version": "0.1.0",
-  "dependencies": {
-    "@open-wc/testing": "^3.1.6",
-    "lit": "^2.0.0"
+  "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
+    "lit": "^3.1.4"
   }
 }
