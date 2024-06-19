@@ -2,26 +2,22 @@
   "private": true,
   "name": "open-layers",
   "workspaces": [
-    "demos",
+    "storybook",
     "test",
     "bundle",
     "elements/*"
   ],
   "scripts": {
-    "prestart": "npm run analyze",
-    "start": "npm --workspace demos run start",
-    "build": "npm -w @openlayers-elements/core -w @openlayers-elements/maps -w @openlayers-elements/swisstopo -w @openlayers-elements/bundle run build",
-    "lint": "eslint --ext .ts,.js elements demos --quiet",
+    "start": "npm --workspace storybook run storybook",
+    "lint": "eslint --ext .ts,.js elements storybook --quiet",
     "test": "wtr",
-    "preanalyze": "tsc",
-    "analyze": "polymer analyze --sources elements > demos/public/analysis.json",
-    "predocs": "npm run analyze",
-    "docs": "npm --workspace demos run build",
+    "docs": "npm --workspace storybook run build",
     "release": "changeset publish",
     "prepare": "husky"
   },
   "devDependencies": {
     "@changesets/cli": "^2.21.0",
+    "@custom-elements-manifest/analyzer": "^0.10.2",
     "@open-wc/eslint-config": "^8.0.2",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@tpluscode/eslint-config": "^0.4.5",
@@ -36,7 +32,6 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "husky": "^9",
     "lint-staged": "^13.0.3",
-    "polymer-cli": "^1.9.11",
     "prettier": "^1.16.4",
     "typescript": "^5.4.5"
   },

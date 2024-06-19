@@ -22,6 +22,9 @@ export abstract class OlMapPart<T extends BaseObject> extends AttachableMixin(Li
 
   public _map: OlMap
 
+  /**
+   * @ignore
+   */
   protected get _forwardedEvents(): string[] {
     return []
   }

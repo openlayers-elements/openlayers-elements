@@ -9,3 +9,5 @@ dist/
 lerna-debug.log
 coverage/
 *.log
+custom-elements.json
+storybook/storybook-static/

@@ -1,6 +1,0 @@
-import '@openlayers-elements/core/ol-map.js'
-import '@openlayers-elements/swisstopo/swisstopo-wmts.js'
-import '@polymer/iron-demo-helpers/demo-snippet.js'
-import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
-import '@openlayers-elements/core/ol-layer-vector.js'
-import '@openlayers-elements/maps/ol-marker-icon.js'

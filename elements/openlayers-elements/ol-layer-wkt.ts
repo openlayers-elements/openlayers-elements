@@ -32,7 +32,6 @@ interface Feature {
  *
  * [wkt]: https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
  *
- * @demo demo/wkt/
  * @customElement
  */
 export default class OlLayerWkt extends OlLayerVector {

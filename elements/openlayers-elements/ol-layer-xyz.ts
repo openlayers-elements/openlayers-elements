@@ -6,10 +6,12 @@ import OlLayerBase from '@openlayers-elements/core/ol-layer-base.js'
 /**
  * A simple layer element, sourcing from a raster tile server using X/Y/Z coordinates
  *
- * @demo demo/xyz/
  * @customElement
  */
 export default class OlLayerXyz extends OlLayerBase<TileLayer<any>> {
+  /**
+   * @ignore
+   */
   private __url?: string = undefined
 
   /**

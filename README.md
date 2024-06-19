@@ -16,40 +16,45 @@ This is a monorepo which contains:
 While extensive, human-friendly documentation is not yet available, be sure to check out the different features supported by the components live:
 
 - Core map features
-  - [Zooming to layers and features](https://openlayers-elements.netlify.app/#/elements/ol-map/demos/zoom-to-extent)
+  - [Zooming to layers and features](https://openlayers-elements.netlify.app/?path=/story/core-ol-map--zoom-to-extent)
 - OpenStreetMaps
-  - [DEMO](https://openlayers-elements.netlify.app/#/elements/ol-layer-openstreetmap/demos/standard-map)
+  - [DEMO](https://openlayers-elements.netlify.app/?path=/docs/layers-ol-layer-openstreetmap--docs)
 - Adding features to the map (aka. vector layers)
-  - [GeoJSON](https://openlayers-elements.netlify.app/#/elements/ol-layer-geojson/demos/demo/select/)
-  - [WKT](https://openlayers-elements.netlify.app/#/elements/ol-layer-wkt/demos/demo/wkt/)
-  - [Styling](https://openlayers-elements.netlify.app/#/elements/ol-layer-vector/demos/styling), actual code [here](https://github.com/openlayers-elements/openlayers-elements/blob/master/demos/demo/vector-styling/styled-map.ts)
+  - [GeoJSON](https://openlayers-elements.netlify.app/?path=/story/core-ol-select--popup)
+  - [WKT](https://openlayers-elements.netlify.app/?path=/docs/layers-ol-layer-wkt--docs)
+  - [Styling](https://openlayers-elements.netlify.app/?path=/story/layers-ol-layer-geojson--basic), actual code [here](storybook/lib/styled-map.ts)
 - XYZ Tile layers
-  - [DEMO](https://openlayers-elements.netlify.app/#/elements/ol-layer-xyz/demos/demo/xyz/)
+  - [DEMO](https://openlayers-elements.netlify.app/?path=/docs/layers-ol-layer-xyz--docs)
 - Map markers
-  - [DEMO](https://openlayers-elements.netlify.app/#/elements/ol-marker-icon/demos/demo/markers/)
+  - [DEMO](https://openlayers-elements.netlify.app/?path=/docs/core-ol-marker-icon--docs)
 - Map interactions
-  - [Select on click](https://openlayers-elements.netlify.app/#/elements/ol-select/demos/demo/select/)
+  - [Select on click](https://openlayers-elements.netlify.app/?path=/docs/core-ol-select--docs)
 - Adding custom map controls
-  - [Positioning and styling](https://openlayers-elements.netlify.app/#/elements/ol-control/demos/demo/control/)
+  - [Positioning and styling](https://openlayers-elements.netlify.app/?path=/docs/core-ol-control--docs)
 - Adding overlays (popups, etc)
-  - [Basic example](https://openlayers-elements.netlify.app/#/elements/ol-overlay/demos/basic-example)
-  - [Combine with selection](https://openlayers-elements.netlify.app/#/elements/ol-overlay/demos/combined-with-ol-select)
-- Swiss layers
-  - [WMTS source](https://openlayers-elements.netlify.app/#/elements/swisstopo-wmts/demos/demo/swiss-topo/)
-  - [XYZ layers, reprojected to Mercator](https://openlayers-elements.netlify.app/#/elements/swisstopo-reprojected/demos/demo/swiss-reprojected/)
+  - [Basic example](https://openlayers-elements.netlify.app/?path=/story/core-ol-overlay--popup)
+  - [Combine with selection](https://openlayers-elements.netlify.app/?path=/story/core-ol-overlay--geo-json)
+- [Swiss layers](https://openlayers-elements.netlify.app/?path=/docs/swisstopo-swisstopo--docs)
+  - WMTS source
+  - XYZ layers, reprojected to Mercator
 
 ## API Docs
 
-All the [live demos](https://openlayers-elements.netlify.app/) also include generated API documentation.
+[Storybook](https://openlayers-elements.netlify.app/) also include generated API documentation.
 
-## Running locally
+## Running Storybook locally
 
 Simply execute
 
 ```sh
 npm install
-npm run build
 npm run start
 ```
 
-And open http://localhost:8080
+And open http://localhost:6006
+
+You may also start a watch process to update the generated custom elements manifest automatically:
+
+```sh
+npm -w storybook run custom-elements-manifest:watch
+```

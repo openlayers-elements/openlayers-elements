@@ -11,7 +11,6 @@ import SwisstopoElement from './swisstopo-element.js'
  * Apparently this style of layer source does not work with every one of Swiss layers. If you get 404s (blank map),
  * use the [`swisstopo-wmts` layer](#/elements/SwissTopoWMTS)
  *
- * @demo demo/swiss-reprojected/
  * @appliesMixin SwisstopoElementMixin
  * @customElement
  */

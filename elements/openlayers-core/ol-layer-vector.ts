@@ -20,7 +20,6 @@ import AttachableAwareMixin from './mixins/AttachableAware.js'
  * </ol-map>
  * ```
  *
- * @demo demo/vector-styling/ Styling
  * @appliesMixin AttachableAwareMixin
  * @customElement
  */

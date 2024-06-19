@@ -30,6 +30,9 @@ export default class OlLayerBase<L extends Layer> extends OlMapPart<L> {
   @property({ type: Number, attribute: 'z-index' })
   public zIndex = 0
 
+  /**
+   * @ignore
+   */
   protected get _forwardedEvents() {
     return ['change']
   }

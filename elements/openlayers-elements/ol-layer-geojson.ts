@@ -6,8 +6,6 @@ import OlLayerVector from '@openlayers-elements/core/ol-layer-vector.js'
 /**
  * A layer which loads features from a GeoJSON input
  *
- * @demo demo/select/
- * @demo demo/markers/ Combined with markers
  * @customElement
  */
 export default class OlLayerGeoJson extends OlLayerVector {
