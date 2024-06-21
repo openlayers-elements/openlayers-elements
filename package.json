@@ -10,6 +10,7 @@
   "scripts": {
     "start": "npm --workspace storybook run storybook",
     "lint": "eslint --ext .ts,.js elements storybook --quiet",
+    "pretest": "tsc",
     "test": "wtr",
     "docs": "npm --workspace storybook run build",
     "release": "changeset publish",
