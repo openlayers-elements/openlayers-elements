@@ -18,5 +18,7 @@
     "baseUrl": "./",
     "resolveJsonModule": true
   },
-  "exclude": ["storybook"]
+  "include": [
+    "elements"
+  ]
 }

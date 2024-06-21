@@ -7,7 +7,7 @@
     "browser": true
   },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.lint.json"
   },
   "rules": {
     "no-shadow": "off",
