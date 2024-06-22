@@ -1,0 +1,8 @@
+# Ignore everything
+**/**/node_modules
+.changeset
+.husky
+assets
+contrib
+coverage
+test
