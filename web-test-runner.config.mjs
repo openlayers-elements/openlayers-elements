@@ -4,11 +4,11 @@ import { fromRollup } from '@web/dev-server-rollup'
 import commonjs from '@rollup/plugin-commonjs'
 
 export default {
-  files: 'elements/**/*.test.js',
+  files: 'elements/**/*.test.ts',
   nodeResolve: true,
   coverage: true,
   plugins: [
-    esbuildPlugin({ ts: false }),
+    esbuildPlugin({ ts: true, tsconfig: './tsconfig.json' }),
     fromRollup(commonjs)({
       exclude: [
         '**/node_modules/@open-wc/**/*',
