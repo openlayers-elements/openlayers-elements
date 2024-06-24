@@ -1,6 +1,7 @@
 {
   "name": "@openlayers-elements/testing",
   "private": true,
+  "type": "module",
   "version": "0.1.0",
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
