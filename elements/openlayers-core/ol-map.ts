@@ -1,12 +1,24 @@
 import { html, LitElement } from 'lit'
-import { property, query } from 'lit/decorators.js'
+import { property, query, state } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map.js'
 import { MapEvent } from 'ol'
+// import type { Coordinate } from 'ol/coordinate.js'
+// import type { Pixel } from 'ol/pixel.js'
 import SimpleGeometry from 'ol/geom/SimpleGeometry.js'
 import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj.js'
 import View, { FitOptions } from 'ol/View.js'
+// import Overlay from 'ol/Overlay.js'
+import { inAndOut } from 'ol/easing.js'
 import AttachableAwareMixin from './mixins/AttachableAware.js'
 import { forwardEvents } from './lib/events.js'
+import {
+  getTransform,
+  getTransformOrigin,
+  computeTransformMatrix,
+  // transformVertex,
+  // projectVertex,
+  identity,
+} from './lib/3dMatrix.js'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -32,7 +44,7 @@ import { forwardEvents } from './lib/events.js'
  * The position of the map can also be controlled in two ways:
  *
  * 1. with `x`/`y` coordinates
- * 1. with latitude and longitude
+ * 2. with latitude and longitude
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
@@ -44,44 +56,44 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    * Forwards `moveend` event from OpenLayers object
    *
    * @event moveend
-   * @param {detail} the event itself
+   * @param {MapEvent} event - The moveend event from OpenLayers
    */
 
   /**
    * Forwards `change` event from OpenLayers object
    *
    * @event change
-   * @param {detail} the event itself
+   * @param {MapEvent} event - The change event from OpenLayers
    */
 
   /**
    * Fired when the map finished moving, as the result of human interaction, as well as programmatically
    *
    * @event view-change
-   * @param {lat} latitude
-   * @param {lon} longitude
+   * @param {number} lat - Latitude
+   * @param {number} lon - Longitude
    */
 
   /**
    * Zoom level
-   * @type {Number}
+   * @type {number}
    */
   @property({ type: Number })
-  public zoom = 1
+  public zoom: number = 1
 
   /**
    * Longitude
-   * @type {Number}
+   * @type {number}
    */
   @property({ type: Number })
-  public lon = 0
+  public lon: number = 0
 
   /**
    * Latitude
-   * @type {Number}
+   * @type {number}
    */
   @property({ type: Number })
-  public lat = 0
+  public lat: number = 0
 
   /**
    * @ignore
@@ -92,9 +104,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
    * @ignore
    */
-  private static get __forwardedEvents() {
-    return ['moveend', 'change']
-  }
+  private static readonly __forwardedEvents: string[] = ['moveend', 'change']
 
   /**
    * A string identifier of the projection to be used. Custom projections can be added using [`proj4` library][p4].
@@ -133,14 +143,27 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   public y?: number = undefined
 
   /**
-   * The underlying OpenLayers map instance
-   * @type {Object}
-   * @ignore
+   * Enable map perspective, i.e. viewing at a pitched angle
+   * The default is 0° (nadir, straight down), with max 30° pitch possible.
+   * @type {number}
    */
-  public map?: OpenLayersMap = undefined
+  @property({ type: Number })
+  public pitch: number = 0
+
+  @state() private matrixTransform: number[][] | null = null
+  @state() private fromAngle: number = 0
+  @state() private animationFrameId: number | null = null
 
   /**
+   * The underlying OpenLayers map instance
+   * @type {OpenLayersMap | undefined}
    * @ignore
+   */
+  public map?: OpenLayersMap
+
+  /**
+   * Resize observer for handling map size changes
+   * @type {ResizeObserver}
    */
   public sizeObserver: ResizeObserver
 
@@ -151,6 +174,11 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
         this.map.updateSize()
       }
     })
+
+    // // If map is pitched, we need to override overlay
+    // if (this.pitch) {
+    //   this.__overrideOverlay()
+    // }
   }
 
   public connectedCallback() {
@@ -164,11 +192,11 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   }
 
   public firstUpdated() {
-    const viewInit = {
+    const viewInit: any = {
       center: [0, 0],
       resolution: this.resolution,
       zoom: this.zoom,
-    } as any
+    }
 
     if (this.lon && this.lat) {
       if (this.projection) {
@@ -185,10 +213,15 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     if (this.projection) {
       viewInit.projection = getProjection(this.projection)
     }
+
     this.map = new OpenLayersMap({
       target: this.mapElement,
       view: new View(viewInit),
     })
+
+    if (this.pitch > 0) {
+      this.__setPerspective()
+    }
 
     forwardEvents(OlMap.__forwardedEvents, this, this.map)
     this.map.on('moveend', this.__dispatchViewChange.bind(this))
@@ -238,6 +271,161 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       },
     }))
   }
+
+  // /**
+  //  * Get pixel ratio for the map
+  //  * @private
+  //  */
+  // private __getPixelRatio(): number {
+  //   return window.devicePixelRatio || 1
+  // }
+
+  /**
+   * Set perspective angle
+   * @private
+   */
+  private __setPerspective() {
+    if (!this.map) return
+
+    // Cancel previous animation frame if exists
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId)
+    }
+
+    if (this.pitch > 30) this.pitch = 30
+    else if (this.pitch < 0) this.pitch = 0
+    const toAngle = Math.round(this.pitch * 10) / 10
+
+    const target = this.map?.getTarget()
+    const targetElement = typeof target === 'string' ? document.getElementById(target) : target
+    const { style } = targetElement?.querySelector('.ol-layers') as HTMLDivElement
+
+    // Start new animation frame
+    this.animationFrameId = requestAnimationFrame((t) => {
+      this.__animatePerspective(t, t, style, this.fromAngle, toAngle, 500, inAndOut)
+    })
+  }
+
+  /**
+   * Animate the perspective
+   * @param {number} t0 starting timestamp
+   * @param {number} t current timestamp
+   * @param {CSSStyleDeclaration} style style to modify
+   * @param {number} fromAngle starting angle
+   * @param {number} toAngle ending angle
+   * @param {number} duration The duration of the animation in milliseconds, default 500
+   * @param {function} easing The easing function used during the animation, defaults to ol.easing.inAndOut).
+   * @private
+   */
+  private __animatePerspective(
+    t0: number,
+    t: number,
+    style: CSSStyleDeclaration,
+    fromAngle: number,
+    toAngle: number,
+    duration: number,
+    easing: (t: number) => number,
+  ) {
+    let dt,
+      end
+    if (duration === 0) {
+      dt = 1
+      end = true
+    } else {
+      dt = (t - t0) / (duration || 500)
+      end = dt >= 1
+    }
+    dt = easing(dt)
+
+    if (end) {
+      this.fromAngle = toAngle
+    } else {
+      this.fromAngle = fromAngle + (toAngle - fromAngle) * dt
+    }
+    const fac = this.fromAngle / 30
+    style.transform = `translateY(-${17 * fac}%) perspective(200px) rotateX(${this.fromAngle}deg) scaleY(${1 - fac / 2})`
+    this.__getMatrix3D(true)
+    this.render()
+    if (!end) {
+      requestAnimationFrame((t) => {
+        this.__animatePerspective(t0, t, style, fromAngle, toAngle, duration || 500, easing || inAndOut)
+      })
+    }
+
+    const newFromAngle = this.fromAngle
+    this.dispatchEvent(new CustomEvent('change:perspective', {
+      detail: {
+        newFromAngle,
+        animating: !end,
+      },
+    }))
+  }
+
+  /**
+   * Get map full transform matrix3D
+   * @param {boolean} compute Whether to compute the matrix
+   * @returns {Array<Array<number>>} The transform matrix
+   * @private
+   */
+  private __getMatrix3D(compute: boolean): number[][] {
+    if (compute) {
+      const ele = this.map!.getTarget() as HTMLElement
+      const targetElement = ele.querySelector('.ol-layers') as HTMLDivElement
+      const tx = getTransform(targetElement)
+      const txOrigin = getTransformOrigin(targetElement)
+      this.matrixTransform = computeTransformMatrix(tx, txOrigin)
+    }
+    if (!this.matrixTransform) this.matrixTransform = identity()
+    return this.matrixTransform
+  }
+
+  // /**
+  //  * Get pixel at screen from coordinate.
+  //  * Required to get an accurate coordinate when the map is distorted via
+  //  * perspective / tilt.
+  //  *
+  //  * @param {Coordinate} coord - The coordinate to get the pixel for
+  //  * @returns {Pixel} The pixel coordinates
+  //  * @private
+  //  */
+  // private __getPixelScreenFromCoordinate(coord: Coordinate): [number, number] {
+  //   const px = this.map!.getPixelFromCoordinate(coord)
+  //   const fullTx = this.__getMatrix3D(true)
+  //   let pixel: Pixel = transformVertex(fullTx, [px[0], px[1]])
+  //   pixel = projectVertex(pixel)
+  //   return [pixel[0], pixel[1]]
+  // }
+
+  // /**
+  //  * Override `updatePixelPosition` function of `ol.Overlay` for perspective map.
+  //  * This is required to correctly use ol.Draw and get accurate coordinates from
+  //  * the event on the tilted map
+  //  * @private
+  //  */
+  // private __overrideOverlay() {
+  //   const _updatePixelPosition = (Overlay.prototype as any).updatePixelPosition
+
+  //   Overlay.prototype.updatePixelPosition = function () {
+  //     const map = this.getMap()
+  //     if (map instanceof OlMap) {
+  //       const position = this.getPosition()
+  //       if (!map || !map.isRendered() || !position) {
+  //         this.setVisible(false)
+  //         return
+  //       }
+  //       const pixel = map.__getPixelScreenFromCoordinate(position)
+
+  //       const mapSize = map.getSize()
+  //       if (!mapSize) return
+
+  //       pixel[0] -= mapSize[0] / 4
+  //       pixel[1] -= mapSize[1] / 4
+  //       this.updateRenderedPosition(pixel, mapSize)
+  //     } else {
+  //       _updatePixelPosition.call(this)
+  //     }
+  //   }
+  // }
 }
 
 customElements.define('ol-map', OlMap)
