@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { property, query } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map.js'
 import { MapEvent } from 'ol'
@@ -61,6 +61,14 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    * @param {lat} latitude
    * @param {lon} longitude
    */
+
+  static get styles() {
+    return css`
+      :host {
+        flex: 1;
+      }
+    `
+  }
 
   /**
    * Zoom level
