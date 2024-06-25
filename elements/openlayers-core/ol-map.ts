@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit'
-import { property, query, state } from 'lit/decorators.js'
+import { property, query } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map.js'
 import { MapEvent } from 'ol'
 // import type { Coordinate } from 'ol/coordinate.js'
@@ -150,9 +150,9 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   @property({ type: Number })
   public pitch: number = 0
 
-  @state() private matrixTransform: number[][] | null = null
-  @state() private fromAngle: number = 0
-  @state() private animationFrameId: number | null = null
+  private matrixTransform: number[][] | null = null
+  private fromAngle: number = 0
+  private animationFrameId: number | null = null
 
   /**
    * The underlying OpenLayers map instance
