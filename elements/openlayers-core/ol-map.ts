@@ -219,6 +219,13 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       view: new View(viewInit),
     })
 
+    // pitch must be between 0 and 30
+    if (this.pitch > 30) {
+      this.pitch = 30
+    } else if (this.pitch < 0) {
+      this.pitch = 0
+    }
+
     if (this.pitch > 0) {
       this.__setPerspective()
     }
@@ -227,6 +234,21 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     this.map.on('moveend', this.__dispatchViewChange.bind(this))
 
     this.notifyReady()
+  }
+
+  updated(changedProperties: Map<string | number | symbol, unknown>) {
+    // Allow reactive update of pitch
+    if (changedProperties.has('pitch')) {
+      this.__setPerspective()
+    }
+
+    // Allow reactive update of zoom
+    if (changedProperties.has('zoom')) {
+      const newZoom = changedProperties.get('zoom') as number
+      this.map?.getView().setZoom(newZoom)
+    }
+
+    super.updated(changedProperties)
   }
 
   public render() {
@@ -292,8 +314,6 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       cancelAnimationFrame(this.animationFrameId)
     }
 
-    if (this.pitch > 30) this.pitch = 30
-    else if (this.pitch < 0) this.pitch = 0
     const toAngle = Math.round(this.pitch * 10) / 10
 
     const target = this.map?.getTarget()
