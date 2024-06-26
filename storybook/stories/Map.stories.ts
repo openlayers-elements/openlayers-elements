@@ -109,6 +109,7 @@ export const PerspectiveMap: Story = {
     lat: 51.522418,
     lon: -0.15017,
     pitch: 20,
+    'pitch-duration': 500,
   },
   render: args => html` <ol-map ${spread(args)}>
       <ol-layer-openstreetmap></ol-layer-openstreetmap>

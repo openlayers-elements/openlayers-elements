@@ -156,6 +156,13 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   private animationFrameId: number | null = null
 
   /**
+   * The duration for the pitch animation.
+   * @type {number}
+   */
+  @property({ type: Number, attribute: 'pitch-duration' })
+  public pitchDuration: number = 500
+
+  /**
    * The underlying OpenLayers map instance
    * @type {OpenLayersMap | undefined}
    * @ignore
@@ -329,9 +336,10 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     const targetElement = typeof target === 'string' ? document.getElementById(target) : target
     const { style } = targetElement?.querySelector('.ol-layers') as HTMLDivElement
 
+    if (this.pitchDuration === 0) return
     // Start new animation frame
     this.animationFrameId = requestAnimationFrame((t) => {
-      this.__animatePerspective(t, t, style, this.fromAngle, toAngle, 500, inAndOut)
+      this.__animatePerspective(t, t, style, this.fromAngle, toAngle, this.pitchDuration, inAndOut)
     })
   }
 
@@ -381,10 +389,10 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       })
     }
 
-    const newFromAngle = this.fromAngle
     this.dispatchEvent(new CustomEvent('change:perspective', {
       detail: {
-        newFromAngle,
+        fromAngle: this.fromAngle,
+        toAngle: this.pitch,
         animating: !end,
       },
     }))
