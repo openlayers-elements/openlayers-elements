@@ -150,6 +150,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   @property({ type: Number })
   public pitch: number = 0
 
+  private _pitch: number = 0
   private matrixTransform: number[][] | null = null
   private fromAngle: number = 0
   private animationFrameId: number | null = null
@@ -219,14 +220,8 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       view: new View(viewInit),
     })
 
-    // pitch must be between 0 and 30
-    if (this.pitch > 30) {
-      this.pitch = 30
-    } else if (this.pitch < 0) {
-      this.pitch = 0
-    }
-
-    if (this.pitch > 0) {
+    if (this._pitch > 0) {
+      this._pitch = this.pitch
       this.__setPerspective()
     }
 
@@ -239,6 +234,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   updated(changedProperties: Map<string | number | symbol, unknown>) {
     // Allow reactive update of pitch
     if (changedProperties.has('pitch')) {
+      this._pitch = this.pitch
       this.__setPerspective()
     }
 
@@ -314,7 +310,17 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       cancelAnimationFrame(this.animationFrameId)
     }
 
-    const toAngle = Math.round(this.pitch * 10) / 10
+    // Enforce pitch bounds
+    if (this.pitch >= 30) {
+      this._pitch = 30
+      return
+    }
+    if (this.pitch <= 0) {
+      this._pitch = 0
+      return
+    }
+
+    const toAngle = Math.round(this._pitch * 10) / 10
 
     const target = this.map?.getTarget()
     const targetElement = typeof target === 'string' ? document.getElementById(target) : target
