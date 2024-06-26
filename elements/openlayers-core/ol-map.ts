@@ -238,11 +238,14 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
       this.__setPerspective()
     }
 
-    // Allow reactive update of zoom
-    if (changedProperties.has('zoom')) {
-      const newZoom = changedProperties.get('zoom') as number
-      this.map?.getView().setZoom(newZoom)
-    }
+    // // Allow reactive update of zoom
+    // // FIXME this does not work as intended
+    // if (changedProperties.has('zoom')) {
+    //   const newZoom = changedProperties.get('zoom') as number
+    //   if (newZoom >= 1 && newZoom <= 25) {
+    //     this.map?.getView().setZoom(newZoom)
+    //   }
+    // }
 
     super.updated(changedProperties)
   }
