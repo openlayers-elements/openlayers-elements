@@ -20,6 +20,10 @@ function getTransform(ele: Element): number[][] {
     style.getPropertyValue('-o-transform') ||
     style.getPropertyValue('transform')
 
+  if (tr === 'none' || !tr) {
+    return [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+  }
+
   const values = tr.split('(')[1].split(')')[0].split(',')
 
   const mx: number[][] = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
