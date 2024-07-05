@@ -19,6 +19,34 @@ import { forwardEvents } from './lib/events.js'
  * </ol-map>
  * ```
  *
+ * ### Setting the map container height
+ *
+ * By default ol-map has `flex: 1` styling, so it will expand to fill the parent element.
+ * To achieve this set the `display: flex` CSS property on your parent element.
+ *
+ * ```html
+ * <div id="parent-element">
+ *   <ol-map>
+ *     ...
+ *   </ol-map>
+ * </div>
+ * ```
+ *
+ * ```css
+ * #parent-element {
+ *   display: flex;
+ *   height: 400px;
+ * }
+ * ```
+ *
+ * Alternatively, the ol-map class styling can be overriden:
+ *
+ * ```css
+ * ol-map {
+ *   height: 80vh;
+ * }
+ * ```
+ *
  * ### Controlling zoom level
  *
  * The simpler way to set zoom is to set the `zoom` property. Alternatively, `resolution` can be used instead.

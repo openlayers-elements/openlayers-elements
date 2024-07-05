@@ -2,7 +2,7 @@
 
 While there are many great framework-specific OpenLayers wrappers, the goal of this
 project is to wrap OpenLayers in W3C Web Components, which are a web standard
-supported by allow browsers currently and into the future.
+supported by all browsers currently and into the future.
 
 This is a monorepo which contains:
 
