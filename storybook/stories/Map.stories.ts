@@ -20,6 +20,9 @@ const main: Meta = {
     zoom: {
       control: 'number',
     },
+    pitch: {
+      control: 'number',
+    },
   },
 }
 
@@ -30,10 +33,9 @@ export const Basic: Story = {
   args: {
     zoom: 7,
   },
-  render: args => html`
-<ol-map ${spread(args)}>
-  <ol-layer-openstreetmap></ol-layer-openstreetmap>
-</ol-map>`,
+  render: args => html` <ol-map ${spread(args)}>
+      <ol-layer-openstreetmap></ol-layer-openstreetmap>
+    </ol-map>`,
 }
 
 /**
@@ -47,26 +49,26 @@ export const ZoomToLayer: Story = {
     lon: -98.5795,
   },
   render: args => html`
-<style>
-  ol-map {
-    --zoom-control-top: 10px;
-    --zoom-control-right: 10px;
-  }
-</style>
+    <style>
+      ol-map {
+        --zoom-control-top: 10px;
+        --zoom-control-right: 10px;
+      }
+    </style>
 
-<ol-map ${spread(args)}>
-  <ol-layer-openstreetmap></ol-layer-openstreetmap>
-  <ol-layer-geojson url="/europe.geojson"></ol-layer-geojson>
-  <ol-control id="zoom">
-    <button onclick="goToEurope()">Go to Europe</button>
-  </ol-control>
-</ol-map>
+    <ol-map ${spread(args)}>
+      <ol-layer-openstreetmap></ol-layer-openstreetmap>
+      <ol-layer-geojson url="/europe.geojson"></ol-layer-geojson>
+      <ol-control id="zoom">
+        <button onclick="goToEurope()">Go to Europe</button>
+      </ol-control>
+    </ol-map>
 
-<script>
-  function goToEurope() {
-    document.querySelector('ol-layer-geoJson').fit()
-  }
-</script>
+    <script>
+      function goToEurope() {
+        document.querySelector('ol-layer-geoJson').fit()
+      }
+    </script>
   `,
 }
 
@@ -83,20 +85,33 @@ export const ZoomToExtent: Story = {
     zoom: 4,
     zoomDuration: 400,
   },
-  render: ({ zoomDuration, ...args }) => html`
-<ol-map ${spread(args)}>
-  <ol-layer-openstreetmap></ol-layer-openstreetmap>
-  <ol-layer-geojson
-    url="/countries.geojson"
-  ></ol-layer-geojson>
-  <ol-select @feature-selected="${(e) => {
+  render: ({ zoomDuration, ...args }) => html` <ol-map ${spread(args)}>
+      <ol-layer-openstreetmap></ol-layer-openstreetmap>
+      <ol-layer-geojson url="/countries.geojson"></ol-layer-geojson>
+      <ol-select
+        @feature-selected="${(e) => {
     e.target._map.fit(e.detail.feature.getGeometry().getExtent(), {
       duration: zoomDuration,
     })
-  }}"></ol-select>
-</ol-map>`,
+  }}"
+      ></ol-select>
+    </ol-map>`,
   beforeEach: async () => {
     await import('@openlayers-elements/maps/ol-layer-geojson.js')
     await import('@openlayers-elements/maps/ol-select.js')
   },
+}
+
+export const PerspectiveMap: Story = {
+  name: 'Perspective Map (Tilt)',
+  args: {
+    zoom: 17,
+    lat: 51.522418,
+    lon: -0.15017,
+    pitch: 20,
+    'pitch-duration': 500,
+  },
+  render: args => html` <ol-map ${spread(args)}>
+      <ol-layer-openstreetmap></ol-layer-openstreetmap>
+    </ol-map>`,
 }

@@ -25,7 +25,7 @@
     "custom-elements-manifest": "cem analyze --globs \"../elements/*/*.ts\" --litelement",
     "custom-elements-manifest:watch": "npm run custom-elements-manifest -- --watch",
     "prestorybook": "npm run custom-elements-manifest",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "prebuild": "npm run custom-elements-manifest",
     "build": "storybook build"
   }

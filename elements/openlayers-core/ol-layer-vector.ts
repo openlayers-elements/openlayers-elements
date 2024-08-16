@@ -2,6 +2,7 @@ import VectorLayer from 'ol/layer/Vector.js'
 import VectorSource from 'ol/source/Vector.js'
 import { property } from 'lit/decorators.js'
 import Style, { StyleFunction } from 'ol/style/Style.js'
+import type { FlatStyle } from 'ol/style/flat.js'
 import OlLayerBase from './ol-layer-base.js'
 import AttachableAwareMixin from './mixins/AttachableAware.js'
 
@@ -35,13 +36,13 @@ export default class OlLayerVector extends AttachableAwareMixin(
   public source?: VectorSource = undefined
 
   /**
-   * The style to be applied to layer features. It can be either an `ol/Style`, array thereof,
-   * or a function which returns either.
+   * The style to be applied to layer features. It can be either an `ol/Style` or `ol/style/flat`
+   * array thereof, or a function which returns either.
    *
-   * @type {Style | Style[] | StyleFunction}
+   * @type {Style | Style[] | FlatStyle | FlatStyle[] | StyleFunction}
    */
   @property({ type: Object })
-  public featureStyle?: Style | Style[] | StyleFunction = undefined
+  public featureStyle?: Style | Style[] | FlatStyle | FlatStyle[] | StyleFunction = undefined
 
   public fit() {
     if (this.source) {

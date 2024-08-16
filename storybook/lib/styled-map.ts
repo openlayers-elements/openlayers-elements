@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import { html, css, LitElement } from 'lit'
 import { DEVICE_PIXEL_RATIO } from 'ol/has.js'
-import { Fill, Stroke, Style } from 'ol/style.js'
+import type { FlatStyle } from 'ol/style/flat.js'
+import { Style, Stroke, Fill } from 'ol/style.js'
 import '@openlayers-elements/core/ol-map.js'
 import '@openlayers-elements/maps/ol-layer-geojson'
 import Feature from 'ol/Feature.js'
@@ -10,7 +11,7 @@ const canvas = document.createElement('canvas')
 const context = canvas.getContext('2d')!
 const pixelRatio = DEVICE_PIXEL_RATIO
 
-const gradient = (function () {
+const gradient = (function (): CanvasGradient {
   const grad = context.createLinearGradient(0, 0, 512 * pixelRatio, 0)
   grad.addColorStop(0, 'red')
   grad.addColorStop(1 / 6, 'orange')
@@ -23,7 +24,7 @@ const gradient = (function () {
 })()
 
 // Generate a canvasPattern with two circles on white background
-const pattern = (function () {
+const pattern = (function (): CanvasPattern | null {
   canvas.width = 8 * pixelRatio
   canvas.height = 8 * pixelRatio
   // white background
@@ -44,13 +45,29 @@ const pattern = (function () {
 
 // Generate style for gradient or pattern fill
 const fill = new Fill()
-const style = new Style({
-  fill,
-  stroke: new Stroke({
-    color: '#333',
-    width: 2,
-  }),
+const style: Style = flatStyleToStyle({
+  'stroke-color': '#333',
+  'stroke-width': 2,
 })
+
+/**
+ * Converts a FlatStyle object to an OpenLayers Style object.
+ *
+ * This is a workaround as CanvasGradient and CanvasPattern are not supported
+ * styling by OpenLayers FlatStyle format.
+ *
+ * @param {FlatStyle} flatStyle - The FlatStyle object containing style properties.
+ * @returns {Style} - The OpenLayers Style object.
+ */
+function flatStyleToStyle(flatStyle: FlatStyle) {
+  return new Style({
+    fill,
+    stroke: new Stroke({
+      color: flatStyle['stroke-color'] as string,
+      width: flatStyle['stroke-width'] as number,
+    }),
+  })
+}
 
 class StyledMap extends LitElement {
   static get styles() {
