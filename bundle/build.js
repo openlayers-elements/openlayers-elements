@@ -12,6 +12,7 @@ esbuild.build({
     '../elements/openlayers-elements/ol-layer-wkt.ts',
     '../elements/openlayers-elements/ol-layer-xyz.ts',
     '../elements/openlayers-core/ol-map.ts',
+    '../elements/openlayers-core/ol.ts',
     '../elements/openlayers-elements/ol-marker-icon.ts',
     '../elements/openlayers-elements/ol-overlay.ts',
     '../elements/openlayers-elements/ol-select.ts',

@@ -18,5 +18,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "optionalDependencies": {
+    "@esbuild/darwin-arm64": "^0.16.17"
   }
 }
