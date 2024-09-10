@@ -16,6 +16,7 @@
     "@storybook/web-components": "^8.2.9",
     "@storybook/web-components-vite": "^8.2.9",
     "lit": "^3.1.4",
+    "nanoid": "^5.0.7",
     "storybook": "^8.2.9"
   },
   "optionalDependencies": {
