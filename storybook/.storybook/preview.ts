@@ -20,6 +20,8 @@ const preview: Preview = {
       // story: { inline: false },
     }
   },
+
+  tags: ['autodocs']
 }
 
 export default preview
