@@ -28,6 +28,7 @@ import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
  * | --map-button-control-right | Right CSS offset |
  *
  * @customElement
+ * @slot - The contents of the control
  */
 export default class OlControl extends OlMapPart<Control> {
   protected _addToMap(map: Map, c: Control) {

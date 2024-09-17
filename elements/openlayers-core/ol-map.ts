@@ -38,6 +38,7 @@ import { forwardEvents } from './lib/events.js'
  *
  * @appliesMixin AttachableAwareMixin
  * @customElement
+ * @slot - the default slot to add map layers
  */
 export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
