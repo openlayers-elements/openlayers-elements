@@ -22,6 +22,7 @@ import AttachableAwareMixin from './mixins/AttachableAware.js'
  *
  * @appliesMixin AttachableAwareMixin
  * @customElement
+ * @slot - The markers to be placed on the map
  */
 export default class OlLayerVector extends AttachableAwareMixin(
   OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer<any>>,
