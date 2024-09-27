@@ -16,9 +16,13 @@
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+    ]
   },
   "include": [
+    "./global.d.ts",
     "elements"
   ]
 }
