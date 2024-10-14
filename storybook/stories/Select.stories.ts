@@ -64,6 +64,11 @@ export const FeatureStyle: Story = {
 
 <script>
   (() => {
+    // These don't work in Storybook, but you will need them in your code
+    // import Style from 'ol/style/Style.js';
+    // import Fill from 'ol/style/Fill.js';
+    // import Stroke from 'ol/style/Stroke.js';
+
     const map = document.getElementById('${id}')
 
     map.querySelector('ol-select')
