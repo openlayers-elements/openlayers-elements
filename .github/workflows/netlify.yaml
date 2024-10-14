@@ -1,6 +1,7 @@
 name: Netlify
 
-on: push
+on:
+  pull_request:
 
 jobs:
   Deploy:
