@@ -4,7 +4,6 @@
   "format": "esm",
   "external": [
     "ol",
-    "@openlayers-elements/*",
     "lit*",
     "@lit/*"
   ]

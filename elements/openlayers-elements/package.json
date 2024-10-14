@@ -16,9 +16,7 @@
   "license": "MIT",
   "scripts": {
     "custom-elements-manifest": "cem analyze --litelement",
-    "build:dts": "tsc --emitDeclarationOnly",
-    "build:js": "esbuild *.ts $(esbuild-config ./esbuild.config.json)",
-    "build": "npm run build:dts && npm run build:js",
+    "build": "tsc",
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
@@ -29,7 +27,6 @@
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
     "esbuild-config": "^1",
-    "ol-json-style": "^1.0.3",
     "sinon": "^9.2.4"
   },
   "publishConfig": {

@@ -3,7 +3,7 @@ import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
 import { StyleLike } from 'ol/style/Style.js'
 import type Feature from 'ol/Feature.js'
 import { property } from 'lit/decorators.js'
-import { loadStyle } from 'ol-json-style' // eslint-disable-line import/no-extraneous-dependencies
+import * as Style from '@openlayers-elements/core/Style.js'
 
 /**
  * Non-visual element which enables selecting map features
@@ -35,7 +35,7 @@ export class OlSelect extends OlInteraction {
   @property({
     type: Object,
     attribute: 'feature-style',
-    converter: loadStyle,
+    converter: Style.fromJson,
   })
   public featureStyle?: StyleLike
 
