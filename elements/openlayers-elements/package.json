@@ -29,7 +29,7 @@
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
     "esbuild-config": "^1",
-    "ol-json-style": "github:pilattebe/ol-json-styles#main",
+    "ol-json-style": "^1.0.3",
     "sinon": "^9.2.4"
   },
   "publishConfig": {
