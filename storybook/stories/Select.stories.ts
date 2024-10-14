@@ -25,8 +25,8 @@ const defaults: Meta = {
 
 export default defaults
 
-export const Popup: Story = {
-  name: 'Simple overlay popup',
+export const Selecting: Story = {
+  name: 'Selecting features',
   render: ({ map, id = nanoid(), featureSpan = nanoid() }) => html`
 <ol-map id="${id}" ${spread(map)}>
   <ol-layer-geojson url="/countries.geojson"></ol-layer-geojson>
