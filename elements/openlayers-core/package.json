@@ -12,14 +12,14 @@
     "*.d.ts",
     "mixins/*.js",
     "mixins/*.d.ts",
-    "lib/*.js",
-    "lib/*.d.ts",
     "custom-elements.json"
   ],
   "license": "MIT",
   "scripts": {
     "custom-elements-manifest": "cem analyze --litelement",
-    "build": "tsc",
+    "build:dts": "tsc --emitDeclarationOnly",
+    "build:js": "esbuild *.ts $(esbuild-config ./esbuild.config.json)",
+    "build": "npm run build:dts && npm run build:js",
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
     "sinon": "^9.2.4",
+    "ol-json-style": "^1.0.3",
     "@openlayers-elements/testing": "0.1.0"
   },
   "publishConfig": {

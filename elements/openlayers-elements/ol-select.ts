@@ -1,5 +1,9 @@
 import Select from 'ol/interaction/Select.js'
 import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
+import { StyleLike } from 'ol/style/Style.js'
+import type Feature from 'ol/Feature.js'
+import { property } from 'lit/decorators.js'
+import * as Style from '@openlayers-elements/core/Style.js'
 
 /**
  * Non-visual element which enables selecting map features
@@ -28,13 +32,24 @@ export class OlSelect extends OlInteraction {
    * @event feature-unselected
    */
 
+  @property({
+    type: Object,
+    attribute: 'feature-style',
+    converter: Style.fromJson,
+  })
+  public featureStyle?: StyleLike
+
   public async createPart() {
     const select = new Select()
 
     select.on(['select'], (e: any) => {
-      const feature = e.selected[0]
+      const feature: Feature | undefined = e.selected[0]
 
       if (feature) {
+        if (this.featureStyle) {
+          feature.setStyle(this.featureStyle)
+        }
+
         this.dispatchEvent(
           new CustomEvent('feature-selected', {
             detail: { feature },
