@@ -1,5 +1,31 @@
 # @openlayers-elements/maps
 
+## 0.4.0
+
+### Minor Changes
+
+- 4128ac5: Building the package with `moduleResolution=NodeNext`
+- a248519: upgrade to openlayers v7, fix typing & tests
+
+### Patch Changes
+
+- 896caca: Updated lit to v3
+- 4128ac5: Mark the packages as ESM which they are
+- 6ce1681: Remove unused dependency `resize-observer-polyfill`
+- b21a74c: Added `custom-elements.json` ([Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/))
+- 6ce1681: `ol-style`: added `featureStyle` property
+- e355696: Added JSDoc tags for slots of `ol-control` and `ol-overlay`
+- Updated dependencies [80a1791]
+- Updated dependencies [896caca]
+- Updated dependencies [6c95f4c]
+- Updated dependencies [4128ac5]
+- Updated dependencies [9117dc7]
+- Updated dependencies [4128ac5]
+- Updated dependencies [e355696]
+- Updated dependencies [b21a74c]
+- Updated dependencies [a248519]
+  - @openlayers-elements/core@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes
