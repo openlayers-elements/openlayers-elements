@@ -8,16 +8,16 @@
     "@openlayers-elements/core": "^0.4.0",
     "@openlayers-elements/maps": "^0.4.0",
     "@openlayers-elements/swisstopo": "^0.4.0",
-    "@storybook/addon-essentials": "^8.2.9",
-    "@storybook/addon-links": "^8.2.9",
-    "@storybook/addon-storysource": "^8.2.9",
-    "@storybook/blocks": "^8.2.9",
-    "@storybook/test": "^8.2.9",
-    "@storybook/web-components": "^8.2.9",
-    "@storybook/web-components-vite": "^8.2.9",
+    "@storybook/addon-essentials": "^8.4.2",
+    "@storybook/addon-links": "^8.4.2",
+    "@storybook/addon-storysource": "^8.4.2",
+    "@storybook/blocks": "^8.4.2",
+    "@storybook/test": "^8.4.2",
+    "@storybook/web-components": "^8.4.2",
+    "@storybook/web-components-vite": "^8.4.2",
     "lit": "^3.1.4",
     "nanoid": "^5.0.7",
-    "storybook": "^8.2.9"
+    "storybook": "^8.4.2"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5"
