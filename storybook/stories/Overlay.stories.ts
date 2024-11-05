@@ -8,6 +8,9 @@ import '@openlayers-elements/maps/ol-overlay.js'
 import '@openlayers-elements/maps/ol-layer-openstreetmap.js'
 import '@openlayers-elements/maps/ol-select.js'
 import '@openlayers-elements/maps/ol-layer-geojson.js'
+import { customAlphabet } from 'nanoid'
+
+const nanoid = customAlphabet('abcdefghijk', 4)
 
 const defaults: Meta = {
   title: 'Core/ol-overlay',
@@ -40,7 +43,7 @@ export default defaults
  */
 export const Popup: Story = {
   name: 'Simple overlay popup',
-  render: ({ map, 'auto-pan': autoPan, ...args }) => html`
+  render: ({ map, 'auto-pan': autoPan, id = nanoid(), ...args }) => html`
 <style>
   .ol-popup {
     position: absolute;
@@ -87,26 +90,28 @@ export const Popup: Story = {
 </style>
 
 <script>
-  const mapEl = document.querySelector('ol-map')
-  const content = document.querySelector('#popup-content')
-  const overlay = document.querySelector('ol-overlay')
+  (() => {
+    const mapEl = document.querySelector('ol-map#${id}')
+    const content = mapEl.querySelector('#popup-content')
+    const overlay = mapEl.querySelector('ol-overlay')
 
-  mapEl.updateComplete.then(() => {
-    mapEl.map.on('singleclick', function (evt) {
-      const coordinate = evt.coordinate
+    mapEl.updateComplete.then(() => {
+      mapEl.map.on('singleclick', function (evt) {
+        const coordinate = evt.coordinate
 
-      content.innerHTML = '<p>You clicked here:</p><code>' + coordinate + '</code>'
-      overlay.setPosition(coordinate)
+        content.innerHTML = '<p>You clicked here:</p><code>' + coordinate + '</code>'
+        overlay.setPosition(coordinate)
+      })
     })
-  })
 
-  document.querySelector('#popup-closer')
-    .addEventListener('click', function (e) {
-      overlay.hide()
-    })
+    mapEl.querySelector('#popup-closer')
+      .addEventListener('click', function (e) {
+        overlay.hide()
+      })
+  })()
 </script>
 
-<ol-map ${spread(map)}>
+<ol-map id="${id}" ${spread(map)}>
   <ol-layer-openstreetmap></ol-layer-openstreetmap>
   <ol-overlay id="popup" class="ol-popup" ?auto-pan="${autoPan}" ${spread(args)}>
     <button id="popup-closer" class="ol-popup-closer"></button>
@@ -125,7 +130,7 @@ export const Popup: Story = {
  */
 export const GeoJSON: Story = {
   name: 'Popup over GeoJSON layer',
-  render: ({ map, 'auto-pan': autoPan, ...args }) => html`
+  render: ({ map, 'auto-pan': autoPan, id = nanoid(), ...args }) => html`
 <style>
   .ol-popup {
     position: absolute;
@@ -163,28 +168,30 @@ export const GeoJSON: Story = {
 </style>
 
 <script>
-  const mapEl = document.querySelector('ol-map')
-  const content = document.querySelector('#popup-content')
-  const overlay = document.querySelector('ol-overlay')
+  (() => {
+    const mapEl = document.querySelector('ol-map#${id}')
+    const content = mapEl.querySelector('#popup-content')
+    const overlay = mapEl.querySelector('ol-overlay')
 
-  mapEl.updateComplete.then(() => {
-    mapEl.map.on('singleclick', function (selected) {
-      overlay.setPosition(selected.coordinate)
-    })
-  })
-
-  document.querySelector('ol-select')
-    .addEventListener('feature-selected', e => {
-      content.textContent = e.detail.feature.get('name')
+    mapEl.updateComplete.then(() => {
+      mapEl.map.on('singleclick', function (selected) {
+        overlay.setPosition(selected.coordinate)
+      })
     })
 
-  document.querySelector('ol-select')
-    .addEventListener('feature-unselected', e => {
-      overlay.hide()
-    })
+    mapEl.querySelector('ol-select')
+      .addEventListener('feature-selected', e => {
+        content.textContent = e.detail.feature.get('name')
+      })
+
+    mapEl.querySelector('ol-select')
+      .addEventListener('feature-unselected', e => {
+        overlay.hide()
+      })
+  })()
 </script>
 
-<ol-map ${spread(map)}>
+<ol-map id="${id}" ${spread(map)}>
   <ol-layer-geojson url="/countries.geojson"></ol-layer-geojson>
   <ol-select></ol-select>
   <ol-overlay id="popup" class="ol-popup" ?auto-pan="${autoPan}" ${spread(args)}>

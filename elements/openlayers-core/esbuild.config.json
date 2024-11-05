@@ -1,0 +1,10 @@
+{
+  "outdir": ".",
+  "bundle": true,
+  "format": "esm",
+  "external": [
+    "ol",
+    "lit*",
+    "@lit/*"
+  ]
+}

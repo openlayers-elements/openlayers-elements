@@ -1,6 +1,6 @@
 {
   "name": "@openlayers-elements/swisstopo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Zazuko GmbH",
   "type": "module",
   "repository": "https://github.com/openlayers-elements/openlayers-elements",
@@ -19,8 +19,8 @@
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.3.0",
-    "@openlayers-elements/maps": "^0.3.0",
+    "@openlayers-elements/core": "^0.4.0",
+    "@openlayers-elements/maps": "^0.4.0",
     "lit": "^3.1.4",
     "ol": "^9.2.4",
     "proj4": "^2.5.0"

@@ -1,0 +1,18 @@
+services:
+  test:
+    image: ghcr.io/openlayers-elements/openlayers-elements:ci
+    build:
+      context: ../../
+      dockerfile: contrib/docker/Dockerfile
+    volumes:
+      # Required to not mount node_module dirs
+      - /app/elements/openlayers-core/node_modules
+      - /app/elements/openlayers-elements/node_modules
+      - /app/elements/swisstopo-elements/node_modules
+      - ../../elements:/app/elements
+    # To prevent out of memory errors
+    ipc: host
+    # Required to run chromium sandbox
+    cap_add:
+      - SYS_ADMIN
+    restart: "never"

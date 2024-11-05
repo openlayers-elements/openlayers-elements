@@ -1,6 +1,7 @@
 name: Netlify
 
-on: push
+on:
+  pull_request:
 
 jobs:
   Deploy:
@@ -16,7 +17,7 @@ jobs:
       - uses: Wohlstand/branch-name@v1.0.2-wohl
 
       - name: Publish preview
-        uses: jsmrcaga/action-netlify-deploy@v2.2.0
+        uses: jsmrcaga/action-netlify-deploy@v2.3.0
         if: env.NETLIFY_AUTH_TOKEN
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -28,11 +29,10 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'master' }}
           monorepo_package: storybook
 
-      - name: Status check
-        uses: guibranco/github-status-action-v2@v1.1.13
-        if: env.NETLIFY_AUTH_TOKEN
+      - uses: exercism/pr-commenter-action@v1.4.0
         with:
-          authToken: ${{ secrets.NETLIFY_PAT }}
-          context: Netlify Site
-          state: success
-          target_url: https://${{ env.BRANCH_NAME }}--openlayers-elements.netlify.app
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          template-variables: |
+            {
+              "url": "${{ env.NETLIFY_PREVIEW_URL }}"
+            }

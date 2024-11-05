@@ -4,11 +4,25 @@
     height: 400px;
   }
 
+  ol-map {
+    display: block;
+  }
+
   body > #storybook-root > #root-inner {
     height: 95vh;
   }
 
-  ol-map {
-    flex: 1;
+  #root-inner {
+    flex-direction: column;
   }
 </style>
+
+<script type="module">
+  import Style from 'https://esm.run/ol/style/Style.js'
+  import Fill from 'https://esm.run/ol/style/Fill.js'
+  import Stroke from 'https://esm.run/ol/style/Stroke.js'
+
+  window.Style = Style;
+  window.Fill = Fill;
+  window.Stroke = Stroke;
+</script>

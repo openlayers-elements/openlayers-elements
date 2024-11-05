@@ -19,7 +19,7 @@ import { property } from 'lit/decorators.js'
  *     <p>
  *       Some contents to put on your overlay
  *     </p>
- *   </ol-control>
+ *   </ol-overlay>
  * </ol-map>
  * ```
  *
@@ -27,6 +27,7 @@ import { property } from 'lit/decorators.js'
  * Use `hide` method to... hide it.
  *
  * @customElement
+ * @slot - The contents of the overlay
  */
 export default class OlOverlay extends OlMapPart<Overlay> {
   /**

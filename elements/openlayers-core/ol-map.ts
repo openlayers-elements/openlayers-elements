@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { property, query } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map.js'
 import { MapEvent } from 'ol'
@@ -17,6 +17,34 @@ import { forwardEvents } from './lib/events.js'
  * <ol-map>
  *     <ol-layer-openstreetmap></ol-layer-openstreetmap>
  * </ol-map>
+ * ```
+ *
+ * ### Setting the map container height
+ *
+ * By default ol-map has `flex: 1` styling, so it will expand to fill the parent element.
+ * To achieve this set the `display: flex` CSS property on your parent element.
+ *
+ * ```html
+ * <div id="parent-element">
+ *   <ol-map>
+ *     ...
+ *   </ol-map>
+ * </div>
+ * ```
+ *
+ * ```css
+ * #parent-element {
+ *   display: flex;
+ *   height: 400px;
+ * }
+ * ```
+ *
+ * Alternatively, the ol-map class styling can be overriden:
+ *
+ * ```css
+ * ol-map {
+ *   height: 80vh;
+ * }
  * ```
  *
  * ### Controlling zoom level
@@ -38,6 +66,7 @@ import { forwardEvents } from './lib/events.js'
  *
  * @appliesMixin AttachableAwareMixin
  * @customElement
+ * @slot - the default slot to add map layers
  */
 export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
@@ -61,6 +90,14 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    * @param {lat} latitude
    * @param {lon} longitude
    */
+
+  static get styles() {
+    return css`
+      :host {
+        flex: 1;
+      }
+    `
+  }
 
   /**
    * Zoom level

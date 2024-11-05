@@ -4,6 +4,7 @@
     "target": "ES2018",
     "declaration": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "moduleResolution": "NodeNext",
     "noEmitOnError": false,
     "sourceMap": true,
@@ -15,6 +16,13 @@
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+    ]
+  },
+  "include": [
+    "./global.d.ts",
+    "elements"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@openlayers-elements/maps",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "Custom elements to declaratively build OpenLayers map",
   "repository": "https://github.com/openlayers-elements/openlayers-elements",
@@ -20,13 +20,13 @@
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
   "dependencies": {
-    "@openlayers-elements/core": "^0.3.0",
+    "@openlayers-elements/core": "^0.4.0",
     "lit": "^3.1.4",
-    "ol": "^9.2.4",
-    "resize-observer-polyfill": "^1.5.1"
+    "ol": "^9.2.4"
   },
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
+    "esbuild-config": "^1",
     "sinon": "^9.2.4"
   },
   "publishConfig": {

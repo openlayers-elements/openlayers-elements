@@ -2,7 +2,7 @@
 
 While there are many great framework-specific OpenLayers wrappers, the goal of this
 project is to wrap OpenLayers in W3C Web Components, which are a web standard
-supported by allow browsers currently and into the future.
+supported by all browsers currently and into the future.
 
 This is a monorepo which contains:
 
@@ -57,4 +57,19 @@ You may also start a watch process to update the generated custom elements manif
 
 ```sh
 npm -w storybook run custom-elements-manifest:watch
+```
+
+## Running tests
+
+If the Chrome binary / driver is installed in your PATH, simply run:
+
+```sh
+npm run test
+```
+
+To run with a container-based Chrome driver, instead run:
+
+```sh
+docker compose -f contrib/docker/docker-compose.tests.yml \
+  run --rm test
 ```

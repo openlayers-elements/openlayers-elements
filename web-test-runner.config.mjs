@@ -8,7 +8,7 @@ export default {
   nodeResolve: true,
   coverage: true,
   plugins: [
-    esbuildPlugin({ ts: true }),
+    esbuildPlugin({ ts: true, tsconfig: './tsconfig.json' }),
     fromRollup(commonjs)({
       exclude: [
         '**/node_modules/@open-wc/**/*',
