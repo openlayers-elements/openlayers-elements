@@ -17,7 +17,7 @@ jobs:
       - uses: Wohlstand/branch-name@v1.0.2-wohl
 
       - name: Publish preview
-        uses: jsmrcaga/action-netlify-deploy@netlify-not-found
+        uses: jsmrcaga/action-netlify-deploy@v2.3.0
         if: env.NETLIFY_AUTH_TOKEN
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
