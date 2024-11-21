@@ -235,7 +235,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
 
   public render() {
     return html`
-      <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css" type="text/css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css" type="text/css" />
       <style>
         :host {
           display: block;
