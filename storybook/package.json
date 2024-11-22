@@ -5,9 +5,9 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
     "@open-wc/lit-helpers": "^0.7.0",
-    "@openlayers-elements/core": "^0.4.0",
-    "@openlayers-elements/maps": "^0.4.0",
-    "@openlayers-elements/swisstopo": "^0.4.0",
+    "@openlayers-elements/core": "^0.5.0",
+    "@openlayers-elements/maps": "^0.5.0",
+    "@openlayers-elements/swisstopo": "^0.5.0",
     "@storybook/addon-essentials": "^8.4.2",
     "@storybook/addon-links": "^8.4.2",
     "@storybook/addon-storysource": "^8.4.2",

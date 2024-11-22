@@ -1,5 +1,17 @@
 # @openlayers-elements/swisstopo
 
+## 0.5.0
+
+### Minor Changes
+
+- eca17c2: upgrade to openlayers v9, use ol flat styling syntax
+
+### Patch Changes
+
+- Updated dependencies [eca17c2]
+  - @openlayers-elements/maps@0.5.0
+  - @openlayers-elements/core@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
