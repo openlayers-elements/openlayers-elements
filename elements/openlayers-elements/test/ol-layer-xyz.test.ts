@@ -1,7 +1,7 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit'
-import TileLayer from 'ol/layer/Tile.js'
-import OlLayerBase from '@openlayers-elements/core/ol-layer-base.js'
+import type TileLayer from 'ol/layer/Tile.js'
+import type OlLayerBase from '@openlayers-elements/core/ol-layer-base.js'
 import '../ol-layer-xyz.js'
 
 describe('ol-layer-xyz', () => {

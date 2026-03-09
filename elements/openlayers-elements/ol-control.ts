@@ -1,6 +1,6 @@
 import { html, render } from 'lit'
 import Control from 'ol/control/Control.js'
-import Map from 'ol/Map.js'
+import type Map from 'ol/Map.js'
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
 
 /**
