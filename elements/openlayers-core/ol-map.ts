@@ -195,12 +195,12 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
 
   public connectedCallback() {
     super.connectedCallback()
-    this.sizeObserver!.observe(this)
+    this.sizeObserver?.observe(this)
   }
 
   public disconnectedCallback() {
     super.disconnectedCallback()
-    this.sizeObserver!.disconnect()
+    this.sizeObserver?.disconnect()
   }
 
   public firstUpdated() {
