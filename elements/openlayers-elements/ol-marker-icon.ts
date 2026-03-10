@@ -7,7 +7,7 @@ import { Style, Icon } from 'ol/style.js'
 import type { IconAnchorUnits, IconOrigin } from 'ol/style/Icon.js'
 import type { FlatIcon } from 'ol/style/flat.js'
 import type { Size } from 'ol/size.js'
-import type OlMap from './ol-map.js'
+import type OlMap from '@openlayers-elements/core/ol-map.js'
 
 /**
  * A basic map marker. Loaded from an image file
