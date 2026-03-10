@@ -7,7 +7,6 @@ import { Style, Icon } from 'ol/style.js'
 import type { IconAnchorUnits, IconOrigin } from 'ol/style/Icon.js'
 import type { FlatIcon } from 'ol/style/flat.js'
 import type { Size } from 'ol/size.js'
-import type OlMap from '@openlayers-elements/core/ol-map.js'
 
 /**
  * A basic map marker. Loaded from an image file
@@ -152,10 +151,15 @@ export default class OlMarkerIcon extends OlFeature {
   @property({ type: Array })
   public size?: Size = undefined
 
-  public createFeature(map: OlMap | undefined) {
+  public createFeature() {
+    const map = this.map.value
+    if (!map) {
+      throw new Error('ol-marker-icon element must be nested inside an ol-map element')
+    }
+
     let point = new Point([this.x, this.y])
     if (this.lat && this.lon) {
-      point = new Point(fromLonLat([this.lon, this.lat], map?.projection))
+      point = new Point(fromLonLat([this.lon, this.lat], map.getView().getProjection()))
     }
 
     const feature = new Feature({

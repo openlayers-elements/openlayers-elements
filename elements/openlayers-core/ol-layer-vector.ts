@@ -4,8 +4,10 @@ import { property } from 'lit/decorators.js'
 import type { StyleFunction } from 'ol/style/Style.js'
 import type Style from 'ol/style/Style.js'
 import type { FlatStyle } from 'ol/style/flat.js'
+import { provide } from '@lit/context'
 import OlLayerBase from './ol-layer-base.js'
-import AttachableAwareMixin from './mixins/AttachableAware.js'
+import { vectorSource } from './lib/context.js'
+import fit from './lib/fit.js'
 
 /**
  * An "empty" vector layer. It is a base class to other vector layers.
@@ -26,16 +28,14 @@ import AttachableAwareMixin from './mixins/AttachableAware.js'
  * @customElement
  * @slot - The markers to be placed on the map
  */
-export default class OlLayerVector extends AttachableAwareMixin(
-  OlLayerBase as new (...args: any[]) => OlLayerBase<VectorLayer<any>>,
-  'vector',
-) {
+export default class OlLayerVector extends OlLayerBase<VectorLayer<any>> {
   /**
    * The OpenLayers vector source, containing the features
    *
    * @type {VectorSource}
    */
-  public source?: VectorSource = undefined
+  @provide({ context: vectorSource })
+  public source: VectorSource | undefined = undefined
 
   /**
    * The style to be applied to layer features. It can be either an `ol/Style` or `ol/style/flat`
@@ -48,7 +48,7 @@ export default class OlLayerVector extends AttachableAwareMixin(
 
   public fit() {
     if (this.source) {
-      this._map.fit(this.source.getExtent())
+      fit(this.map.value, this.source.getExtent())
     }
   }
 
@@ -58,7 +58,6 @@ export default class OlLayerVector extends AttachableAwareMixin(
 
   protected async _createLayer() {
     this.source = this._createSource()
-    this.notifyReady()
 
     return new VectorLayer({
       source: this.source,
