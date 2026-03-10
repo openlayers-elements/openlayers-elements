@@ -1,4 +1,4 @@
-import { setCustomElementsManifest, Preview } from '@storybook/web-components'
+import { setCustomElementsManifest, Preview } from '@storybook/web-components-vite'
 import customElements from '../custom-elements.json'
 
 setCustomElementsManifest(customElements)
@@ -17,7 +17,7 @@ const preview: Preview = {
       },
     },
     docs: {
-      // story: { inline: false },
+      codePanel: true
     }
   },
 

@@ -1,10 +1,11 @@
-import { css, html, LitElement } from 'lit'
+import { css, html, isServer, LitElement } from 'lit'
 import { property, query } from 'lit/decorators.js'
 import OpenLayersMap from 'ol/Map.js'
-import { MapEvent } from 'ol'
-import SimpleGeometry from 'ol/geom/SimpleGeometry.js'
+import type { MapEvent } from 'ol'
+import type SimpleGeometry from 'ol/geom/SimpleGeometry.js'
 import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj.js'
-import View, { FitOptions } from 'ol/View.js'
+import type { FitOptions } from 'ol/View.js'
+import View from 'ol/View.js'
 import AttachableAwareMixin from './mixins/AttachableAware.js'
 import { forwardEvents } from './lib/events.js'
 
@@ -179,25 +180,27 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   /**
    * @ignore
    */
-  public sizeObserver: ResizeObserver
+  public sizeObserver: ResizeObserver | undefined
 
   public constructor() {
     super()
-    this.sizeObserver = new ResizeObserver(() => {
-      if (this.map) {
-        this.map.updateSize()
-      }
-    })
+    if (!isServer) {
+      this.sizeObserver = new ResizeObserver(() => {
+        if (this.map) {
+          this.map.updateSize()
+        }
+      })
+    }
   }
 
   public connectedCallback() {
     super.connectedCallback()
-    this.sizeObserver.observe(this)
+    this.sizeObserver?.observe(this)
   }
 
   public disconnectedCallback() {
     super.disconnectedCallback()
-    this.sizeObserver.disconnect()
+    this.sizeObserver?.disconnect()
   }
 
   public firstUpdated() {
@@ -267,13 +270,15 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     const { center } = event.frameState.viewState
     const [lon, lat] = toLonLat(center, this.projection)
 
-    this.dispatchEvent(new CustomEvent('view-change', {
-      detail: {
-        ...event.frameState.viewState,
-        lat,
-        lon,
-      },
-    }))
+    this.dispatchEvent(
+      new CustomEvent('view-change', {
+        detail: {
+          ...event.frameState.viewState,
+          lat,
+          lon,
+        },
+      }),
+    )
   }
 }
 

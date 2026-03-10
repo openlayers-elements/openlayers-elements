@@ -5,7 +5,7 @@ import type { FlatStyle } from 'ol/style/flat.js'
 import { Style, Stroke, Fill } from 'ol/style.js'
 import '@openlayers-elements/core/ol-map.js'
 import '@openlayers-elements/maps/ol-layer-geojson'
-import Feature from 'ol/Feature.js'
+import type Feature from 'ol/Feature.js'
 
 const canvas = document.createElement('canvas')
 const context = canvas.getContext('2d')!

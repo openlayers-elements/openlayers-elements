@@ -1,4 +1,4 @@
-import BaseObject from 'ol/Object.js'
+import type BaseObject from 'ol/Object.js'
 
 export function forwardEvents(events: string [], target: EventTarget, olObject: BaseObject) {
   for (const name of events) {

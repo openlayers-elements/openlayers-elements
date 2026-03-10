@@ -1,4 +1,5 @@
-import { html, LitElement } from 'lit'
+import type { LitElement } from 'lit'
+import { html } from 'lit'
 
 type Constructor = new (...args: any[]) => LitElement
 type IAttachableAwareMixin = <B extends Constructor>(

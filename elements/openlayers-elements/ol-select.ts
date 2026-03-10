@@ -1,6 +1,6 @@
 import Select from 'ol/interaction/Select.js'
 import OlInteraction from '@openlayers-elements/core/ol-interaction.js'
-import { StyleLike } from 'ol/style/Style.js'
+import type { StyleLike } from 'ol/style/Style.js'
 import type Feature from 'ol/Feature.js'
 import { property } from 'lit/decorators.js'
 import * as Style from '@openlayers-elements/core/Style.js'

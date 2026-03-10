@@ -1,4 +1,4 @@
-import { PropertyValues } from 'lit'
+import type { PropertyValues } from 'lit'
 import { property } from 'lit/decorators.js'
 import WKT from 'ol/format/WKT.js'
 import VectorSource from 'ol/source/Vector.js'

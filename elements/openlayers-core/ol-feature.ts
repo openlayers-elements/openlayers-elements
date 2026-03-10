@@ -1,9 +1,9 @@
-import Feature from 'ol/Feature.js'
+import type Feature from 'ol/Feature.js'
 import { LitElement } from 'lit'
 import AttachableMixin from './mixins/Attachable.js'
 import { forwardEvents } from './lib/events.js'
-import OlLayerVector from './ol-layer-vector.js'
-import OlMap from './ol-map.js'
+import type OlLayerVector from './ol-layer-vector.js'
+import type OlMap from './ol-map.js'
 
 /**
  * Base class for feature elements which attach themselves to vector layers

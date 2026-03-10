@@ -1,7 +1,7 @@
 import { OlMapPart } from '@openlayers-elements/core/ol-map-part.js'
 import Overlay from 'ol/Overlay.js'
 import type { PanIntoViewOptions } from 'ol/Overlay.js'
-import Map from 'ol/Map.js'
+import type Map from 'ol/Map.js'
 import { html } from 'lit'
 import { property } from 'lit/decorators.js'
 

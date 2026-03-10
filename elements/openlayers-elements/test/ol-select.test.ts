@@ -1,6 +1,6 @@
 import '../ol-select.js'
 import { expect, fixture } from '@open-wc/testing'
-import Style from 'ol/style/Style.js'
+import type Style from 'ol/style/Style.js'
 import type { OlSelect } from '../ol-select.js'
 
 describe('ol-style', () => {
