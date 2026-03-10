@@ -15,7 +15,7 @@ describe('ol-style', () => {
 
       // then
       const style = element.featureStyle as Style
-      expect(style.getFill().getColor()).to.deep.equal('rgba(255,255,255,0.4)')
+      expect(style.getFill()?.getColor()).to.deep.equal('rgba(255,255,255,0.4)')
     })
   })
 })
