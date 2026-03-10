@@ -1,5 +1,18 @@
 # @openlayers-elements/maps
 
+## 0.5.0
+
+### Minor Changes
+
+- 625fc7b: Remove deprecated module `@openlayers-elements/maps/ol-map.js`. `@openlayers-elements/core/ol-map.js` must be used instead
+- eca17c2: upgrade to openlayers v9, use ol flat styling syntax
+
+### Patch Changes
+
+- Updated dependencies [eca17c2]
+- Updated dependencies [bcafab3]
+  - @openlayers-elements/core@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
