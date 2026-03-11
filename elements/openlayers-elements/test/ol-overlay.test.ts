@@ -1,4 +1,4 @@
-import { assert, expect, fixture, oneEvent } from '@open-wc/testing'
+import { assert, expect, fixture } from '@open-wc/testing'
 import * as sinon from 'sinon'
 import '@openlayers-elements/core/ol-map.js'
 import '../ol-overlay.js'
@@ -92,7 +92,7 @@ describe('ol-overlay', () => {
   it('throws if overlay has no id', async () => {
     // given
     let thrown
-    const element = (await fixture('<ol-overlay></ol-overlay>')) as OlOverlay
+    const element = document.createElement('ol-overlay') as OlOverlay
 
     // when
     await element.createPart().catch((e: Error) => {
@@ -107,9 +107,6 @@ describe('ol-overlay', () => {
     // given
     const map = (await fixture('<ol-map><ol-overlay id="foo"></ol-overlay></ol-map>')) as OlMap
 
-    // when
-    await oneEvent(map.querySelector('ol-overlay')!, 'attached')
-
     // then
     expect(map.map!.getOverlays().getLength()).to.equal(1)
   })
@@ -117,7 +114,6 @@ describe('ol-overlay', () => {
   it('remove itself from the map', async () => {
     // given
     const map = (await fixture('<ol-map><ol-overlay id="foo"></ol-overlay></ol-map>')) as OlMap
-    await oneEvent(map.querySelector('ol-overlay')!, 'attached')
 
     // when
     map.removeChild(map.querySelector('ol-overlay')!)

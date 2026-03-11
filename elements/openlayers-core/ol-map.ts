@@ -4,10 +4,12 @@ import OpenLayersMap from 'ol/Map.js'
 import type { MapEvent } from 'ol'
 import type SimpleGeometry from 'ol/geom/SimpleGeometry.js'
 import { fromLonLat, get as getProjection, toLonLat } from 'ol/proj.js'
-import type { FitOptions } from 'ol/View.js'
+import type { FitOptions, ViewOptions } from 'ol/View.js'
 import View from 'ol/View.js'
-import AttachableAwareMixin from './mixins/AttachableAware.js'
+import { provide } from '@lit/context'
 import { forwardEvents } from './lib/events.js'
+import { map } from './lib/context.js'
+import fit from './lib/fit.js'
 
 /**
  * The main map element. On its own it does not do anything. Has to be combined with layers
@@ -69,7 +71,7 @@ import { forwardEvents } from './lib/events.js'
  * @customElement
  * @slot - the default slot to add map layers
  */
-export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
+export default class OlMap extends LitElement {
   /**
    * Forwards `moveend` event from OpenLayers object
    *
@@ -175,7 +177,8 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
    * @type {Object}
    * @ignore
    */
-  public map?: OpenLayersMap = undefined
+  @provide({ context: map })
+  public map!: OpenLayersMap
 
   /**
    * @ignore
@@ -204,11 +207,11 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   }
 
   public firstUpdated() {
-    const viewInit = {
+    const viewInit: ViewOptions = {
       center: [0, 0],
       resolution: this.resolution,
       zoom: this.zoom,
-    } as any
+    }
 
     if (this.lon && this.lat) {
       if (this.projection) {
@@ -223,7 +226,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
     }
 
     if (this.projection) {
-      viewInit.projection = getProjection(this.projection)
+      viewInit.projection = getProjection(this.projection) || undefined
     }
     this.map = new OpenLayersMap({
       target: this.mapElement,
@@ -232,8 +235,6 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
 
     forwardEvents(OlMap.__forwardedEvents, this, this.map)
     this.map.on('moveend', this.__dispatchViewChange.bind(this))
-
-    this.notifyReady()
   }
 
   public render() {
@@ -254,12 +255,7 @@ export default class OlMap extends AttachableAwareMixin(LitElement, 'map') {
   }
 
   public fit(extent: SimpleGeometry | number[], options?: FitOptions) {
-    this.map?.getView().fit(extent, {
-      size: this.map.getSize(),
-      // constrainResolution: false,
-      nearest: false,
-      ...options,
-    })
+    fit(this.map, extent, options)
   }
 
   private __dispatchViewChange(event: MapEvent) {

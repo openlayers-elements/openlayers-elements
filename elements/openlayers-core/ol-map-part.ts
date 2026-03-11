@@ -1,16 +1,18 @@
 import { LitElement } from 'lit'
 import type Map from 'ol/Map.js'
 import type BaseObject from 'ol/Object.js'
-import AttachableMixin from './mixins/Attachable.js'
-import type OlMap from './ol-map.js'
+import { ContextConsumer } from '@lit/context'
 import { forwardEvents } from './lib/events.js'
+import { map } from './lib/context.js'
 
 /**
  * Abstract base class used to create map objects such as layers and interactions
  *
  * @appliesMixin AttachableMixin
  */
-export abstract class OlMapPart<T extends BaseObject> extends AttachableMixin(LitElement, 'map') {
+export abstract class OlMapPart<T extends BaseObject> extends LitElement {
+  public readonly map: ContextConsumer<typeof map, typeof this>
+
   /**
    * Called when adding layers to the map.
    * Implement to create the OpenLayers object
@@ -20,7 +22,33 @@ export abstract class OlMapPart<T extends BaseObject> extends AttachableMixin(Li
    */
   public abstract createPart(): Promise<T>
 
-  public _map: OlMap
+  private _part: T
+
+  constructor() {
+    super()
+    this.map = new ContextConsumer(this, {
+      context: map,
+      callback: (olMap) => {
+        if (olMap) {
+          this._addToMap(olMap, this._part)
+        }
+      },
+      subscribe: true,
+    })
+  }
+
+  async connectedCallback() {
+    this._part = await this.createPart()
+    forwardEvents(this._forwardedEvents, this, this._part)
+    super.connectedCallback()
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback()
+    if (this.map.value) {
+      this._removeFromMap(this.map.value, this._part)
+    }
+  }
 
   /**
    * @ignore
@@ -32,21 +60,4 @@ export abstract class OlMapPart<T extends BaseObject> extends AttachableMixin(Li
   protected abstract _addToMap(map: Map, part: T): void
 
   protected abstract _removeFromMap(map: Map, part: T): void
-
-  protected async _attach({ map }: { map: OlMap }): Promise<(() => void) | null> {
-    if (map) {
-      this._map = await map
-      const olMap = this._map.map!
-      const part = await this.createPart()
-      this._addToMap(olMap, part)
-
-      forwardEvents(this._forwardedEvents, this, part)
-
-      return () => {
-        this._removeFromMap(olMap, part)
-      }
-    }
-
-    return null
-  }
 }
