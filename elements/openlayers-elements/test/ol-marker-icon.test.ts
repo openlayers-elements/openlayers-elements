@@ -1,10 +1,9 @@
 import { expect, fixture } from '@open-wc/testing'
 import { html } from 'lit'
 import '@openlayers-elements/core/ol-layer-vector'
-import '@openlayers-elements/core/ol-map'
+import '@openlayers-elements/core/ol-map.js'
 import type OlMarkerIcon from '../ol-marker-icon.js'
 import '../ol-marker-icon.js'
-import '../ol-map.js'
 
 const dotUrl = '/base/test/assets/icon.png'
 
