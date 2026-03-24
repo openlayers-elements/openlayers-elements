@@ -32,16 +32,6 @@ export class SwisstopoWmts extends SwisstopoElement(OlLayerBase as new (...args:
   @property({ type: String })
   public projection: Projections = 'EPSG:3857'
 
-  protected async _attach(detail: any) {
-    const { projection } = await detail.map
-
-    if (projection) {
-      this.projection = projection as Projections
-    }
-
-    return super._attach(detail)
-  }
-
   protected async _createLayer() {
     const projectionSegments = this.projection.replace(/:/, '/')
     const url = `https://wmts.geo.admin.ch/${projectionSegments}/1.0.0/WMTSCapabilities.xml`
