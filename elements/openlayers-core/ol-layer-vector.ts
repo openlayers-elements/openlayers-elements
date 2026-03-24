@@ -24,7 +24,6 @@ import fit from './lib/fit.js'
  * </ol-map>
  * ```
  *
- * @appliesMixin AttachableAwareMixin
  * @customElement
  * @slot - The markers to be placed on the map
  */

@@ -7,8 +7,6 @@ import { map } from './lib/context.js'
 
 /**
  * Abstract base class used to create map objects such as layers and interactions
- *
- * @appliesMixin AttachableMixin
  */
 export abstract class OlMapPart<T extends BaseObject> extends LitElement {
   public readonly map: ContextConsumer<typeof map, typeof this>

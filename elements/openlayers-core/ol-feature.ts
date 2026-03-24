@@ -6,8 +6,6 @@ import { map, vectorSource } from './lib/context.js'
 
 /**
  * Base class for feature elements which attach themselves to vector layers
- *
- * @appliesMixin AttachableMixin
  */
 export default abstract class OlFeature extends LitElement {
   protected readonly map: ContextConsumer<typeof map, typeof this>

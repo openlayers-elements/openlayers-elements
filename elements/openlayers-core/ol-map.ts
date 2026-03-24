@@ -67,7 +67,6 @@ import fit from './lib/fit.js'
  *
  * If `x` and `y` are set, the geographic coordinates are ignored.
  *
- * @appliesMixin AttachableAwareMixin
  * @customElement
  * @slot - the default slot to add map layers
  */
