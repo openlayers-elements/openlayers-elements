@@ -1,4 +1,4 @@
-import { expect, fixture, aTimeout } from '@open-wc/testing'
+import { expect, fixture, waitUntil } from '@open-wc/testing'
 import { html } from 'lit'
 import type OlLayerVector from '../ol-layer-vector.js'
 import '../ol-layer-vector.js'
@@ -58,7 +58,7 @@ describe('ol-layer-vector', () => {
     // when
     const marker = document.createElement('ol-test-feature')
     element.appendChild(marker)
-    await aTimeout(1)
+    await waitUntil(() => element.source!.getFeatures().length === 1)
 
     // then
     expect(element.source!.getFeatures().length).to.equal(1)
