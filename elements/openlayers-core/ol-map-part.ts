@@ -20,14 +20,14 @@ export abstract class OlMapPart<T extends BaseObject> extends LitElement {
    */
   public abstract createPart(): Promise<T>
 
-  private _part: T
+  private _part: T | undefined
 
   constructor() {
     super()
     this.map = new ContextConsumer(this, {
       context: map,
       callback: (olMap) => {
-        if (olMap) {
+        if (olMap && this._part) {
           this._addToMap(olMap, this._part)
         }
       },
@@ -43,7 +43,7 @@ export abstract class OlMapPart<T extends BaseObject> extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback()
-    if (this.map.value) {
+    if (this.map.value && this._part) {
       this._removeFromMap(this.map.value, this._part)
     }
   }
