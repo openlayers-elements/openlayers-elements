@@ -40,6 +40,10 @@ export default abstract class OlFeature extends LitElement {
   public abstract createFeature(): Feature
 
   private async _attach() {
+    if (this._feature) {
+      return
+    }
+
     const map = this.map.value
     const source = this.vectorSource.value
 
