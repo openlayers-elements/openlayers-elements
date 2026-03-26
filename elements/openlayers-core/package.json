@@ -19,6 +19,7 @@
     "custom-elements-manifest": "cem analyze --litelement",
     "build:dts": "tsc --emitDeclarationOnly",
     "build:js": "esbuild *.ts $(esbuild-config ./esbuild.config.json)",
+    "prebuild": "rimraf *.d.ts *.js",
     "build": "npm run build:dts && npm run build:js",
     "prepack": "npm run build && npm run custom-elements-manifest"
   },
@@ -31,9 +32,11 @@
     "@open-wc/testing": "^4.0.0",
     "sinon": "^9.2.4",
     "ol-json-style": "^1.0.3",
-    "@openlayers-elements/testing": "0.1.0"
+    "@openlayers-elements/testing": "0.1.0",
+    "rimraf": "^6.1.3"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "customElements": "custom-elements.json"
 }
