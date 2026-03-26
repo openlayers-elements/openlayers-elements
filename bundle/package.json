@@ -18,5 +18,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openlayers-elements/openlayers-elements",
+    "directory": "bundle"
   }
 }

@@ -3,7 +3,11 @@
   "version": "0.5.0",
   "author": "Zazuko GmbH",
   "type": "module",
-  "repository": "https://github.com/openlayers-elements/openlayers-elements",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openlayers-elements/openlayers-elements",
+    "directory": "elements/swisstopo-elements"
+  },
   "contributors": [
     "tpluscode <tpluscode@users.noreply.github.com>"
   ],
