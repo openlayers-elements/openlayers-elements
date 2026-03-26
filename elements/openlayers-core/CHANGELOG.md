@@ -1,5 +1,15 @@
 # @openlayers-elements/core
 
+## 0.5.0
+
+### Minor Changes
+
+- eca17c2: upgrade to openlayers v9, use ol flat styling syntax
+
+### Patch Changes
+
+- bcafab3: Avoid calling `ResizeObserver` during SSR
+
 ## 0.4.0
 
 ### Minor Changes
