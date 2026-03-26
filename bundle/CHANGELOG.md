@@ -1,5 +1,11 @@
 # @openlayers-elements/bundle
 
+## 0.2.0
+
+### Minor Changes
+
+- 23b5470: Update bundle to match dependencies
+
 ## 0.1.1
 
 ### Patch Changes
