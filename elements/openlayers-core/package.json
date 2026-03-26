@@ -14,15 +14,15 @@
   "files": [
     "*.js",
     "*.d.ts",
-    "mixins/*.js",
-    "mixins/*.d.ts",
+    "lib/*.js",
+    "lib/*.d.ts",
     "custom-elements.json"
   ],
   "license": "MIT",
   "scripts": {
     "custom-elements-manifest": "cem analyze --litelement",
     "build:dts": "tsc --emitDeclarationOnly",
-    "build:js": "esbuild *.ts $(esbuild-config ./esbuild.config.json)",
+    "build:js": "esbuild *.ts lib/*.ts $(esbuild-config ./esbuild.config.json)",
     "prebuild": "rimraf *.d.ts *.js",
     "build": "npm run build:dts && npm run build:js",
     "prepack": "npm run build && npm run custom-elements-manifest"
