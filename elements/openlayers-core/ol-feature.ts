@@ -1,37 +1,56 @@
 import type Feature from 'ol/Feature.js'
 import { LitElement } from 'lit'
-import AttachableMixin from './mixins/Attachable.js'
+import { ContextConsumer } from '@lit/context'
 import { forwardEvents } from './lib/events.js'
-import type OlLayerVector from './ol-layer-vector.js'
-import type OlMap from './ol-map.js'
+import { map, vectorSource } from './lib/context.js'
 
 /**
  * Base class for feature elements which attach themselves to vector layers
- *
- * @appliesMixin AttachableMixin
  */
-export default abstract class OlFeature extends AttachableMixin(LitElement, 'vector') {
+export default abstract class OlFeature extends LitElement {
+  protected readonly map: ContextConsumer<typeof map, typeof this>
+  protected readonly vectorSource: ContextConsumer<typeof vectorSource, typeof this>
+  private _feature?: Feature
+
   protected get _forwardedEvents(): string[] {
     return []
   }
 
-  public abstract createFeature(map: OlMap): Feature
+  constructor() {
+    super()
+    this.vectorSource = new ContextConsumer(this, {
+      context: vectorSource,
+      callback: this._attach.bind(this),
+      subscribe: true,
+    })
+    this.map = new ContextConsumer(this, {
+      context: map,
+      callback: this._attach.bind(this),
+      subscribe: true,
+    })
+  }
 
-  protected async _attach(arg: { map: Promise<OlMap | undefined>; vector: Promise<OlLayerVector | undefined> }) {
-    const map = await arg.map
-    const vector = await arg.vector
+  disconnectedCallback() {
+    super.disconnectedCallback()
+    if (this._feature) {
+      this.vectorSource.value?.removeFeature(this._feature)
+    }
+  }
 
-    if (vector && map) {
-      const feature = this.createFeature(map)
-      const { source } = vector
-      source?.addFeature(feature)
-      forwardEvents(this._forwardedEvents, this, feature)
+  public abstract createFeature(): Feature
 
-      return () => {
-        source?.removeFeature(feature)
-      }
+  private async _attach() {
+    if (this._feature) {
+      return
     }
 
-    return null
+    const map = this.map.value
+    const source = this.vectorSource.value
+
+    if (source && map) {
+      this._feature = this.createFeature()
+      source.addFeature(this._feature)
+      forwardEvents(this._forwardedEvents, this, this._feature)
+    }
   }
 }
