@@ -1,5 +1,11 @@
 # @openlayers-elements/core
 
+## 0.5.1
+
+### Patch Changes
+
+- cbaeec9: The context symbols were duplicated to `@lit/context` event were not connecting the elements
+
 ## 0.5.0
 
 ### Minor Changes
